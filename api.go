@@ -1,19 +1,19 @@
-package xc
+package xcgui
 
 import (
-    . "github.com/codyguo/sys"
+    "github.com/codyguo/sys"
 )
 
-var XCDLL *DLLClass
+var XCDLL *sys.DLLClass
 
 func init() {
-    if FileExist("XCGUI.dll") {
-        XCDLL = Dll("XCGUI.DLL")
-    } else if FileExist("bin/XCGUI.dll") {
-        XCDLL = Dll("bin/XCGUI.DLL")
+    if sys.FileExist("XCGUI.dll") {
+        XCDLL = sys.Dll("XCGUI.DLL")
+    } else if sys.FileExist("bin/XCGUI.dll") {
+        XCDLL = sys.Dll("bin/XCGUI.DLL")
     } else {
         panic("xcgui library not found")
     }
 
-    XCDLL.Call("XInitXCGUI", TEXT("XCGUI Library For Go"))
+    XCDLL.Call("XInitXCGUI", sys.TEXT("XCGUI Library For Go"))
 }

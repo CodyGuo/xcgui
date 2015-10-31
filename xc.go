@@ -1,7 +1,7 @@
-package xc
+package xcgui
 
 import (
-    . "github.com/codyguo/sys"
+    "github.com/codyguo/sys"
 )
 
 type XCClass struct {
@@ -20,7 +20,7 @@ func (xc *XCClass) LoopMessage() {
 
 func XCGUI(x, y, cx, cy int, text string, hParent int, uFlag int) *XCClass {
     XCCls := &XCClass{}
-    XCCls.Hwnd = XCDLL.Call("XWnd_Create", uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), TEXT(text), uintptr(hParent), uintptr(uFlag))
+    XCCls.Hwnd = XCDLL.Call("XWnd_Create", uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), sys.TEXT(text), uintptr(hParent), uintptr(uFlag))
     XCCls.WHwnd = XCDLL.Call("XWnd_GetHWND", XCCls.Hwnd)
     XCCls.Text = text
     return XCCls

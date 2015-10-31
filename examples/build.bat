@@ -4,14 +4,14 @@
 
 set GOARCH=386
 set GOGCCFLAGS=-m32 -mthreads -fmessage-length=0
-rsrc -manifest main.manifest -o rsrc.syso
+
 go build
 pause
 exit
 -ldflags="-H windowsgui"
  -ldflags "-s -w"
 
-
+rsrc -manifest main.manifest -o rsrc.syso
 set GOARCH=386
 set GOBIN=D:\go\bin
 set GOEXE=.exe

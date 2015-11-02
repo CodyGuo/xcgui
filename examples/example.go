@@ -1,11 +1,30 @@
 package main
 
 import (
-    . "github.com/codyguo/xcgui"
+    "log"
+)
+import (
+    "github.com/codyguo/xcgui"
 )
 
 func main() {
-    xui := XCGUI(0, 0, 600, 400, "Hey Man", 0, 0x8|0x5)
-    xui.Show(0x5)
-    xui.LoopMessage()
+    mw := xcgui.NewMainWindow(600, 500, "测试")
+
+    button := xcgui.NewButton(260, 200, 50, 25, "提交", mw)
+
+    var msgFunc = func() uintptr {
+        ret := xcgui.MsgBox(mw, "警告", "您的点击不正确.", xcgui.MsgBoxIconWarning)
+        return uintptr(ret)
+    }
+
+    button.Clicked(msgFunc)
+
+    err := mw.Show()
+    if err != nil {
+        log.Fatalln(err)
+    }
+
+    mw.Run()
+
+    defer mw.Close()
 }

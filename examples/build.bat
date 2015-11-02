@@ -5,10 +5,10 @@
 set GOARCH=386
 set GOGCCFLAGS=-m32 -mthreads -fmessage-length=0
 
-go build
+go build -ldflags="-H windowsgui"
 pause
 exit
--ldflags="-H windowsgui"
+
  -ldflags "-s -w"
 
 rsrc -manifest main.manifest -o rsrc.syso

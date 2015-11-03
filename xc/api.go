@@ -1,17 +1,27 @@
 package xc
 
 import (
-    "github.com/codyguo/sys"
-)
-
-var (
-    XCDLL *sys.DLLClass
+    "os"
+    "path/filepath"
+    "syscall"
+    "unsafe"
 )
 
 const (
     TRUE  = 1
     FALSE = 0
     NULL  = 0
+
+    xcDll = "XCGUI.dll"
+)
+
+var (
+    XCDLL *syscall.DLL
+)
+
+var (
+    // Functions
+    XInitXCGUI *syscall.Proc
 )
 
 type (
@@ -23,19 +33,39 @@ type (
 
 // 1.初始化UI库
 func init() {
-    if sys.FileExist("XCGUI.dll") {
-        XCDLL = sys.Dll("XCGUI.DLL")
-    } else if sys.FileExist("bin/XCGUI.dll") {
-        XCDLL = sys.Dll("bin/XCGUI.DLL")
+    if FileExist(xcDll) {
+        XCDLL = syscall.MustLoadDLL(xcDll)
+    } else if FileExist("bin/" + xcDll) {
+        XCDLL = syscall.MustLoadDLL("bin/" + xcDll)
     } else {
         panic("xcgui library not found")
     }
 
-    ret := XCDLL.Call("XInitXCGUI", sys.TEXT("XCGUI Library For Go"))
+    XInitXCGUI = XCDLL.MustFindProc("XInitXCGUI")
+    ret, _, _ := XInitXCGUI.Call(StringToUintPtr("XCGUI Library For Go"))
     // XCGUI的返回值: true 为 1 ，false 为 0
     if ret != TRUE {
         panic("XInitXCGUI call failed.")
     }
+}
+
+func StringToUintPtr(str string) uintptr {
+    return uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(str)))
+}
+
+func FullPath(path string) (p string) {
+    p, _ = filepath.Abs(path)
+    return
+}
+
+func FileExist(path string) bool {
+    _, err := os.Stat(path)
+    if err != nil {
+        return false
+    } else {
+        return true
+    }
+
 }
 
 // func BoolToBOOL(value bool) BOOL {

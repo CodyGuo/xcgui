@@ -1,7 +1,7 @@
 package xc
 
 import (
-    "github.com/codyguo/sys"
+    "syscall"
 )
 
 // MessageBox constants
@@ -28,17 +28,25 @@ const (
     MB_DEFBUTTON4        = 0x00000300
 )
 
-var User32 *sys.DLLClass
+var (
+    User32 *syscall.DLL
+)
+
+var (
+    // Functions
+    MessageBoxW *syscall.Proc
+)
 
 func init() {
-    User32 = sys.Dll("User32.dll")
+    User32 = syscall.MustLoadDLL("User32.dll")
+    MessageBoxW = User32.MustFindProc("MessageBoxW")
 }
 
 func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
-    ret := User32.Call("MessageBoxW",
+    ret, _, _ := MessageBoxW.Call(
         uintptr(hWnd),
-        sys.TEXT(lpText),
-        sys.TEXT(lpCaption),
+        StringToUintPtr(lpText),
+        StringToUintPtr(lpCaption),
         uintptr(uType))
 
     return int32(ret)

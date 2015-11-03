@@ -1,11 +1,8 @@
 package xc
 
 import (
-    "github.com/codyguo/sys"
-)
-
-import (
-// "fmt"
+    "syscall"
+    // "fmt"
 )
 
 // xc_window_style_
@@ -52,6 +49,28 @@ const (
     BUTTON_TYPE_MAX
 )
 
+var (
+    // Functions
+    XWnd_Create     *syscall.Proc
+    XWnd_GetHWND    *syscall.Proc
+    XWnd_ShowWindow *syscall.Proc
+    XRunXCGUI       *syscall.Proc
+    XExitXCGUI      *syscall.Proc
+    XBtn_SetType    *syscall.Proc
+)
+
+func init() {
+    // Functions
+    XWnd_Create = XCDLL.MustFindProc("XWnd_Create")
+    XWnd_ShowWindow = XCDLL.MustFindProc("XWnd_ShowWindow")
+
+    XWnd_GetHWND = XCDLL.MustFindProc("XWnd_GetHWND")
+    XBtn_SetType = XCDLL.MustFindProc("XBtn_SetType")
+
+    XRunXCGUI = XCDLL.MustFindProc("XRunXCGUI")
+    XExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
+}
+
 type XCMainWindow struct {
     Hwnd uintptr
     // WHwnd   uintptr
@@ -62,14 +81,14 @@ type XCMainWindow struct {
 func XWndCreate(x, y, cx, cy int, pTitle string, hWnParent int, XCStyle int) *XCMainWindow {
     xc := new(XCMainWindow)
     // API: XWnd_Create
-    xc.HWindow = XCDLL.Call("XWnd_Create",
+    xc.HWindow, _, _ = XWnd_Create.Call(
         uintptr(x),
         uintptr(y),
         uintptr(cx),
         uintptr(cy),
-        sys.TEXT(pTitle),
+        StringToUintPtr(pTitle),
         uintptr(hWnParent),
-        uintptr(XCStyle)) // xc_window_style_
+        uintptr(XCStyle))
 
     xc.closeBtn()
     xc.minBtn()
@@ -86,13 +105,12 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWnParent int, XCStyle int) *XC
 // }
 
 func (xc *XCMainWindow) XWndGetHWND() {
-    xc.Hwnd = XCDLL.Call(" XWnd_GetHWND",
-        xc.HWindow)
+    xc.Hwnd, _, _ = XWnd_GetHWND.Call(xc.HWindow)
 }
 
 // 3.显示窗口
 func (xc *XCMainWindow) XWndShowWindow(uFlag int) bool {
-    ret := XCDLL.Call("XWnd_ShowWindow",
+    ret, _, _ := XWnd_ShowWindow.Call(
         xc.HWindow,
         uintptr(uFlag))
     // MSDN上返回值：true 为 0，false 为 1
@@ -101,12 +119,12 @@ func (xc *XCMainWindow) XWndShowWindow(uFlag int) bool {
 
 // 4.运行程序
 func (xc *XCMainWindow) XRunXCGUI() {
-    XCDLL.Call("XRunXCGUI")
+    XRunXCGUI.Call()
 }
 
 // 5.释放UI库
 func (xc *XCMainWindow) XExitXCGUI() {
-    XCDLL.Call("XExitXCGUI")
+    XExitXCGUI.Call()
 }
 
 // 关闭
@@ -123,7 +141,7 @@ func (xc *XCMainWindow) minBtn() {
 
 // 设置按钮功能类型
 func xBtnSetType(hEle uintptr, nType int) {
-    XCDLL.Call("XBtn_SetType",
+    XBtn_SetType.Call(
         hEle,
         uintptr(nType))
 }

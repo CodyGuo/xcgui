@@ -37,6 +37,8 @@ func init() {
         XCDLL = syscall.MustLoadDLL(xcDll)
     } else if FileExist("bin/" + xcDll) {
         XCDLL = syscall.MustLoadDLL("bin/" + xcDll)
+    } else if FileExist("../bin/" + xcDll) {
+        XCDLL = syscall.MustLoadDLL("../bin/" + xcDll)
     } else {
         panic("xcgui library not found")
     }

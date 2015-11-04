@@ -5,18 +5,6 @@ import (
     // "fmt"
 )
 
-// xc_window_style_
-const (
-    XC_WINDOW_STYLE_NOTHING     = 0x00000000
-    XC_WINDOW_STYLE_CAPTION     = 0x00000001
-    XC_WINDOW_STYLE_BORDER      = 0x00000002
-    XC_WINDOW_STYLE_CENTER      = 0x00000004
-    XC_WINDOW_STYLE_DRAG_BORDER = 0x00000008
-    XC_WINDOW_STYLE_DRAG_WINDOW = 0x00000010
-    XC_WINDOW_STYLE_DEFAULT     = 0x00000001 | 0x00000002 | 0x00000004 | 0x00000008
-    XC_WINDOW_STYLE_MODAL       = 0x00000001 | 0x00000004 | 0x00000008
-)
-
 // XWndShowWindow constants
 const (
     SW_HIDE            = 0
@@ -94,7 +82,13 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32
 //     xc.Hwnd = XCDLL.Call("XWnd_CreateEx")
 // }
 
-// 显示窗口
+// @Author: cody.guo
+// @Date: 2015-11-4 23:46:41
+// @Function: XWndShowWindow
+// @Description: 显示窗口.
+// @Calls: XWnd_ShowWindow
+// @Input: hWindow: [窗口句柄], nCmdShow: [XWndShowWindow constants]
+// @Return: 成功返回TRUE否则返回FALSE.
 func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
     ret, _, _ := XWnd_ShowWindow.Call(
         uintptr(hWindow),

@@ -29,15 +29,9 @@ const (
     MsgBoxDefButton4        MsgBoxStyle = xc.MB_DEFBUTTON4
 )
 
-func MsgBox(owner *MainWindow, title, message string, style MsgBoxStyle) int {
-    var ownerHWnd xc.HWND
-
-    if owner != nil {
-        ownerHWnd = owner.GetHWND()
-    }
-
+func MsgBox(hParent xc.HWINDOW, title, message string, style MsgBoxStyle) int {
     return int(xc.MessageBox(
-        ownerHWnd,
+        xc.HWND(hParent),
         message,
         title,
         uint32(style)))

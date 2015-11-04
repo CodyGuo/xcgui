@@ -23,8 +23,8 @@ func init() {
 type CallBack func() uintptr
 
 // 创建按钮
-func XBtnCreate(x, y, cx, cy int, pName string, hParent HWND) (hEle uintptr) {
-    hEle, _, _ = XBtn_Create.Call(
+func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
+    ret, _, _ := XBtn_Create.Call(
         uintptr(x),
         uintptr(y),
         uintptr(cx),
@@ -32,13 +32,13 @@ func XBtnCreate(x, y, cx, cy int, pName string, hParent HWND) (hEle uintptr) {
         StringToUintPtr(pName),
         uintptr(hParent))
 
-    return hEle
+    return HELE(ret)
 }
 
 // 注册事件
-func XEleRegEventCPP(hEle uintptr, nEvent int, memberFunction CallBack) {
+func XEleRegEventCPP(hWindow HWINDOW, nEvent int, memberFunction CallBack) {
     XEle_RegEventC.Call(
-        hEle,
+        uintptr(hWindow),
         uintptr(nEvent),
         syscall.NewCallback(memberFunction))
 }

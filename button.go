@@ -10,28 +10,23 @@ type Button struct {
     Width  int
     Height int
     Text   string
-    hEle   uintptr
+    hEle   xc.HELE
 
     clickedPublisher EventPublisher
 }
 
-func NewButton(x, y, w, h int, text string, owner *MainWindow) *Button {
+func NewButton(x, y, w, h int, text string, hParent xc.HWINDOW) *Button {
     btn := new(Button)
     btn.SetBounds(x, y, w, h)
     btn.SetText(text)
 
-    var pHwnd xc.HWND
-
-    if owner != nil {
-        pHwnd = owner.GetHWindow()
-    }
-
-    btn.hEle = xc.XBtnCreate(btn.X,
+    btn.hEle = xc.XBtnCreate(
+        btn.X,
         btn.Y,
         btn.Width,
         btn.Height,
         btn.Text,
-        pHwnd)
+        xc.HXCGUI(hParent))
 
     return btn
 }
@@ -52,7 +47,8 @@ func (b *Button) SetBounds(x, y, w, h int) {
 // }
 
 func (b *Button) Clicked(function xc.CallBack) {
-    xc.XEleRegEventCPP(b.hEle,
+    xc.XEleRegEventCPP(
+        xc.HWINDOW(b.hEle),
         xc.XE_BNCLICK,
         function)
 }

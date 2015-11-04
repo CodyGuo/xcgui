@@ -71,29 +71,19 @@ func init() {
     XExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
 }
 
-type XCMainWindow struct {
-    Hwnd uintptr
-    // WHwnd   uintptr
-    HWindow uintptr
-}
-
-// 2.创建窗口
-func XWndCreate(x, y, cx, cy int, pTitle string, hWnParent int, XCStyle int) *XCMainWindow {
-    xc := new(XCMainWindow)
+// 创建窗口
+func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32) HWINDOW {
     // API: XWnd_Create
-    xc.HWindow, _, _ = XWnd_Create.Call(
+    ret, _, _ := XWnd_Create.Call(
         uintptr(x),
         uintptr(y),
         uintptr(cx),
         uintptr(cy),
         StringToUintPtr(pTitle),
-        uintptr(hWnParent),
+        uintptr(hWndParent),
         uintptr(XCStyle))
 
-    xc.closeBtn()
-    xc.minBtn()
-
-    return xc
+    return HWINDOW(ret)
 }
 
 // // 创建窗口,增强功能.
@@ -104,45 +94,48 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWnParent int, XCStyle int) *XC
 //     xc.Hwnd = XCDLL.Call("XWnd_CreateEx")
 // }
 
-func (xc *XCMainWindow) XWndGetHWND() {
-    xc.Hwnd, _, _ = XWnd_GetHWND.Call(xc.HWindow)
-}
-
-// 3.显示窗口
-func (xc *XCMainWindow) XWndShowWindow(uFlag int) bool {
+// 显示窗口
+func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
     ret, _, _ := XWnd_ShowWindow.Call(
-        xc.HWindow,
-        uintptr(uFlag))
+        uintptr(hWindow),
+        uintptr(nCmdShow))
     // MSDN上返回值：true 为 0，false 为 1
     return ret != 1
 }
 
-// 4.运行程序
-func (xc *XCMainWindow) XRunXCGUI() {
+// 运行程序
+func XRunXCGUIFunc() {
     XRunXCGUI.Call()
 }
 
-// 5.释放UI库
-func (xc *XCMainWindow) XExitXCGUI() {
+// 释放UI库
+func XExitXCGUIFunc() {
     XExitXCGUI.Call()
 }
 
 // 关闭
-func (xc *XCMainWindow) closeBtn() {
-    xBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HWND(xc.HWindow)),
+func CloseBtn(hWindow HWINDOW) {
+    xBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
         BUTTON_TYPE_CLOSE)
 }
 
 // 最小化
-func (xc *XCMainWindow) minBtn() {
-    xBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HWND(xc.HWindow)),
+func MinBtn(hWindow HWINDOW) {
+    xBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
         BUTTON_TYPE_MIN)
 }
 
+// 获取系统窗口句柄
+func XWndGetHWND(hWindow HWINDOW) HWND {
+    ret, _, _ := XWnd_GetHWND.Call(uintptr(hWindow))
+
+    return HWND(ret)
+}
+
 // 设置按钮功能类型
-func xBtnSetType(hEle uintptr, nType int) {
+func xBtnSetType(hEle HELE, nType uint32) {
     XBtn_SetType.Call(
-        hEle,
+        uintptr(hEle),
         uintptr(nType))
 }
 

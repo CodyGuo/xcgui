@@ -9,15 +9,17 @@ import (
 
 func main() {
     mw := xcgui.NewMainWindow(600, 500, "测试")
+    hWnd := mw.GetHWindow()
 
-    button := xcgui.NewButton(260, 200, 50, 25, "提交", mw)
+    button := xcgui.NewButton(260, 200, 50, 25, "提交", hWnd)
 
     var msgFunc = func() uintptr {
-        ret := xcgui.MsgBox(mw, "警告", "您的点击不正确.", xcgui.MsgBoxIconWarning)
+        ret := xcgui.MsgBox(hWnd, "警告", "您的点击不正确.", xcgui.MsgBoxIconWarning)
         return uintptr(ret)
     }
 
     button.Clicked(msgFunc)
+    button.SetText("改名字了..")
 
     err := mw.Show()
     if err != nil {

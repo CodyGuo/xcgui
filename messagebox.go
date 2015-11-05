@@ -29,9 +29,9 @@ const (
     MsgBoxDefButton4        MsgBoxStyle = xc.MB_DEFBUTTON4
 )
 
-func MsgBox(hParent xc.HWINDOW, title, message string, style MsgBoxStyle) int {
+func MsgBox(hWnd xc.HWND, title, message string, style MsgBoxStyle) int {
     return int(xc.MessageBox(
-        xc.HWND(hParent),
+        hWnd,
         message,
         title,
         uint32(style)))

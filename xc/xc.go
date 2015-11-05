@@ -82,6 +82,7 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32
 //     xc.Hwnd = XCDLL.Call("XWnd_CreateEx")
 // }
 
+// *******************************************************************
 // @Author: cody.guo
 // @Date: 2015-11-4 23:46:41
 // @Function: XWndShowWindow
@@ -89,6 +90,7 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32
 // @Calls: XWnd_ShowWindow
 // @Input: hWindow: [窗口句柄], nCmdShow: [XWndShowWindow constants]
 // @Return: 成功返回TRUE否则返回FALSE.
+// *******************************************************************
 func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
     ret, _, _ := XWnd_ShowWindow.Call(
         uintptr(hWindow),

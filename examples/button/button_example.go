@@ -9,9 +9,11 @@ import (
 
 func main() {
     mw := xcgui.NewMainWindow(600, 500, "测试")
-    hWnd := mw.GetHWindow()
+    hWindow := mw.GetHWindow()
 
-    button := xcgui.NewButton(260, 200, 50, 25, "提交", hWnd)
+    button := xcgui.NewButton(260, 200, 50, 25, "提交", hWindow)
+
+    hWnd := mw.Handle()
 
     var msgFunc = func() uintptr {
         ret := xcgui.MsgBox(hWnd, "警告", "您的点击不正确.", xcgui.MsgBoxIconWarning)

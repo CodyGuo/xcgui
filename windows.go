@@ -96,5 +96,6 @@ func (wb *WindowBase) AsWindowBase() *WindowBase {
 }
 
 func (wb *WindowBase) Handle() xc.HWND {
+    wb.hWnd = xc.XWndGetHWND(wb.hWindow)
     return wb.hWnd
 }

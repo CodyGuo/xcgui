@@ -6,7 +6,7 @@
 
   Hopefully support following widgets and methods enough to run general application.
 
-(模块)
+(炫彩界面库模块)
 
     + UI窗口模块列表
         - FrameWindow-框架窗口          : 100% (  7/  7)

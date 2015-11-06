@@ -1,3 +1,6 @@
 doc/
 *.exe
 *.txt
+
+!doc/*.chm
+!doc/*.h

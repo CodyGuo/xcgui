@@ -42,12 +42,14 @@ func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
     return HELE(ret)
 }
 
+// *******************************************
 // @Author: cody.guo
 // @Date: 2015-11-6 18:45:49
 // @Function: XEleRegEventC
 // @Description: 注册元素事件,将类成员函数作为事件回调函数.回调函数省略元素自身句柄hEle,省略触发事件元素句柄hEventEle.
 // @Calls: XEle_RegEventC
 // @Input: hEle [元素句柄]. nEvent [事件类型]. memberFunction [类成员函数].
+// *******************************************
 func XEleRegEventC(hEle HELE, nEvent int, memberFunction CallBack) {
     XEle_RegEventC.Call(
         uintptr(hEle),

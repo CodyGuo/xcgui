@@ -16,9 +16,10 @@ const (
 
 var (
     // Functions
-    XFrameWnd_Create  *syscall.Proc
-    XPane_Create      *syscall.Proc
-    XFrameWnd_AddPane *syscall.Proc
+    XFrameWnd_Create    *syscall.Proc
+    XPane_Create        *syscall.Proc
+    XFrameWnd_AddPane   *syscall.Proc
+    XFrameWnd_MergePane *syscall.Proc
 )
 
 func init() {
@@ -26,6 +27,7 @@ func init() {
     XFrameWnd_Create = XCDLL.MustFindProc("XFrameWnd_Create")
     XPane_Create = XCDLL.MustFindProc("XPane_Create")
     XFrameWnd_AddPane = XCDLL.MustFindProc("XFrameWnd_AddPane")
+    XFrameWnd_MergePane = XCDLL.MustFindProc("XFrameWnd_MergePane")
 }
 
 // *******************************************
@@ -85,6 +87,28 @@ func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align int3
         uintptr(hPaneDest),
         uintptr(hPaneNew),
         uintptr(align))
+
+    if ret != TRUE {
+        return false
+    }
+
+    return true
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-6 19:24:15
+// @Function: XFrameWndMergePane
+// @Description: 合并窗格.
+// @Calls:  XFrameWnd_MergePane
+// @Input: hWindow [窗口句柄]. hPaneDest [目标窗格]. hPaneNew [当前窗格].
+// @Return: 成功返回TRUE否则返回FALSE.
+// *******************************************
+func XFrameWndMergePane(hWindow HWINDOW, hPaneDest, hPaneNew HELE) bool {
+    ret, _, _ := XFrameWnd_MergePane.Call(
+        uintptr(hWindow),
+        uintptr(hPaneDest),
+        uintptr(hPaneNew))
 
     if ret != TRUE {
         return false

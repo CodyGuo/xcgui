@@ -93,7 +93,7 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32
 // @Function: XWndShowWindow
 // @Description: 显示窗口.
 // @Calls: XWnd_ShowWindow
-// @Input: hWindow [窗口句柄]. nCmdShow [XWndShowWindow constants]
+// @Input: hWindow 窗口句柄. nCmdShow XWndShowWindow constants.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
@@ -139,7 +139,7 @@ func XWndGetHWND(hWindow HWINDOW) HWND {
 // @Function: xBtnSetType
 // @Description: 设置按钮样式.
 // @Calls: XBtn_SetType
-// @Input: hEle [元素句柄]. nStyle [样式]. 参考 button_type_
+// @Input: hEle 元素句柄. nStyle 样式. 参考 button_type_
 // *******************************************
 func xBtnSetType(hEle HELE, nType uint32) {
     XBtn_SetType.Call(
@@ -152,7 +152,7 @@ func xBtnSetType(hEle HELE, nType uint32) {
 // @Function: XWndRegEventC
 // @Description: 注册窗口事件,将类成员函数作为事件回调函数.回调函数省略参数窗口自身句柄hWindow.
 // @Calls: XEle_RegEventC
-// @Input: hWindow [窗口句柄]. nEvent [事件类型]. memberFunction [类成员函数].
+// @Input: hWindow 窗口句柄. nEvent 事件类型. memberFunction 类成员函数.
 func XWndRegEventC(hWindow HWINDOW, nEvent int, memberFunction CallBack) {
     XWnd_RegEventC.Call(
         uintptr(hWindow),

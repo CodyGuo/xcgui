@@ -59,7 +59,7 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle u
 // @Function: XPaneCreate
 // @Description: 创建窗格元素.
 // @Calls: XPane_Create
-// @Input: pName [窗格标题]. nWidth [宽度]. nHeight [高度]. hFrameWnd [框架窗口].
+// @Input: pName 窗格标题. nWidth 宽度. nHeight 高度. hFrameWnd 框架窗口.
 // @Return: 元素句柄.
 // *******************************************
 func XPaneCreate(pName string, nWidth, nHeight int, hFrameWnd HWINDOW) HELE {
@@ -78,7 +78,7 @@ func XPaneCreate(pName string, nWidth, nHeight int, hFrameWnd HWINDOW) HELE {
 // @Function: XFrameWndAddPane
 // @Description: 添加窗格到框架窗口.
 // @Calls: XFrameWnd_AddPane
-// @Input: hWindow [窗口句柄]. hPaneDest [目标窗格]. hPaneNew [当前窗格].  align [对齐方式].
+// @Input: hWindow 窗口句柄. hPaneDest 目标窗格. hPaneNew 当前窗格.  align 对齐方式.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align int32) bool {
@@ -101,7 +101,7 @@ func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align int3
 // @Function: XFrameWndMergePane
 // @Description: 合并窗格.
 // @Calls:  XFrameWnd_MergePane
-// @Input: hWindow [窗口句柄]. hPaneDest [目标窗格]. hPaneNew [当前窗格].
+// @Input: hWindow 窗口句柄. hPaneDest 目标窗格. hPaneNew 当前窗格.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XFrameWndMergePane(hWindow HWINDOW, hPaneDest, hPaneNew HELE) bool {

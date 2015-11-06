@@ -26,8 +26,8 @@ func init() {
 // @Function: XBtnCreate
 // @Description: 创建按钮元素.
 // @Calls: XBtn_Create
-// @Input: x [按钮x坐标]. y [按钮y坐标]. cx [宽度]. cy [高度]. pName [标题].
-//         hParent [父是窗口句柄或元素句柄].
+// @Input: x 按钮x坐标. y 按钮y坐标. cx 宽度. cy 高度. pName 标题.
+//         hParent 父是窗口句柄或元素句柄.
 // @Return: 按钮元素句柄.
 // *******************************************
 func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
@@ -48,7 +48,7 @@ func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
 // @Function: XEleRegEventC
 // @Description: 注册元素事件,将类成员函数作为事件回调函数.回调函数省略元素自身句柄hEle,省略触发事件元素句柄hEventEle.
 // @Calls: XEle_RegEventC
-// @Input: hEle [元素句柄]. nEvent [事件类型]. memberFunction [类成员函数].
+// @Input: hEle 元素句柄. nEvent 事件类型. memberFunction 类成员函数.
 // *******************************************
 func XEleRegEventC(hEle HELE, nEvent int, memberFunction CallBack) {
     XEle_RegEventC.Call(

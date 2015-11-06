@@ -1,3 +1,6 @@
-doc/**/*
+doc/Demo/
+doc/UIDesign/
+doc/xml-template/
+doc/XCGUI.lib
 *.exe
 *.txt

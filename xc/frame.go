@@ -16,16 +16,22 @@ const (
 
 var (
     // Functions
-    XFrameWnd_Create    *syscall.Proc
-    XPane_Create        *syscall.Proc
-    XFrameWnd_AddPane   *syscall.Proc
-    XFrameWnd_MergePane *syscall.Proc
+    XFrameWnd_Create               *syscall.Proc
+    XFrameWnd_CreateEx             *syscall.Proc
+    XFrameWnd_GetLayoutAreaRect    *syscall.Proc
+    XFrameWnd_SetView              *syscall.Proc
+    XFrameWnd_SetPaneSplitBarColor *syscall.Proc
+    XFrameWnd_AddPane              *syscall.Proc
+    XFrameWnd_MergePane            *syscall.Proc
 )
 
 func init() {
     // Functions
     XFrameWnd_Create = XCDLL.MustFindProc("XFrameWnd_Create")
-    XPane_Create = XCDLL.MustFindProc("XPane_Create")
+    XFrameWnd_CreateEx = XCDLL.MustFindProc("XFrameWnd_CreateEx")
+    XFrameWnd_GetLayoutAreaRect = XCDLL.MustFindProc("XFrameWnd_GetLayoutAreaRect")
+    XFrameWnd_SetView = XCDLL.MustFindProc("XFrameWnd_SetView")
+    XFrameWnd_SetPaneSplitBarColor = XCDLL.MustFindProc(" XFrameWnd_SetPaneSplitBarColor")
     XFrameWnd_AddPane = XCDLL.MustFindProc("XFrameWnd_AddPane")
     XFrameWnd_MergePane = XCDLL.MustFindProc("XFrameWnd_MergePane")
 }
@@ -55,21 +61,75 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle u
 
 // *******************************************
 // @Author: cody.guo
-// @Date: 2015-11-6 12:53:14
-// @Function: XPaneCreate
-// @Description: 创建窗格元素.
-// @Calls: XPane_Create
-// @Input: pName 窗格标题. nWidth 宽度. nHeight 高度. hFrameWnd 框架窗口.
-// @Return: 元素句柄.
+// @Date: 2015-11-6 20:20:46
+// @Function: XFrameWndCreateEx
+// @Description: 创建框架窗口,增强功能.
+// @Calls: XFrameWnd_CreateEx
+// @Input: dwExStyle 窗口扩展样式. lpClassName 窗口类名. lpWindowName 窗口名. dwStyle 窗口样式
+//         x 窗口左上角x坐标. y 窗口左上角y坐标. cx 窗口宽度. cy 窗口高度. hWndParent 父窗口.
+//         XCStyle GUI库窗口样式,样式请参见api 常量定义 xc_window_style_.
+// @Return: GUI库窗口资源句柄.
 // *******************************************
-func XPaneCreate(pName string, nWidth, nHeight int, hFrameWnd HWINDOW) HELE {
-    ret, _, _ := XPane_Create.Call(
-        StringToUintPtr(pName),
-        uintptr(nWidth),
-        uintptr(nHeight),
-        uintptr(hFrameWnd))
+func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
+    ret, _, _ := XFrameWnd_CreateEx.Call(
+        uintptr(dwExStyle),
+        StringToUintPtr(lpClassName),
+        StringToUintPtr(lpWindowName),
+        uintptr(dwStyle),
+        uintptr(x),
+        uintptr(y),
+        uintptr(cx),
+        uintptr(cy),
+        uintptr(hWndParent),
+        uintptr(XCStyle))
 
-    return HELE(ret)
+    return HWINDOW(ret)
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-6 20:28:09
+// @Function: XFrameWndGetLayoutAreaRect
+// @Description: 用来布局窗格的区域坐标,不包含码头.
+// @Calls: XFrameWnd_GetLayoutAreaRect
+// @Input: hWindow 窗口句柄. pRect 返回坐标.
+// @Return:
+// *******************************************
+func XFrameWndGetLayoutAreaRect(hWindow HWINDOW, pRect uint32) {
+    XFrameWnd_GetLayoutAreaRect.Call(
+        uintptr(hWindow),
+        uintptr(pRect))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-6 20:35:53
+// @Function: XFrameWndSetView
+// @Description: 设置主视图元素.
+// @Calls: XFrameWnd_SetView
+// @Input: hWindow 窗口句柄. hEle 元素句柄.
+// @Return:
+// *******************************************
+func XFrameWndSetView(hWindow HWINDOW, hEle HELE) {
+    XFrameWnd_SetView.Call(
+        uintptr(hWindow),
+        uintptr(hEle))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-6 20:38:37
+// @Function: XFrameWndSetPaneSplitBarColor
+// @Description: 设置窗格分隔条颜色.
+// @Calls: XFrameWnd_SetPaneSplitBarColor
+// @Input: hWindow 窗口句柄. color RGB颜色值. alpha 透明度.
+// @Return:
+// *******************************************
+func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color Color, alpha int) {
+    XFrameWnd_SetPaneSplitBarColor.Call(
+        uintptr(hWindow),
+        uintptr(color),
+        uintptr(alpha))
 }
 
 // *******************************************

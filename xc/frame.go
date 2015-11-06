@@ -55,6 +55,7 @@ func XPaneCreate(pName string, nWidth, nHeight int, hFrameWnd HWINDOW) HELE {
     return HELE(ret)
 }
 
+// *******************************************
 // @Author: cody.guo
 // @Date: 2015-11-4 23:46:41
 // @Function: XFrameWndAddPane
@@ -62,6 +63,7 @@ func XPaneCreate(pName string, nWidth, nHeight int, hFrameWnd HWINDOW) HELE {
 // @Calls: XFrameWnd_AddPane
 // @Input: align -> align_type_
 // @Return: 成功返回TRUE否则返回FALSE.
+// *******************************************
 func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align int32) bool {
     // API: XFrameWnd_AddPane
     ret, _, _ := XFrameWnd_AddPane.Call(

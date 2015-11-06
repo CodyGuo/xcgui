@@ -33,13 +33,12 @@ func init() {
 // @Date: 2015-11-6 12:59:41
 // @Function: XFrameWndCreate
 // @Description: 创建框架窗口.
-// @Calls: XPane_Create
+// @Calls: XFrameWnd_Create
 // @Input: x 窗口左上角x坐标. y 窗口左上角y坐标. cx 窗口宽度. cy 窗口高度. pTitle 窗口标题. hWndParent 父窗口.
 //         XCStyle GUI库窗口样式,样式请参见api 常量定义 xc_window_style_.
 // @Return: GUI库窗口资源句柄.
 // *******************************************
 func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32) HWINDOW {
-    // API: XFrameWnd_Create
     ret, _, _ := XFrameWnd_Create.Call(
         uintptr(x),
         uintptr(y),

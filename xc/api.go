@@ -65,6 +65,8 @@ type (
     HRESULT int32
 )
 
+type CallBack func() uintptr
+
 // 1.初始化UI库
 func init() {
     if FileExist(xcDll) {

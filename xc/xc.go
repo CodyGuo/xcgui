@@ -23,10 +23,13 @@ const (
     SW_FORCEMINIMIZE   = 11
 )
 
-/*enum   button_type_ {
-  button_type_default = 0, button_type_check, button_type_radio, button_type_close,
-  button_type_min, button_type_max
-  }
+/* enum button_type_
+   button_type_default 默认类型
+   button_type_check 复选按钮
+   button_type_radio 单选按钮
+   button_type_close 窗口关闭按钮
+   button_type_min 窗口最小化按钮
+   button_type_max 窗口最大化还原按钮
 */
 const (
     BUTTON_TYPE_DEFAULT = iota
@@ -57,6 +60,8 @@ func init() {
 
     XRunXCGUI = XCDLL.MustFindProc("XRunXCGUI")
     XExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
+
+    XWnd_RegEventC = XCDLL.MustFindProc("XWnd_RegEventC")
 }
 
 // 创建窗口
@@ -88,7 +93,7 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32
 // @Function: XWndShowWindow
 // @Description: 显示窗口.
 // @Calls: XWnd_ShowWindow
-// @Input: hWindow: [窗口句柄], nCmdShow: [XWndShowWindow constants]
+// @Input: hWindow [窗口句柄]. nCmdShow [XWndShowWindow constants]
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
@@ -99,12 +104,12 @@ func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
     return ret != 1
 }
 
-// 运行程序
+// 运行消息循环,当炫彩窗口数量为0时退出.
 func XRunXCGUIFunc() {
     XRunXCGUI.Call()
 }
 
-// 释放UI库
+// 退出界面库释放资源.
 func XExitXCGUIFunc() {
     XExitXCGUI.Call()
 }
@@ -128,61 +133,29 @@ func XWndGetHWND(hWindow HWINDOW) HWND {
     return HWND(ret)
 }
 
-// 设置按钮功能类型
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-6 18:36:20
+// @Function: xBtnSetType
+// @Description: 设置按钮样式.
+// @Calls: XBtn_SetType
+// @Input: hEle [元素句柄]. nStyle [样式]. 参考 button_type_
+// *******************************************
 func xBtnSetType(hEle HELE, nType uint32) {
     XBtn_SetType.Call(
         uintptr(hEle),
         uintptr(nType))
 }
 
-/*
-
-	hWindow := XCGUI.Call("XWnd_Create", 100, 100, 600, 400, TEXT("XCGUI Library For GoLang"), 0, 0x1|0x8)
-	hBtn := XCGUI.Call("XBtn_Create", 50, 50, 100, 100, TEXT("Hey Man"), hWindow)
-	XCGUI.Call("XEle_RegEventC", hBtn, 34, uintptr(syscall.NewCallback(HeyMan)))
-	XCGUI.Call("XWnd_ShowWindow", hWindow, 0x5)
-	XCGUI.Call("XRunXCGUI")
-*/
-
-/*
-// API: XWnd_Create
- HWINDOW WINAPI XWnd_Create  ( int  x,
-    int  y,
-    int  cx,
-    int  cy,
-    const wchar_t *  pTitle,
-    HWND  hWndParent,
-    int  XCStyle
-)
-创建窗口
-参数:
-x 窗口左上角x坐标.
-y 窗口左上角y坐标.
-cx 窗口宽度.
-cy 窗口高度.
-pTitle 窗口标题.
-hWndParent 父窗口.
-XCStyle GUI库窗口样式,样式请参见宏定义 xc_window_style_.
-返回:GUI库窗口资源句柄.
-
-// API: XWnd_ShowWindow
-BOOL WINAPI XWnd_ShowWindow  ( HWINDOW  hWindow,
-    int  nCmdShow
- )
-显示隐藏窗口.
-参数:
-hWindow 窗口句柄.
-nCmdShow 参见MSDN.
-返回:参见MSDN.
-
-
-// API: XBtn_SetType
-void WINAPI XBtn_SetType  ( HELE  hEle,
-    button_type_  nType
- )
-设置按钮功能类型.
-参数:
-hEle 元素句柄.
-nType 按钮类型,参见宏定义.
-
-*/
+// @Author: cody.guo
+// @Date: 2015-11-6 18:45:49
+// @Function: XWndRegEventC
+// @Description: 注册窗口事件,将类成员函数作为事件回调函数.回调函数省略参数窗口自身句柄hWindow.
+// @Calls: XEle_RegEventC
+// @Input: hWindow [窗口句柄]. nEvent [事件类型]. memberFunction [类成员函数].
+func XWndRegEventC(hWindow HWINDOW, nEvent int, memberFunction CallBack) {
+    XWnd_RegEventC.Call(
+        uintptr(hWindow),
+        uintptr(nEvent),
+        syscall.NewCallback(memberFunction))
+}

@@ -37,8 +37,10 @@ type Window interface {
 }
 
 type WindowBase struct {
-    window  Window
-    hWnd    xc.HWND
+    window Window
+    hWnd   xc.HWND
+    name   string
+
     hWindow xc.HWINDOW
 }
 

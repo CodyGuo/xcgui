@@ -114,19 +114,9 @@ func BoolToBOOL(value bool) BOOL {
     return 0
 }
 
-// func UTF16PtrToString(s *uint16) string {
-//     if s == nil {
-//         return ""
-//     }
-//     return syscall.UTF16ToString((*[1 << 29]uint16)(unsafe.Pointer(s))[0:])
-// }
-
-/*
-BOOL WINAPI XInitXCGUI  ( wchar_t *  pText )
-
-初始化界面库.
-参数:
-pText 保留参数.
-返回:成功返回TRUE否则返回FALSE.
-
-*/
+func UTF16PtrToString(s *uint16) string {
+    if s == nil {
+        return ""
+    }
+    return syscall.UTF16ToString((*[1 << 29]uint16)(unsafe.Pointer(s))[0:])
+}

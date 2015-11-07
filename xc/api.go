@@ -87,6 +87,16 @@ func init() {
     }
 }
 
+// 运行消息循环,当炫彩窗口数量为0时退出.
+func XRunXCGUIFunc() {
+    XRunXCGUI.Call()
+}
+
+// 退出界面库释放资源.
+func XExitXCGUIFunc() {
+    XExitXCGUI.Call()
+}
+
 func StringToUintPtr(str string) uintptr {
     return uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(str)))
 }

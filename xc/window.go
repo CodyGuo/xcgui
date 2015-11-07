@@ -106,16 +106,6 @@ func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
     return ret != 1
 }
 
-// 运行消息循环,当炫彩窗口数量为0时退出.
-func XRunXCGUIFunc() {
-    XRunXCGUI.Call()
-}
-
-// 退出界面库释放资源.
-func XExitXCGUIFunc() {
-    XExitXCGUI.Call()
-}
-
 // 关闭
 func CloseBtn(hWindow HWINDOW) {
     xBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),

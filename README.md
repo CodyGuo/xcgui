@@ -24,7 +24,7 @@
     + 宏定义
         - XC_OBJECT_TYPE                :  100% ( 54/ 54) -接口句柄类型
         - HXCGUI                        :  100% ( 13/ 13) -句柄列表
-        - xc_window_style               :    0% (  0/  8) -炫彩窗口样式
+        - xc_window_style               :  100% (  8/  8) -炫彩窗口样式
     + API                               :  100% ( 19/ 19) -全局API
 
     Total progress :                         ?% (  ?/  ?)

@@ -36,6 +36,13 @@
         - button_state_                 :  100% (  5/  5) -按钮状态
         - button_type_                  :  100% (  6/  6) -按钮类型(用于区分功能)
         - button_style_                 :  100% ( 16/ 16) -按钮样式(用于区分外观)
+        - comboBox_state_               :  100% (  3/  3) -ComboBox状态
+        - list_item_state_              :  100% (  3/  3) -List项状态
+        - tree_item_state_              :  100% (  2/  2) -Tree项状态
+        - button_icon_align_            :  100% (  4/  4) -按钮图标对齐方式
+        - layout_size_type_             :  100% (  5/  5) -布局大小类型
+        - list_drawItemBk_flags_        :  100% (  4/  4) -List,ListBox,Tree,项背景绘制标志位
+        - messageBox_flags_             :  100% (  3/  3) -弹出消息框
 
     + API                               :  100% ( 19/ 19) -全局API
 

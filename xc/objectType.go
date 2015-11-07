@@ -1,5 +1,6 @@
 package xc
 
+// 接口句柄类型
 type XC_OBJECT_TYPE int32
 
 /*

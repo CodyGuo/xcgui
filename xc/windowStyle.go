@@ -2,7 +2,7 @@ package xc
 
 type xc_window_style_ uint32
 
-/*
+/* 炫彩窗口样式
    xc_window_style_nothing 什么也没有
    xc_window_style_caption top布局,如果指定该属性,默认为绑定标题栏元素
    xc_window_style_border 边框,指定默认上下左右布局大小,如果没有指定,那么边框布局大小为0

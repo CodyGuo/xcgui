@@ -25,6 +25,13 @@
         - XC_OBJECT_TYPE                :  100% ( 54/ 54) -接口句柄类型
         - HXCGUI                        :  100% ( 13/ 13) -句柄列表
         - xc_window_style               :  100% (  8/  8) -炫彩窗口样式
+        - window_position_              :  100% (  7/  7) -窗口位置
+        - window_transparent_           :  100% (  5/  5) -炫彩窗口透明标识
+        - ID                            :  100% (  4/  4) -特殊ID
+        - menu_state_flags              :  100% (  6/  6) -弹出菜单
+        - menu_popup_position           :  100% (  8/  8) -弹出菜单
+        - IDM                           :  100% (  6/  6) -弹出菜单 - 菜单ID
+
     + API                               :  100% ( 19/ 19) -全局API
 
     Total progress :                         ?% (  ?/  ?)

@@ -1,0 +1,22 @@
+package xc
+
+type window_position_ int32
+
+/* 窗口位置
+   window_position_error 错误
+   window_position_top top
+   window_position_bottom bottom
+   window_position_left left
+   window_position_right right
+   window_position_body body
+   window_position_window window 整个窗口
+*/
+const (
+    window_position_error window_position_ = -1
+    window_position_top   window_position_ = iota + window_position_error
+    window_position_bottom
+    window_position_left
+    window_position_right
+    window_position_body
+    window_position_window
+)

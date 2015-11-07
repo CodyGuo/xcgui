@@ -34,12 +34,14 @@ var (
 
 var (
     // Functions
-    MessageBoxW *syscall.Proc
+    MessageBoxW  *syscall.Proc
+    SendMessageW *syscall.Proc
 )
 
 func init() {
     User32 = syscall.MustLoadDLL("User32.dll")
     MessageBoxW = User32.MustFindProc("MessageBoxW")
+    SendMessageW = User32.MustFindProc("SendMessageW")
 }
 
 func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
@@ -50,4 +52,15 @@ func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
         uintptr(uType))
 
     return int32(ret)
+}
+
+func SendMessage(hWnd HWND, msg uint32, wParam, lParam uintptr) uintptr {
+    ret, _, _ := SendMessageW.Call(
+        uintptr(hWnd),
+        uintptr(msg),
+        wParam,
+        lParam,
+    )
+
+    return ret
 }

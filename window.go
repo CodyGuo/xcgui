@@ -65,6 +65,8 @@ func NewMainWindow(width, height int, title string) *WindowBase {
     wb.hWindow = xc.XWndCreate(0, 0, width, height, title, 0, uint32(XCWindowsStyleDefault))
     xc.CloseBtn(wb.hWindow)
 
+    xc.XCDebugToFileInfo("2015")
+
     return wb
 }
 

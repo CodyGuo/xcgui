@@ -45,11 +45,8 @@ var (
     XWnd_Create     *syscall.Proc
     XWnd_GetHWND    *syscall.Proc
     XWnd_ShowWindow *syscall.Proc
-    XRunXCGUI       *syscall.Proc
-    XExitXCGUI      *syscall.Proc
     XBtn_SetType    *syscall.Proc
-
-    XWnd_RegEventC *syscall.Proc
+    XWnd_RegEventC  *syscall.Proc
 )
 
 func init() {
@@ -59,9 +56,6 @@ func init() {
 
     XWnd_GetHWND = XCDLL.MustFindProc("XWnd_GetHWND")
     XBtn_SetType = XCDLL.MustFindProc("XBtn_SetType")
-
-    XRunXCGUI = XCDLL.MustFindProc("XRunXCGUI")
-    XExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
 
     XWnd_RegEventC = XCDLL.MustFindProc("XWnd_RegEventC")
 }

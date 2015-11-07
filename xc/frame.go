@@ -125,7 +125,7 @@ func XFrameWndSetView(hWindow HWINDOW, hEle HELE) {
 // @Input: hWindow 窗口句柄. color RGB颜色值. alpha 透明度.
 // @Return:
 // *******************************************
-func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color Color, alpha int) {
+func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color COLORREF, alpha int) {
     XFrameWnd_SetPaneSplitBarColor.Call(
         uintptr(hWindow),
         uintptr(color),

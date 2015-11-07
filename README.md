@@ -31,6 +31,11 @@
         - menu_state_flags              :  100% (  6/  6) -弹出菜单
         - menu_popup_position           :  100% (  8/  8) -弹出菜单
         - IDM                           :  100% (  6/  6) -弹出菜单 - 菜单ID
+        - image_draw_type_              :  100% (  4/  4) -图片绘制类型
+        - common_state3_                :  100% (  3/  3) -普通三种状态
+        - button_state_                 :  100% (  5/  5) -按钮状态
+        - button_type_                  :  100% (  6/  6) -按钮类型(用于区分功能)
+        - button_style_                 :  100% ( 16/ 16) -按钮样式(用于区分外观)
 
     + API                               :  100% ( 19/ 19) -全局API
 

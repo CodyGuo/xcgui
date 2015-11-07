@@ -23,23 +23,6 @@ const (
     SW_FORCEMINIMIZE   = 11
 )
 
-/* enum button_type_
-   button_type_default 默认类型
-   button_type_check 复选按钮
-   button_type_radio 单选按钮
-   button_type_close 窗口关闭按钮
-   button_type_min 窗口最小化按钮
-   button_type_max 窗口最大化还原按钮
-*/
-const (
-    BUTTON_TYPE_DEFAULT = iota
-    BUTTON_TYPE_CHECK
-    BUTTON_TYPE_RADIO
-    BUTTON_TYPE_CLOSE
-    BUTTON_TYPE_MIN
-    BUTTON_TYPE_MAX
-)
-
 var (
     // Functions
     XWnd_Create     *syscall.Proc
@@ -103,13 +86,13 @@ func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
 // 关闭
 func CloseBtn(hWindow HWINDOW) {
     xBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
-        BUTTON_TYPE_CLOSE)
+        uint32(button_type_close))
 }
 
 // 最小化
 func MinBtn(hWindow HWINDOW) {
     xBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
-        BUTTON_TYPE_MIN)
+        uint32(button_type_min))
 }
 
 // 获取系统窗口句柄

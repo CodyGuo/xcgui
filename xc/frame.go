@@ -31,7 +31,7 @@ func init() {
     XFrameWnd_CreateEx = XCDLL.MustFindProc("XFrameWnd_CreateEx")
     XFrameWnd_GetLayoutAreaRect = XCDLL.MustFindProc("XFrameWnd_GetLayoutAreaRect")
     XFrameWnd_SetView = XCDLL.MustFindProc("XFrameWnd_SetView")
-    XFrameWnd_SetPaneSplitBarColor = XCDLL.MustFindProc(" XFrameWnd_SetPaneSplitBarColor")
+    XFrameWnd_SetPaneSplitBarColor = XCDLL.MustFindProc("XFrameWnd_SetPaneSplitBarColor")
     XFrameWnd_AddPane = XCDLL.MustFindProc("XFrameWnd_AddPane")
     XFrameWnd_MergePane = XCDLL.MustFindProc("XFrameWnd_MergePane")
 }

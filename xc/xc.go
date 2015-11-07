@@ -48,6 +48,8 @@ var (
     XRunXCGUI       *syscall.Proc
     XExitXCGUI      *syscall.Proc
     XBtn_SetType    *syscall.Proc
+
+    XWnd_RegEventC *syscall.Proc
 )
 
 func init() {
@@ -150,12 +152,12 @@ func xBtnSetType(hEle HELE, nType uint32) {
 // @Author: cody.guo
 // @Date: 2015-11-6 18:45:49
 // @Function: XWndRegEventC
-// @Description: 注册窗口事件,将类成员函数作为事件回调函数.回调函数省略参数窗口自身句柄hWindow.
+// @Description: 注册事件函数C方式,事件函数不省略自身HWINDOW句柄.
 // @Calls: XEle_RegEventC
-// @Input: hWindow 窗口句柄. nEvent 事件类型. memberFunction 类成员函数.
-func XWndRegEventC(hWindow HWINDOW, nEvent int, memberFunction CallBack) {
+// @Input: hWindow 窗口句柄. nEvent 事件类型. pFun 事件函数.
+func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun CallBack) {
     XWnd_RegEventC.Call(
         uintptr(hWindow),
         uintptr(nEvent),
-        syscall.NewCallback(memberFunction))
+        syscall.NewCallback(pFun))
 }

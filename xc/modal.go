@@ -82,7 +82,7 @@ func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwSty
 func XModalWndEnableAutoClose(hWindow HWINDOW, bEnable bool) {
     XModalWnd_EnableAutoClose.Call(
         uintptr(hWindow),
-        uintptr(bEnable))
+        uintptr(BoolToBOOL(bEnable)))
 }
 
 // *******************************************************************
@@ -110,5 +110,7 @@ func XModalWndDoModal(hWindow HWINDOW) int {
 // @Return:
 // *******************************************************************
 func XModalWndEndModal(hWindow HWINDOW, nResult int) {
-    XModalWnd_EndModal.Call(uintptr(hWindow), uintptr(nResult))
+    XModalWnd_EndModal.Call(
+        uintptr(hWindow),
+        uintptr(nResult))
 }

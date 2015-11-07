@@ -71,10 +71,10 @@ type CallBack func() uintptr
 func init() {
     if FileExist(xcDll) {
         XCDLL = syscall.MustLoadDLL(xcDll)
-    } else if FileExist("bin/" + xcDll) {
-        XCDLL = syscall.MustLoadDLL("bin/" + xcDll)
-    } else if FileExist("../bin/" + xcDll) {
-        XCDLL = syscall.MustLoadDLL("../bin/" + xcDll)
+    } else if FileExist("lib/" + xcDll) {
+        XCDLL = syscall.MustLoadDLL("lib/" + xcDll)
+    } else if FileExist("../lib/" + xcDll) {
+        XCDLL = syscall.MustLoadDLL("../lib/" + xcDll)
     } else {
         panic("xcgui library not found")
     }
@@ -106,13 +106,13 @@ func FileExist(path string) bool {
 
 }
 
-// func BoolToBOOL(value bool) BOOL {
-//     if value {
-//         return 1
-//     }
+func BoolToBOOL(value bool) BOOL {
+    if value {
+        return 1
+    }
 
-//     return 0
-// }
+    return 0
+}
 
 // func UTF16PtrToString(s *uint16) string {
 //     if s == nil {

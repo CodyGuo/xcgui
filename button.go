@@ -47,8 +47,8 @@ func (b *Button) SetBounds(x, y, w, h int) {
 // }
 
 func (b *Button) Clicked(function xc.CallBack) {
-    xc.XEleRegEventCPP(
-        xc.HWINDOW(b.hEle),
+    xc.XEleRegEventC(
+        b.hEle,
         xc.XE_BNCLICK,
         function)
 }

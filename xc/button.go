@@ -4,11 +4,6 @@ import (
     "syscall"
 )
 
-const (
-    XE_BNCLICK      = 34
-    XE_BUTTON_CHECK = 35
-)
-
 var (
     // Functions
     XBtn_Create *syscall.Proc

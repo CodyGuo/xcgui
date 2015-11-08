@@ -11,10 +11,10 @@ type button_type_ uint32
    button_type_max 窗口最大化还原按钮
 */
 const (
-    button_type_default button_type_ = iota
-    button_type_check
-    button_type_radio
-    button_type_close
-    button_type_min
-    button_type_max
+    BUTTON_TYPE_DEFAULT button_type_ = iota
+    BUTTON_TYPE_CHECK
+    BUTTON_TYPE_RADIO
+    BUTTON_TYPE_CLOSE
+    BUTTON_TYPE_MIN
+    BUTTON_TYPE_MAX
 )

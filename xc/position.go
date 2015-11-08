@@ -12,11 +12,11 @@ type window_position_ int32
    window_position_window window 整个窗口
 */
 const (
-    window_position_error window_position_ = -1
-    window_position_top   window_position_ = iota + window_position_error
-    window_position_bottom
-    window_position_left
-    window_position_right
-    window_position_body
-    window_position_window
+    WINDOW_POSITION_ERROR window_position_ = -1
+    WINDOW_POSITION_TOP   window_position_ = iota + WINDOW_POSITION_ERROR
+    WINDOW_POSITION_BOTTOM
+    WINDOW_POSITION_LEFT
+    WINDOW_POSITION_RIGHT
+    WINDOW_POSITION_BODY
+    WINDOW_POSITION_WINDOW
 )

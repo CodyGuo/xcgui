@@ -56,6 +56,10 @@ type SIZE struct {
     CX, CY int32
 }
 
+type BorderSize_ struct {
+    Left, Top, Right, Bottom int32
+}
+
 type (
     BOOL    int32
     HRESULT int32

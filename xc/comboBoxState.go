@@ -8,7 +8,7 @@ type comboBox_state_ uint32
    comboBox_state_down 按下状态
 */
 const (
-    comboBox_state_leave comboBox_state_ = iota
-    comboBox_state_stay
-    comboBox_state_down
+    COMBOBOX_STATE_LEAVE comboBox_state_ = iota
+    COMBOBOX_STATE_STAY
+    COMBOBOX_STATE_DOWN
 )

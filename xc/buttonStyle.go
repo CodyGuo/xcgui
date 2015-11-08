@@ -21,20 +21,20 @@ type button_style_ uint32
    button_style_pane_dockV 框架窗口上边或下边码头上按钮
 */
 const (
-    button_style_default button_style_ = iota
-    button_style_check
-    button_style_radio
-    button_style_scrollbar_up
-    button_style_scrollbar_down
-    button_style_scrollbar_left
-    button_style_scrollbar_right
-    button_style_scrollbar_slider
-    button_style_tabBar_button
-    button_style_toolBar_left
-    button_style_toolBar_right
-    button_style_pane_close
-    button_style_pane_lock
-    button_style_pane_menu
-    button_style_pane_dockH
-    button_style_pane_dockV
+    BUTTON_STYLE_DEFAULT button_style_ = iota
+    BUTTON_STYLE_CHECK
+    BUTTON_STYLE_RADIO
+    BUTTON_STYLE_SCROLLBAR_UP
+    BUTTON_STYLE_SCROLLBAR_DOWN
+    BUTTON_STYLE_SCROLLBAR_LEFT
+    BUTTON_STYLE_SCROLLBAR_RIGHT
+    BUTTON_STYLE_SCROLLBAR_SLIDER
+    BUTTON_STYLE_TABBAR_BUTTON
+    BUTTON_STYLE_TOOLBAR_LEFT
+    BUTTON_STYLE_TOOLBAR_RIGHT
+    BUTTON_STYLE_PANE_CLOSE
+    BUTTON_STYLE_PANE_LOCK
+    BUTTON_STYLE_PANE_MENU
+    BUTTON_STYLE_PANE_DOCKH
+    BUTTON_STYLE_PANE_DOCKV
 )

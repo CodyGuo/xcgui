@@ -7,6 +7,6 @@ type tree_item_state_ uint32
    tree_item_state_select 项选择状态
 */
 const (
-    tree_item_state_leave tree_item_state_ = iota
-    tree_item_state_select
+    TREE_ITEM_STATE_LEAVE tree_item_state_ = iota
+    TREE_ITEM_STATE_SELECT
 )

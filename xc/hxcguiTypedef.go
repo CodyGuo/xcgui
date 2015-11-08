@@ -43,4 +43,7 @@ type (
 
     // 背景内容管理器句柄
     HBKINFOM HXCGUI
+
+    // 鼠标光标句柄.
+    HCURSOR HXCGUI
 )

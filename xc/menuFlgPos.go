@@ -11,12 +11,12 @@ type menu_state_flags uint32
    menu_state_flags_disable 禁用
 */
 const (
-    menu_state_flags_normal    menu_state_flags = 0x00
-    menu_state_flags_select    menu_state_flags = 0x01
-    menu_state_flags_check     menu_state_flags = 0x02
-    menu_state_flags_popup     menu_state_flags = 0x04
-    menu_state_flags_separator menu_state_flags = 0x08
-    menu_state_flags_disable   menu_state_flags = 0x10
+    MENU_STATE_FLAGS_NORMAL    menu_state_flags = 0x00
+    MENU_STATE_FLAGS_SELECT    menu_state_flags = 0x01
+    MENU_STATE_FLAGS_CHECK     menu_state_flags = 0x02
+    MENU_STATE_FLAGS_POPUP     menu_state_flags = 0x04
+    MENU_STATE_FLAGS_SEPARATOR menu_state_flags = 0x08
+    MENU_STATE_FLAGS_DISABLE   menu_state_flags = 0x10
 )
 
 type menu_popup_position uint32
@@ -32,14 +32,14 @@ type menu_popup_position uint32
    menu_popup_position_center_bottom 下居中
 */
 const (
-    menu_popup_position_left_top menu_popup_position = iota
-    menu_popup_position_left_bottom
-    menu_popup_position_right_top
-    menu_popup_position_right_bottom
-    menu_popup_position_center_left
-    menu_popup_position_center_top
-    menu_popup_position_center_right
-    menu_popup_position_center_bottom
+    MENU_POPUP_POSITION_LEFT_TOP menu_popup_position = iota
+    MENU_POPUP_POSITION_LEFT_BOTTOM
+    MENU_POPUP_POSITION_RIGHT_TOP
+    MENU_POPUP_POSITION_RIGHT_BOTTOM
+    MENU_POPUP_POSITION_CENTER_LEFT
+    MENU_POPUP_POSITION_CENTER_TOP
+    MENU_POPUP_POSITION_CENTER_RIGHT
+    MENU_POPUP_POSITION_CENTER_BOTTOM
 )
 
 /* 菜单ID , 当前未使用

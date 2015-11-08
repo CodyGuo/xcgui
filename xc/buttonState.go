@@ -11,9 +11,9 @@ type button_state_ uint32
 */
 
 const (
-    button_state_leave button_state_ = iota
-    button_state_stay
-    button_state_down
-    button_state_check
-    button_state_disable
+    BUTTON_STATE_LEAVE button_state_ = iota
+    BUTTON_STATE_STAY
+    BUTTON_STATE_DOWN
+    BUTTON_STATE_CHECK
+    BUTTON_STATE_DISABLE
 )

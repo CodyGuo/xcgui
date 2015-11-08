@@ -9,7 +9,7 @@ type common_state3_ uint32
 */
 
 const (
-    common_state3_leave common_state3_ = iota
-    common_state3_stay
-    common_state3_down
+    COMMON_STATE3_LEAVE common_state3_ = iota
+    COMMON_STATE3_STAY
+    COMMON_STATE3_DOWN
 )

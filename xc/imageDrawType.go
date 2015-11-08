@@ -9,8 +9,8 @@ type image_draw_type_ uint32
    image_draw_type_tile 平铺
 */
 const (
-    image_draw_type_default image_draw_type_ = iota
-    image_draw_type_stretch
-    image_draw_type_adaptive
-    image_draw_type_tile
+    IMAGE_DRAW_TYPE_DEFAULT image_draw_type_ = iota
+    IMAGE_DRAW_TYPE_STRETCH
+    IMAGE_DRAW_TYPE_ADAPTIVE
+    IMAGE_DRAW_TYPE_TILE
 )

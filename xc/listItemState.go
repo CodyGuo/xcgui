@@ -8,7 +8,7 @@ type list_item_state_ uint32
    list_item_state_select 项选择状态
 */
 const (
-    list_item_state_leave list_item_state_ = iota
-    list_item_state_stay
-    list_item_state_select
+    LIST_ITEM_STATE_LEAVE list_item_state_ = iota
+    LIST_ITEM_STATE_STAY
+    LIST_ITEM_STATE_SELECT
 )

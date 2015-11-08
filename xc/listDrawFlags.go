@@ -9,8 +9,8 @@ type list_drawItemBk_flags_ uint32
    list_drawItemBk_flags_select 绘制鼠标停留状态项项背景
 */
 const (
-    list_drawItemBk_flags_nothing list_drawItemBk_flags_ = 0x000
-    list_drawItemBk_flags_leave   list_drawItemBk_flags_ = 0x001
-    list_drawItemBk_flags_stay    list_drawItemBk_flags_ = 0x002
-    list_drawItemBk_flags_select  list_drawItemBk_flags_ = 0x004
+    LIST_DRAWITEMBK_FLAGS_NOTHING list_drawItemBk_flags_ = 0x000
+    LIST_DRAWITEMBK_FLAGS_LEAVE   list_drawItemBk_flags_ = 0x001
+    LIST_DRAWITEMBK_FLAGS_STAY    list_drawItemBk_flags_ = 0x002
+    LIST_DRAWITEMBK_FLAGS_SELECT  list_drawItemBk_flags_ = 0x004
 )

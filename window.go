@@ -41,8 +41,10 @@ type WindowBase struct {
 
 func NewMainWindow(width, height int, title string) *WindowBase {
     wb := new(WindowBase)
-    wb.hWindow = xc.XWndCreate(0, 0, width, height, title, 0, uint32(xc.XC_WINDOW_STYLE_DEFAULT))
+    wb.hWindow = xc.XWndCreate(0, 0, width, height, title, 0, int(xc.XC_WINDOW_STYLE_DEFAULT))
     xc.CloseBtn(wb.hWindow)
+    // 透明
+    xc.XWndSetTransparentType(wb.hWindow, xc.WINDOW_TRANSPARENT_SIMPLE)
 
     xc.XCDebugToFileInfo("2015")
 

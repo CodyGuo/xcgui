@@ -10,9 +10,9 @@ type window_transparent_ int32
    window_transparent_win7 WIN7玻璃窗口,需要WIN7开启特效,当前未启用.
 */
 const (
-    window_transparent_false window_transparent_ = iota
-    window_transparent_shaped
-    window_transparent_shadow
-    window_transparent_simple
-    window_transparent_win7
+    WINDOW_TRANSPARENT_FALSE window_transparent_ = iota
+    WINDOW_TRANSPARENT_SHAPED
+    WINDOW_TRANSPARENT_SHADOW
+    WINDOW_TRANSPARENT_SIMPLE
+    WINDOW_TRANSPARENT_WIN7
 )

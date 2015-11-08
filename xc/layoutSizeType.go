@@ -10,9 +10,9 @@ type layout_size_type_ uint32
    layout_size_type_disable disable 不使用
 */
 const (
-    layout_size_type_fixed layout_size_type_ = iota
-    layout_size_type_fill
-    layout_size_type_auto
-    layout_size_type_weight
-    layout_size_type_disable
+    LAYOUT_SIZE_TYPE_FIXED layout_size_type_ = iota
+    LAYOUT_SIZE_TYPE_FILL
+    LAYOUT_SIZE_TYPE_AUTO
+    LAYOUT_SIZE_TYPE_WEIGHT
+    LAYOUT_SIZE_TYPE_DISABLE
 )

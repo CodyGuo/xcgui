@@ -9,8 +9,8 @@ type button_icon_align_ uint32
    button_icon_align_bottom 图标在底部
 */
 const (
-    button_icon_align_left button_icon_align_ = iota
-    button_icon_align_top
-    button_icon_align_right
-    button_icon_align_bottom
+    BUTTON_ICON_ALIGN_LEFT button_icon_align_ = iota
+    BUTTON_ICON_ALIGN_TOP
+    BUTTON_ICON_ALIGN_RIGHT
+    BUTTON_ICON_ALIGN_BOTTOM
 )

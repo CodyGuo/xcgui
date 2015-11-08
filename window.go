@@ -45,8 +45,9 @@ func NewMainWindow(width, height int, title string) *WindowBase {
     xc.CloseBtn(wb.hWindow)
     // 透明
     xc.XWndSetTransparentType(wb.hWindow, xc.WINDOW_TRANSPARENT_SIMPLE)
+    // xc.XWndEnableDragBorder(wb.hWindow, xc.BoolToBOOL(false))
 
-    xc.XCDebugToFileInfo("2015")
+    // xc.XCDebugToFileInfo("2015")
 
     return wb
 }

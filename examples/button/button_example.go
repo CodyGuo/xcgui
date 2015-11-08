@@ -30,5 +30,5 @@ func main() {
 
     mw.Run()
 
-    defer mw.Close()
+    // defer mw.Close()
 }

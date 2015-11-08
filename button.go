@@ -5,6 +5,7 @@ import (
 )
 
 type Button struct {
+    WidgetBase
     X      int
     Y      int
     Width  int
@@ -18,7 +19,6 @@ type Button struct {
 func NewButton(x, y, w, h int, text string, hParent xc.HWINDOW) *Button {
     btn := new(Button)
     btn.SetBounds(x, y, w, h)
-    btn.SetText(text)
 
     btn.hEle = xc.XBtnCreate(
         btn.X,
@@ -32,7 +32,7 @@ func NewButton(x, y, w, h int, text string, hParent xc.HWINDOW) *Button {
 }
 
 func (b *Button) SetText(value string) {
-    b.Text = value
+    xc.XBtnSetText(b.hEle, value)
 }
 
 func (b *Button) SetBounds(x, y, w, h int) {

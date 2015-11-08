@@ -18,10 +18,44 @@
         - Button                        :   0% (  1/ 31) -按钮
         - ComboBox                      :   0% (  0/ 18) -下拉组合框
         - Element                       :   0% (  1/ 87) -基础元素
+        - ListBox                       :   0% (  0/ 30) -列表框
+        - list                          :   0% (  0/ 34) -列表
+        - ListView                      :   0% (  0/ 27) -列表视图
+        - MenuBar                       :   0% (  0/  5) -菜单条
+        - pane                          :   0% (  0/  9) -Pane元素
+        - ProgressBar                   :   0% (  0/  8) -进度条
+        - RichEdit                      :   0% (  0/ 41) -富文本编辑框
+        - ScrollBar                     :   0% (  0/ 16) -滚动条
+        - ScrollView                    :   0% (  0/ 29) -滚动视图
+        - SliderBar                     :   0% (  0/ 11) -滑动条元素
+        - tabBar                        :   0% (  0/ 21) -TabBar元素
+        - TextLink                      :   0% (  0/  6) -静态文本连接按钮
+        - ToolBar                       :   0% (  0/ 11) -工具条
+        - Tree                          :   0% (  0/ 31) -列表树元素
 
     + 形状对象
+        - Shape                         :   0% (  0/ 15) -形状对象
+        - ShapeText                     :   0% (  0/ 13) -形状对象文本
+        - ShapePicture                  :   0% (  0/  6) -形状对象图片
+        - ShapeGif                      :   0% (  0/  6) -形状对象GIF
+        - ShapeRect                     :   0% (  0/  8) -矩形形状对象
+        - ShapeEllipse                  :   0% (  0/  5) -圆形(形状对象)
+        - ShapeGroupBox                 :   0% (  0/ 10) -组框(形状对象)
+        - ShapeLine                     :   0% (  0/  3) -直线(形状对象)
+
     + 数据适配器
+        - AdapterListView               :   0% (  0/ 24) -数据适配器-列表视元素
+        - AdapterTable                  :   0% (  0/ 23) -数据适配器-XList-XListBox
+        - AdapterMap                    :   0% (  0/  7) -数据适配器-单列Map
+        - AdapterTree                   :   0% (  0/ 16) -数据适配器-树元素
+
     + 其他模块
+        - BkInfoManager                 :   0% (  0/  9) -背景内容管理器
+        - Draw                          :   0% (  0/ 58) -图形绘制
+        - FontX                         :   0% (  0/  7) -炫彩字体
+        - Image                         :   0% (  0/ 31) -图片操作
+        - LayoutObject                  :   0% (  0/ 35) -布局对象
+
     + 事件
         - wm                            :  100% (210/210) -窗口事件
         - xe                            :  100% ( 76/ 76) -元素事件
@@ -50,5 +84,7 @@
         - messageBox_flags_             :  100% (  3/  3) -弹出消息框
 
     + API                               :  100% ( 19/ 19) -全局API
-
-    Total progress :                         ?% (  ?/  ?)
+    + UI                                :    0% (  0/ 10) -UI设计器支持
+    + RegEventC                         :    0% (  0/  7) -注册事件C
+    -----------------------------------------------------------------------------------------------
+    Total progress                      :   38% ( 491/1278)

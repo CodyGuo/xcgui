@@ -1,7 +1,7 @@
 # xcgui
-炫彩界面库,用的免费版dll.暂时只是玩玩..
-有钱的朋友可以去官方网站购买正式版.
-官方网站：[www.xcgui.com](http://www.xcgui.com "xcgui 官方网站")
+炫彩界面库,用的免费版dll.暂时只是玩玩...<br>
+有钱的朋友可以去官方网站购买正式版.<br>
+官方网站：[www.xcgui.com](http://www.xcgui.com "xcgui 官方网站")<br>
 
 # GOAL
 

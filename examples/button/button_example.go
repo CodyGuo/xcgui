@@ -8,7 +8,8 @@ import (
 )
 
 func main() {
-    mw := xcgui.NewMainWindow(600, 500, "测试")
+    mw, _ := xcgui.NewMainWindow(800, 600, "测试")
+    mw.SetMinimumSize(xcgui.Size{500, 300})
     hWindow := mw.GetHWindow()
 
     button := xcgui.NewButton(260, 200, 50, 25, "提交", hWindow)

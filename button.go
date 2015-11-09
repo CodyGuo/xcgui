@@ -5,7 +5,7 @@ import (
 )
 
 type Button struct {
-    WidgetBase
+    WindowBase
     X      int
     Y      int
     Width  int

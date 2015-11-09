@@ -1,6 +1,9 @@
 package xc
 
-type xc_window_style_ int
+// 窗口默认大小
+const CW_USEDEFAULT = ^0x7fffffff
+
+// type xc_window_style_ uint32
 
 /* 炫彩窗口样式
    xc_window_style_nothing 什么也没有
@@ -13,14 +16,14 @@ type xc_window_style_ int
    xc_window_style_modal 模态窗口样式
 */
 const (
-    XC_WINDOW_STYLE_NOTHING     xc_window_style_ = 0x00000000
-    XC_WINDOW_STYLE_CAPTION     xc_window_style_ = 0x00000001
-    XC_WINDOW_STYLE_BORDER      xc_window_style_ = 0x00000002
-    XC_WINDOW_STYLE_CENTER      xc_window_style_ = 0x00000004
-    XC_WINDOW_STYLE_DRAG_BORDER xc_window_style_ = 0x00000008
-    XC_WINDOW_STYLE_DRAG_WINDOW xc_window_style_ = 0x00000010
-    XC_WINDOW_STYLE_DEFAULT     xc_window_style_ = 0x00000001 | 0x00000002 | 0x00000004 | 0x00000008
-    XC_WINDOW_STYLE_MODAL       xc_window_style_ = 0x00000001 | 0x00000004 | 0x00000008
+    XC_WINDOW_STYLE_NOTHING     = 0x00000000
+    XC_WINDOW_STYLE_CAPTION     = 0x00000001
+    XC_WINDOW_STYLE_BORDER      = 0x00000002
+    XC_WINDOW_STYLE_CENTER      = 0x00000004
+    XC_WINDOW_STYLE_DRAG_BORDER = 0x00000008
+    XC_WINDOW_STYLE_DRAG_WINDOW = 0x00000010
+    XC_WINDOW_STYLE_DEFAULT     = 0x00000001 | 0x00000002 | 0x00000004 | 0x00000008
+    XC_WINDOW_STYLE_MODAL       = 0x00000001 | 0x00000004 | 0x00000008
 )
 
 // Window style constants

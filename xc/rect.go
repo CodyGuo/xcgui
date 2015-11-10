@@ -1,5 +1,5 @@
 package xc
 
-type Rect struct {
-    X, Y, Width, Height int
+type RECT struct {
+    Left, Top, Right, Bottom int32
 }

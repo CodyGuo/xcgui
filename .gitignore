@@ -1,6 +1,4 @@
-!doc/XCGUI.dll
-!doc/xcgui.h
-!doc/*.chw
+! doc/*.chw[h][dll]
 *.exe
 *.txt
 *.chw

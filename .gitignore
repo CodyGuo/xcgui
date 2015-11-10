@@ -1,5 +1,5 @@
 doc/
-! doc/*.chw[h][dll]
+! doc/*.chm[h][dll]
 *.exe
 *.txt
 *.chw

@@ -1,3 +1,4 @@
+doc/
 ! doc/*.chw[h][dll]
 *.exe
 *.txt

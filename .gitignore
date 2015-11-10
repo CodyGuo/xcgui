@@ -1,7 +1,6 @@
-doc/Demo/
-doc/UIDesign/
-doc/xml-template/
-doc/XCGUI.lib
+!doc/XCGUI.dll
+!doc/xcgui.h
+!doc/*.chw
 *.exe
 *.txt
 *.chw

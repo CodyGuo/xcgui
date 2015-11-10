@@ -12,14 +12,14 @@ type MainWindow struct {
     WindowBase
 }
 
-func NewMainWindow(width, height int, title string) (*MainWindow, error) {
+func NewMainWindow(szie Size, title string) (*MainWindow, error) {
     mw := new(MainWindow)
 
     if err := InitWindow(
         mw,
         nil,
-        width,
-        height,
+        szie.Width,
+        szie.Height,
         title,
         winStyle); err != nil {
         return nil, err

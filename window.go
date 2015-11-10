@@ -18,6 +18,7 @@ type Window interface {
 type WindowBase struct {
     window Window
     hWnd   xc.HWND
+    hEle   xc.HELE
     name   string
 
     hWindow xc.HWINDOW

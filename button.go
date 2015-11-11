@@ -10,14 +10,18 @@ type Button struct {
     clickedPublisher EventPublisher
 }
 
-func NewButton(parent Window, x, y int, size Size) (*Button, error) {
+func (b *Button) WndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) uintptr {
+    return 0
+}
+
+func NewButton(parent Window, rect Rectangle) (*Button, error) {
     btn := new(Button)
 
     btn.hEle = xc.XBtnCreate(
-        x,
-        y,
-        size.Width,
-        size.Height,
+        rect.X,
+        rect.Y,
+        rect.Width,
+        rect.Height,
         "",
         xc.HXCGUI(parent.AsWindowBase().hWindow))
 
@@ -33,7 +37,7 @@ func (b *Button) SetText(value string) {
 }
 
 // func (b *Button) Clicked() *Event {
-//     return b.clickedPublisher.Event()
+//     return b.clickedPublisher.Event(b.hEle)
 // }
 
 func (b *Button) Clicked(function xc.CallBack) {

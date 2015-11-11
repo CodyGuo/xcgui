@@ -27,5 +27,5 @@ func XEleRegEventC(hEle HELE, nEvent int, pFun CallBack) {
     XEle_RegEventC.Call(
         uintptr(hEle),
         uintptr(nEvent),
-        syscall.NewCallback(pFun))
+        CallBackXC(pFun))
 }

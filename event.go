@@ -1,17 +1,28 @@
 package xcgui
 
+// import (
+//     "fmt"
+// )
+
+import (
+    "github.com/codyguo/xcgui/xc"
+)
+
 type EventHandler func()
 
 type Event struct {
+    hEle     xc.HELE
     handlers []EventHandler
 }
 
 func (e *Event) Attach(handler EventHandler) int {
+
     for i, h := range e.handlers {
         if h == nil {
             e.handlers[i] = handler
             return i
         }
+
     }
 
     e.handlers = append(e.handlers, handler)
@@ -26,7 +37,8 @@ type EventPublisher struct {
     event Event
 }
 
-func (p *EventPublisher) Event() *Event {
+func (p *EventPublisher) Event(hEle xc.HELE) *Event {
+    p.event.hEle = hEle
     return &p.event
 }
 

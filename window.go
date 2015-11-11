@@ -2,6 +2,7 @@ package xcgui
 
 import (
     "errors"
+    // "syscall"
     // "fmt"
 )
 
@@ -13,6 +14,8 @@ type Window interface {
     AsWindowBase() *WindowBase
     Handle() xc.HWND
     Show() error
+
+    WndProc(msg uint32, wparam, lparam uintptr) uintptr
 }
 
 type WindowBase struct {
@@ -120,4 +123,9 @@ func (wb *WindowBase) Run() {
 
 func (wb *WindowBase) Close() {
     xc.XExitXCGUIFunc()
+}
+
+func (wb *WindowBase) WndProc(msg uint32, wparam, lparam uintptr) uintptr {
+    // fmt.Println("WidgetBase.WndProc")
+    return uintptr(0)
 }

@@ -45,7 +45,7 @@ var (
 )
 
 type POINT struct {
-    X, Y int32
+    X, Y int
 }
 
 type RECT struct {
@@ -65,7 +65,12 @@ type (
     HRESULT int32
 )
 
-type CallBack func() uintptr
+type CallBack func()
+
+func CallBackXC(pFunc CallBack) uintptr {
+    pFunc()
+    return uintptr(0)
+}
 
 // 1.初始化UI库
 func init() {

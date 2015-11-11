@@ -316,7 +316,7 @@ func XWndRedrawWnd(hWindow HWINDOW) {
 // @Input: hWindow 窗口资源句柄. pRect 需要重绘的区域坐标. bImmediately TRUE立即重绘,FALSE放入消息队列延迟重绘.
 // @Return:
 // *******************************************************************
-func XWndRedrawWndRect(hWindow HWINDOW, pRect *Rect, bImmediately BOOL) {
+func XWndRedrawWndRect(hWindow HWINDOW, pRect *RECT, bImmediately BOOL) {
     XWnd_RedrawWndRect.Call(
         uintptr(hWindow),
         uintptr(unsafe.Pointer(pRect)),

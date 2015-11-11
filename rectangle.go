@@ -33,11 +33,11 @@ func (r Rectangle) Bottom() int {
     return r.Y + r.Height - 1
 }
 
-func (r Rectangle) Location() Point {
-    return Point{r.X, r.Y}
+func (r Rectangle) Location() xc.POINT {
+    return xc.POINT{r.X, r.Y}
 }
 
-func (r *Rectangle) SetLocation(p Point) Rectangle {
+func (r *Rectangle) SetLocation(p xc.POINT) Rectangle {
     r.X = p.X
     r.Y = p.Y
 
@@ -55,8 +55,8 @@ func (r *Rectangle) SetSize(s Size) Rectangle {
     return *r
 }
 
-func (r Rectangle) toRECT() win.RECT {
-    return win.RECT{
+func (r Rectangle) toRECT() xc.RECT {
+    return xc.RECT{
         int32(r.X),
         int32(r.Y),
         int32(r.X + r.Width),

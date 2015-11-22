@@ -1,7 +1,6 @@
 package xcgui
 
 import (
-    "fmt"
     "github.com/codyguo/xcgui/xc"
     "syscall"
 )

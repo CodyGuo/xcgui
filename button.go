@@ -12,11 +12,6 @@ type Button struct {
     clickedPublisher EventPublisher
 }
 
-func (b *Button) WndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) uintptr {
-    fmt.Println("bei")
-    return 0
-}
-
 func NewButton(parent Window, rect Rectangle) (*Button, error) {
     btn := new(Button)
 

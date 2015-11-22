@@ -2,11 +2,9 @@ package main
 
 import (
     "log"
-    // "syscall"
 )
 import (
     "github.com/codyguo/xcgui"
-    // "github.com/codyguo/xcgui/xc"
 )
 
 func main() {
@@ -20,11 +18,11 @@ func main() {
     button2.SetText("警告信息")
 
     button1.OnBtnClick(func() {
-        xcgui.MsgBox(mw, "提示", "我被点击了...", xcgui.MsgBoxIconInformation)
+        xcgui.MsgBox(mw, "提示", "这是一条提示信息...", xcgui.MsgBoxIconInformation)
     })
 
     button2.OnBtnClick(func() {
-        xcgui.MsgBox(mw, "警告", "您的点击不正确.", xcgui.MsgBoxIconWarning)
+        xcgui.MsgBox(mw, "警告", "这是一条警告信息!", xcgui.MsgBoxIconWarning)
     })
 
     err := mw.Show()

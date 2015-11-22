@@ -7,7 +7,7 @@
 \**************************************************************************/
 #pragma once
 
-//v1.8.9.2
+//v1.8.9.4
 ////////////输入输出///////////////////
 #define in_
 #define out_
@@ -20,7 +20,10 @@
 #define  XC_NAME4   _T("name4")
 #define  XC_NAME5   _T("name5")
 #define  XC_NAME6   _T("name6")
-
+#define  XC_NAME7   _T("name7")
+#define  XC_NAME8   _T("name8")
+#define  XC_NAME9   _T("name9")
+#define  XC_NAME10   _T("name10")
 /// @defgroup groupObjectType 接口句柄类型
 /// @ingroup macroDefine
 /// @{
@@ -90,6 +93,7 @@ enum XC_OBJECT_TYPE  ///<炫彩对象类型
 	XC_WEB           ,
 
 	XC_LAYOUT_OBJECT = 101,  ///<布局对象LayoutObject
+	XC_ADAPTER          ,
 	XC_ADAPTER_TABLE    ,    ///<数据适配器AdapterTable
 	XC_ADAPTER_TREE     ,    ///<数据适配器AdapterTree
 	XC_ADAPTER_LISTVIEW ,    ///<数据适配器AdapterListView
@@ -121,18 +125,17 @@ typedef void*   HXCGUI;   ///<资源句柄
 DECLARE_HANDLEX(HWINDOW); ///<窗口资源句柄
 DECLARE_HANDLEX(HELE);    ///<元素资源句柄
 DECLARE_HANDLEX(HMENUX);  ///<菜单资源句柄
-DECLARE_HANDLEX(HSTRING); ///<字符串资源句柄
 DECLARE_HANDLEX(HDRAW);   ///<图形绘制资源句柄
-DECLARE_HANDLEX(HARRAY);  ///<数组资源句柄
 DECLARE_HANDLEX(HIMAGE);  ///<图片资源句柄
-DECLARE_HANDLEX(HXMLRES); ///<XML资源句柄
-DECLARE_HANDLEX(HARRAY_ITERATOR); ///<数组迭代器
+//DECLARE_HANDLEX(HARRAY_ITERATOR); ///<数组迭代器
 DECLARE_HANDLEX(HFONTX);    ///<炫彩字体句柄
-DECLARE_HANDLEX(HPANE_GROUP); ///<窗格组句柄
 DECLARE_HANDLEX(HBKINFOM);    ///<背景内容管理器句柄
 
 ///@}
 
+#ifndef _INC_SHELLAPI
+DECLARE_HANDLE(HDROP);
+#endif
 
 typedef   void  bkInfo_i;  //背景信息
 
@@ -148,9 +151,11 @@ enum  xc_window_style_
 	xc_window_style_center=    0x00000004,      ///<窗口居中
 	xc_window_style_drag_border= 0x00000008,    ///<拖动窗口边框
 	xc_window_style_drag_window =0x00000010,    ///<拖动窗口
+	xc_window_style_allow_maxWindow=   0x00000020,   ///允许窗口最大化
 
 	///窗口默认样式
-	xc_window_style_default=(xc_window_style_caption | xc_window_style_border | xc_window_style_center | xc_window_style_drag_border),
+	xc_window_style_default=(xc_window_style_caption | xc_window_style_border | xc_window_style_center | xc_window_style_drag_border | xc_window_style_allow_maxWindow),
+	xc_window_style_default2=(xc_window_style_caption | xc_window_style_border | xc_window_style_drag_border | xc_window_style_allow_maxWindow),
 
 	///模态窗口样式
 	xc_window_style_modal=(xc_window_style_caption | xc_window_style_center |  xc_window_style_border),
@@ -280,8 +285,10 @@ enum  image_draw_type_
 {
 	image_draw_type_default=0,  ///<默认
 	image_draw_type_stretch,    ///<拉伸
-	image_draw_type_adaptive,   ///<自适应
+	image_draw_type_adaptive,   ///<自适应,九宫格
 	image_draw_type_tile,       ///<平铺
+	image_draw_type_fixed_ratio,  ///<当图片超出显示范围时,按照原始比例压缩显示图片
+	image_draw_type_adaptive_border,  ///<九宫格不绘制中间区域
 };
 
 ///@}
@@ -429,6 +436,7 @@ enum  list_drawItemBk_flags_
 	list_drawItemBk_flags_leave=   0x001,    ///<绘制鼠标离开状态项背景
 	list_drawItemBk_flags_stay=    0x002,    ///<绘制鼠标选择状态项背景
 	list_drawItemBk_flags_select=  0x004,    ///<绘制鼠标停留状态项项背景
+	list_drawItemBk_flags_group_stay= 0x008  ///<绘制鼠标停留状态项背景,当项为组时
 };
 
 /// @}
@@ -550,6 +558,12 @@ struct listBox_item_Info_i
 	int     nSelHeight;
 };
 
+struct  listView_item_id_i
+{
+	int  iGroup;   ///<组索引
+	int  iItem;    ///<项索引
+};
+
 struct list_item_i
 {
 	int     index;
@@ -578,7 +592,6 @@ struct tree_item_i
 	int     nHeight;
 	int     nSelHeight;
 	int     nUserData;
-	//	BOOL    bSelect;
 	BOOL    bExpand;
 	RECT    rcItem;
 	HXCGUI  hLayout;     ///<布局对象
@@ -588,10 +601,9 @@ struct tree_item_i
 struct listView_item_i
 {
 	int     iGroup;             ///<项所述组索引 -1没有组
-	int     iItem;              ///<项在数组中位置索引
+	int     iItem;              ///<项在数组中位置索引,如果此致为-1,那么为组
 	int     nUserData;           ///<用户绑定数据
 	list_item_state_  nState;    ///<状态  
-	//  BOOL    bSelect;
 	RECT    rcItem;              ///<整个区域,包含边框
 	HXCGUI  hLayout;           ///<布局对象
 	template_info_i  *pInfo;   ///<模板信息
@@ -600,8 +612,10 @@ struct listView_item_i
 //布局信息
 struct layout_info_i
 {
-	int  width;    //宽度
-	int  height;   //高度
+	layout_size_type_  widthType;
+	layout_size_type_  heightType;
+	short  width;    //宽度
+	short  height;   //高度
 };
 
 struct  menu_popupWnd_i 
@@ -630,12 +644,20 @@ struct  menu_drawItem_i
 	const wchar_t    *pText;   ///<文本
 };
 
-enum  bkInfo_type_  //背景信息类型
+///背景形状类型
+enum  bkInfo_type_  
 {
-	bkInfo_type_fill=1,       ///<填充
-	bkInfo_type_border,   ///<边框
-	bkInfo_type_image,      ///<图片
-	bkInfo_type_gradient,   ///<渐变
+	bkInfo_type_fill=1,          ///<填充
+	bkInfo_type_border,          ///<边框
+	bkInfo_type_image,           ///<图片
+	bkInfo_type_triangle,        ///<三角形
+	bkInfo_type_fill_triangle,   ///<填充三角形
+	bkInfo_type_ellipse,         ///<圆形
+	bkInfo_type_fill_Ellipse,    ///<填充圆形
+	bkInfo_type_roundRect,       ///<圆角矩形
+	bkInfo_type_fill_RoundRect,  ///<填充圆角矩形
+	bkInfo_type_line,            ///<直线
+	bkInfo_type_gradient,        ///<渐变
 };
 
 
@@ -662,7 +684,7 @@ enum  bkInfo_type_  //背景信息类型
 - @ref WM_LBUTTONDBLCLK 窗口鼠标左键双击消息.
 - @ref WM_RBUTTONDBLCLK 窗口鼠标右键双击消息.
 - @ref WM_MOUSEWHEEL 窗口鼠标滚轮滚动消息.
-- @ref WM_EXITSIZEMOVE 窗口退出移动或调整大小模式循环改，详情参加MSDN.
+- @ref WM_EXITSIZEMOVE 窗口退出移动或调整大小模式循环改，详情参见MSDN.
 - @ref WM_MOUSEHOVER 窗口鼠标进入消息
 - @ref WM_MOUSELEAVE 窗口鼠标离开消息.
 - @ref WM_SIZE 窗口大小改变消息.
@@ -673,6 +695,7 @@ enum  bkInfo_type_  //背景信息类型
 - @ref WM_CAPTURECHANGED 窗口鼠标捕获改变消息.
 - @ref WM_SETCURSOR  窗口设置鼠标光标.
 - @ref WM_CHAR       窗口字符消息.
+- @ref WM_DROPFILES  拖动文件到窗口.
 - @ref other 其他Windows系统消息,包含你自定义的Windows消息.
 
 <hr>
@@ -741,7 +764,7 @@ enum  bkInfo_type_  //背景信息类型
 @param  pPt     鼠标坐标点.
 
 <hr>
-@anchor WM_EXITSIZEMOVE WM_EXITSIZEMOVE 窗口退出移动或调整大小模式循环改，详情参加MSDN.
+@anchor WM_EXITSIZEMOVE WM_EXITSIZEMOVE 窗口退出移动或调整大小模式循环改，详情参见MSDN.
 @code   int CALLBACK OnWndExitSizeMove(BOOL *pbHandled); @endcode
 
 <hr>
@@ -793,6 +816,11 @@ enum  bkInfo_type_  //背景信息类型
 @anchor  WM_CHAR WM_CHAR 窗口字符输入消息.
 @code    int CALLBACK OnWndChar(WPARAM wParam,LPARAM lParam,BOOL *pbHandled); @endcode
 @note    wParam,lParam:请参见MSDN WM_CHAR.
+
+<hr>
+@anchor  WM_DROPFILES WM_DROPFILES 拖动文件到窗口消息.
+@code    int CALLBACK OnDropFiles(HDROP hDropInfo , BOOL *pbHandled); @endcode
+@note    请参见MSDN WM_DROPFILES.
 
 <hr>
 @anchor other 其他Windows系统消息,包含你自定义的Windows消息.
@@ -1182,6 +1210,9 @@ enum  bkInfo_type_  //背景信息类型
 /// @code   int CALLBACK OnDateTimeExitMonthCal(HWINDOW hMonthCalWnd,HELE hMonthCal,BOOL *pbHandled); @endcode
 #define  XE_DATETIME_EXIT_MONTHCAL      243   //日期时间元素  退出月历事件
 
+/// @brief  文件拖放事件.
+/// @code   int CALLBACK OnDropFiles(HDROP hDropInfo, BOOL *pbHandled); @endcode
+#define  XE_DROPFILES                 250  
 
 #define  XE_LISTVIEW_DRAG_INSERT
 #define  XE_PANE_LOACK
@@ -1217,6 +1248,8 @@ enum  bkInfo_type_  //背景信息类型
 #define XC_PARAM_P_menu_popupWnd       21
 #define XC_PARAM_P_menu_drawBackground 22
 #define XC_PARAM_P_menu_drawItem       23
+#define XC_PARAM_HDROP   24
+
 
 
 typedef int(CALLBACK *pFun_int_uint_uint_uint_bPtr)(UINT, WPARAM, LPARAM, BOOL*);
@@ -1321,6 +1354,11 @@ typedef int(CALLBACK *pFun_int_e_e_hDraw_pListViewItem_bPtr)(HELE, HELE, HDRAW, 
 typedef int(CALLBACK *pFun_int_e_uint_uint_bPtr)(HELE, WPARAM, LPARAM, BOOL*);
 typedef int(CALLBACK *pFun_int_e_e_uint_uint_bPtr)(HELE, HELE, WPARAM, LPARAM, BOOL*);
 
+typedef int(CALLBACK *pFun_int_hDrop_bPtr)(HDROP, BOOL*);
+typedef int(CALLBACK *pFun_int_w_hDrop_bPtr)(HWINDOW, HDROP, BOOL*);
+typedef int(CALLBACK *pFun_int_e_hDrop_bPtr)(HELE, HDROP, BOOL*);
+typedef int(CALLBACK *pFun_int_e_e_hDrop_bPtr)(HELE, HELE, HDROP, BOOL*);
+
 class CEventBase
 {
 public:
@@ -1376,6 +1414,7 @@ public:
 
 	typedef int(T_ClassName::*pFun_int_uint_uint_bPtr)(WPARAM, LPARAM, BOOL*);
 	typedef int(T_ClassName::*pFun_int_e_uint_uint_bPtr)(HELE, WPARAM, LPARAM, BOOL*);
+	typedef int(T_ClassName::*pFun_int_w_uint_uint_bPtr)(HWINDOW, WPARAM, LPARAM, BOOL*);
 
 	typedef int(T_ClassName::*pFun_int_uint_sizePtr_bPtr)(UINT,SIZE*,BOOL*);
 
@@ -1400,6 +1439,11 @@ public:
 	typedef int(T_ClassName::*pFun_int_hMenu_pMenuPopupWnd_bPtr)(HMENUX, menu_popupWnd_i*, BOOL*);
 	typedef int(T_ClassName::*pFun_int_hDraw_pMenuDrawItem_bPtr)(HDRAW,menu_drawItem_i*,BOOL*);
 	typedef int(T_ClassName::*pFun_int_hDraw_pMenuDrawBackground_bPtr)(HDRAW,menu_drawBackground_i*, BOOL*);
+
+	typedef int(T_ClassName::*pFun_int_hDrop_bPtr)(HDROP, BOOL*);
+	typedef int(T_ClassName::*pFun_int_w_hDrop_bPtr)(HWINDOW, HDROP, BOOL*);
+	typedef int(T_ClassName::*pFun_int_e_hDrop_bPtr)(HELE, HDROP, BOOL*);
+	typedef int(T_ClassName::*pFun_int_e_e_hDrop_bPtr)(HELE, HELE, HDROP, BOOL*);
 };
 
 
@@ -1429,6 +1473,9 @@ public:
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_uint_uint_bPtr pMember){
 		return (pThis->*pMember)(wParam, lParam, pbHandled);
 	}
+	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_w_uint_uint_bPtr pMember){
+		return (pThis->*pMember)(hWindow, wParam, lParam, pbHandled);
+	}
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_uint_bPtr pMember){
 		return (pThis->*pMember)(wParam, pbHandled);
 	}
@@ -1452,6 +1499,12 @@ public:
 	}
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_hDraw_pMenuDrawBackground_bPtr pMember){
 		return (pThis->*pMember)((HDRAW)wParam, (menu_drawBackground_i*)lParam, pbHandled);
+	}
+	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_hDrop_bPtr pMember){
+		return (pThis->*pMember)((HDROP)wParam, pbHandled);
+	}
+	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_w_hDrop_bPtr pMember){
+		return (pThis->*pMember)(hWindow,(HDROP)wParam, pbHandled);
 	}
 };
 
@@ -1538,7 +1591,7 @@ public:
 		return (pThis->*pMember)(wParam, lParam, pbHandled);
 	}
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_uint_uint_bPtr pMember){
-		return (int nRegType, pThis->*pMember)(hEventEle, wParam, lParam, pbHandled);
+		return (pThis->*pMember)(hEventEle, wParam, lParam, pbHandled);
 	}
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_pListBoxItem_bPtr pMember){
 		return (pThis->*pMember)((listBox_item_i*)wParam, pbHandled);
@@ -1573,15 +1626,12 @@ public:
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_hDraw_pListViewItem_bPtr pMember){
 		return (pThis->*pMember)((HDRAW)wParam,(listView_item_i*)lParam, pbHandled);
 	}
-
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_int_bPtr pMember){
 		return (pThis->*pMember)(hEventEle, wParam, pbHandled);
 	}
-
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_e_uint_uint_uint_bPtr pMember){
 		return (pThis->*pMember)(hEle, hEventEle, nEvent, wParam, lParam, pbHandled);
 	}
-
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_e_int_bPtr pMember){
 		return (pThis->*pMember)(hEle, hEventEle, wParam, pbHandled);
 	}
@@ -1596,6 +1646,15 @@ public:
 	}
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_hMenu_pMenuPopupWnd_bPtr pMember){
 		return (pThis->*pMember)((HMENUX)wParam, (menu_popupWnd_i*)lParam, pbHandled);
+	}
+	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_hDrop_bPtr pMember){
+		return (pThis->*pMember)((HDROP)wParam, pbHandled);
+	}
+	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_hDrop_bPtr pMember){
+		return (pThis->*pMember)(hEventEle,(HDROP)wParam, pbHandled);
+	}
+	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_e_hDrop_bPtr pMember){
+		return (pThis->*pMember)(hEle,hEventEle,(HDROP)wParam, pbHandled);
 	}
 };
 
@@ -1647,6 +1706,9 @@ public:
 		pArray[0]=XC_PARAM_HDRAW;
 		pArray[1]=XC_PARAM_P_menu_drawItem;
 	}
+	void Test(UINT nEvent,pFun_int_hDrop_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HDROP;
+	}
 };
 
 template<typename T_ClassName>
@@ -1659,6 +1721,13 @@ public:
 	void  Test(UINT nEvent, pFun_int_w_uint_ptPtr_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_uint;
 		pArray[1]=XC_PARAM_P_POINT;
+	}
+	void Test(UINT nEvent,pFun_int_w_hDrop_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HDROP;
+	}
+	void Test(UINT nEvent,pFun_int_w_uint_uint_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_uint;
+		pArray[1]=XC_PARAM_uint;
 	}
 };
 
@@ -1744,6 +1813,9 @@ public:
 		pArray[0]=XC_PARAM_HMENUX;
 		pArray[1]=XC_PARAM_P_menu_popupWnd;
 	}
+	void  Test(UINT nEvent,pFun_int_hDrop_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HDROP;
+	}
 };
 
 //省略1参数验证
@@ -1783,6 +1855,9 @@ public:
 	void  Test(UINT nEvent, pFun_int_e_pListBoxItem_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_P_listBox_item_i;
 	}
+	void  Test(UINT nEvent,pFun_int_e_hDrop_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HDROP;
+	}
 };
 
 //全参数验证
@@ -1818,6 +1893,9 @@ public:
 	}
 	void  Test(UINT nEvent, pFun_int_e_e_pListBoxItem_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_P_listBox_item_i;
+	}
+	void  Test(UINT nEvent,pFun_int_e_e_hDrop_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HDROP;
 	}
 };
 
@@ -2066,17 +2144,19 @@ XC_API HWINDOW WINAPI XC_hWindowFromHWnd(HWND hWnd);
 XC_API BOOL WINAPI XC_IsSViewExtend(HELE hEle);  //判断元素是否从滚动视图元素扩展的新元素,包含滚动视图元素
 XC_API XC_OBJECT_TYPE WINAPI XC_GetObjectType(HXCGUI hXCGUI);
 XC_API HXCGUI WINAPI XC_GetObjectByID(int nID); //通过ID获取对象句柄
+XC_API int  WINAPI XC_GetResIDValue(const wchar_t *pName);  //获取资源ID值
 XC_API BOOL WINAPI XC_RectInRect(RECT *pRect1, RECT *pRect2);
 XC_API void WINAPI XC_CombineRect(RECT *pDest, RECT *pSrc1, RECT *pSrc2);
 XC_API void WINAPI XC_ShowLayoutFrame(BOOL bShow);
 XC_API void WINAPI XC_EnableDebugFile(BOOL bEnable);
 XC_API void WINAPI XC_SetLayoutFrameColor(COLORREF color);
 XC_API void WINAPI XC_EnableErrorMessageBox(BOOL bEnabel);
-XC_API HXCGUI WINAPI XC_LoadLayout(const wchar_t *pFileName);
-XC_API HXCGUI WINAPI XC_LoadLayoutFromString(const char *pStringXML);
+XC_API HXCGUI WINAPI XC_LoadLayout(const wchar_t *pFileName, HXCGUI hParent=NULL);
+XC_API HXCGUI WINAPI XC_LoadLayoutFromString(const char *pStringXML, HXCGUI hParent=NULL);
 XC_API BOOL WINAPI XC_LoadResource(const wchar_t *pFileName,const wchar_t *pDir=NULL);
 XC_API BOOL WINAPI XC_LoadResourceFromString(const char *pStringXML,const wchar_t *pDir=NULL);
-XC_API template_info_i* WINAPI XC_TemplateLoad(XC_OBJECT_TYPE nType,const wchar_t* pFileName);  //加载模板 返回模板对象
+XC_API template_info_i* WINAPI XC_LoadTemplate(XC_OBJECT_TYPE nType,const wchar_t* pFileName);  //加载模板 返回模板对象
+XC_API template_info_i* WINAPI XC_LoadTemplateFromString(XC_OBJECT_TYPE nType,const char* pStringXML);  //加载模板,从内存, 返回模板对象
 XC_API void WINAPI XC_TemplateDestroy(template_info_i* pInfo);
 XC_API void WINAPI XC_GetTextSize(const wchar_t* pString,int length,HFONTX hFontX,out_ SIZE* pOutSize);
 XC_API HFONTX WINAPI XC_GetDefaultFont(); //获取默认字体
@@ -2104,6 +2184,7 @@ XC_API BOOL WINAPI XBtn_IsCheck(HELE hEle); //按钮是否被选中
 XC_API BOOL WINAPI XBtn_SetCheck(HELE hEle, BOOL bCheck);
 XC_API void WINAPI XBtn_SetState(HELE hEle,common_state3_ nState);
 XC_API common_state3_  WINAPI XBtn_GetState(HELE hEle);
+XC_API button_state_   WINAPI XBtn_GetStateEx(HELE hEle);
 XC_API void WINAPI XBtn_SetStyle(HELE hEle, button_style_  nStyle);
 XC_API button_style_  WINAPI XBtn_GetStyle(HELE hEle);
 XC_API void WINAPI XBtn_SetType(HELE hEle,button_type_ nType);
@@ -2138,6 +2219,7 @@ XC_API void WINAPI XComboBox_SetDropHeight(HELE hEle,int height); //设置下拉列表
 XC_API int  WINAPI XComboBox_GetDropHeight(HELE hEle);
 XC_API void WINAPI XComboBox_BindApapter(HELE hEle,HXCGUI hAdapter);
 XC_API void WINAPI XComboBox_SetItemTemplateXML(HELE hEle,const wchar_t* pXmlFile);
+XC_API void WINAPI XComboBox_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
 XC_API void WINAPI XComboBox_EnableDrawButton(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XComboBox_EnableEdit(HELE hEle,BOOL bEdit);  //启动编辑内容
 XC_API void WINAPI XComboBox_AddBkBorder(HELE hEle,comboBox_state_ nState,COLORREF color,BYTE alpha, int width);
@@ -2175,6 +2257,7 @@ XC_API BOOL WINAPI XAdapterListView_Item_GetTextEx(HXCGUI hAdapter,int iGroup,in
 XC_API HIMAGE WINAPI XAdapterListView_Item_GetImageEx(HXCGUI hAdapter,int iGroup,int iItem,const wchar_t* pName);
 XC_API HXCGUI WINAPI XAdapterTable_Create();
 XC_API int WINAPI XAdapterTable_AddColumn(HXCGUI hAdapter,const wchar_t* pName);
+XC_API int WINAPI XAdapterTable_SetColumn(HXCGUI hAdapter, const wchar_t*  pColName);
 XC_API int WINAPI XAdapterTable_AddItemText(HXCGUI hAdapter,const wchar_t* pValue);
 XC_API int WINAPI XAdapterTable_AddItemTextEx(HXCGUI hAdapter,const wchar_t* pName,const wchar_t* pValue);
 XC_API int WINAPI XAdapterTable_AddItemImage(HXCGUI hAdapter,HIMAGE hImage);
@@ -2190,6 +2273,7 @@ XC_API BOOL WINAPI XAdapterTable_SetItemImageEx(HXCGUI hAdapter,int iItem,const 
 XC_API BOOL WINAPI XAdapterTable_DeleteItem(HXCGUI hAdapter,int iItem);
 XC_API BOOL WINAPI XAdapterTable_DeleteItemEx(HXCGUI hAdapter,int iItem,int nCount);
 XC_API void WINAPI XAdapterTable_DeleteItemAll(HXCGUI hAdapter);
+XC_API void WINAPI XAdapterTable_DeleteColumnAll(HXCGUI hAdapter);
 XC_API int WINAPI XAdapterTable_GetCount(HXCGUI hAdapter);
 XC_API int WINAPI XAdapterTable_GetCountColumn(HXCGUI hAdapter);
 XC_API BOOL WINAPI XAdapterTable_GetItemText(HXCGUI hAdapter,int iItem,int iColumn,out_ wchar_t* pOut,int nOutLen);
@@ -2198,6 +2282,7 @@ XC_API BOOL WINAPI XAdapterTable_GetItemTextEx(HXCGUI hAdapter,int iItem,const w
 XC_API HIMAGE WINAPI XAdapterTable_GetItemImageEx(HXCGUI hAdapter,int iItem,const wchar_t* pName);
 XC_API HXCGUI WINAPI XAdapterTree_Create();
 XC_API int WINAPI XAdapterTree_AddColumn(HXCGUI hAdapter,const wchar_t* pName);
+XC_API int WINAPI XAdapterTree_SetColumn(HXCGUI hAdapter,const wchar_t* pColName);
 XC_API int WINAPI XAdapterTree_InsertItemText(HXCGUI hAdapter,const wchar_t* pValue,int nParentID=XC_ID_ROOT,int insertID=XC_ID_LAST);
 XC_API int WINAPI XAdapterTree_InsertItemTextEx(HXCGUI hAdapter,const wchar_t* pName,const wchar_t* pValue,int nParentID=XC_ID_ROOT,int insertID=XC_ID_LAST);
 XC_API int WINAPI XAdapterTree_InsertItemImage(HXCGUI hAdapter,HIMAGE hImage,int nParentID=XC_ID_ROOT,int insertID=XC_ID_LAST);
@@ -2212,6 +2297,7 @@ XC_API BOOL WINAPI XAdapterTree_GetItemTextEx(HXCGUI hAdapter,int nID,const wcha
 XC_API HIMAGE WINAPI XAdapterTree_GetItemImageEx(HXCGUI hAdapter,int nID,const wchar_t* pName);
 XC_API BOOL WINAPI XAdapterTree_DeleteItem(HXCGUI hAdapter,int nID);
 XC_API void WINAPI XAdapterTree_DeleteItemAll(HXCGUI hAdapter);
+XC_API void WINAPI XAdapterTree_DeleteColumnAll(HXCGUI hAdapter);
 XC_API HXCGUI WINAPI XAdapterMap_Create();
 XC_API BOOL WINAPI XAdapterMap_AddItemText(HXCGUI hAdapter,const wchar_t* pName,const wchar_t* pValue);
 XC_API BOOL WINAPI XAdapterMap_AddItemImage(HXCGUI hAdapter,const wchar_t* pName,HIMAGE hImage);
@@ -2229,13 +2315,14 @@ XC_API void  WINAPI XDraw_SetOffset(HDRAW hDraw, int x, int y); //设置坐标偏移量
 XC_API void  WINAPI XDraw_GetOffset(HDRAW hDraw, out_ int *pX, out_ int *pY); //获取坐标偏移量
 XC_API void  WINAPI XDraw_RestoreGDIOBJ(HDRAW hDraw);  //还原状态,释放用户绑定的GDI对象
 XC_API HDC   WINAPI XDraw_GetHDC(HDRAW hDraw);
-XC_API void  WINAPI XDraw_SetBrushColor(HDRAW hDraw, COLORREF color,BYTE alpha=254);
-XC_API void  WINAPI XDraw_SetTextAlign(HDRAW hDraw, int nFlag);
-XC_API void  WINAPI XDraw_SetTextVertical(HDRAW hDraw, BOOL bVertical);
-XC_API void  WINAPI XDraw_SetFontX(HDRAW hDraw, HFONTX  hFontx);
-XC_API void  WINAPI XDraw_SetFont(HDRAW hDraw, int size);
-XC_API void  WINAPI XDraw_SetFont2(HDRAW hDraw, const wchar_t* pName,int size);
-XC_API void  WINAPI XDraw_SetFont3(HDRAW hDraw, LOGFONT* pLogFont);
+XC_API void WINAPI XDraw_SetBrushColor(HDRAW hDraw, COLORREF color,BYTE alpha=254);
+XC_API void WINAPI XDraw_SetTextAlign(HDRAW hDraw, int nFlag);
+XC_API void WINAPI XDraw_SetTextVertical(HDRAW hDraw, BOOL bVertical);
+XC_API void WINAPI XDraw_SetFontX(HDRAW hDraw, HFONTX  hFontx);
+XC_API void WINAPI XDraw_SetFont(HDRAW hDraw, int size);
+XC_API void WINAPI XDraw_SetFont2(HDRAW hDraw, const wchar_t* pName,int size);
+XC_API void WINAPI XDraw_SetFont3(HDRAW hDraw, LOGFONT* pLogFont);
+XC_API void WINAPI XDraw_SetLineWidth(HDRAW hDraw, int nWidth);
 XC_API int  WINAPI XDraw_SetBkMode(HDRAW hDraw, BOOL bTransparent);
 XC_API HBRUSH WINAPI XDraw_CreateSolidBrush(HDRAW hDraw, COLORREF crColor);
 XC_API HPEN WINAPI XDraw_CreatePen(HDRAW hDraw, int fnPenStyle, int nWidth, COLORREF crColor);
@@ -2273,7 +2360,7 @@ XC_API void WINAPI XDraw_TriangularArrow(HDRAW hDraw, int align, int x, int y, i
 XC_API void WINAPI XDraw_Image(HDRAW hDraw, HIMAGE hImage, int x, int y);
 XC_API void WINAPI XDraw_Image2(HDRAW hDraw, HIMAGE hImage, int x, int y, int width, int height);
 XC_API void WINAPI XDraw_ImageStretch(HDRAW hDraw, HIMAGE hImage, int x, int y, int width, int height);
-XC_API void WINAPI XDraw_ImageAdaptive(HDRAW hDraw, HIMAGE hImage, RECT *pRect);
+XC_API void WINAPI XDraw_ImageAdaptive(HDRAW hDraw, HIMAGE hImage, RECT *pRect, BOOL bOnlyBorder=FALSE);
 XC_API void WINAPI XDraw_ImageExTile(HDRAW hDraw, HIMAGE hImage, RECT *pRect, int flag = 0);
 XC_API void WINAPI XDraw_ImageSuper(HDRAW hDraw, HIMAGE hImage, RECT *pRect,BOOL bClip=FALSE);
 XC_API void WINAPI XDraw_ImageSuper2(HDRAW hDraw, HIMAGE hImage, RECT *pRcDest, RECT *pSrcRect);
@@ -2347,6 +2434,8 @@ XC_API void WINAPI XEle_SetAlpha(HELE hEle,BYTE alpha);
 XC_API int  WINAPI XEle_GetChildCount(HELE hEle);
 XC_API HELE WINAPI XEle_GetChildByIndex(HELE hEle,int index);
 XC_API HELE WINAPI XEle_GetChildByID(HELE hEle,int id);
+XC_API int  WINAPI XEle_GetChildShapeCount(HELE hEle);
+XC_API HXCGUI WINAPI XEle_GetChildShapeByIndex(HELE hEle, int index);
 XC_API HELE WINAPI XEle_HitChildEle(HELE hEle,in_ POINT  *pPt);  //判断坐标点在哪个元素上
 XC_API void WINAPI XEle_BindLayoutObject(HELE hEle,HXCGUI hLayout);
 XC_API HXCGUI WINAPI XEle_GetLayoutObject(HELE hEle);
@@ -2373,6 +2462,7 @@ XC_API void WINAPI XEle_SetToolTip(HELE hEle, const wchar_t* pText);
 XC_API void WINAPI XEle_GetToolTip(HELE hEle, out_ wchar_t  *pOut, int nOutLen);
 XC_API void WINAPI XEle_EnableToolTip(HELE hEle, BOOL bEnable);
 XC_API void WINAPI XEle_AdjustLayoutObject(HELE hEle);
+XC_API void WINAPI XEle_AdjustLayout(HELE hEle);
 XC_API BOOL WINAPI XEle_RegEventTest(int nEvent,BYTE* pParamType); //检测回调函数参数是否正确
 XC_API HFONTX WINAPI XFont_Create(int size);//创建字体
 XC_API HFONTX WINAPI XFont_Create2(const wchar_t *pName=L"宋体",int size=12,BOOL bBold=FALSE,BOOL bItalic=FALSE,BOOL bUnderline=FALSE,BOOL bStrikeOut=FALSE);
@@ -2483,6 +2573,7 @@ XC_API int  WINAPI XListBox_GetItemIndexFromHXCGUI(HELE hEle,HXCGUI hXCGUI);
 XC_API int  WINAPI XListBox_HitTest(HELE hEle,POINT *pPt);
 XC_API int  WINAPI XListBox_HitTestOffset(HELE hEle,POINT *pPt); //自动添加滚动视图偏移量
 XC_API BOOL WINAPI XListBox_SetItemTemplateXML(HELE hEle,const wchar_t* pXmlFile);
+XC_API BOOL WINAPI XListBox_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
 XC_API HXCGUI WINAPI XListBox_GetTemplateObject(HELE hEle,int iItem,int nTempItemID);
 XC_API void WINAPI XListBox_EnableMultiSel(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XListBox_BindAdapter(HELE hEle,HXCGUI hAdapter);
@@ -2500,6 +2591,7 @@ XC_API BOOL WINAPI XList_SetItemData(HELE hEle,int iItem,int iSubItem,int data);
 XC_API int  WINAPI XList_GetItemData(HELE hEle,int iItem,int iSubItem);
 XC_API BOOL WINAPI XList_SetSelectItem(HELE hEle,int iItem,BOOL bSelect);
 XC_API int  WINAPI XList_GetSelectItem(HELE hEle);
+XC_API int  WINAPI XList_GetSelectItemCount(HELE hEle);
 XC_API void WINAPI XList_SelectAll(HELE hEle);
 XC_API int  WINAPI XList_GetSelectAll(HELE hEle,out_ int *pArray,int nArraySize);
 XC_API HELE WINAPI XList_GetHeaderHELE(HELE hEle);
@@ -2507,6 +2599,7 @@ XC_API void WINAPI XList_BindAdapter(HELE hEle,HXCGUI hAdapter);
 XC_API void WINAPI XList_BindAdapterHeader(HELE hEle,HXCGUI hAdapter);
 XC_API HXCGUI WINAPI XList_GetAdapter(HELE hEle);
 XC_API BOOL WINAPI XList_SetItemTemplateXML(HELE hEle, const wchar_t* pXmlFile);
+XC_API BOOL WINAPI XList_SetItemTemplateXMLFromString(HELE hEle, const char* pStringXML);
 XC_API HXCGUI WINAPI XList_GetTemplateObject(HELE hEle, int iItem,int nTempItemID); //通过模板项ID,获取实例化模板项ID对应的对象.
 XC_API int    WINAPI XList_GetItemIndexFromHXCGUI(HELE hEle, HXCGUI hXCGUI);
 XC_API void WINAPI XList_SetHeaderHeight(HELE hEle, int height);
@@ -2526,14 +2619,20 @@ XC_API HELE WINAPI XListView_Create(int x, int y, int cx, int cy,HXCGUI hParent=
 XC_API void WINAPI XListView_BindAdapter(HELE hEle,HXCGUI hAdapter);
 XC_API HXCGUI WINAPI XListView_GetAdapter(HELE hEle);
 XC_API BOOL WINAPI XListView_SetItemTemplateXML(HELE hEle,const wchar_t* pXmlFile);
+XC_API BOOL WINAPI XListView_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
 XC_API HXCGUI WINAPI XListView_GetTemplateObject(HELE hEle,int iGroup,int iItem,int nTempItemID);
 XC_API HXCGUI WINAPI XListView_GetTemplateObjectGroup(HELE hEle,int iGroup,int nTempItemID);
 XC_API BOOL WINAPI XListView_GetItemIDFromHXCGUI(HELE hEle, HXCGUI hXCGUI,out_ int* piGroup,out_ int* piItem);
 XC_API BOOL WINAPI XListView_HitTest(HELE hEle,in_ POINT* pPt,out_ int* pOutGroup,out_ int* pOutItem);
 XC_API int  WINAPI XListView_HitTestOffset(HELE hEle,in_ POINT *pPt,out_ int* pOutGroup,out_ int* pOutItem); //自动添加滚动视图偏移量
+XC_API void WINAPI XListView_EnableMultiSel(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XListView_SetDrawItemBkFlags(HELE hEle, int nFlags);
 XC_API BOOL WINAPI XListView_SetSelectItem(HELE hEle,int iGroup,int iItem);
 XC_API BOOL WINAPI XListView_GetSelectItem(HELE hEle,int *piGroup,int *piItem);
+XC_API int  WINAPI XListView_GetSelectItemCount(HELE hEle);
+XC_API int  WINAPI XListView_GetSelectItemAll(HELE hEle,out_ listView_item_id_i *pArray,int nArraySize);
+XC_API void WINAPI XListView_SetSelectItemAll(HELE hEle);
+XC_API void WINAPI XListView_CancelSelectItemAll(HELE hEle);
 XC_API void WINAPI XListView_SetColumnSpace(HELE hEle,int space); //设置列间隔
 XC_API void WINAPI XListView_SetRowSpace(HELE hEle,int space); //设置行间隔
 XC_API void WINAPI XListView_SetAlignSizeLeft(HELE hEle,int size);
@@ -2732,22 +2831,22 @@ XC_API void WINAPI XShapeText_SetTextColor(HXCGUI hTextBlock, COLORREF color,BYT
 XC_API COLORREF WINAPI XShapeText_GetTextColor(HXCGUI hTextBlock);
 XC_API void WINAPI XShapeText_SetTextAlign(HXCGUI hTextBlock,int align);
 XC_API void WINAPI XShapeText_SetOffset(HXCGUI hTextBlock,int x,int y);
-XC_API void WINAPI XShapeText_SetLayoutWidth(HXCGUI hTextBlock,int nFlag,int width);
-XC_API void WINAPI XShapeText_SetLayoutHeight(HXCGUI hTextBlock,int nFlag,int height);
-XC_API void WINAPI XShapeText_GetLayoutWidth(HXCGUI hTextBlock,out_ int *pFlag,out_ int *pWidth);
-XC_API void WINAPI XShapeText_GetLayoutHeight(HXCGUI hTextBlock,out_ int *pFlag,out_ int *pHeight);
+XC_API void WINAPI XShapeText_SetLayoutWidth(HXCGUI hTextBlock,layout_size_type_ nType,int width);
+XC_API void WINAPI XShapeText_SetLayoutHeight(HXCGUI hTextBlock,layout_size_type_ nType,int height);
+XC_API void WINAPI XShapeText_GetLayoutWidth(HXCGUI hTextBlock,out_ layout_size_type_ *pType,out_ int *pWidth);
+XC_API void WINAPI XShapeText_GetLayoutHeight(HXCGUI hTextBlock,out_ layout_size_type_ *pType,out_ int *pHeight);
 XC_API HXCGUI WINAPI XShapePic_Create(int x,int y,int cx,int cy, HXCGUI hParent=NULL);
 XC_API void WINAPI   XShapePic_SetImage(HXCGUI hShape,HIMAGE hImage);
-XC_API void WINAPI XShapePic_SetLayoutWidth(HXCGUI hShape,int nFlag,int width);
-XC_API void WINAPI XShapePic_SetLayoutHeight(HXCGUI hShape,int nFlag,int height);
-XC_API void WINAPI XShapePic_GetLayoutWidth(HXCGUI hShape,out_ int *pFlag,out_ int *pWidth);
-XC_API void WINAPI XShapePic_GetLayoutHeight(HXCGUI hShape,out_ int *pFlag,out_ int *pHeight);
+XC_API void WINAPI XShapePic_SetLayoutWidth(HXCGUI hShape,layout_size_type_ nType,int width);
+XC_API void WINAPI XShapePic_SetLayoutHeight(HXCGUI hShape,layout_size_type_ nType,int height);
+XC_API void WINAPI XShapePic_GetLayoutWidth(HXCGUI hShape,out_ layout_size_type_ *pType,out_ int *pWidth);
+XC_API void WINAPI XShapePic_GetLayoutHeight(HXCGUI hShape,out_ layout_size_type_ *pType,out_ int *pHeight);
 XC_API HXCGUI WINAPI XShapeGif_Create(int x,int y,int cx,int cy, HXCGUI hParent=NULL);
 XC_API void WINAPI XShapeGif_SetImage(HXCGUI hShape,HIMAGE hImage);
-XC_API void WINAPI XShapeGif_SetLayoutWidth(HXCGUI hShape,int nFlag,int width);
-XC_API void WINAPI XShapeGif_SetLayoutHeight(HXCGUI hShape,int nFlag,int height);
-XC_API void WINAPI XShapeGif_GetLayoutWidth(HXCGUI hShape,out_ int *pFlag,out_ int *pWidth);
-XC_API void WINAPI XShapeGif_GetLayoutHeight(HXCGUI hShape,out_ int *pFlag,out_ int *pHeight);
+XC_API void WINAPI XShapeGif_SetLayoutWidth(HXCGUI hShape,layout_size_type_ nType,int width);
+XC_API void WINAPI XShapeGif_SetLayoutHeight(HXCGUI hShape,layout_size_type_ nType,int height);
+XC_API void WINAPI XShapeGif_GetLayoutWidth(HXCGUI hShape,out_ layout_size_type_ *pType,out_ int *pWidth);
+XC_API void WINAPI XShapeGif_GetLayoutHeight(HXCGUI hShape,out_ layout_size_type_ *pType,out_ int *pHeight);
 XC_API HXCGUI WINAPI XShapeRect_Create(int x,int y,int cx,int cy, HXCGUI hParent=NULL);
 XC_API void WINAPI XShapeRect_SetBorderColor(HXCGUI hShape,COLORREF color,BYTE alpha=255);
 XC_API void WINAPI XShapeRect_SetFillColor(HXCGUI hShape,COLORREF color,BYTE alpha=255);
@@ -2826,6 +2925,8 @@ XC_API void WINAPI XToolBar_DeleteAllEle(HELE hEle);
 XC_API HELE WINAPI XTree_Create(int x,int y,int cx,int cy,HXCGUI hParent=NULL);
 XC_API BOOL WINAPI XTree_SetItemTemplateXML(HELE hEle,const wchar_t* pXmlFile);
 XC_API BOOL WINAPI XTree_SetItemTemplateXMLSel(HELE hEle,const wchar_t* pXmlFile);
+XC_API BOOL WINAPI XTree_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
+XC_API BOOL WINAPI XTree_SetItemTemplateXMLSelFromString(HELE hEle,const char* pStringXML);
 XC_API void WINAPI XTree_SetDrawItemBkFlags(HELE hEle,int nFlags);
 XC_API BOOL WINAPI XTree_SetItemData(HELE hEle,int nID,int nUserData);
 XC_API int  WINAPI XTree_GetItemData(HELE hEle,int nID);
@@ -2869,6 +2970,7 @@ XC_API void WINAPI XWnd_EnableDragBorder(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableDragWindow(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableDrawBk(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableAutoFocus(HWINDOW hWindow, BOOL bEnable); //当鼠标左键按下是否获得焦点
+XC_API void WINAPI XWnd_EnableMaxWindow(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_RedrawWnd(HWINDOW hWindow);
 XC_API void WINAPI XWnd_RedrawWndRect(HWINDOW hWindow, RECT *pRect, BOOL bImmediately = FALSE); //重绘窗口指定区域
 XC_API void WINAPI XWnd_SetFocusEle(HWINDOW hWindow, HELE hFocusEle);
@@ -2895,6 +2997,8 @@ XC_API int  WINAPI XWnd_GetChildCount(HWINDOW hWindow);
 XC_API HELE WINAPI XWnd_GetChildByIndex(HWINDOW hWindow,int index);
 XC_API HELE WINAPI XWnd_GetChildByID(HWINDOW hWindow,int nID);
 XC_API HELE WINAPI XWnd_GetEle(HWINDOW hWindow,int nID);
+XC_API int  WINAPI XWnd_GetChildShapeCount(HWINDOW hWindow);
+XC_API HXCGUI WINAPI XWnd_GetChildShapeByIndex(HWINDOW hWindow, int index);
 XC_API void WINAPI XWnd_GetDrawRect(HWINDOW hWindow,RECT *pRcPaint);
 XC_API BOOL WINAPI XWnd_ShowWindow(HWINDOW hWindow, int nCmdShow);
 XC_API void WINAPI XWnd_AdjustLayout(HWINDOW hWindow);
@@ -2916,4 +3020,3 @@ XC_API void WINAPI XWnd_SetTransparentType(HWINDOW hWindow,window_transparent_ n
 XC_API void WINAPI XWnd_SetTransparentAlpha(HWINDOW hWindow,BYTE alpha); //设置窗口透明度
 XC_API void WINAPI XWnd_SetTransparentColor(HWINDOW hWindow,COLORREF color); //设置窗口透明色
 XC_API BOOL WINAPI XWnd_RegEventTest(int nEvent,BYTE* pParamType);
-

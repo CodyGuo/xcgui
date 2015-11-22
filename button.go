@@ -1,7 +1,9 @@
 package xcgui
 
 import (
+    "fmt"
     "github.com/codyguo/xcgui/xc"
+    "syscall"
 )
 
 type Button struct {
@@ -11,6 +13,7 @@ type Button struct {
 }
 
 func (b *Button) WndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) uintptr {
+    fmt.Println("bei")
     return 0
 }
 
@@ -29,6 +32,14 @@ func NewButton(parent Window, rect Rectangle) (*Button, error) {
         return nil, lastError("XBtnCreate")
     }
 
+    // var OnEventProc = func(hEventEle xc.HELE, nEvent int, wParam, lParam uintptr, pbHandled *xc.BOOL) uintptr {
+    //     fmt.Println(nEvent, wParam, lParam)
+    //     fmt.Println("事件正常.")
+    //     return uintptr(0)
+    // }
+
+    // xc.XEleRegEventC(btn.hEle, xc.XE_BNCLICK, syscall.NewCallback(OnEventProc))
+
     return btn, nil
 }
 
@@ -36,13 +47,23 @@ func (b *Button) SetText(value string) {
     xc.XBtnSetText(b.hEle, value)
 }
 
-// func (b *Button) Clicked() *Event {
-//     return b.clickedPublisher.Event(b.hEle)
-// }
+func (b *Button) OnBtnClick(pFunc func()) {
+    var (
+        OnBtnClick = func(pbHandled *bool) int {
+            // pbHandled = true 取消, false 继续
+            // *pbHandled = true
+            pFunc()
 
-func (b *Button) Clicked(function xc.CallBack) {
+            return 0
+        }
+    )
+
     xc.XEleRegEventC(
         b.hEle,
         xc.XE_BNCLICK,
-        function)
+        syscall.NewCallback(OnBtnClick))
 }
+
+// func (b *Button) Clicked() *Event {
+//     return b.clickedPublisher.Event(b.hEle)
+// }

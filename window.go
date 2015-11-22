@@ -2,12 +2,16 @@ package xcgui
 
 import (
     "errors"
+    "fmt"
     // "syscall"
-    // "fmt"
 )
 
 import (
     "github.com/codyguo/xcgui/xc"
+)
+
+var (
+    hwnd2WindowBase = make(map[xc.HWND]*WindowBase)
 )
 
 type Window interface {
@@ -15,7 +19,7 @@ type Window interface {
     Handle() xc.HWND
     Show() error
 
-    WndProc(msg uint32, wparam, lparam uintptr) uintptr
+    WndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) uintptr
 }
 
 type WindowBase struct {
@@ -117,15 +121,55 @@ func (wb *WindowBase) GetHWindow() xc.HWINDOW {
 //     return xc.HWND(mw.Hwnd)
 // }
 
-func (wb *WindowBase) Run() {
+func (wb *WindowBase) Run() int {
+
+    // var msg xc.MSG
+
+    // for wb.hWindow != 0 {
+    //     switch xc.GetMessage(&msg, 0, 0, 0) {
+    //     case 0:
+    //         return int(msg.WParam)
+    //     case -1:
+    //         return -1
+    //     }
+
+    //     xc.TranslateMessage(&msg)
+    //     xc.DispatchMessage(&msg)
+
+    // }
     xc.XRunXCGUIFunc()
+
+    return 0
 }
 
 func (wb *WindowBase) Close() {
+    wb.SendMessage(xc.WM_CLOSE, 0, 0)
     xc.XExitXCGUIFunc()
 }
 
-func (wb *WindowBase) WndProc(msg uint32, wparam, lparam uintptr) uintptr {
-    // fmt.Println("WidgetBase.WndProc")
+// SendMessage sends a message to the window and returns the result.
+func (wb *WindowBase) SendMessage(msg uint32, wParam, lParam uintptr) uintptr {
+    return xc.SendMessage(wb.hWnd, msg, wParam, lParam)
+}
+
+func windowFromHandle(hwnd xc.HWND) Window {
+    if wb := hwnd2WindowBase[hwnd]; wb != nil {
+        return wb.window
+    }
+
+    return nil
+}
+
+func defaultWndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) (result uintptr) {
+
+    wi := windowFromHandle(hwnd)
+
+    result = wi.WndProc(hwnd, msg, wParam, lParam)
+
+    return
+}
+
+func (wb *WindowBase) WndProc(hwnd xc.HWND, msg uint32, wparam, lparam uintptr) uintptr {
+    fmt.Println("WidgetBase.WndProc")
     return uintptr(0)
 }

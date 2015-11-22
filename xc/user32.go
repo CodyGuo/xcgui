@@ -2,6 +2,7 @@ package xc
 
 import (
     "syscall"
+    "unsafe"
 )
 
 // MessageBox constants
@@ -28,20 +29,35 @@ const (
     MB_DEFBUTTON4        = 0x00000300
 )
 
+type MSG struct {
+    HWnd    HWND
+    Message uint32
+    WParam  uintptr
+    LParam  uintptr
+    Time    uint32
+    Pt      POINT
+}
+
 var (
     User32 *syscall.DLL
 )
 
 var (
     // Functions
-    MessageBoxW  *syscall.Proc
-    SendMessageW *syscall.Proc
+    MessageBoxW       *syscall.Proc
+    SendMessageW      *syscall.Proc
+    GetMessageW       *syscall.Proc
+    TranslateMessageW *syscall.Proc
+    DispatchMessageW  *syscall.Proc
 )
 
 func init() {
     User32 = syscall.MustLoadDLL("User32.dll")
     MessageBoxW = User32.MustFindProc("MessageBoxW")
     SendMessageW = User32.MustFindProc("SendMessageW")
+    GetMessageW = User32.MustFindProc("GetMessageW")
+    TranslateMessageW = User32.MustFindProc("TranslateMessage")
+    DispatchMessageW = User32.MustFindProc("DispatchMessageW")
 }
 
 func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
@@ -61,6 +77,29 @@ func SendMessage(hWnd HWND, msg uint32, wParam, lParam uintptr) uintptr {
         wParam,
         lParam,
     )
+
+    return ret
+}
+
+func GetMessage(msg *MSG, hWnd HWND, msgFilterMin, msgFilterMax uint32) BOOL {
+    ret, _, _ := GetMessageW.Call(
+        uintptr(unsafe.Pointer(msg)),
+        uintptr(hWnd),
+        uintptr(msgFilterMin),
+        uintptr(msgFilterMax))
+
+    return BOOL(ret)
+}
+
+func TranslateMessage(msg *MSG) bool {
+    ret, _, _ := TranslateMessageW.Call(uintptr(unsafe.Pointer(msg)))
+
+    return ret != 0
+}
+
+func DispatchMessage(msg *MSG) uintptr {
+    ret, _, _ := DispatchMessageW.Call(
+        uintptr(unsafe.Pointer(msg)))
 
     return ret
 }

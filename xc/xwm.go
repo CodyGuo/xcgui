@@ -430,3 +430,23 @@ const (
     XWM_MENU_DRAW_BACKGROUND = 0x7000 + 9
     XWM_MENU_DRAWITEM        = 0x7000 + 10
 )
+
+/* 重绘元素
+   XWM_REDRAW 窗口重绘延时 ----不公开-----内部自定义消息
+   XWM_REDRAW_ELE 重绘元素 wParam:元素句柄, lParam:RECT*基于窗口坐标
+*/
+const (
+    XWM_REDRAW     = WM_APP + 1007
+    XWM_REDRAW_ELE = 0x7000 + 3
+)
+
+/* 窗口消息-包含系统非客户区消息
+   XWM_EVENT_ALL 事件投递 -------不公开-------不需要注册
+   XWM_WINDPROC 注册窗口处理过程
+   XWM_DRAW_T 窗口绘制,内部使用, wParam:0, lParam:0
+*/
+const (
+    XWM_EVENT_ALL = WM_APP + 1000
+    XWM_WINDPROC  = 0x7000
+    XWM_DRAW_T    = 0x7000 + 1
+)

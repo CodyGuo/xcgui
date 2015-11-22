@@ -23,9 +23,9 @@ func init() {
 // @Input: hEle 元素句柄. nEvent 事件类型. pFun 事件函数指针.
 // @Return:
 // *******************************************
-func XEleRegEventC(hEle HELE, nEvent int, pFun CallBack) {
+func XEleRegEventC(hEle HELE, nEvent int, pFun uintptr) {
     XEle_RegEventC.Call(
         uintptr(hEle),
         uintptr(nEvent),
-        CallBackXC(pFun))
+        pFun)
 }

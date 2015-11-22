@@ -65,7 +65,7 @@ type (
     HRESULT int32
 )
 
-type CallBack func()
+type CallBack func() uintptr
 
 func CallBackXC(pFunc CallBack) uintptr {
     pFunc()

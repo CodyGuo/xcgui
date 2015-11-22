@@ -1,8 +1,8 @@
 package xc
 
-type button_state_ uint32
+type BUTTON_STATE_ uint32
 
-/* 按钮状态
+/* button_state_ 按钮状态
    button_state_leave 离开状态
    button_state_stay 停留状态
    button_state_down 按下状态
@@ -11,7 +11,7 @@ type button_state_ uint32
 */
 
 const (
-    BUTTON_STATE_LEAVE button_state_ = iota
+    BUTTON_STATE_LEAVE BUTTON_STATE_ = iota
     BUTTON_STATE_STAY
     BUTTON_STATE_DOWN
     BUTTON_STATE_CHECK

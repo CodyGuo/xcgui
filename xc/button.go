@@ -14,6 +14,7 @@ var (
     XBtn_GetStyle          *syscall.Proc
     XBtn_SetState          *syscall.Proc
     XBtn_GetState          *syscall.Proc
+    XBtn_GetStateEx        *syscall.Proc
     XBtn_SetType           *syscall.Proc
     XBtn_GetType           *syscall.Proc
     XBtn_SetGroupID        *syscall.Proc
@@ -42,6 +43,7 @@ func init() {
     XBtn_GetStyle = XCDLL.MustFindProc("XBtn_GetStyle")
     XBtn_SetState = XCDLL.MustFindProc("XBtn_SetState")
     XBtn_GetState = XCDLL.MustFindProc("XBtn_GetState")
+    XBtn_GetStateEx = XCDLL.MustFindProc("XBtn_GetStateEx")
     XBtn_SetType = XCDLL.MustFindProc("XBtn_SetType")
     XBtn_GetType = XCDLL.MustFindProc("XBtn_GetType")
     XBtn_SetGroupID = XCDLL.MustFindProc("XBtn_SetGroupID")
@@ -65,13 +67,13 @@ func init() {
 
 // 关闭
 func CloseBtn(hWindow HWINDOW) {
-    xBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
+    XBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
         BUTTON_TYPE_CLOSE)
 }
 
 // 最小化
 func MinBtn(hWindow HWINDOW) {
-    xBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
+    XBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
         BUTTON_TYPE_MIN)
 }
 
@@ -146,7 +148,7 @@ func XBtnIsCheck(hEle HELE) bool {
 // @Input: hEle 元素句柄. nStyle 样式.
 // @Return:
 // *******************************************
-func XBtnSetStyle(hEle HELE, nStyle button_style_) {
+func XBtnSetStyle(hEle HELE, nStyle BUTTON_STYLE_) {
     XBtn_SetStyle.Call(
         uintptr(hEle),
         uintptr(nStyle))
@@ -161,10 +163,10 @@ func XBtnSetStyle(hEle HELE, nStyle button_style_) {
 // @Input: hEle 元素句柄.
 // @Return: 按钮样式,参见宏定义.
 // *******************************************
-func XBtnGetStyle(hEle HELE) button_style_ {
+func XBtnGetStyle(hEle HELE) BUTTON_STYLE_ {
     ret, _, _ := XBtn_GetStyle.Call(uintptr(hEle))
 
-    return button_style_(ret)
+    return BUTTON_STYLE_(ret)
 }
 
 // *******************************************
@@ -176,7 +178,7 @@ func XBtnGetStyle(hEle HELE) button_style_ {
 // @Input: hEle 元素句柄. nState 按钮状态见宏定义.
 // @Return:
 // *******************************************
-func XBtnSetState(hEle HELE, nState common_state3_) {
+func XBtnSetState(hEle HELE, nState COMMON_STATE3_) {
     XBtn_SetState.Call(
         uintptr(hEle),
         uintptr(nState))
@@ -191,22 +193,37 @@ func XBtnSetState(hEle HELE, nState common_state3_) {
 // @Input: hEle 元素句柄.
 // @Return: 返回按钮状态,参见宏定义.
 // *******************************************
-func XBtnGetState(hEle HELE) common_state3_ {
+func XBtnGetState(hEle HELE) COMMON_STATE3_ {
     ret, _, _ := XBtn_GetState.Call(uintptr(hEle))
 
-    return common_state3_(ret)
+    return COMMON_STATE3_(ret)
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-22 22:01:37
+// @Function: XBtnGetState
+// @Description: 获取按钮状态.
+// @Calls: XBtnGetStateEx
+// @Input: hEle 元素句柄.
+// @Return: 返回按钮状态,参见宏定义 button_state_ .
+// *******************************************
+func XBtnGetStateEx(hEle HELE) BUTTON_STATE_ {
+    ret, _, _ := XBtn_GetStateEx.Call(uintptr(hEle))
+
+    return BUTTON_STATE_(ret)
 }
 
 // *******************************************
 // @Author: cody.guo
 // @Date: 2015-11-6 18:36:20
-// @Function: xBtnSetType
+// @Function: XBtnSetType
 // @Description: 设置按钮样式.
 // @Calls: XBtn_SetType
 // @Input: hEle 元素句柄. nStyle 样式. 参考 button_type_
 // @Return:
 // *******************************************
-func xBtnSetType(hEle HELE, nType button_type_) {
+func XBtnSetType(hEle HELE, nType BUTTON_TYPE_) {
     XBtn_SetType.Call(
         uintptr(hEle),
         uintptr(nType))
@@ -219,12 +236,12 @@ func xBtnSetType(hEle HELE, nType button_type_) {
 // @Description: 获取按钮功能类型.
 // @Calls: XBtn_GetType
 // @Input: hEle 元素句柄.
-// @Return: 按钮类型,参见宏定义.
+// @Return: 按钮类型,参见宏定义 button_type_.
 // *******************************************
-func XBtnGetType(hEle HELE) button_type_ {
+func XBtnGetType(hEle HELE) BUTTON_TYPE_ {
     ret, _, _ := XBtn_GetType.Call(uintptr(hEle))
 
-    return button_type_(ret)
+    return BUTTON_TYPE_(ret)
 }
 
 // *******************************************
@@ -326,7 +343,7 @@ func XBtnGetTextAlign(hEle HELE) int {
 // @Input: hEle 元素句柄. align 对齐方式.
 // @Return:
 // *******************************************
-func XBtnSetIconAlign(hEle HELE, align button_icon_align_) {
+func XBtnSetIconAlign(hEle HELE, align BUTTON_ICON_ALIGN_) {
     XBtn_SetIconAlign.Call(
         uintptr(hEle),
         uintptr(align))

@@ -29,6 +29,9 @@ type (
     // 图片资源句柄
     HIMAGE HXCGUI
 
+    // ICO资源句柄
+    HICON HXCGUI
+
     // XML资源句柄
     HXMLRES HXCGUI
 

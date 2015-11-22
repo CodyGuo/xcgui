@@ -1,8 +1,8 @@
 package xc
 
-type button_style_ uint32
+type BUTTON_STYLE_ uint32
 
-/* 按钮样式(用于区分外观)
+/* button_style_ 按钮样式(用于区分外观)
    button_style_default 默认风格
    button_style_check 复选按钮
    button_style_radio 单选按钮
@@ -21,7 +21,7 @@ type button_style_ uint32
    button_style_pane_dockV 框架窗口上边或下边码头上按钮
 */
 const (
-    BUTTON_STYLE_DEFAULT button_style_ = iota
+    BUTTON_STYLE_DEFAULT BUTTON_STYLE_ = iota
     BUTTON_STYLE_CHECK
     BUTTON_STYLE_RADIO
     BUTTON_STYLE_SCROLLBAR_UP

@@ -7,7 +7,7 @@
 \**************************************************************************/
 #pragma once
 
-//v1.8.9.4
+//v1.8.9.5
 ////////////输入输出///////////////////
 #define in_
 #define out_
@@ -3020,3 +3020,5 @@ XC_API void WINAPI XWnd_SetTransparentType(HWINDOW hWindow,window_transparent_ n
 XC_API void WINAPI XWnd_SetTransparentAlpha(HWINDOW hWindow,BYTE alpha); //设置窗口透明度
 XC_API void WINAPI XWnd_SetTransparentColor(HWINDOW hWindow,COLORREF color); //设置窗口透明色
 XC_API BOOL WINAPI XWnd_RegEventTest(int nEvent,BYTE* pParamType);
+XC_API void WINAPI XWnd_AdjustLayoutObject(HWINDOW hWindow);
+XC_API HXCGUI WINAPI XEle_GetParentLayoutObject(HELE hEle);

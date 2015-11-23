@@ -1,7 +1,7 @@
-doc/
-!doc/*.chm
+doc/*
 !doc/*.h
 !doc/*.dll
+!doc/*.chm
 *.exe
 *.txt
 *.chw

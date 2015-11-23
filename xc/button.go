@@ -420,7 +420,7 @@ func XBtnSetText(hEle HELE, pName string) {
 // @Input: hEle 元素句柄. pOut 接收文本内容. nOutLen 接收缓冲区长度,字符为单位.
 // @Return:
 // *******************************************
-func XBtnGetText(hEle HELE, pOut *string, nOutLen int) {
+func XBtnGetText(hEle HELE, pOut *uint16, nOutLen int) {
     XBtn_GetText.Call(
         uintptr(hEle),
         uintptr(unsafe.Pointer(pOut)),

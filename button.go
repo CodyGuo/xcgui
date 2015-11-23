@@ -1,7 +1,6 @@
 package xcgui
 
 import (
-    "fmt"
     "syscall"
 )
 
@@ -157,14 +156,28 @@ func (b *Button) SetText(value string) {
 }
 
 func (b *Button) GetText() string {
-    textLength := xc.SendMessage(xc.HWND(b.hEle), xc.WM_GETTEXTLENGTH, 0, 0)
-    fmt.Println(textLength)
-    var buf []string
-    buf = make([]string, 4)
-    xc.XBtnGetText(b.hEle, &buf[0], 3)
-    fmt.Println(buf)
+    // textLength := xc.SendMessage(xc.HWND(b.hEle), xc.WM_GETTEXTLENGTH, 0, 0)
+    textLength := xc.XEleGetContentSize(b.hEle)
+    buf := make([]uint16, textLength+1)
+    xc.XBtnGetText(b.hEle, &buf[0], int(textLength)+1)
 
-    return buf[0]
+    return syscall.UTF16ToString(buf)
+}
+
+func (b *Button) SetIcon(hImage xc.HIMAGE) {
+    xc.XBtnSetIcon(b.hEle, hImage)
+}
+
+func (b *Button) SetIconDisable(hImage xc.HIMAGE) {
+    xc.XBtnSetIconDisable(b.hEle, hImage)
+}
+
+func (b *Button) AddAnimationFrame(hImage xc.HIMAGE, uElapse uint) {
+    xc.XBtnAddAnimationFrame(b.hEle, hImage, uElapse)
+}
+
+func (b *Button) EnableAnimation(bEnable, bLoopPlay bool) {
+    xc.XBtnEnableAnimation(b.hEle, xc.BoolToBOOL(bEnable), xc.BoolToBOOL(bLoopPlay))
 }
 
 func (b *Button) OnBtnClick(pFunc func()) {
@@ -187,7 +200,3 @@ func (b *Button) OnBtnClick(pFunc func()) {
 // func (b *Button) Clicked() *Event {
 //     return b.clickedPublisher.Event(b.hEle)
 // }
-
-func (b *Button) SetIcon(hImage xc.HIMAGE) {
-    xc.XBtnSetIcon(b.hEle, hImage)
-}

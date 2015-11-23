@@ -39,6 +39,14 @@ const (
     BUTTON_ICON_ALIGN_BOTTOM = xc.BUTTON_ICON_ALIGN_BOTTOM
 )
 
+const (
+    BUTTON_STATE_LEAVE   = xc.BUTTON_STATE_LEAVE
+    BUTTON_STATE_STAY    = xc.BUTTON_STATE_STAY
+    BUTTON_STATE_DOWN    = xc.BUTTON_STATE_DOWN
+    BUTTON_STATE_CHECK   = xc.BUTTON_STATE_CHECK
+    BUTTON_STATE_DISABLE = xc.BUTTON_STATE_DISABLE
+)
+
 type Button struct {
     WindowBase
 
@@ -178,6 +186,30 @@ func (b *Button) AddAnimationFrame(hImage xc.HIMAGE, uElapse uint) {
 
 func (b *Button) EnableAnimation(bEnable, bLoopPlay bool) {
     xc.XBtnEnableAnimation(b.hEle, xc.BoolToBOOL(bEnable), xc.BoolToBOOL(bLoopPlay))
+}
+
+func (b *Button) AddBkBorder(nState xc.BUTTON_STATE_, color Color, alpha byte, width int) {
+    xc.XBtnAddBkBorder(b.hEle, nState, xc.COLORREF(color), alpha, width)
+}
+
+func (b *Button) AddBkFill(nState xc.BUTTON_STATE_, color Color, alpha byte) {
+    xc.XBtnAddBkFill(b.hEle, nState, xc.COLORREF(color), alpha)
+}
+
+func (b *Button) AddBkImage(nState xc.BUTTON_STATE_, hImage xc.HIMAGE) {
+    xc.XBtnAddBkImage(b.hEle, nState, hImage)
+}
+
+func (b *Button) GetBkInfoCount(nState xc.BUTTON_STATE_) int {
+    return xc.XBtnGetBkInfoCount(b.hEle, nState)
+}
+
+func (b *Button) ClearBkInfo(nState xc.BUTTON_STATE_) {
+    xc.XBtnClearBkInfo(b.hEle, nState)
+}
+
+func (b *Button) GetBkInfoManager(nState xc.BUTTON_STATE_) int {
+    return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
 }
 
 func (b *Button) OnBtnClick(pFunc func()) {

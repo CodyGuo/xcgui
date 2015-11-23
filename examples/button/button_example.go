@@ -33,9 +33,16 @@ func main() {
     button1.SetIcon(img)
     button2.SetIcon(img)
 
-    button1.SetIconAlign(xcgui.BUTTON_ICON_ALIGN_TOP)
+    button1.SetIconAlign(xcgui.BUTTON_ICON_ALIGN_RIGHT)
     button2.SetIconAlign(xcgui.BUTTON_ICON_ALIGN_RIGHT)
 
+    color := xcgui.RGB(255, 0, 0)
+    button1.AddBkBorder(xcgui.BUTTON_STATE_LEAVE, color, 255, 2)
+    button2.AddBkFill(xcgui.BUTTON_STATE_LEAVE, color, 255)
+
+    img_buy, _ := xcgui.NewImageFromFile("../img/buy.png")
+
+    button1.AddBkImage(xcgui.BUTTON_STATE_LEAVE, img_buy)
     err := mw.Show()
     if err != nil {
         log.Fatalln(err)

@@ -33,6 +33,12 @@ var (
     XBtn_SetIconDisable    *syscall.Proc
     XBtn_AddAnimationFrame *syscall.Proc
     XBtn_EnableAnimation   *syscall.Proc
+    XBtn_AddBkBorder       *syscall.Proc
+    XBtn_AddBkFill         *syscall.Proc
+    XBtn_AddBkImage        *syscall.Proc
+    XBtn_GetBkInfoCount    *syscall.Proc
+    XBtn_ClearBkInfo       *syscall.Proc
+    XBtn_GetBkInfoManager  *syscall.Proc
 )
 
 func init() {
@@ -62,6 +68,12 @@ func init() {
     XBtn_SetIconDisable = XCDLL.MustFindProc("XBtn_SetIconDisable")
     XBtn_AddAnimationFrame = XCDLL.MustFindProc("XBtn_AddAnimationFrame")
     XBtn_EnableAnimation = XCDLL.MustFindProc("XBtn_EnableAnimation")
+    XBtn_AddBkBorder = XCDLL.MustFindProc("XBtn_AddBkBorder")
+    XBtn_AddBkFill = XCDLL.MustFindProc("XBtn_AddBkFill")
+    XBtn_AddBkImage = XCDLL.MustFindProc("XBtn_AddBkImage")
+    XBtn_GetBkInfoCount = XCDLL.MustFindProc("XBtn_GetBkInfoCount")
+    XBtn_ClearBkInfo = XCDLL.MustFindProc("XBtn_ClearBkInfo")
+    XBtn_GetBkInfoManager = XCDLL.MustFindProc("XBtn_GetBkInfoManager")
 
 }
 
@@ -487,4 +499,104 @@ func XBtnEnableAnimation(hEle HELE, bEnable, bLoopPlay BOOL) {
         uintptr(hEle),
         uintptr(bEnable),
         uintptr(bLoopPlay))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-23 18:34:05
+// @Function: XBtnAddBkBorder
+// @Description: 添加背景内容边框.
+// @Calls: XBtn_AddBkBorder
+// @Input: hEle 元素句柄. nState 按钮状态. color RGB颜色. alpha 透明度. width 线宽.
+// @Return:
+// *******************************************
+func XBtnAddBkBorder(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte, width int) {
+    XBtn_AddBkBorder.Call(
+        uintptr(hEle),
+        uintptr(nState),
+        uintptr(color),
+        uintptr(alpha),
+        uintptr(width))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-23 18:36:46
+// @Function: XBtnAddBkFill
+// @Description: 添加背景内容填充.
+// @Calls: XBtn_AddBkFill
+// @Input: hEle 元素句柄. nState 按钮状态. color RGB颜色. alpha 透明度.
+// @Return:
+// *******************************************
+func XBtnAddBkFill(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte) {
+    XBtn_AddBkFill.Call(
+        uintptr(hEle),
+        uintptr(nState),
+        uintptr(color),
+        uintptr(alpha))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-23 18:38:53
+// @Function: XBtnAddBkImage
+// @Description: 添加背景内容图片.
+// @Calls: XBtn_AddBkImage
+// @Input: hEle 元素句柄. nState 按钮状态. hImage 图片句柄.
+// @Return:
+// *******************************************
+func XBtnAddBkImage(hEle HELE, nState BUTTON_STATE_, hImage HIMAGE) {
+    XBtn_AddBkImage.Call(
+        uintptr(hEle),
+        uintptr(nState),
+        uintptr(hImage))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-23 18:40:22
+// @Function: XBtnGetBkInfoCount
+// @Description: 获取背景内容数量.
+// @Calls: XBtn_GetBkInfoCount
+// @Input: hEle 元素句柄. nState 按钮状态.
+// @Return: 成功返回背景内容数量,否则返回 XC_ID_ERROR.
+// *******************************************
+func XBtnGetBkInfoCount(hEle HELE, nState BUTTON_STATE_) int {
+    ret, _, _ := XBtn_GetBkInfoCount.Call(
+        uintptr(hEle),
+        uintptr(nState))
+
+    return int(ret)
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-23 18:43:04
+// @Function: XBtnClearBkInfo
+// @Description: 清空背景内容; 如果背景没有内容,将使用系统默认内容,以便保证背景正确.
+// @Calls: XBtn_ClearBkInfo
+// @Input: hEle 元素句柄. nState 按钮状态.
+// @Return:
+// *******************************************
+func XBtnClearBkInfo(hEle HELE, nState BUTTON_STATE_) {
+    XBtn_ClearBkInfo.Call(
+        uintptr(hEle),
+        uintptr(nState))
+}
+
+// *******************************************
+// @Author: cody.guo
+// @Date: 2015-11-23 18:44:10
+// @Function: XBtnGetBkInfoManager
+// @Description: 获取背景内容管理器.
+// @Calls: XBtn_GetBkInfoManager
+// @Input: hEle 元素句柄. nState 按钮状态.
+// @Return: 背景内容管理器.
+// *******************************************
+func XBtnGetBkInfoManager(hEle HELE, nState BUTTON_STATE_) HBKINFOM {
+    ret, _, _ := XBtn_GetBkInfoManager.Call(
+        uintptr(hEle),
+        uintptr(nState))
+
+    return HBKINFOM(ret)
 }

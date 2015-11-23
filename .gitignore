@@ -1,5 +1,7 @@
 doc/
-! doc/*.[chm][h][dll]
+!doc/*.chm
+!doc/*.h
+!doc/*.dll
 *.exe
 *.txt
 *.chw

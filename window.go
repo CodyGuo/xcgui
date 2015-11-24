@@ -1,94 +1,94 @@
 package xcgui
 
 import (
-    "errors"
-    "fmt"
-    // "syscall"
+	"errors"
+	"fmt"
+	// "syscall"
 )
 
 import (
-    "github.com/codyguo/xcgui/xc"
+	"github.com/codyguo/xcgui/xc"
 )
 
 var (
-    hwnd2WindowBase = make(map[xc.HWND]*WindowBase)
+	hwnd2WindowBase = make(map[xc.HWND]*WindowBase)
 )
 
 type Window interface {
-    AsWindowBase() *WindowBase
-    Handle() xc.HWND
-    Show() error
+	AsWindowBase() *WindowBase
+	Handle() xc.HWND
+	Show() error
 
-    WndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) uintptr
+	WndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) uintptr
 }
 
 type WindowBase struct {
-    window Window
-    hWnd   xc.HWND
-    hEle   xc.HELE
-    name   string
+	window Window
+	hWnd   xc.HWND
+	hEle   xc.HELE
+	name   string
 
-    hWindow xc.HWINDOW
+	hWindow xc.HWINDOW
 }
 
 // WindowBase simply returns the receiver.
 func (wb *WindowBase) AsWindowBase() *WindowBase {
-    return wb
+	return wb
 }
 
 func InitWindow(window, parent Window, width, height int, title string, style uint32) error {
-    wb := window.AsWindowBase()
-    wb.window = window
+	wb := window.AsWindowBase()
+	wb.window = window
 
-    var hwndParent xc.HWND
-    if parent != nil {
-        hwndParent = parent.Handle()
-    }
+	var hwndParent xc.HWND
+	if parent != nil {
+		hwndParent = parent.Handle()
+	}
 
-    if wb.hWnd != 0 {
-        return lastError("XWndCreate")
-    }
+	if wb.hWnd != 0 {
+		return lastError("XWndCreate")
+	}
 
-    wb.hWindow = xc.XWndCreate(
-        xc.CW_USEDEFAULT,
-        xc.CW_USEDEFAULT,
-        width,
-        height,
-        title,
-        hwndParent,
-        int(style))
+	wb.hWindow = xc.XWndCreate(
+		xc.CW_USEDEFAULT,
+		xc.CW_USEDEFAULT,
+		width,
+		height,
+		title,
+		hwndParent,
+		int(style))
 
-    xc.CloseBtn(wb.hWindow)
+	xc.CloseBtn(wb.hWindow)
 
-    if wb.hWindow == 0 {
-        return lastError("XWndCreate")
-    }
+	if wb.hWindow == 0 {
+		return lastError("XWndCreate")
+	}
 
-    succeeded := false
-    go func() {
-        if !succeeded {
-            newErrorNoPanic("XWndCreate")
-        }
-    }()
+	succeeded := false
+	go func() {
+		if !succeeded {
+			newErrorNoPanic("XWndCreate")
+		}
+	}()
 
-    succeeded = true
+	succeeded = true
 
-    return nil
+	return nil
 }
 
 func (wb *WindowBase) Handle() xc.HWND {
-    wb.hWnd = xc.XWndGetHWND(wb.hWindow)
-    return wb.hWnd
+	wb.hWnd = xc.XWndGetHWND(wb.hWindow)
+	return wb.hWnd
 }
 
 func (wb *WindowBase) SetMinimumSize(min Size) error {
-    if min.Width < 0 || min.Height < 0 {
-        return newError("min must be positive")
-    }
+	if min.Width < 0 || min.Height < 0 {
+		return newError("min must be positive")
+	}
 
-    xc.XWndSetMinimumSize(wb.hWindow, min.Width, min.Height)
+	xc.XWndSetMinimumSize(wb.hWindow, min.Width, min.Height)
 
-    return nil
+	return nil
 }
 
 // func NewMainWindow(width, height int, title string) *WindowBase {
@@ -105,16 +105,16 @@ func (wb *WindowBase) SetMinimumSize(min Size) error {
 // }
 
 func (wb *WindowBase) Show() (err error) {
-    ret := xc.XWndShowWindow(wb.hWindow, xc.SW_RESTORE)
-    if !ret {
-        return errors.New("XWndShowWindow call filed.")
-    }
+	ret := xc.XWndShowWindow(wb.hWindow, xc.SW_RESTORE)
+	if !ret {
+		return errors.New("XWndShowWindow call filed.")
+	}
 
-    return nil
+	return nil
 }
 
 func (wb *WindowBase) GetHWindow() xc.HWINDOW {
-    return wb.hWindow
+	return wb.hWindow
 }
 
 // func (wb *WindowBase) GetHWND() xc.HWND {
@@ -123,53 +123,53 @@ func (wb *WindowBase) GetHWindow() xc.HWINDOW {
 
 func (wb *WindowBase) Run() int {
 
-    // var msg xc.MSG
+	// var msg xc.MSG
 
-    // for wb.hWindow != 0 {
-    //     switch xc.GetMessage(&msg, 0, 0, 0) {
-    //     case 0:
-    //         return int(msg.WParam)
-    //     case -1:
-    //         return -1
-    //     }
+	// for wb.hWindow != 0 {
+	//     switch xc.GetMessage(&msg, 0, 0, 0) {
+	//     case 0:
+	//         return int(msg.WParam)
+	//     case -1:
+	//         return -1
+	//     }
 
-    //     xc.TranslateMessage(&msg)
-    //     xc.DispatchMessage(&msg)
+	//     xc.TranslateMessage(&msg)
+	//     xc.DispatchMessage(&msg)
 
-    // }
-    xc.XRunXCGUIFunc()
+	// }
+	xc.XRunXCGUI()
 
-    return 0
+	return 0
 }
 
 func (wb *WindowBase) Close() {
-    wb.SendMessage(xc.WM_CLOSE, 0, 0)
-    xc.XExitXCGUIFunc()
+	wb.SendMessage(xc.WM_CLOSE, 0, 0)
+	xc.XExitXCGUI()
 }
 
 // SendMessage sends a message to the window and returns the result.
 func (wb *WindowBase) SendMessage(msg uint32, wParam, lParam uintptr) uintptr {
-    return xc.SendMessage(wb.hWnd, msg, wParam, lParam)
+	return xc.SendMessage(wb.hWnd, msg, wParam, lParam)
 }
 
 func windowFromHandle(hwnd xc.HWND) Window {
-    if wb := hwnd2WindowBase[hwnd]; wb != nil {
-        return wb.window
-    }
+	if wb := hwnd2WindowBase[hwnd]; wb != nil {
+		return wb.window
+	}
 
-    return nil
+	return nil
 }
 
 func defaultWndProc(hwnd xc.HWND, msg uint32, wParam, lParam uintptr) (result uintptr) {
 
-    wi := windowFromHandle(hwnd)
+	wi := windowFromHandle(hwnd)
 
-    result = wi.WndProc(hwnd, msg, wParam, lParam)
+	result = wi.WndProc(hwnd, msg, wParam, lParam)
 
-    return
+	return
 }
 
 func (wb *WindowBase) WndProc(hwnd xc.HWND, msg uint32, wparam, lparam uintptr) uintptr {
-    fmt.Println("WidgetBase.WndProc")
-    return uintptr(0)
+	fmt.Println("WidgetBase.WndProc")
+	return uintptr(0)
 }

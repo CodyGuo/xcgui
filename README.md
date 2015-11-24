@@ -22,8 +22,8 @@
         - ListBox                       :   0% (  0/ 30) -列表框
         - list                          :   0% (  0/ 34) -列表
         - ListView                      :   0% (  0/ 27) -列表视图
-        - MenuBar                       :   100% (  5/  5) -菜单条
-        - pane                          :   100% (  9/  9) -Pane元素
+        - MenuBar                       : 100% (  5/  5) -菜单条
+        - pane                          : 100% (  9/  9) -Pane元素
         - ProgressBar                   :   0% (  0/  8) -进度条
         - RichEdit                      :   0% (  0/ 41) -富文本编辑框
         - ScrollBar                     :   0% (  0/ 16) -滚动条
@@ -36,11 +36,11 @@
 
     + 形状对象
         - Shape                         :   0% (  0/ 15) -形状对象
-        - ShapeText                     :   100% (  13/ 13) -形状对象文本
+        - ShapeText                     : 100% (  13/ 13) -形状对象文本
         - ShapePicture                  :   0% (  0/  6) -形状对象图片
         - ShapeGif                      :   0% (  0/  6) -形状对象GIF
         - ShapeRect                     :   0% (  0/  8) -矩形形状对象
-        - ShapeEllipse                  :   0% (  0/  5) -圆形(形状对象)
+        - ShapeEllipse                  : 100% (  5/  5) -圆形(形状对象)
         - ShapeGroupBox                 :   0% (  0/ 10) -组框(形状对象)
         - ShapeLine                     :   0% (  3/  3) -直线(形状对象)
 
@@ -85,7 +85,7 @@
         - messageBox_flags_             :  100% (  3/  3) -弹出消息框
 
     + API                               :  100% ( 19/ 19) -全局API
-    + UI                                :    100% (  11/ 11) -UI设计器支持
+    + UI                                :  100% (  11/ 11) -UI设计器支持
     + RegEventC                         :   42% (  3/  7) -注册事件C - 在window和Element中已定义
     -----------------------------------------------------------------------------------------
-    Total progress                      :   48% ( 623/1284)
+    Total progress                      :   48% ( 628/1284)

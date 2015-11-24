@@ -36,7 +36,7 @@
 
     + 形状对象
         - Shape                         :   0% (  0/ 15) -形状对象
-        - ShapeText                     :   0% (  0/ 13) -形状对象文本
+        - ShapeText                     :   100% (  13/ 13) -形状对象文本
         - ShapePicture                  :   0% (  0/  6) -形状对象图片
         - ShapeGif                      :   0% (  0/  6) -形状对象GIF
         - ShapeRect                     :   0% (  0/  8) -矩形形状对象

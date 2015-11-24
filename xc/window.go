@@ -1,135 +1,135 @@
 package xc
 
 import (
-    "syscall"
-    "unsafe"
-    // "fmt"
+	"syscall"
+	"unsafe"
+	// "fmt"
 )
 
 var (
-    // Functions
-    XWnd_Create              *syscall.Proc
-    XWnd_CreateEx            *syscall.Proc
-    XWnd_RegEventC           *syscall.Proc
-    XWnd_RegEventC1          *syscall.Proc
-    XWnd_RemovegEvent        *syscall.Proc
-    XWnd_AddEle              *syscall.Proc
-    XWnd_InsertEle           *syscall.Proc
-    XWnd_AddShape            *syscall.Proc
-    XWnd_RedrawWnd           *syscall.Proc
-    XWnd_RedrawWndRect       *syscall.Proc
-    XWnd_SetFocusEle         *syscall.Proc
-    XWnd_GetFocusEle         *syscall.Proc
-    XWnd_SetCursor           *syscall.Proc
-    XWnd_GetCursor           *syscall.Proc
-    XWnd_GetHWND             *syscall.Proc
-    XWnd_EnableDragBorder    *syscall.Proc
-    XWnd_EnableDragWindow    *syscall.Proc
-    XWnd_EnableDrawBk        *syscall.Proc
-    XWnd_EnableAutoFocus     *syscall.Proc
-    XWnd_SetCaptureEle       *syscall.Proc
-    XWnd_GetCaptureEle       *syscall.Proc
-    XWnd_GetDrawRect         *syscall.Proc
-    XWnd_ShowWindow          *syscall.Proc
-    XWnd_BindLayoutEle       *syscall.Proc
-    XWnd_GetLayoutEle        *syscall.Proc
-    XWnd_SetCursorSys        *syscall.Proc
-    XWnd_SetFont             *syscall.Proc
-    XWnd_SetID               *syscall.Proc
-    XWnd_GetID               *syscall.Proc
-    XWnd_SetLayoutSize       *syscall.Proc
-    XWnd_GetLayoutSize       *syscall.Proc
-    XWnd_SetDragBorderSize   *syscall.Proc
-    XWnd_GetDragBorderSize   *syscall.Proc
-    XWnd_SetMinimumSize      *syscall.Proc
-    XWnd_HitChildEle         *syscall.Proc
-    XWnd_GetChildCount       *syscall.Proc
-    XWnd_GetChildByIndex     *syscall.Proc
-    XWnd_GetChildByID        *syscall.Proc
-    XWnd_GetEle              *syscall.Proc
-    XWnd_CloseWindow         *syscall.Proc
-    XWnd_BindLayoutObject    *syscall.Proc
-    XWnd_GetLayoutObject     *syscall.Proc
-    XWnd_AdjustLayout        *syscall.Proc
-    XWnd_CreateCaret         *syscall.Proc
-    XWnd_SetCaretSize        *syscall.Proc
-    XWnd_SetCaretPos         *syscall.Proc
-    XWnd_SetCaretPosEx       *syscall.Proc
-    XWnd_SetCaretColor       *syscall.Proc
-    XWnd_ShowCaret           *syscall.Proc
-    XWnd_DestroyCaret        *syscall.Proc
-    XWnd_GetCaretHELE        *syscall.Proc
-    XWnd_GetClientRect       *syscall.Proc
-    XWnd_GetBodyRect         *syscall.Proc
-    XWnd_SetTimer            *syscall.Proc
-    XWnd_KillTimer           *syscall.Proc
-    XWnd_GetBkInfoManager    *syscall.Proc
-    XWnd_SetTransparentType  *syscall.Proc
-    XWnd_SetTransparentAlpha *syscall.Proc
-    XWnd_SetTransparentColor *syscall.Proc
+	// Functions
+	XWnd_Create              *syscall.Proc
+	XWnd_CreateEx            *syscall.Proc
+	XWnd_RegEventC           *syscall.Proc
+	XWnd_RegEventC1          *syscall.Proc
+	XWnd_RemovegEvent        *syscall.Proc
+	XWnd_AddEle              *syscall.Proc
+	XWnd_InsertEle           *syscall.Proc
+	XWnd_AddShape            *syscall.Proc
+	XWnd_RedrawWnd           *syscall.Proc
+	XWnd_RedrawWndRect       *syscall.Proc
+	XWnd_SetFocusEle         *syscall.Proc
+	XWnd_GetFocusEle         *syscall.Proc
+	XWnd_SetCursor           *syscall.Proc
+	XWnd_GetCursor           *syscall.Proc
+	XWnd_GetHWND             *syscall.Proc
+	XWnd_EnableDragBorder    *syscall.Proc
+	XWnd_EnableDragWindow    *syscall.Proc
+	XWnd_EnableDrawBk        *syscall.Proc
+	XWnd_EnableAutoFocus     *syscall.Proc
+	XWnd_SetCaptureEle       *syscall.Proc
+	XWnd_GetCaptureEle       *syscall.Proc
+	XWnd_GetDrawRect         *syscall.Proc
+	XWnd_ShowWindow          *syscall.Proc
+	XWnd_BindLayoutEle       *syscall.Proc
+	XWnd_GetLayoutEle        *syscall.Proc
+	XWnd_SetCursorSys        *syscall.Proc
+	XWnd_SetFont             *syscall.Proc
+	XWnd_SetID               *syscall.Proc
+	XWnd_GetID               *syscall.Proc
+	XWnd_SetLayoutSize       *syscall.Proc
+	XWnd_GetLayoutSize       *syscall.Proc
+	XWnd_SetDragBorderSize   *syscall.Proc
+	XWnd_GetDragBorderSize   *syscall.Proc
+	XWnd_SetMinimumSize      *syscall.Proc
+	XWnd_HitChildEle         *syscall.Proc
+	XWnd_GetChildCount       *syscall.Proc
+	XWnd_GetChildByIndex     *syscall.Proc
+	XWnd_GetChildByID        *syscall.Proc
+	XWnd_GetEle              *syscall.Proc
+	XWnd_CloseWindow         *syscall.Proc
+	XWnd_BindLayoutObject    *syscall.Proc
+	XWnd_GetLayoutObject     *syscall.Proc
+	XWnd_AdjustLayout        *syscall.Proc
+	XWnd_CreateCaret         *syscall.Proc
+	XWnd_SetCaretSize        *syscall.Proc
+	XWnd_SetCaretPos         *syscall.Proc
+	XWnd_SetCaretPosEx       *syscall.Proc
+	XWnd_SetCaretColor       *syscall.Proc
+	XWnd_ShowCaret           *syscall.Proc
+	XWnd_DestroyCaret        *syscall.Proc
+	XWnd_GetCaretHELE        *syscall.Proc
+	XWnd_GetClientRect       *syscall.Proc
+	XWnd_GetBodyRect         *syscall.Proc
+	XWnd_SetTimer            *syscall.Proc
+	XWnd_KillTimer           *syscall.Proc
+	XWnd_GetBkInfoManager    *syscall.Proc
+	XWnd_SetTransparentType  *syscall.Proc
+	XWnd_SetTransparentAlpha *syscall.Proc
+	XWnd_SetTransparentColor *syscall.Proc
 )
 
 func init() {
-    // Functions
-    XWnd_Create = XCDLL.MustFindProc("XWnd_Create")
-    XWnd_CreateEx = XCDLL.MustFindProc("XWnd_CreateEx")
-    XWnd_RegEventC = XCDLL.MustFindProc("XWnd_RegEventC")
-    XWnd_RegEventC1 = XCDLL.MustFindProc("XWnd_RegEventC1")
-    XWnd_RemovegEvent = XCDLL.MustFindProc("XWnd_RemovegEvent")
-    XWnd_AddEle = XCDLL.MustFindProc("XWnd_AddEle")
-    XWnd_InsertEle = XCDLL.MustFindProc("XWnd_InsertEle")
-    XWnd_AddShape = XCDLL.MustFindProc("XWnd_AddShape")
-    XWnd_RedrawWnd = XCDLL.MustFindProc("XWnd_RedrawWnd")
-    XWnd_RedrawWndRect = XCDLL.MustFindProc("XWnd_RedrawWndRect")
-    XWnd_SetFocusEle = XCDLL.MustFindProc("XWnd_SetFocusEle")
-    XWnd_GetFocusEle = XCDLL.MustFindProc("XWnd_GetFocusEle")
-    XWnd_SetCursor = XCDLL.MustFindProc("XWnd_SetCursor")
-    XWnd_GetCursor = XCDLL.MustFindProc("XWnd_GetCursor")
-    XWnd_GetHWND = XCDLL.MustFindProc("XWnd_GetHWND")
-    XWnd_EnableDragBorder = XCDLL.MustFindProc("XWnd_EnableDragBorder")
-    XWnd_EnableDragWindow = XCDLL.MustFindProc("XWnd_EnableDragWindow")
-    XWnd_EnableDrawBk = XCDLL.MustFindProc("XWnd_EnableDrawBk")
-    XWnd_EnableAutoFocus = XCDLL.MustFindProc("XWnd_EnableAutoFocus")
-    XWnd_SetCaptureEle = XCDLL.MustFindProc("XWnd_SetCaptureEle")
-    XWnd_GetCaptureEle = XCDLL.MustFindProc("XWnd_GetCaptureEle")
-    XWnd_GetDrawRect = XCDLL.MustFindProc("XWnd_GetDrawRect")
-    XWnd_ShowWindow = XCDLL.MustFindProc("XWnd_ShowWindow")
-    XWnd_BindLayoutEle = XCDLL.MustFindProc("XWnd_BindLayoutEle")
-    XWnd_GetLayoutEle = XCDLL.MustFindProc("XWnd_GetLayoutEle")
-    XWnd_SetCursorSys = XCDLL.MustFindProc("XWnd_SetCursorSys")
-    XWnd_SetFont = XCDLL.MustFindProc("XWnd_SetFont")
-    XWnd_SetID = XCDLL.MustFindProc("XWnd_SetID")
-    XWnd_GetID = XCDLL.MustFindProc("XWnd_GetID")
-    XWnd_SetLayoutSize = XCDLL.MustFindProc("XWnd_SetLayoutSize")
-    XWnd_GetLayoutSize = XCDLL.MustFindProc("XWnd_GetLayoutSize")
-    XWnd_SetDragBorderSize = XCDLL.MustFindProc("XWnd_SetDragBorderSize")
-    XWnd_GetDragBorderSize = XCDLL.MustFindProc("XWnd_GetDragBorderSize")
-    XWnd_SetMinimumSize = XCDLL.MustFindProc("XWnd_SetMinimumSize")
-    XWnd_HitChildEle = XCDLL.MustFindProc("XWnd_HitChildEle")
-    XWnd_GetChildCount = XCDLL.MustFindProc("XWnd_GetChildCount")
-    XWnd_GetChildByIndex = XCDLL.MustFindProc("XWnd_GetChildByIndex")
-    XWnd_GetChildByID = XCDLL.MustFindProc("XWnd_GetChildByID")
-    XWnd_GetEle = XCDLL.MustFindProc("XWnd_GetEle")
-    XWnd_CloseWindow = XCDLL.MustFindProc("XWnd_CloseWindow")
-    XWnd_BindLayoutObject = XCDLL.MustFindProc("XWnd_BindLayoutObject")
-    XWnd_GetLayoutObject = XCDLL.MustFindProc("XWnd_GetLayoutObject")
-    XWnd_AdjustLayout = XCDLL.MustFindProc("XWnd_AdjustLayout")
-    XWnd_CreateCaret = XCDLL.MustFindProc("XWnd_CreateCaret")
-    XWnd_SetCaretSize = XCDLL.MustFindProc("XWnd_SetCaretSize")
-    XWnd_SetCaretPos = XCDLL.MustFindProc("XWnd_SetCaretPos")
-    XWnd_SetCaretPosEx = XCDLL.MustFindProc("XWnd_SetCaretPosEx")
-    XWnd_SetCaretColor = XCDLL.MustFindProc("XWnd_SetCaretColor")
-    XWnd_ShowCaret = XCDLL.MustFindProc("XWnd_ShowCaret")
-    XWnd_DestroyCaret = XCDLL.MustFindProc("XWnd_DestroyCaret")
-    XWnd_GetCaretHELE = XCDLL.MustFindProc("XWnd_GetCaretHELE")
-    XWnd_GetClientRect = XCDLL.MustFindProc("XWnd_GetClientRect")
-    XWnd_GetBodyRect = XCDLL.MustFindProc("XWnd_GetBodyRect")
-    XWnd_SetTimer = XCDLL.MustFindProc("XWnd_SetTimer")
-    XWnd_KillTimer = XCDLL.MustFindProc("XWnd_KillTimer")
-    XWnd_GetBkInfoManager = XCDLL.MustFindProc("XWnd_GetBkInfoManager")
-    XWnd_SetTransparentType = XCDLL.MustFindProc("XWnd_SetTransparentType")
-    XWnd_SetTransparentAlpha = XCDLL.MustFindProc("XWnd_SetTransparentAlpha")
-    XWnd_SetTransparentColor = XCDLL.MustFindProc("XWnd_SetTransparentColor")
+	// Functions
+	XWnd_Create = XCDLL.MustFindProc("XWnd_Create")
+	XWnd_CreateEx = XCDLL.MustFindProc("XWnd_CreateEx")
+	XWnd_RegEventC = XCDLL.MustFindProc("XWnd_RegEventC")
+	XWnd_RegEventC1 = XCDLL.MustFindProc("XWnd_RegEventC1")
+	XWnd_RemovegEvent = XCDLL.MustFindProc("XWnd_RemovegEvent")
+	XWnd_AddEle = XCDLL.MustFindProc("XWnd_AddEle")
+	XWnd_InsertEle = XCDLL.MustFindProc("XWnd_InsertEle")
+	XWnd_AddShape = XCDLL.MustFindProc("XWnd_AddShape")
+	XWnd_RedrawWnd = XCDLL.MustFindProc("XWnd_RedrawWnd")
+	XWnd_RedrawWndRect = XCDLL.MustFindProc("XWnd_RedrawWndRect")
+	XWnd_SetFocusEle = XCDLL.MustFindProc("XWnd_SetFocusEle")
+	XWnd_GetFocusEle = XCDLL.MustFindProc("XWnd_GetFocusEle")
+	XWnd_SetCursor = XCDLL.MustFindProc("XWnd_SetCursor")
+	XWnd_GetCursor = XCDLL.MustFindProc("XWnd_GetCursor")
+	XWnd_GetHWND = XCDLL.MustFindProc("XWnd_GetHWND")
+	XWnd_EnableDragBorder = XCDLL.MustFindProc("XWnd_EnableDragBorder")
+	XWnd_EnableDragWindow = XCDLL.MustFindProc("XWnd_EnableDragWindow")
+	XWnd_EnableDrawBk = XCDLL.MustFindProc("XWnd_EnableDrawBk")
+	XWnd_EnableAutoFocus = XCDLL.MustFindProc("XWnd_EnableAutoFocus")
+	XWnd_SetCaptureEle = XCDLL.MustFindProc("XWnd_SetCaptureEle")
+	XWnd_GetCaptureEle = XCDLL.MustFindProc("XWnd_GetCaptureEle")
+	XWnd_GetDrawRect = XCDLL.MustFindProc("XWnd_GetDrawRect")
+	XWnd_ShowWindow = XCDLL.MustFindProc("XWnd_ShowWindow")
+	XWnd_BindLayoutEle = XCDLL.MustFindProc("XWnd_BindLayoutEle")
+	XWnd_GetLayoutEle = XCDLL.MustFindProc("XWnd_GetLayoutEle")
+	XWnd_SetCursorSys = XCDLL.MustFindProc("XWnd_SetCursorSys")
+	XWnd_SetFont = XCDLL.MustFindProc("XWnd_SetFont")
+	XWnd_SetID = XCDLL.MustFindProc("XWnd_SetID")
+	XWnd_GetID = XCDLL.MustFindProc("XWnd_GetID")
+	XWnd_SetLayoutSize = XCDLL.MustFindProc("XWnd_SetLayoutSize")
+	XWnd_GetLayoutSize = XCDLL.MustFindProc("XWnd_GetLayoutSize")
+	XWnd_SetDragBorderSize = XCDLL.MustFindProc("XWnd_SetDragBorderSize")
+	XWnd_GetDragBorderSize = XCDLL.MustFindProc("XWnd_GetDragBorderSize")
+	XWnd_SetMinimumSize = XCDLL.MustFindProc("XWnd_SetMinimumSize")
+	XWnd_HitChildEle = XCDLL.MustFindProc("XWnd_HitChildEle")
+	XWnd_GetChildCount = XCDLL.MustFindProc("XWnd_GetChildCount")
+	XWnd_GetChildByIndex = XCDLL.MustFindProc("XWnd_GetChildByIndex")
+	XWnd_GetChildByID = XCDLL.MustFindProc("XWnd_GetChildByID")
+	XWnd_GetEle = XCDLL.MustFindProc("XWnd_GetEle")
+	XWnd_CloseWindow = XCDLL.MustFindProc("XWnd_CloseWindow")
+	XWnd_BindLayoutObject = XCDLL.MustFindProc("XWnd_BindLayoutObject")
+	XWnd_GetLayoutObject = XCDLL.MustFindProc("XWnd_GetLayoutObject")
+	XWnd_AdjustLayout = XCDLL.MustFindProc("XWnd_AdjustLayout")
+	XWnd_CreateCaret = XCDLL.MustFindProc("XWnd_CreateCaret")
+	XWnd_SetCaretSize = XCDLL.MustFindProc("XWnd_SetCaretSize")
+	XWnd_SetCaretPos = XCDLL.MustFindProc("XWnd_SetCaretPos")
+	XWnd_SetCaretPosEx = XCDLL.MustFindProc("XWnd_SetCaretPosEx")
+	XWnd_SetCaretColor = XCDLL.MustFindProc("XWnd_SetCaretColor")
+	XWnd_ShowCaret = XCDLL.MustFindProc("XWnd_ShowCaret")
+	XWnd_DestroyCaret = XCDLL.MustFindProc("XWnd_DestroyCaret")
+	XWnd_GetCaretHELE = XCDLL.MustFindProc("XWnd_GetCaretHELE")
+	XWnd_GetClientRect = XCDLL.MustFindProc("XWnd_GetClientRect")
+	XWnd_GetBodyRect = XCDLL.MustFindProc("XWnd_GetBodyRect")
+	XWnd_SetTimer = XCDLL.MustFindProc("XWnd_SetTimer")
+	XWnd_KillTimer = XCDLL.MustFindProc("XWnd_KillTimer")
+	XWnd_GetBkInfoManager = XCDLL.MustFindProc("XWnd_GetBkInfoManager")
+	XWnd_SetTransparentType = XCDLL.MustFindProc("XWnd_SetTransparentType")
+	XWnd_SetTransparentAlpha = XCDLL.MustFindProc("XWnd_SetTransparentAlpha")
+	XWnd_SetTransparentColor = XCDLL.MustFindProc("XWnd_SetTransparentColor")
 }
 
 // *******************************************************************
@@ -144,16 +144,16 @@ func init() {
 // @Return: GUI库窗口资源句柄.
 // *******************************************************************
 func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
-    ret, _, _ := XWnd_Create.Call(
-        uintptr(x),
-        uintptr(y),
-        uintptr(cx),
-        uintptr(cy),
-        StringToUintPtr(pTitle),
-        uintptr(hWndParent),
-        uintptr(XCStyle))
+	ret, _, _ := XWnd_Create.Call(
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		StringToUintPtr(pTitle),
+		uintptr(hWndParent),
+		uintptr(XCStyle))
 
-    return HWINDOW(ret)
+	return HWINDOW(ret)
 }
 
 // *******************************************************************
@@ -168,19 +168,19 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle int) H
 // @Return: GUI库窗口资源句柄.
 // *******************************************************************
 func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
-    ret, _, _ := XWnd_CreateEx.Call(
-        uintptr(dwExStyle),
-        StringToUintPtr(lpClassName),
-        StringToUintPtr(lpWindowName),
-        uintptr(dwStyle),
-        uintptr(x),
-        uintptr(y),
-        uintptr(cx),
-        uintptr(cy),
-        uintptr(hWndParent),
-        uintptr(XCStyle))
+	ret, _, _ := XWnd_CreateEx.Call(
+		uintptr(dwExStyle),
+		StringToUintPtr(lpClassName),
+		StringToUintPtr(lpWindowName),
+		uintptr(dwStyle),
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		uintptr(hWndParent),
+		uintptr(XCStyle))
 
-    return HWINDOW(ret)
+	return HWINDOW(ret)
 }
 
 // *******************************************************************
@@ -192,10 +192,10 @@ func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle ui
 // @Input: hWindow 窗口句柄. nEvent 事件类型. pFun 事件函数.
 // *******************************************************************
 func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun uintptr) {
-    XWnd_RegEventC.Call(
-        uintptr(hWindow),
-        uintptr(nEvent),
-        pFun)
+	XWnd_RegEventC.Call(
+		uintptr(hWindow),
+		uintptr(nEvent),
+		pFun)
 }
 
 // *******************************************************************
@@ -208,10 +208,10 @@ func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun uintptr) {
 // @Return:
 // *******************************************************************
 func XWndRegEventC1(hWindow HWINDOW, nEvent int, pFun uintptr) {
-    XWnd_RegEventC1.Call(
-        uintptr(hWindow),
-        uintptr(nEvent),
-        pFun)
+	XWnd_RegEventC1.Call(
+		uintptr(hWindow),
+		uintptr(nEvent),
+		pFun)
 }
 
 // *******************************************************************
@@ -224,10 +224,10 @@ func XWndRegEventC1(hWindow HWINDOW, nEvent int, pFun uintptr) {
 // @Return:
 // *******************************************************************
 func XWndRemovegEvent(hWindow HWINDOW, nEvent int, pFun uintptr) {
-    XWnd_RemovegEvent.Call(
-        uintptr(hWindow),
-        uintptr(nEvent),
-        pFun)
+	XWnd_RemovegEvent.Call(
+		uintptr(hWindow),
+		uintptr(nEvent),
+		pFun)
 }
 
 // *******************************************************************
@@ -240,15 +240,15 @@ func XWndRemovegEvent(hWindow HWINDOW, nEvent int, pFun uintptr) {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndAddEle(hWindow HWINDOW, hEle HELE) bool {
-    ret, _, _ := XWnd_AddEle.Call(
-        uintptr(hWindow),
-        uintptr(hEle))
+	ret, _, _ := XWnd_AddEle.Call(
+		uintptr(hWindow),
+		uintptr(hEle))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************************************
@@ -261,16 +261,16 @@ func XWndAddEle(hWindow HWINDOW, hEle HELE) bool {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndInsertEle(hWindow HWINDOW, hChildEle HELE, hDestEle HELE) bool {
-    ret, _, _ := XWnd_InsertEle.Call(
-        uintptr(hWindow),
-        uintptr(hChildEle),
-        uintptr(hDestEle))
+	ret, _, _ := XWnd_InsertEle.Call(
+		uintptr(hWindow),
+		uintptr(hChildEle),
+		uintptr(hDestEle))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************************************
@@ -283,15 +283,15 @@ func XWndInsertEle(hWindow HWINDOW, hChildEle HELE, hDestEle HELE) bool {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndAddShape(hWindow HWINDOW, hShape HXCGUI) bool {
-    ret, _, _ := XWnd_AddShape.Call(
-        uintptr(hWindow),
-        uintptr(hShape))
+	ret, _, _ := XWnd_AddShape.Call(
+		uintptr(hWindow),
+		uintptr(hShape))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************************************
@@ -304,7 +304,7 @@ func XWndAddShape(hWindow HWINDOW, hShape HXCGUI) bool {
 // @Return:
 // *******************************************************************
 func XWndRedrawWnd(hWindow HWINDOW) {
-    XWnd_RedrawWnd.Call(uintptr(hWindow))
+	XWnd_RedrawWnd.Call(uintptr(hWindow))
 }
 
 // *******************************************************************
@@ -317,10 +317,10 @@ func XWndRedrawWnd(hWindow HWINDOW) {
 // @Return:
 // *******************************************************************
 func XWndRedrawWndRect(hWindow HWINDOW, pRect *RECT, bImmediately BOOL) {
-    XWnd_RedrawWndRect.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pRect)),
-        uintptr(bImmediately))
+	XWnd_RedrawWndRect.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pRect)),
+		uintptr(bImmediately))
 }
 
 // *******************************************************************
@@ -333,9 +333,9 @@ func XWndRedrawWndRect(hWindow HWINDOW, pRect *RECT, bImmediately BOOL) {
 // @Return:
 // *******************************************************************
 func XWndSetFocusEle(hWindow HWINDOW, hFocusEle HELE) {
-    XWnd_SetFocusEle.Call(
-        uintptr(hWindow),
-        uintptr(hFocusEle))
+	XWnd_SetFocusEle.Call(
+		uintptr(hWindow),
+		uintptr(hFocusEle))
 }
 
 // *******************************************************************
@@ -348,9 +348,9 @@ func XWndSetFocusEle(hWindow HWINDOW, hFocusEle HELE) {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetFocusEle(hWindow HWINDOW) HELE {
-    ret, _, _ := XWnd_GetFocusEle.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetFocusEle.Call(uintptr(hWindow))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -363,9 +363,9 @@ func XWndGetFocusEle(hWindow HWINDOW) HELE {
 // @Return:
 // *******************************************************************
 func XWndSetCursor(hWindow HWINDOW, hCursor HCURSOR) {
-    XWnd_SetCursor.Call(
-        uintptr(hWindow),
-        uintptr(hCursor))
+	XWnd_SetCursor.Call(
+		uintptr(hWindow),
+		uintptr(hCursor))
 }
 
 // *******************************************************************
@@ -378,9 +378,9 @@ func XWndSetCursor(hWindow HWINDOW, hCursor HCURSOR) {
 // @Return: 鼠标光标句柄.
 // *******************************************************************
 func XWndGetCursor(hWindow HWINDOW) HSTRING {
-    ret, _, _ := XWnd_GetCursor.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetCursor.Call(uintptr(hWindow))
 
-    return HSTRING(ret)
+	return HSTRING(ret)
 }
 
 // *******************************************************************
@@ -393,9 +393,9 @@ func XWndGetCursor(hWindow HWINDOW) HSTRING {
 // @Return: HWND句柄.
 // *******************************************************************
 func XWndGetHWND(hWindow HWINDOW) HWND {
-    ret, _, _ := XWnd_GetHWND.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetHWND.Call(uintptr(hWindow))
 
-    return HWND(ret)
+	return HWND(ret)
 }
 
 // *******************************************************************
@@ -408,9 +408,9 @@ func XWndGetHWND(hWindow HWINDOW) HWND {
 // @Return:
 // *******************************************************************
 func XWndEnableDragBorder(hWindow HWINDOW, bEnable BOOL) {
-    XWnd_EnableDragBorder.Call(
-        uintptr(hWindow),
-        uintptr(bEnable))
+	XWnd_EnableDragBorder.Call(
+		uintptr(hWindow),
+		uintptr(bEnable))
 }
 
 // *******************************************************************
@@ -423,9 +423,9 @@ func XWndEnableDragBorder(hWindow HWINDOW, bEnable BOOL) {
 // @Return:
 // *******************************************************************
 func XWndEnableDragWindow(hWindow HWINDOW, bEnable BOOL) {
-    XWnd_EnableDragWindow.Call(
-        uintptr(hWindow),
-        uintptr(bEnable))
+	XWnd_EnableDragWindow.Call(
+		uintptr(hWindow),
+		uintptr(bEnable))
 }
 
 // *******************************************************************
@@ -438,9 +438,9 @@ func XWndEnableDragWindow(hWindow HWINDOW, bEnable BOOL) {
 // @Return:
 // *******************************************************************
 func XWndEnableDrawBk(hWindow HWINDOW, bEnable BOOL) {
-    XWnd_EnableDrawBk.Call(
-        uintptr(hWindow),
-        uintptr(bEnable))
+	XWnd_EnableDrawBk.Call(
+		uintptr(hWindow),
+		uintptr(bEnable))
 }
 
 // *******************************************************************
@@ -453,9 +453,9 @@ func XWndEnableDrawBk(hWindow HWINDOW, bEnable BOOL) {
 // @Return:
 // *******************************************************************
 func XWndEnableAutoFocus(hWindow HWINDOW, bEnable BOOL) {
-    XWnd_EnableAutoFocus.Call(
-        uintptr(hWindow),
-        uintptr(bEnable))
+	XWnd_EnableAutoFocus.Call(
+		uintptr(hWindow),
+		uintptr(bEnable))
 }
 
 // *******************************************************************
@@ -468,9 +468,9 @@ func XWndEnableAutoFocus(hWindow HWINDOW, bEnable BOOL) {
 // @Return:
 // *******************************************************************
 func XWndSetCaptureEle(hWindow HWINDOW, hEle HELE) {
-    XWnd_SetCaptureEle.Call(
-        uintptr(hWindow),
-        uintptr(hEle))
+	XWnd_SetCaptureEle.Call(
+		uintptr(hWindow),
+		uintptr(hEle))
 }
 
 // *******************************************************************
@@ -483,9 +483,9 @@ func XWndSetCaptureEle(hWindow HWINDOW, hEle HELE) {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetCaptureEle(hWindow HWINDOW) HELE {
-    ret, _, _ := XWnd_GetCaptureEle.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetCaptureEle.Call(uintptr(hWindow))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -498,9 +498,9 @@ func XWndGetCaptureEle(hWindow HWINDOW) HELE {
 // @Return:
 // *******************************************************************
 func XWndGetDrawRect(hWindow HWINDOW, pRcPaint *RECT) {
-    XWnd_GetDrawRect.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pRcPaint)))
+	XWnd_GetDrawRect.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pRcPaint)))
 }
 
 // *******************************************************************
@@ -513,11 +513,11 @@ func XWndGetDrawRect(hWindow HWINDOW, pRcPaint *RECT) {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
-    ret, _, _ := XWnd_ShowWindow.Call(
-        uintptr(hWindow),
-        uintptr(nCmdShow))
-    // MSDN上返回值：true 为 0，false 为 1
-    return ret != 1
+	ret, _, _ := XWnd_ShowWindow.Call(
+		uintptr(hWindow),
+		uintptr(nCmdShow))
+	// MSDN上返回值：true 为 0，false 为 1
+	return ret != 1
 }
 
 // *******************************************************************
@@ -530,16 +530,16 @@ func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndBindLayoutEle(hWindow HWINDOW, nPosition window_position_, hEle HELE) bool {
-    ret, _, _ := XWnd_BindLayoutEle.Call(
-        uintptr(hWindow),
-        uintptr(nPosition),
-        uintptr(hEle))
+	ret, _, _ := XWnd_BindLayoutEle.Call(
+		uintptr(hWindow),
+		uintptr(nPosition),
+		uintptr(hEle))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************************************
@@ -552,11 +552,11 @@ func XWndBindLayoutEle(hWindow HWINDOW, nPosition window_position_, hEle HELE) b
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetLayoutEle(hWindow HWINDOW, nPosition window_position_) HELE {
-    ret, _, _ := XWnd_GetLayoutEle.Call(
-        uintptr(hWindow),
-        uintptr(nPosition))
+	ret, _, _ := XWnd_GetLayoutEle.Call(
+		uintptr(hWindow),
+		uintptr(nPosition))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -569,11 +569,11 @@ func XWndGetLayoutEle(hWindow HWINDOW, nPosition window_position_) HELE {
 // @Return: 返回先前的光标句柄.
 // *******************************************************************
 func XWndSetCursorSys(hWindow HWINDOW, hCursor HCURSOR) HCURSOR {
-    ret, _, _ := XWnd_SetCursorSys.Call(
-        uintptr(hWindow),
-        uintptr(hCursor))
+	ret, _, _ := XWnd_SetCursorSys.Call(
+		uintptr(hWindow),
+		uintptr(hCursor))
 
-    return HCURSOR(ret)
+	return HCURSOR(ret)
 }
 
 // *******************************************************************
@@ -586,9 +586,9 @@ func XWndSetCursorSys(hWindow HWINDOW, hCursor HCURSOR) HCURSOR {
 // @Return:
 // *******************************************************************
 func XWndSetFont(hWindow HWINDOW, hFontx HFONTX) {
-    XWnd_SetFont.Call(
-        uintptr(hWindow),
-        uintptr(hFontx))
+	XWnd_SetFont.Call(
+		uintptr(hWindow),
+		uintptr(hFontx))
 }
 
 // *******************************************************************
@@ -601,9 +601,9 @@ func XWndSetFont(hWindow HWINDOW, hFontx HFONTX) {
 // @Return:
 // *******************************************************************
 func XWndSetID(hWindow HWINDOW, nID int) {
-    XWnd_SetID.Call(
-        uintptr(hWindow),
-        uintptr(nID))
+	XWnd_SetID.Call(
+		uintptr(hWindow),
+		uintptr(nID))
 }
 
 // *******************************************************************
@@ -616,9 +616,9 @@ func XWndSetID(hWindow HWINDOW, nID int) {
 // @Return: 返回窗口ID值.
 // *******************************************************************
 func XWndGetID(hWindow HWINDOW) int {
-    ret, _, _ := XWnd_GetID.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetID.Call(uintptr(hWindow))
 
-    return int(ret)
+	return int(ret)
 }
 
 // *******************************************************************
@@ -631,12 +631,12 @@ func XWndGetID(hWindow HWINDOW) int {
 // @Return:
 // *******************************************************************
 func XWndSetLayoutSize(hWindow HWINDOW, left, top, right, bottom int) {
-    XWnd_SetLayoutSize.Call(
-        uintptr(hWindow),
-        uintptr(left),
-        uintptr(top),
-        uintptr(right),
-        uintptr(bottom))
+	XWnd_SetLayoutSize.Call(
+		uintptr(hWindow),
+		uintptr(left),
+		uintptr(top),
+		uintptr(right),
+		uintptr(bottom))
 }
 
 // *******************************************************************
@@ -649,9 +649,9 @@ func XWndSetLayoutSize(hWindow HWINDOW, left, top, right, bottom int) {
 // @Return:
 // *******************************************************************
 func XWndGetLayoutSize(hWindow HWINDOW, pBorderSize *BorderSize_) {
-    XWnd_GetLayoutSize.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pBorderSize)))
+	XWnd_GetLayoutSize.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pBorderSize)))
 }
 
 // *******************************************************************
@@ -664,12 +664,12 @@ func XWndGetLayoutSize(hWindow HWINDOW, pBorderSize *BorderSize_) {
 // @Return:
 // *******************************************************************
 func XWndSetDragBorderSize(hWindow HWINDOW, left, top, right, bottom int) {
-    XWnd_SetDragBorderSize.Call(
-        uintptr(hWindow),
-        uintptr(left),
-        uintptr(top),
-        uintptr(right),
-        uintptr(bottom))
+	XWnd_SetDragBorderSize.Call(
+		uintptr(hWindow),
+		uintptr(left),
+		uintptr(top),
+		uintptr(right),
+		uintptr(bottom))
 }
 
 // *******************************************************************
@@ -682,9 +682,9 @@ func XWndSetDragBorderSize(hWindow HWINDOW, left, top, right, bottom int) {
 // @Return:
 // *******************************************************************
 func XWndGetDragBorderSize(hWindow HWINDOW, pSize *BorderSize_) {
-    XWnd_GetDragBorderSize.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pSize)))
+	XWnd_GetDragBorderSize.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pSize)))
 }
 
 // *******************************************************************
@@ -697,10 +697,10 @@ func XWndGetDragBorderSize(hWindow HWINDOW, pSize *BorderSize_) {
 // @Return:
 // *******************************************************************
 func XWndSetMinimumSize(hWindow HWINDOW, width, height int) {
-    XWnd_SetMinimumSize.Call(
-        uintptr(hWindow),
-        uintptr(width),
-        uintptr(height))
+	XWnd_SetMinimumSize.Call(
+		uintptr(hWindow),
+		uintptr(width),
+		uintptr(height))
 }
 
 // *******************************************************************
@@ -713,11 +713,11 @@ func XWndSetMinimumSize(hWindow HWINDOW, width, height int) {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndHitChildEle(hWindow HWINDOW, pPt *POINT) HELE {
-    ret, _, _ := XWnd_HitChildEle.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pPt)))
+	ret, _, _ := XWnd_HitChildEle.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pPt)))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -730,9 +730,9 @@ func XWndHitChildEle(hWindow HWINDOW, pPt *POINT) HELE {
 // @Return: 子元素数量.
 // *******************************************************************
 func XWndGetChildCount(hWindow HWINDOW) int {
-    ret, _, _ := XWnd_GetChildCount.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetChildCount.Call(uintptr(hWindow))
 
-    return int(ret)
+	return int(ret)
 }
 
 // *******************************************************************
@@ -745,11 +745,11 @@ func XWndGetChildCount(hWindow HWINDOW) int {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetChildByIndex(hWindow HWINDOW, index int) HELE {
-    ret, _, _ := XWnd_GetChildByIndex.Call(
-        uintptr(hWindow),
-        uintptr(index))
+	ret, _, _ := XWnd_GetChildByIndex.Call(
+		uintptr(hWindow),
+		uintptr(index))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -762,11 +762,11 @@ func XWndGetChildByIndex(hWindow HWINDOW, index int) HELE {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetChildByID(hWindow HWINDOW, nID int) HELE {
-    ret, _, _ := XWnd_GetChildByID.Call(
-        uintptr(hWindow),
-        uintptr(nID))
+	ret, _, _ := XWnd_GetChildByID.Call(
+		uintptr(hWindow),
+		uintptr(nID))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -779,11 +779,11 @@ func XWndGetChildByID(hWindow HWINDOW, nID int) HELE {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetEle(hWindow HWINDOW, nID int) HELE {
-    ret, _, _ := XWnd_GetEle.Call(
-        uintptr(hWindow),
-        uintptr(nID))
+	ret, _, _ := XWnd_GetEle.Call(
+		uintptr(hWindow),
+		uintptr(nID))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -796,7 +796,7 @@ func XWndGetEle(hWindow HWINDOW, nID int) HELE {
 // @Return:
 // *******************************************************************
 func XWndCloseWindow(hWindow HWINDOW) {
-    XWnd_CloseWindow.Call(uintptr(hWindow))
+	XWnd_CloseWindow.Call(uintptr(hWindow))
 }
 
 // *******************************************************************
@@ -809,10 +809,10 @@ func XWndCloseWindow(hWindow HWINDOW) {
 // @Return:
 // *******************************************************************
 func XWndBindLayoutObject(hWindow HWINDOW, nPosition window_position_, hLayout HXCGUI) {
-    XWnd_BindLayoutObject.Call(
-        uintptr(hWindow),
-        uintptr(nPosition),
-        uintptr(hLayout))
+	XWnd_BindLayoutObject.Call(
+		uintptr(hWindow),
+		uintptr(nPosition),
+		uintptr(hLayout))
 }
 
 // *******************************************************************
@@ -825,11 +825,11 @@ func XWndBindLayoutObject(hWindow HWINDOW, nPosition window_position_, hLayout H
 // @Return: 布局对象句柄.
 // *******************************************************************
 func XWndGetLayoutObject(hWindow HWINDOW, nPosition window_position_) HXCGUI {
-    ret, _, _ := XWnd_GetLayoutObject.Call(
-        uintptr(hWindow),
-        uintptr(nPosition))
+	ret, _, _ := XWnd_GetLayoutObject.Call(
+		uintptr(hWindow),
+		uintptr(nPosition))
 
-    return HXCGUI(ret)
+	return HXCGUI(ret)
 }
 
 // *******************************************************************
@@ -842,7 +842,7 @@ func XWndGetLayoutObject(hWindow HWINDOW, nPosition window_position_) HXCGUI {
 // @Return:
 // *******************************************************************
 func XWndAdjustLayout(hWindow HWINDOW) {
-    XWnd_AdjustLayout.Call(uintptr(hWindow))
+	XWnd_AdjustLayout.Call(uintptr(hWindow))
 }
 
 // *******************************************************************
@@ -855,11 +855,11 @@ func XWndAdjustLayout(hWindow HWINDOW) {
 // @Return:
 // *******************************************************************
 func XWndCreateCaret(hWindow HWINDOW, hEle HELE, width, height int) {
-    XWnd_CreateCaret.Call(
-        uintptr(hWindow),
-        uintptr(hEle),
-        uintptr(width),
-        uintptr(height))
+	XWnd_CreateCaret.Call(
+		uintptr(hWindow),
+		uintptr(hEle),
+		uintptr(width),
+		uintptr(height))
 }
 
 // *******************************************************************
@@ -872,10 +872,10 @@ func XWndCreateCaret(hWindow HWINDOW, hEle HELE, width, height int) {
 // @Return:
 // *******************************************************************
 func XWndSetCaretSize(hWindow HWINDOW, width, height int) {
-    XWnd_SetCaretSize.Call(
-        uintptr(hWindow),
-        uintptr(width),
-        uintptr(height))
+	XWnd_SetCaretSize.Call(
+		uintptr(hWindow),
+		uintptr(width),
+		uintptr(height))
 }
 
 // *******************************************************************
@@ -888,10 +888,10 @@ func XWndSetCaretSize(hWindow HWINDOW, width, height int) {
 // @Return:
 // *******************************************************************
 func XWndSetCaretPos(hWindow HWINDOW, x, y int) {
-    XWnd_SetCaretPos.Call(
-        uintptr(hWindow),
-        uintptr(x),
-        uintptr(y))
+	XWnd_SetCaretPos.Call(
+		uintptr(hWindow),
+		uintptr(x),
+		uintptr(y))
 }
 
 // *******************************************************************
@@ -904,12 +904,12 @@ func XWndSetCaretPos(hWindow HWINDOW, x, y int) {
 // @Return:
 // *******************************************************************
 func XWndSetCaretPosEx(hWindow HWINDOW, x, y, width, height int) {
-    XWnd_SetCaretPosEx.Call(
-        uintptr(hWindow),
-        uintptr(x),
-        uintptr(y),
-        uintptr(width),
-        uintptr(height))
+	XWnd_SetCaretPosEx.Call(
+		uintptr(hWindow),
+		uintptr(x),
+		uintptr(y),
+		uintptr(width),
+		uintptr(height))
 }
 
 // *******************************************************************
@@ -922,9 +922,9 @@ func XWndSetCaretPosEx(hWindow HWINDOW, x, y, width, height int) {
 // @Return:
 // *******************************************************************
 func XWndSetCaretColor(hWindow HWINDOW, color COLORREF) {
-    XWnd_SetCaretColor.Call(
-        uintptr(hWindow),
-        uintptr(color))
+	XWnd_SetCaretColor.Call(
+		uintptr(hWindow),
+		uintptr(color))
 }
 
 // *******************************************************************
@@ -937,9 +937,9 @@ func XWndSetCaretColor(hWindow HWINDOW, color COLORREF) {
 // @Return:
 // *******************************************************************
 func XWndShowCaret(hWindow HWINDOW, bShow BOOL) {
-    XWnd_ShowCaret.Call(
-        uintptr(hWindow),
-        uintptr(bShow))
+	XWnd_ShowCaret.Call(
+		uintptr(hWindow),
+		uintptr(bShow))
 }
 
 // *******************************************************************
@@ -952,7 +952,7 @@ func XWndShowCaret(hWindow HWINDOW, bShow BOOL) {
 // @Return:
 // *******************************************************************
 func XWndDestroyCaret(hWindow HWINDOW) {
-    XWnd_DestroyCaret.Call(uintptr(hWindow))
+	XWnd_DestroyCaret.Call(uintptr(hWindow))
 }
 
 // *******************************************************************
@@ -965,9 +965,9 @@ func XWndDestroyCaret(hWindow HWINDOW) {
 // @Return: 元素句柄.
 // *******************************************************************
 func XWndGetCaretHELE(hWindow HWINDOW) HELE {
-    ret, _, _ := XWnd_GetCaretHELE.Call(uintptr(hWindow))
+	ret, _, _ := XWnd_GetCaretHELE.Call(uintptr(hWindow))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************************************
@@ -980,15 +980,15 @@ func XWndGetCaretHELE(hWindow HWINDOW) HELE {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************************************
 func XWndGetClientRect(hWindow HWINDOW, pRect *RECT) bool {
-    ret, _, _ := XWnd_GetClientRect.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pRect)))
+	ret, _, _ := XWnd_GetClientRect.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pRect)))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************************************
@@ -1001,9 +1001,9 @@ func XWndGetClientRect(hWindow HWINDOW, pRect *RECT) bool {
 // @Return:
 // *******************************************************************
 func XWndGetBodyRect(hWindow HWINDOW, pRect *RECT) {
-    XWnd_GetBodyRect.Call(
-        uintptr(hWindow),
-        uintptr(unsafe.Pointer(pRect)))
+	XWnd_GetBodyRect.Call(
+		uintptr(hWindow),
+		uintptr(unsafe.Pointer(pRect)))
 }
 
 // *******************************************************************
@@ -1016,12 +1016,12 @@ func XWndGetBodyRect(hWindow HWINDOW, pRect *RECT) {
 // @Return: 参加MSDN.
 // *******************************************************************
 func XWndSetTimer(hWindow HWINDOW, nIDEvent, uElapse uint) uint {
-    ret, _, _ := XWnd_SetTimer.Call(
-        uintptr(hWindow),
-        uintptr(nIDEvent),
-        uintptr(uElapse))
+	ret, _, _ := XWnd_SetTimer.Call(
+		uintptr(hWindow),
+		uintptr(nIDEvent),
+		uintptr(uElapse))
 
-    return uint(ret)
+	return uint(ret)
 }
 
 // *******************************************************************
@@ -1034,15 +1034,15 @@ func XWndSetTimer(hWindow HWINDOW, nIDEvent, uElapse uint) uint {
 // @Return: 参见MSDN.
 // *******************************************************************
 func XWndKillTimer(hWindow HWINDOW, nIDEvent uint) bool {
-    ret, _, _ := XWnd_KillTimer.Call(
-        uintptr(hWindow),
-        uintptr(nIDEvent))
+	ret, _, _ := XWnd_KillTimer.Call(
+		uintptr(hWindow),
+		uintptr(nIDEvent))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************************************
@@ -1055,11 +1055,11 @@ func XWndKillTimer(hWindow HWINDOW, nIDEvent uint) bool {
 // @Return: 背景内容管理器.
 // *******************************************************************
 func XWndGetBkInfoManager(hWindow HWINDOW, nPosition window_position_) HBKINFOM {
-    ret, _, _ := XWnd_GetBkInfoManager.Call(
-        uintptr(hWindow),
-        uintptr(nPosition))
+	ret, _, _ := XWnd_GetBkInfoManager.Call(
+		uintptr(hWindow),
+		uintptr(nPosition))
 
-    return HBKINFOM(ret)
+	return HBKINFOM(ret)
 }
 
 // *******************************************************************
@@ -1072,9 +1072,9 @@ func XWndGetBkInfoManager(hWindow HWINDOW, nPosition window_position_) HBKINFOM 
 // @Return:
 // *******************************************************************
 func XWndSetTransparentType(hWindow HWINDOW, nType window_transparent_) {
-    XWnd_SetTransparentType.Call(
-        uintptr(hWindow),
-        uintptr(nType))
+	XWnd_SetTransparentType.Call(
+		uintptr(hWindow),
+		uintptr(nType))
 }
 
 // *******************************************************************
@@ -1087,9 +1087,9 @@ func XWndSetTransparentType(hWindow HWINDOW, nType window_transparent_) {
 // @Return:
 // *******************************************************************
 func XWndSetTransparentAlpha(hWindow HWINDOW, alpha byte) {
-    XWnd_SetTransparentAlpha.Call(
-        uintptr(hWindow),
-        uintptr(alpha))
+	XWnd_SetTransparentAlpha.Call(
+		uintptr(hWindow),
+		uintptr(alpha))
 }
 
 // *******************************************************************
@@ -1102,7 +1102,7 @@ func XWndSetTransparentAlpha(hWindow HWINDOW, alpha byte) {
 // @Return:
 // *******************************************************************
 func XWndSetTransparentColor(hWindow HWINDOW, color COLORREF) {
-    XWnd_SetTransparentColor.Call(
-        uintptr(hWindow),
-        uintptr(color))
+	XWnd_SetTransparentColor.Call(
+		uintptr(hWindow),
+		uintptr(color))
 }

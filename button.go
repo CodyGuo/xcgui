@@ -1,232 +1,231 @@
 package xcgui
 
 import (
-    "syscall"
+	"syscall"
 )
 
 import (
-    "github.com/codyguo/xcgui/xc"
+	"github.com/codyguo/xcgui/xc"
 )
 
 /* nFlags 文本对齐方式
-   BUTTON_FLAGS_LEFT_TOP 水平靠左,垂直靠上
-   BUTTON_FLAGS_CENTER_TOP 水平居中,垂直靠上
-   BUTTON_FLAGS_RIGHT_TOP 水平靠右,垂直靠上
-   BUTTON_FLAGS_LEFT_CENTER 水平靠左,垂直居中
-   BUTTON_FLAGS_CENTER_CENTER 水平居中,垂直居中
-   BUTTON_FLAGS_RIGHT_CENTER 水平靠右,垂直居中
-   BUTTON_FLAGS_LEFT_BOTTOM 水平靠左,垂直靠下
-   BUTTON_FLAGS_CENTER_BOTTOM 水平居中,垂直靠下
-   BUTTON_FLAGS_RIGHT_BOTTOM 水平靠右,垂直靠下
-
+BUTTON_FLAGS_LEFT_TOP 水平靠左,垂直靠上
+BUTTON_FLAGS_CENTER_TOP 水平居中,垂直靠上
+BUTTON_FLAGS_RIGHT_TOP 水平靠右,垂直靠上
+BUTTON_FLAGS_LEFT_CENTER 水平靠左,垂直居中
+BUTTON_FLAGS_CENTER_CENTER 水平居中,垂直居中
+BUTTON_FLAGS_RIGHT_CENTER 水平靠右,垂直居中
+BUTTON_FLAGS_LEFT_BOTTOM 水平靠左,垂直靠下
+BUTTON_FLAGS_CENTER_BOTTOM 水平居中,垂直靠下
+BUTTON_FLAGS_RIGHT_BOTTOM 水平靠右,垂直靠下
 */
 const (
-    BUTTON_FLAGS_LEFT_TOP      = 0
-    BUTTON_FLAGS_CENTER_TOP    = 1
-    BUTTON_FLAGS_RIGHT_TOP     = 2
-    BUTTON_FLAGS_LEFT_CENTER   = 4
-    BUTTON_FLAGS_CENTER_CENTER = 5
-    BUTTON_FLAGS_RIGHT_CENTER  = 6
-    BUTTON_FLAGS_LEFT_BOTTOM   = 8
-    BUTTON_FLAGS_CENTER_BOTTOM = 9
-    BUTTON_FLAGS_RIGHT_BOTTOM  = 10
+	BUTTON_FLAGS_LEFT_TOP      = 0
+	BUTTON_FLAGS_CENTER_TOP    = 1
+	BUTTON_FLAGS_RIGHT_TOP     = 2
+	BUTTON_FLAGS_LEFT_CENTER   = 4
+	BUTTON_FLAGS_CENTER_CENTER = 5
+	BUTTON_FLAGS_RIGHT_CENTER  = 6
+	BUTTON_FLAGS_LEFT_BOTTOM   = 8
+	BUTTON_FLAGS_CENTER_BOTTOM = 9
+	BUTTON_FLAGS_RIGHT_BOTTOM  = 10
 )
 
 const (
-    BUTTON_ICON_ALIGN_LEFT   = xc.BUTTON_ICON_ALIGN_LEFT
-    BUTTON_ICON_ALIGN_TOP    = xc.BUTTON_ICON_ALIGN_TOP
-    BUTTON_ICON_ALIGN_RIGHT  = xc.BUTTON_ICON_ALIGN_RIGHT
-    BUTTON_ICON_ALIGN_BOTTOM = xc.BUTTON_ICON_ALIGN_BOTTOM
+	BUTTON_ICON_ALIGN_LEFT   = xc.BUTTON_ICON_ALIGN_LEFT
+	BUTTON_ICON_ALIGN_TOP    = xc.BUTTON_ICON_ALIGN_TOP
+	BUTTON_ICON_ALIGN_RIGHT  = xc.BUTTON_ICON_ALIGN_RIGHT
+	BUTTON_ICON_ALIGN_BOTTOM = xc.BUTTON_ICON_ALIGN_BOTTOM
 )
 
 const (
-    BUTTON_STATE_LEAVE   = xc.BUTTON_STATE_LEAVE
-    BUTTON_STATE_STAY    = xc.BUTTON_STATE_STAY
-    BUTTON_STATE_DOWN    = xc.BUTTON_STATE_DOWN
-    BUTTON_STATE_CHECK   = xc.BUTTON_STATE_CHECK
-    BUTTON_STATE_DISABLE = xc.BUTTON_STATE_DISABLE
+	BUTTON_STATE_LEAVE   = xc.BUTTON_STATE_LEAVE
+	BUTTON_STATE_STAY    = xc.BUTTON_STATE_STAY
+	BUTTON_STATE_DOWN    = xc.BUTTON_STATE_DOWN
+	BUTTON_STATE_CHECK   = xc.BUTTON_STATE_CHECK
+	BUTTON_STATE_DISABLE = xc.BUTTON_STATE_DISABLE
 )
 
 type Button struct {
-    WindowBase
+	WindowBase
 
-    clickedPublisher EventPublisher
+	clickedPublisher EventPublisher
 }
 
 func NewButton(parent Window, rect Rectangle) (*Button, error) {
-    btn := new(Button)
+	btn := new(Button)
 
-    btn.hEle = xc.XBtnCreate(
-        rect.X,
-        rect.Y,
-        rect.Width,
-        rect.Height,
-        "",
-        xc.HXCGUI(parent.AsWindowBase().hWindow))
+	btn.hEle = xc.XBtnCreate(
+		rect.X,
+		rect.Y,
+		rect.Width,
+		rect.Height,
+		"",
+		xc.HXCGUI(parent.AsWindowBase().hWindow))
 
-    if btn.hEle == 0 {
-        return nil, lastError("XBtnCreate")
-    }
+	if btn.hEle == 0 {
+		return nil, lastError("XBtnCreate")
+	}
 
-    // var OnEventProc = func(hEventEle xc.HELE, nEvent int, wParam, lParam uintptr, pbHandled *xc.BOOL) uintptr {
-    //     fmt.Println(nEvent, wParam, lParam)
-    //     fmt.Println("事件正常.")
-    //     return uintptr(0)
-    // }
+	// var OnEventProc = func(hEventEle xc.HELE, nEvent int, wParam, lParam uintptr, pbHandled *xc.BOOL) uintptr {
+	//     fmt.Println(nEvent, wParam, lParam)
+	//     fmt.Println("事件正常.")
+	//     return uintptr(0)
+	// }
 
-    // xc.XEleRegEventC(btn.hEle, xc.XE_BNCLICK, syscall.NewCallback(OnEventProc))
+	// xc.XEleRegEventC(btn.hEle, xc.XE_BNCLICK, syscall.NewCallback(OnEventProc))
 
-    return btn, nil
+	return btn, nil
 }
 
 func (b *Button) Checked() bool {
-    return xc.XBtnIsCheck(b.hEle)
+	return xc.XBtnIsCheck(b.hEle)
 }
 
 func (b *Button) SetChecked(checked bool) {
-    if checked == b.Checked() {
-        return
-    }
+	if checked == b.Checked() {
+		return
+	}
 
-    xc.XBtnSetCheck(b.hEle, xc.BoolToBOOL(checked))
+	xc.XBtnSetCheck(b.hEle, xc.BoolToBOOL(checked))
 }
 
 func (b *Button) SetStyle(nStyle xc.BUTTON_STYLE_) {
-    xc.XBtnSetStyle(b.hEle, nStyle)
+	xc.XBtnSetStyle(b.hEle, nStyle)
 }
 
 func (b *Button) GetStyle() xc.BUTTON_STYLE_ {
-    return xc.XBtnGetStyle(b.hEle)
+	return xc.XBtnGetStyle(b.hEle)
 }
 
 func (b *Button) SetState(nState xc.COMMON_STATE3_) {
-    xc.XBtnSetState(b.hEle, nState)
+	xc.XBtnSetState(b.hEle, nState)
 }
 
 func (b *Button) GetState() xc.COMMON_STATE3_ {
-    return xc.XBtnGetState(b.hEle)
+	return xc.XBtnGetState(b.hEle)
 }
 
 func (b *Button) GetstateEx() xc.BUTTON_STATE_ {
-    return xc.XBtnGetStateEx(b.hEle)
+	return xc.XBtnGetStateEx(b.hEle)
 }
 
 func (b *Button) SetType(nType xc.BUTTON_TYPE_) {
-    xc.XBtnSetType(b.hEle, nType)
+	xc.XBtnSetType(b.hEle, nType)
 }
 
 func (b *Button) GetType() xc.BUTTON_TYPE_ {
-    return xc.XBtnGetType(b.hEle)
+	return xc.XBtnGetType(b.hEle)
 }
 
 func (b *Button) SetGroupID(nID int) {
-    xc.XBtnSetGroupID(b.hEle, nID)
+	xc.XBtnSetGroupID(b.hEle, nID)
 }
 
 func (b *Button) GetGroupID() int {
-    return xc.XBtnGetGroupID(b.hEle)
+	return xc.XBtnGetGroupID(b.hEle)
 }
 
 func (b *Button) SetBindEle(hBindEle xc.HELE) {
-    xc.XBtnSetBindEle(b.hEle, hBindEle)
+	xc.XBtnSetBindEle(b.hEle, hBindEle)
 }
 
 func (b *Button) GetBindEle() xc.HELE {
-    return xc.XBtnGetBindEle(b.hEle)
+	return xc.XBtnGetBindEle(b.hEle)
 }
 
 func (b *Button) SetTextAlign(nFlags int) {
-    xc.XBtnSetTextAlign(b.hEle, nFlags)
+	xc.XBtnSetTextAlign(b.hEle, nFlags)
 }
 
 func (b *Button) GetTextAlign() int {
-    return xc.XBtnGetTextAlign(b.hEle)
+	return xc.XBtnGetTextAlign(b.hEle)
 }
 
 func (b *Button) SetIconAlign(align xc.BUTTON_ICON_ALIGN_) {
-    xc.XBtnSetIconAlign(b.hEle, align)
+	xc.XBtnSetIconAlign(b.hEle, align)
 }
 
 func (b *Button) SetOffset(point Point) {
-    xc.XBtnSetOffset(b.hEle, point.X, point.Y)
+	xc.XBtnSetOffset(b.hEle, point.X, point.Y)
 }
 
 func (b *Button) SetOffsetIcon(point Point) {
-    xc.XBtnSetOffsetIcon(b.hEle, point.X, point.Y)
+	xc.XBtnSetOffsetIcon(b.hEle, point.X, point.Y)
 }
 
 func (b *Button) SetIconSpace(sizeNum int) {
-    xc.XBtnSetIconSpace(b.hEle, sizeNum)
+	xc.XBtnSetIconSpace(b.hEle, sizeNum)
 }
 
 func (b *Button) SetText(value string) {
-    xc.XBtnSetText(b.hEle, value)
+	xc.XBtnSetText(b.hEle, value)
 }
 
 func (b *Button) GetText() string {
-    // textLength := xc.SendMessage(xc.HWND(b.hEle), xc.WM_GETTEXTLENGTH, 0, 0)
-    textLength := xc.XEleGetContentSize(b.hEle)
-    buf := make([]uint16, textLength+1)
-    xc.XBtnGetText(b.hEle, &buf[0], int(textLength)+1)
+	// textLength := xc.SendMessage(xc.HWND(b.hEle), xc.WM_GETTEXTLENGTH, 0, 0)
+	textLength := xc.XEleGetContentSize(b.hEle)
+	buf := make([]uint16, textLength+1)
+	xc.XBtnGetText(b.hEle, &buf[0], int(textLength)+1)
 
-    return syscall.UTF16ToString(buf)
+	return syscall.UTF16ToString(buf)
 }
 
 func (b *Button) SetIcon(hImage xc.HIMAGE) {
-    xc.XBtnSetIcon(b.hEle, hImage)
+	xc.XBtnSetIcon(b.hEle, hImage)
 }
 
 func (b *Button) SetIconDisable(hImage xc.HIMAGE) {
-    xc.XBtnSetIconDisable(b.hEle, hImage)
+	xc.XBtnSetIconDisable(b.hEle, hImage)
 }
 
 func (b *Button) AddAnimationFrame(hImage xc.HIMAGE, uElapse uint) {
-    xc.XBtnAddAnimationFrame(b.hEle, hImage, uElapse)
+	xc.XBtnAddAnimationFrame(b.hEle, hImage, uElapse)
 }
 
 func (b *Button) EnableAnimation(bEnable, bLoopPlay bool) {
-    xc.XBtnEnableAnimation(b.hEle, xc.BoolToBOOL(bEnable), xc.BoolToBOOL(bLoopPlay))
+	xc.XBtnEnableAnimation(b.hEle, xc.BoolToBOOL(bEnable), xc.BoolToBOOL(bLoopPlay))
 }
 
 func (b *Button) AddBkBorder(nState xc.BUTTON_STATE_, color Color, alpha byte, width int) {
-    xc.XBtnAddBkBorder(b.hEle, nState, xc.COLORREF(color), alpha, width)
+	xc.XBtnAddBkBorder(b.hEle, nState, xc.COLORREF(color), alpha, width)
 }
 
 func (b *Button) AddBkFill(nState xc.BUTTON_STATE_, color Color, alpha byte) {
-    xc.XBtnAddBkFill(b.hEle, nState, xc.COLORREF(color), alpha)
+	xc.XBtnAddBkFill(b.hEle, nState, xc.COLORREF(color), alpha)
 }
 
 func (b *Button) AddBkImage(nState xc.BUTTON_STATE_, hImage xc.HIMAGE) {
-    xc.XBtnAddBkImage(b.hEle, nState, hImage)
+	xc.XBtnAddBkImage(b.hEle, nState, hImage)
 }
 
 func (b *Button) GetBkInfoCount(nState xc.BUTTON_STATE_) int {
-    return xc.XBtnGetBkInfoCount(b.hEle, nState)
+	return xc.XBtnGetBkInfoCount(b.hEle, nState)
 }
 
 func (b *Button) ClearBkInfo(nState xc.BUTTON_STATE_) {
-    xc.XBtnClearBkInfo(b.hEle, nState)
+	xc.XBtnClearBkInfo(b.hEle, nState)
 }
 
 func (b *Button) GetBkInfoManager(nState xc.BUTTON_STATE_) int {
-    return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
+	return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
 }
 
 func (b *Button) OnBtnClick(pFunc func()) {
-    var (
-        OnBtnClick = func(pbHandled *bool) int {
-            // pbHandled = true 取消, false 继续
-            // *pbHandled = true
-            pFunc()
+	var (
+		OnBtnClick = func(pbHandled *bool) int {
+			// pbHandled = true 取消, false 继续
+			// *pbHandled = true
+			pFunc()
 
-            return 0
-        }
-    )
+			return 0
+		}
+	)
 
-    xc.XEleRegEventC(
-        b.hEle,
-        xc.XE_BNCLICK,
-        syscall.NewCallback(OnBtnClick))
+	xc.XEleRegEventC(
+		b.hEle,
+		xc.XE_BNCLICK,
+		syscall.NewCallback(OnBtnClick))
 }
 
 // func (b *Button) Clicked() *Event {

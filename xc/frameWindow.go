@@ -1,39 +1,39 @@
 package xc
 
 import (
-    "syscall"
+	"syscall"
 )
 
 // align_type_
 const (
-    align_error = -1
-    align_left  = iota
-    align_top
-    align_right
-    align_bottom
-    align_center
+	align_error = -1
+	align_left  = iota
+	align_top
+	align_right
+	align_bottom
+	align_center
 )
 
 var (
-    // Functions
-    XFrameWnd_Create               *syscall.Proc
-    XFrameWnd_CreateEx             *syscall.Proc
-    XFrameWnd_GetLayoutAreaRect    *syscall.Proc
-    XFrameWnd_SetView              *syscall.Proc
-    XFrameWnd_SetPaneSplitBarColor *syscall.Proc
-    XFrameWnd_AddPane              *syscall.Proc
-    XFrameWnd_MergePane            *syscall.Proc
+	// Functions
+	XFrameWnd_Create               *syscall.Proc
+	XFrameWnd_CreateEx             *syscall.Proc
+	XFrameWnd_GetLayoutAreaRect    *syscall.Proc
+	XFrameWnd_SetView              *syscall.Proc
+	XFrameWnd_SetPaneSplitBarColor *syscall.Proc
+	XFrameWnd_AddPane              *syscall.Proc
+	XFrameWnd_MergePane            *syscall.Proc
 )
 
 func init() {
-    // Functions
-    XFrameWnd_Create = XCDLL.MustFindProc("XFrameWnd_Create")
-    XFrameWnd_CreateEx = XCDLL.MustFindProc("XFrameWnd_CreateEx")
-    XFrameWnd_GetLayoutAreaRect = XCDLL.MustFindProc("XFrameWnd_GetLayoutAreaRect")
-    XFrameWnd_SetView = XCDLL.MustFindProc("XFrameWnd_SetView")
-    XFrameWnd_SetPaneSplitBarColor = XCDLL.MustFindProc("XFrameWnd_SetPaneSplitBarColor")
-    XFrameWnd_AddPane = XCDLL.MustFindProc("XFrameWnd_AddPane")
-    XFrameWnd_MergePane = XCDLL.MustFindProc("XFrameWnd_MergePane")
+	// Functions
+	XFrameWnd_Create = XCDLL.MustFindProc("XFrameWnd_Create")
+	XFrameWnd_CreateEx = XCDLL.MustFindProc("XFrameWnd_CreateEx")
+	XFrameWnd_GetLayoutAreaRect = XCDLL.MustFindProc("XFrameWnd_GetLayoutAreaRect")
+	XFrameWnd_SetView = XCDLL.MustFindProc("XFrameWnd_SetView")
+	XFrameWnd_SetPaneSplitBarColor = XCDLL.MustFindProc("XFrameWnd_SetPaneSplitBarColor")
+	XFrameWnd_AddPane = XCDLL.MustFindProc("XFrameWnd_AddPane")
+	XFrameWnd_MergePane = XCDLL.MustFindProc("XFrameWnd_MergePane")
 }
 
 // *******************************************
@@ -47,16 +47,16 @@ func init() {
 // @Return: GUI库窗口资源句柄.
 // *******************************************
 func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle uint32) HWINDOW {
-    ret, _, _ := XFrameWnd_Create.Call(
-        uintptr(x),
-        uintptr(y),
-        uintptr(cx),
-        uintptr(cy),
-        StringToUintPtr(pTitle),
-        uintptr(hWndParent),
-        uintptr(XCStyle))
+	ret, _, _ := XFrameWnd_Create.Call(
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		StringToUintPtr(pTitle),
+		uintptr(hWndParent),
+		uintptr(XCStyle))
 
-    return HWINDOW(ret)
+	return HWINDOW(ret)
 }
 
 // *******************************************
@@ -71,19 +71,19 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle u
 // @Return: GUI库窗口资源句柄.
 // *******************************************
 func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
-    ret, _, _ := XFrameWnd_CreateEx.Call(
-        uintptr(dwExStyle),
-        StringToUintPtr(lpClassName),
-        StringToUintPtr(lpWindowName),
-        uintptr(dwStyle),
-        uintptr(x),
-        uintptr(y),
-        uintptr(cx),
-        uintptr(cy),
-        uintptr(hWndParent),
-        uintptr(XCStyle))
+	ret, _, _ := XFrameWnd_CreateEx.Call(
+		uintptr(dwExStyle),
+		StringToUintPtr(lpClassName),
+		StringToUintPtr(lpWindowName),
+		uintptr(dwStyle),
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		uintptr(hWndParent),
+		uintptr(XCStyle))
 
-    return HWINDOW(ret)
+	return HWINDOW(ret)
 }
 
 // *******************************************
@@ -96,9 +96,9 @@ func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwSty
 // @Return:
 // *******************************************
 func XFrameWndGetLayoutAreaRect(hWindow HWINDOW, pRect uint32) {
-    XFrameWnd_GetLayoutAreaRect.Call(
-        uintptr(hWindow),
-        uintptr(pRect))
+	XFrameWnd_GetLayoutAreaRect.Call(
+		uintptr(hWindow),
+		uintptr(pRect))
 }
 
 // *******************************************
@@ -111,9 +111,9 @@ func XFrameWndGetLayoutAreaRect(hWindow HWINDOW, pRect uint32) {
 // @Return:
 // *******************************************
 func XFrameWndSetView(hWindow HWINDOW, hEle HELE) {
-    XFrameWnd_SetView.Call(
-        uintptr(hWindow),
-        uintptr(hEle))
+	XFrameWnd_SetView.Call(
+		uintptr(hWindow),
+		uintptr(hEle))
 }
 
 // *******************************************
@@ -126,10 +126,10 @@ func XFrameWndSetView(hWindow HWINDOW, hEle HELE) {
 // @Return:
 // *******************************************
 func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color COLORREF, alpha int) {
-    XFrameWnd_SetPaneSplitBarColor.Call(
-        uintptr(hWindow),
-        uintptr(color),
-        uintptr(alpha))
+	XFrameWnd_SetPaneSplitBarColor.Call(
+		uintptr(hWindow),
+		uintptr(color),
+		uintptr(alpha))
 }
 
 // *******************************************
@@ -142,17 +142,17 @@ func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color COLORREF, alpha int) {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align int32) bool {
-    ret, _, _ := XFrameWnd_AddPane.Call(
-        uintptr(hWindow),
-        uintptr(hPaneDest),
-        uintptr(hPaneNew),
-        uintptr(align))
+	ret, _, _ := XFrameWnd_AddPane.Call(
+		uintptr(hWindow),
+		uintptr(hPaneDest),
+		uintptr(hPaneNew),
+		uintptr(align))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************
@@ -165,14 +165,14 @@ func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align int3
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XFrameWndMergePane(hWindow HWINDOW, hPaneDest, hPaneNew HELE) bool {
-    ret, _, _ := XFrameWnd_MergePane.Call(
-        uintptr(hWindow),
-        uintptr(hPaneDest),
-        uintptr(hPaneNew))
+	ret, _, _ := XFrameWnd_MergePane.Call(
+		uintptr(hWindow),
+		uintptr(hPaneDest),
+		uintptr(hPaneNew))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }

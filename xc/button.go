@@ -1,92 +1,92 @@
 package xc
 
 import (
-    "syscall"
-    "unsafe"
+	"syscall"
+	"unsafe"
 )
 
 var (
-    // Functions
-    XBtn_Create            *syscall.Proc
-    XBtn_SetCheck          *syscall.Proc
-    XBtn_IsCheck           *syscall.Proc
-    XBtn_SetStyle          *syscall.Proc
-    XBtn_GetStyle          *syscall.Proc
-    XBtn_SetState          *syscall.Proc
-    XBtn_GetState          *syscall.Proc
-    XBtn_GetStateEx        *syscall.Proc
-    XBtn_SetType           *syscall.Proc
-    XBtn_GetType           *syscall.Proc
-    XBtn_SetGroupID        *syscall.Proc
-    XBtn_GetGroupID        *syscall.Proc
-    XBtn_SetBindEle        *syscall.Proc
-    XBtn_GetBindEle        *syscall.Proc
-    XBtn_SetTextAlign      *syscall.Proc
-    XBtn_GetTextAlign      *syscall.Proc
-    XBtn_SetIconAlign      *syscall.Proc
-    XBtn_SetOffset         *syscall.Proc
-    XBtn_SetOffsetIcon     *syscall.Proc
-    XBtn_SetIconSpace      *syscall.Proc
-    XBtn_SetText           *syscall.Proc
-    XBtn_GetText           *syscall.Proc
-    XBtn_SetIcon           *syscall.Proc
-    XBtn_SetIconDisable    *syscall.Proc
-    XBtn_AddAnimationFrame *syscall.Proc
-    XBtn_EnableAnimation   *syscall.Proc
-    XBtn_AddBkBorder       *syscall.Proc
-    XBtn_AddBkFill         *syscall.Proc
-    XBtn_AddBkImage        *syscall.Proc
-    XBtn_GetBkInfoCount    *syscall.Proc
-    XBtn_ClearBkInfo       *syscall.Proc
-    XBtn_GetBkInfoManager  *syscall.Proc
+	// Functions
+	XBtn_Create            *syscall.Proc
+	XBtn_SetCheck          *syscall.Proc
+	XBtn_IsCheck           *syscall.Proc
+	XBtn_SetStyle          *syscall.Proc
+	XBtn_GetStyle          *syscall.Proc
+	XBtn_SetState          *syscall.Proc
+	XBtn_GetState          *syscall.Proc
+	XBtn_GetStateEx        *syscall.Proc
+	XBtn_SetType           *syscall.Proc
+	XBtn_GetType           *syscall.Proc
+	XBtn_SetGroupID        *syscall.Proc
+	XBtn_GetGroupID        *syscall.Proc
+	XBtn_SetBindEle        *syscall.Proc
+	XBtn_GetBindEle        *syscall.Proc
+	XBtn_SetTextAlign      *syscall.Proc
+	XBtn_GetTextAlign      *syscall.Proc
+	XBtn_SetIconAlign      *syscall.Proc
+	XBtn_SetOffset         *syscall.Proc
+	XBtn_SetOffsetIcon     *syscall.Proc
+	XBtn_SetIconSpace      *syscall.Proc
+	XBtn_SetText           *syscall.Proc
+	XBtn_GetText           *syscall.Proc
+	XBtn_SetIcon           *syscall.Proc
+	XBtn_SetIconDisable    *syscall.Proc
+	XBtn_AddAnimationFrame *syscall.Proc
+	XBtn_EnableAnimation   *syscall.Proc
+	XBtn_AddBkBorder       *syscall.Proc
+	XBtn_AddBkFill         *syscall.Proc
+	XBtn_AddBkImage        *syscall.Proc
+	XBtn_GetBkInfoCount    *syscall.Proc
+	XBtn_ClearBkInfo       *syscall.Proc
+	XBtn_GetBkInfoManager  *syscall.Proc
 )
 
 func init() {
-    XBtn_Create = XCDLL.MustFindProc("XBtn_Create")
-    XBtn_SetCheck = XCDLL.MustFindProc("XBtn_SetCheck")
-    XBtn_IsCheck = XCDLL.MustFindProc("XBtn_IsCheck")
-    XBtn_SetStyle = XCDLL.MustFindProc("XBtn_SetStyle")
-    XBtn_GetStyle = XCDLL.MustFindProc("XBtn_GetStyle")
-    XBtn_SetState = XCDLL.MustFindProc("XBtn_SetState")
-    XBtn_GetState = XCDLL.MustFindProc("XBtn_GetState")
-    XBtn_GetStateEx = XCDLL.MustFindProc("XBtn_GetStateEx")
-    XBtn_SetType = XCDLL.MustFindProc("XBtn_SetType")
-    XBtn_GetType = XCDLL.MustFindProc("XBtn_GetType")
-    XBtn_SetGroupID = XCDLL.MustFindProc("XBtn_SetGroupID")
-    XBtn_GetGroupID = XCDLL.MustFindProc("XBtn_GetGroupID")
-    XBtn_SetBindEle = XCDLL.MustFindProc("XBtn_SetBindEle")
-    XBtn_GetBindEle = XCDLL.MustFindProc("XBtn_GetBindEle")
-    XBtn_SetTextAlign = XCDLL.MustFindProc("XBtn_SetTextAlign")
-    XBtn_GetTextAlign = XCDLL.MustFindProc("XBtn_GetTextAlign")
-    XBtn_SetIconAlign = XCDLL.MustFindProc("XBtn_SetIconAlign")
-    XBtn_SetOffset = XCDLL.MustFindProc("XBtn_SetOffset")
-    XBtn_SetOffsetIcon = XCDLL.MustFindProc("XBtn_SetOffsetIcon")
-    XBtn_SetIconSpace = XCDLL.MustFindProc("XBtn_SetIconSpace")
-    XBtn_SetText = XCDLL.MustFindProc("XBtn_SetText")
-    XBtn_GetText = XCDLL.MustFindProc("XBtn_GetText")
-    XBtn_SetIcon = XCDLL.MustFindProc("XBtn_SetIcon")
-    XBtn_SetIconDisable = XCDLL.MustFindProc("XBtn_SetIconDisable")
-    XBtn_AddAnimationFrame = XCDLL.MustFindProc("XBtn_AddAnimationFrame")
-    XBtn_EnableAnimation = XCDLL.MustFindProc("XBtn_EnableAnimation")
-    XBtn_AddBkBorder = XCDLL.MustFindProc("XBtn_AddBkBorder")
-    XBtn_AddBkFill = XCDLL.MustFindProc("XBtn_AddBkFill")
-    XBtn_AddBkImage = XCDLL.MustFindProc("XBtn_AddBkImage")
-    XBtn_GetBkInfoCount = XCDLL.MustFindProc("XBtn_GetBkInfoCount")
-    XBtn_ClearBkInfo = XCDLL.MustFindProc("XBtn_ClearBkInfo")
-    XBtn_GetBkInfoManager = XCDLL.MustFindProc("XBtn_GetBkInfoManager")
+	XBtn_Create = XCDLL.MustFindProc("XBtn_Create")
+	XBtn_SetCheck = XCDLL.MustFindProc("XBtn_SetCheck")
+	XBtn_IsCheck = XCDLL.MustFindProc("XBtn_IsCheck")
+	XBtn_SetStyle = XCDLL.MustFindProc("XBtn_SetStyle")
+	XBtn_GetStyle = XCDLL.MustFindProc("XBtn_GetStyle")
+	XBtn_SetState = XCDLL.MustFindProc("XBtn_SetState")
+	XBtn_GetState = XCDLL.MustFindProc("XBtn_GetState")
+	XBtn_GetStateEx = XCDLL.MustFindProc("XBtn_GetStateEx")
+	XBtn_SetType = XCDLL.MustFindProc("XBtn_SetType")
+	XBtn_GetType = XCDLL.MustFindProc("XBtn_GetType")
+	XBtn_SetGroupID = XCDLL.MustFindProc("XBtn_SetGroupID")
+	XBtn_GetGroupID = XCDLL.MustFindProc("XBtn_GetGroupID")
+	XBtn_SetBindEle = XCDLL.MustFindProc("XBtn_SetBindEle")
+	XBtn_GetBindEle = XCDLL.MustFindProc("XBtn_GetBindEle")
+	XBtn_SetTextAlign = XCDLL.MustFindProc("XBtn_SetTextAlign")
+	XBtn_GetTextAlign = XCDLL.MustFindProc("XBtn_GetTextAlign")
+	XBtn_SetIconAlign = XCDLL.MustFindProc("XBtn_SetIconAlign")
+	XBtn_SetOffset = XCDLL.MustFindProc("XBtn_SetOffset")
+	XBtn_SetOffsetIcon = XCDLL.MustFindProc("XBtn_SetOffsetIcon")
+	XBtn_SetIconSpace = XCDLL.MustFindProc("XBtn_SetIconSpace")
+	XBtn_SetText = XCDLL.MustFindProc("XBtn_SetText")
+	XBtn_GetText = XCDLL.MustFindProc("XBtn_GetText")
+	XBtn_SetIcon = XCDLL.MustFindProc("XBtn_SetIcon")
+	XBtn_SetIconDisable = XCDLL.MustFindProc("XBtn_SetIconDisable")
+	XBtn_AddAnimationFrame = XCDLL.MustFindProc("XBtn_AddAnimationFrame")
+	XBtn_EnableAnimation = XCDLL.MustFindProc("XBtn_EnableAnimation")
+	XBtn_AddBkBorder = XCDLL.MustFindProc("XBtn_AddBkBorder")
+	XBtn_AddBkFill = XCDLL.MustFindProc("XBtn_AddBkFill")
+	XBtn_AddBkImage = XCDLL.MustFindProc("XBtn_AddBkImage")
+	XBtn_GetBkInfoCount = XCDLL.MustFindProc("XBtn_GetBkInfoCount")
+	XBtn_ClearBkInfo = XCDLL.MustFindProc("XBtn_ClearBkInfo")
+	XBtn_GetBkInfoManager = XCDLL.MustFindProc("XBtn_GetBkInfoManager")
 
 }
 
 // 关闭
 func CloseBtn(hWindow HWINDOW) {
-    XBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
-        BUTTON_TYPE_CLOSE)
+	XBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
+		BUTTON_TYPE_CLOSE)
 }
 
 // 最小化
 func MinBtn(hWindow HWINDOW) {
-    XBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
-        BUTTON_TYPE_MIN)
+	XBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
+		BUTTON_TYPE_MIN)
 }
 
 // *******************************************
@@ -100,15 +100,15 @@ func MinBtn(hWindow HWINDOW) {
 // @Return: 按钮元素句柄.
 // *******************************************
 func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
-    ret, _, _ := XBtn_Create.Call(
-        uintptr(x),
-        uintptr(y),
-        uintptr(cx),
-        uintptr(cy),
-        StringToUintPtr(pName),
-        uintptr(hParent))
+	ret, _, _ := XBtn_Create.Call(
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		StringToUintPtr(pName),
+		uintptr(hParent))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************
@@ -121,15 +121,15 @@ func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XBtnSetCheck(hEle HELE, bCheck BOOL) bool {
-    ret, _, _ := XBtn_SetCheck.Call(
-        uintptr(hEle),
-        uintptr(bCheck))
+	ret, _, _ := XBtn_SetCheck.Call(
+		uintptr(hEle),
+		uintptr(bCheck))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************
@@ -142,13 +142,13 @@ func XBtnSetCheck(hEle HELE, bCheck BOOL) bool {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XBtnIsCheck(hEle HELE) bool {
-    ret, _, _ := XBtn_IsCheck.Call(uintptr(hEle))
+	ret, _, _ := XBtn_IsCheck.Call(uintptr(hEle))
 
-    if ret != TRUE {
-        return false
-    }
+	if ret != TRUE {
+		return false
+	}
 
-    return true
+	return true
 }
 
 // *******************************************
@@ -161,9 +161,9 @@ func XBtnIsCheck(hEle HELE) bool {
 // @Return:
 // *******************************************
 func XBtnSetStyle(hEle HELE, nStyle BUTTON_STYLE_) {
-    XBtn_SetStyle.Call(
-        uintptr(hEle),
-        uintptr(nStyle))
+	XBtn_SetStyle.Call(
+		uintptr(hEle),
+		uintptr(nStyle))
 }
 
 // *******************************************
@@ -176,9 +176,9 @@ func XBtnSetStyle(hEle HELE, nStyle BUTTON_STYLE_) {
 // @Return: 按钮样式,参见宏定义.
 // *******************************************
 func XBtnGetStyle(hEle HELE) BUTTON_STYLE_ {
-    ret, _, _ := XBtn_GetStyle.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetStyle.Call(uintptr(hEle))
 
-    return BUTTON_STYLE_(ret)
+	return BUTTON_STYLE_(ret)
 }
 
 // *******************************************
@@ -191,9 +191,9 @@ func XBtnGetStyle(hEle HELE) BUTTON_STYLE_ {
 // @Return:
 // *******************************************
 func XBtnSetState(hEle HELE, nState COMMON_STATE3_) {
-    XBtn_SetState.Call(
-        uintptr(hEle),
-        uintptr(nState))
+	XBtn_SetState.Call(
+		uintptr(hEle),
+		uintptr(nState))
 }
 
 // *******************************************
@@ -206,9 +206,9 @@ func XBtnSetState(hEle HELE, nState COMMON_STATE3_) {
 // @Return: 返回按钮状态,参见宏定义.
 // *******************************************
 func XBtnGetState(hEle HELE) COMMON_STATE3_ {
-    ret, _, _ := XBtn_GetState.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetState.Call(uintptr(hEle))
 
-    return COMMON_STATE3_(ret)
+	return COMMON_STATE3_(ret)
 }
 
 // *******************************************
@@ -221,9 +221,9 @@ func XBtnGetState(hEle HELE) COMMON_STATE3_ {
 // @Return: 返回按钮状态,参见宏定义 button_state_ .
 // *******************************************
 func XBtnGetStateEx(hEle HELE) BUTTON_STATE_ {
-    ret, _, _ := XBtn_GetStateEx.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetStateEx.Call(uintptr(hEle))
 
-    return BUTTON_STATE_(ret)
+	return BUTTON_STATE_(ret)
 }
 
 // *******************************************
@@ -236,9 +236,9 @@ func XBtnGetStateEx(hEle HELE) BUTTON_STATE_ {
 // @Return:
 // *******************************************
 func XBtnSetType(hEle HELE, nType BUTTON_TYPE_) {
-    XBtn_SetType.Call(
-        uintptr(hEle),
-        uintptr(nType))
+	XBtn_SetType.Call(
+		uintptr(hEle),
+		uintptr(nType))
 }
 
 // *******************************************
@@ -251,9 +251,9 @@ func XBtnSetType(hEle HELE, nType BUTTON_TYPE_) {
 // @Return: 按钮类型,参见宏定义 button_type_.
 // *******************************************
 func XBtnGetType(hEle HELE) BUTTON_TYPE_ {
-    ret, _, _ := XBtn_GetType.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetType.Call(uintptr(hEle))
 
-    return BUTTON_TYPE_(ret)
+	return BUTTON_TYPE_(ret)
 }
 
 // *******************************************
@@ -266,9 +266,9 @@ func XBtnGetType(hEle HELE) BUTTON_TYPE_ {
 // @Return:
 // *******************************************
 func XBtnSetGroupID(hEle HELE, nID int) {
-    XBtn_SetGroupID.Call(
-        uintptr(hEle),
-        uintptr(nID))
+	XBtn_SetGroupID.Call(
+		uintptr(hEle),
+		uintptr(nID))
 }
 
 // *******************************************
@@ -281,9 +281,9 @@ func XBtnSetGroupID(hEle HELE, nID int) {
 // @Return: 组ID.
 // *******************************************
 func XBtnGetGroupID(hEle HELE) int {
-    ret, _, _ := XBtn_GetGroupID.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetGroupID.Call(uintptr(hEle))
 
-    return int(ret)
+	return int(ret)
 }
 
 // *******************************************
@@ -296,9 +296,9 @@ func XBtnGetGroupID(hEle HELE) int {
 // @Return:
 // *******************************************
 func XBtnSetBindEle(hEle, hBindEle HELE) {
-    XBtn_SetBindEle.Call(
-        uintptr(hEle),
-        uintptr(hBindEle))
+	XBtn_SetBindEle.Call(
+		uintptr(hEle),
+		uintptr(hBindEle))
 }
 
 // *******************************************
@@ -311,9 +311,9 @@ func XBtnSetBindEle(hEle, hBindEle HELE) {
 // @Return: 绑定的元素句柄.
 // *******************************************
 func XBtnGetBindEle(hEle HELE) HELE {
-    ret, _, _ := XBtn_GetBindEle.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetBindEle.Call(uintptr(hEle))
 
-    return HELE(ret)
+	return HELE(ret)
 }
 
 // *******************************************
@@ -326,9 +326,9 @@ func XBtnGetBindEle(hEle HELE) HELE {
 // @Return:
 // *******************************************
 func XBtnSetTextAlign(hEle HELE, nFlags int) {
-    XBtn_SetTextAlign.Call(
-        uintptr(hEle),
-        uintptr(nFlags))
+	XBtn_SetTextAlign.Call(
+		uintptr(hEle),
+		uintptr(nFlags))
 }
 
 // *******************************************
@@ -341,9 +341,9 @@ func XBtnSetTextAlign(hEle HELE, nFlags int) {
 // @Return: 文本对齐方式.
 // *******************************************
 func XBtnGetTextAlign(hEle HELE) int {
-    ret, _, _ := XBtn_GetTextAlign.Call(uintptr(hEle))
+	ret, _, _ := XBtn_GetTextAlign.Call(uintptr(hEle))
 
-    return int(ret)
+	return int(ret)
 }
 
 // *******************************************
@@ -356,9 +356,9 @@ func XBtnGetTextAlign(hEle HELE) int {
 // @Return:
 // *******************************************
 func XBtnSetIconAlign(hEle HELE, align BUTTON_ICON_ALIGN_) {
-    XBtn_SetIconAlign.Call(
-        uintptr(hEle),
-        uintptr(align))
+	XBtn_SetIconAlign.Call(
+		uintptr(hEle),
+		uintptr(align))
 }
 
 // *******************************************
@@ -371,10 +371,10 @@ func XBtnSetIconAlign(hEle HELE, align BUTTON_ICON_ALIGN_) {
 // @Return:
 // *******************************************
 func XBtnSetOffset(hEle HELE, x, y int) {
-    XBtn_SetOffset.Call(
-        uintptr(hEle),
-        uintptr(x),
-        uintptr(y))
+	XBtn_SetOffset.Call(
+		uintptr(hEle),
+		uintptr(x),
+		uintptr(y))
 }
 
 // *******************************************
@@ -387,10 +387,10 @@ func XBtnSetOffset(hEle HELE, x, y int) {
 // @Return:
 // *******************************************
 func XBtnSetOffsetIcon(hEle HELE, x, y int) {
-    XBtn_SetOffsetIcon.Call(
-        uintptr(hEle),
-        uintptr(x),
-        uintptr(y))
+	XBtn_SetOffsetIcon.Call(
+		uintptr(hEle),
+		uintptr(x),
+		uintptr(y))
 }
 
 // *******************************************
@@ -403,9 +403,9 @@ func XBtnSetOffsetIcon(hEle HELE, x, y int) {
 // @Return:
 // *******************************************
 func XBtnSetIconSpace(hEle HELE, size int) {
-    XBtn_SetIconSpace.Call(
-        uintptr(hEle),
-        uintptr(size))
+	XBtn_SetIconSpace.Call(
+		uintptr(hEle),
+		uintptr(size))
 }
 
 // *******************************************
@@ -418,9 +418,9 @@ func XBtnSetIconSpace(hEle HELE, size int) {
 // @Return:
 // *******************************************
 func XBtnSetText(hEle HELE, pName string) {
-    XBtn_SetText.Call(
-        uintptr(hEle),
-        StringToUintPtr(pName))
+	XBtn_SetText.Call(
+		uintptr(hEle),
+		StringToUintPtr(pName))
 }
 
 // *******************************************
@@ -433,10 +433,10 @@ func XBtnSetText(hEle HELE, pName string) {
 // @Return:
 // *******************************************
 func XBtnGetText(hEle HELE, pOut *uint16, nOutLen int) {
-    XBtn_GetText.Call(
-        uintptr(hEle),
-        uintptr(unsafe.Pointer(pOut)),
-        uintptr(nOutLen))
+	XBtn_GetText.Call(
+		uintptr(hEle),
+		uintptr(unsafe.Pointer(pOut)),
+		uintptr(nOutLen))
 }
 
 // *******************************************
@@ -449,9 +449,9 @@ func XBtnGetText(hEle HELE, pOut *uint16, nOutLen int) {
 // @Return:
 // *******************************************
 func XBtnSetIcon(hEle HELE, hImage HIMAGE) {
-    XBtn_SetIcon.Call(
-        uintptr(hEle),
-        uintptr(hImage))
+	XBtn_SetIcon.Call(
+		uintptr(hEle),
+		uintptr(hImage))
 }
 
 // *******************************************
@@ -464,9 +464,9 @@ func XBtnSetIcon(hEle HELE, hImage HIMAGE) {
 // @Return:
 // *******************************************
 func XBtnSetIconDisable(hEle HELE, hImage HIMAGE) {
-    XBtn_SetIconDisable.Call(
-        uintptr(hEle),
-        uintptr(hImage))
+	XBtn_SetIconDisable.Call(
+		uintptr(hEle),
+		uintptr(hImage))
 }
 
 // *******************************************
@@ -479,10 +479,10 @@ func XBtnSetIconDisable(hEle HELE, hImage HIMAGE) {
 // @Return:
 // *******************************************
 func XBtnAddAnimationFrame(hEle HELE, hImage HIMAGE, uElapse uint) {
-    XBtn_AddAnimationFrame.Call(
-        uintptr(hEle),
-        uintptr(hImage),
-        uintptr(uElapse))
+	XBtn_AddAnimationFrame.Call(
+		uintptr(hEle),
+		uintptr(hImage),
+		uintptr(uElapse))
 }
 
 // *******************************************
@@ -495,10 +495,10 @@ func XBtnAddAnimationFrame(hEle HELE, hImage HIMAGE, uElapse uint) {
 // @Return:
 // *******************************************
 func XBtnEnableAnimation(hEle HELE, bEnable, bLoopPlay BOOL) {
-    XBtn_EnableAnimation.Call(
-        uintptr(hEle),
-        uintptr(bEnable),
-        uintptr(bLoopPlay))
+	XBtn_EnableAnimation.Call(
+		uintptr(hEle),
+		uintptr(bEnable),
+		uintptr(bLoopPlay))
 }
 
 // *******************************************
@@ -511,12 +511,12 @@ func XBtnEnableAnimation(hEle HELE, bEnable, bLoopPlay BOOL) {
 // @Return:
 // *******************************************
 func XBtnAddBkBorder(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte, width int) {
-    XBtn_AddBkBorder.Call(
-        uintptr(hEle),
-        uintptr(nState),
-        uintptr(color),
-        uintptr(alpha),
-        uintptr(width))
+	XBtn_AddBkBorder.Call(
+		uintptr(hEle),
+		uintptr(nState),
+		uintptr(color),
+		uintptr(alpha),
+		uintptr(width))
 }
 
 // *******************************************
@@ -529,11 +529,11 @@ func XBtnAddBkBorder(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte
 // @Return:
 // *******************************************
 func XBtnAddBkFill(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte) {
-    XBtn_AddBkFill.Call(
-        uintptr(hEle),
-        uintptr(nState),
-        uintptr(color),
-        uintptr(alpha))
+	XBtn_AddBkFill.Call(
+		uintptr(hEle),
+		uintptr(nState),
+		uintptr(color),
+		uintptr(alpha))
 }
 
 // *******************************************
@@ -546,10 +546,10 @@ func XBtnAddBkFill(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte) 
 // @Return:
 // *******************************************
 func XBtnAddBkImage(hEle HELE, nState BUTTON_STATE_, hImage HIMAGE) {
-    XBtn_AddBkImage.Call(
-        uintptr(hEle),
-        uintptr(nState),
-        uintptr(hImage))
+	XBtn_AddBkImage.Call(
+		uintptr(hEle),
+		uintptr(nState),
+		uintptr(hImage))
 }
 
 // *******************************************
@@ -562,11 +562,11 @@ func XBtnAddBkImage(hEle HELE, nState BUTTON_STATE_, hImage HIMAGE) {
 // @Return: 成功返回背景内容数量,否则返回 XC_ID_ERROR.
 // *******************************************
 func XBtnGetBkInfoCount(hEle HELE, nState BUTTON_STATE_) int {
-    ret, _, _ := XBtn_GetBkInfoCount.Call(
-        uintptr(hEle),
-        uintptr(nState))
+	ret, _, _ := XBtn_GetBkInfoCount.Call(
+		uintptr(hEle),
+		uintptr(nState))
 
-    return int(ret)
+	return int(ret)
 }
 
 // *******************************************
@@ -579,9 +579,9 @@ func XBtnGetBkInfoCount(hEle HELE, nState BUTTON_STATE_) int {
 // @Return:
 // *******************************************
 func XBtnClearBkInfo(hEle HELE, nState BUTTON_STATE_) {
-    XBtn_ClearBkInfo.Call(
-        uintptr(hEle),
-        uintptr(nState))
+	XBtn_ClearBkInfo.Call(
+		uintptr(hEle),
+		uintptr(nState))
 }
 
 // *******************************************
@@ -594,9 +594,9 @@ func XBtnClearBkInfo(hEle HELE, nState BUTTON_STATE_) {
 // @Return: 背景内容管理器.
 // *******************************************
 func XBtnGetBkInfoManager(hEle HELE, nState BUTTON_STATE_) HBKINFOM {
-    ret, _, _ := XBtn_GetBkInfoManager.Call(
-        uintptr(hEle),
-        uintptr(nState))
+	ret, _, _ := XBtn_GetBkInfoManager.Call(
+		uintptr(hEle),
+		uintptr(nState))
 
-    return HBKINFOM(ret)
+	return HBKINFOM(ret)
 }

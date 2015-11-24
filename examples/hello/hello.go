@@ -5,7 +5,7 @@ package main
 
 import (
 	"fmt"
-	xcgui "github.com/xicheng/xcgui/xc"
+	xcgui "github.com/CodyGuo/xcgui/xc"
 	//"syscall"
 )
 

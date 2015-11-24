@@ -1,25 +1,25 @@
 package xc
 
 import (
-    "syscall"
+	"syscall"
 )
 
 var (
-    // Functions
-    XModalWnd_Create          *syscall.Proc
-    XModalWnd_CreateEx        *syscall.Proc
-    XModalWnd_EnableAutoClose *syscall.Proc
-    XModalWnd_DoModal         *syscall.Proc
-    XModalWnd_EndModal        *syscall.Proc
+	// Functions
+	XModalWnd_Create          *syscall.Proc
+	XModalWnd_CreateEx        *syscall.Proc
+	XModalWnd_EnableAutoClose *syscall.Proc
+	XModalWnd_DoModal         *syscall.Proc
+	XModalWnd_EndModal        *syscall.Proc
 )
 
 func init() {
-    // Funtions
-    XModalWnd_Create = XCDLL.MustFindProc("XModalWnd_Create")
-    XModalWnd_CreateEx = XCDLL.MustFindProc("XModalWnd_CreateEx")
-    XModalWnd_EnableAutoClose = XCDLL.MustFindProc("XModalWnd_EnableAutoClose")
-    XModalWnd_DoModal = XCDLL.MustFindProc("XModalWnd_DoModal")
-    XModalWnd_EndModal = XCDLL.MustFindProc("XModalWnd_EndModal")
+	// Funtions
+	XModalWnd_Create = XCDLL.MustFindProc("XModalWnd_Create")
+	XModalWnd_CreateEx = XCDLL.MustFindProc("XModalWnd_CreateEx")
+	XModalWnd_EnableAutoClose = XCDLL.MustFindProc("XModalWnd_EnableAutoClose")
+	XModalWnd_DoModal = XCDLL.MustFindProc("XModalWnd_DoModal")
+	XModalWnd_EndModal = XCDLL.MustFindProc("XModalWnd_EndModal")
 }
 
 // *******************************************************************
@@ -33,14 +33,14 @@ func init() {
 // @Return: 模态窗口句柄.
 // *******************************************************************
 func XModalWndCreate(bWidth, nHeight int, pTitle string, hWndParent HWND, XCStyle uint32) HWINDOW {
-    ret, _, _ := XModalWnd_Create.Call(
-        uintptr(bWidth),
-        uintptr(nHeight),
-        StringToUintPtr(pTitle),
-        uintptr(hWndParent),
-        uintptr(XCStyle))
+	ret, _, _ := XModalWnd_Create.Call(
+		uintptr(bWidth),
+		uintptr(nHeight),
+		StringToUintPtr(pTitle),
+		uintptr(hWndParent),
+		uintptr(XCStyle))
 
-    return HWINDOW(ret)
+	return HWINDOW(ret)
 }
 
 // *******************************************************************
@@ -55,19 +55,19 @@ func XModalWndCreate(bWidth, nHeight int, pTitle string, hWndParent HWND, XCStyl
 // @Return: GUI库窗口资源句柄.
 // *******************************************************************
 func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
-    ret, _, _ := XModalWnd_CreateEx.Call(
-        uintptr(dwExStyle),
-        StringToUintPtr(lpClassName),
-        StringToUintPtr(lpWindowName),
-        uintptr(dwStyle),
-        uintptr(x),
-        uintptr(y),
-        uintptr(cx),
-        uintptr(cy),
-        uintptr(hWndParent),
-        uintptr(XCStyle))
+	ret, _, _ := XModalWnd_CreateEx.Call(
+		uintptr(dwExStyle),
+		StringToUintPtr(lpClassName),
+		StringToUintPtr(lpWindowName),
+		uintptr(dwStyle),
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		uintptr(hWndParent),
+		uintptr(XCStyle))
 
-    return HWINDOW(ret)
+	return HWINDOW(ret)
 }
 
 // *******************************************************************
@@ -80,9 +80,9 @@ func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwSty
 // @Return:
 // *******************************************************************
 func XModalWndEnableAutoClose(hWindow HWINDOW, bEnable bool) {
-    XModalWnd_EnableAutoClose.Call(
-        uintptr(hWindow),
-        uintptr(BoolToBOOL(bEnable)))
+	XModalWnd_EnableAutoClose.Call(
+		uintptr(hWindow),
+		uintptr(BoolToBOOL(bEnable)))
 }
 
 // *******************************************************************
@@ -95,9 +95,9 @@ func XModalWndEnableAutoClose(hWindow HWINDOW, bEnable bool) {
 // @Return: XMB_OK:点击确定按钮退出.XMB_CANCEL:点击取消按钮退出.如果返回0,其他方式退出.
 // *******************************************************************
 func XModalWndDoModal(hWindow HWINDOW) int {
-    ret, _, _ := XModalWnd_DoModal.Call(uintptr(hWindow))
+	ret, _, _ := XModalWnd_DoModal.Call(uintptr(hWindow))
 
-    return int(ret)
+	return int(ret)
 }
 
 // *******************************************************************
@@ -110,7 +110,7 @@ func XModalWndDoModal(hWindow HWINDOW) int {
 // @Return:
 // *******************************************************************
 func XModalWndEndModal(hWindow HWINDOW, nResult int) {
-    XModalWnd_EndModal.Call(
-        uintptr(hWindow),
-        uintptr(nResult))
+	XModalWnd_EndModal.Call(
+		uintptr(hWindow),
+		uintptr(nResult))
 }

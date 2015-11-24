@@ -5,9 +5,9 @@ import (
 )
 
 type Widget interface {
-    Window
+	Window
 }
 
 type WidgetBase struct {
-    WindowBase
+	WindowBase
 }

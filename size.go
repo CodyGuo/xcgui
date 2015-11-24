@@ -1,41 +1,41 @@
 package xcgui
 
 type Size struct {
-    Width, Height int
+	Width, Height int
 }
 
 func minSize(a, b Size) Size {
-    var s Size
+	var s Size
 
-    if a.Width < b.Width {
-        s.Width = a.Width
-    } else {
-        s.Width = b.Width
-    }
+	if a.Width < b.Width {
+		s.Width = a.Width
+	} else {
+		s.Width = b.Width
+	}
 
-    if a.Height < b.Height {
-        s.Height = a.Height
-    } else {
-        s.Height = b.Height
-    }
+	if a.Height < b.Height {
+		s.Height = a.Height
+	} else {
+		s.Height = b.Height
+	}
 
-    return s
+	return s
 }
 
 func maxSize(a, b Size) Size {
-    var s Size
+	var s Size
 
-    if a.Width > b.Width {
-        s.Width = a.Width
-    } else {
-        s.Width = b.Width
-    }
+	if a.Width > b.Width {
+		s.Width = a.Width
+	} else {
+		s.Width = b.Width
+	}
 
-    if a.Height > b.Height {
-        s.Height = a.Height
-    } else {
-        s.Height = b.Height
-    }
+	if a.Height > b.Height {
+		s.Height = a.Height
+	} else {
+		s.Height = b.Height
+	}
 
-    return s
+	return s
 }

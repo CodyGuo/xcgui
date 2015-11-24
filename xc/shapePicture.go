@@ -39,28 +39,28 @@ func XShapePicSetImage(hShape HXCGUI, hImage HIMAGE) {
 		uintptr(hImage))
 }
 
-func XShapePicSetLayoutWidth(hShape HXCGUI, nType layout_size_type_, width int) {
+func XShapePicSetLayoutWidth(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, width int) {
 	xShapePic_SetLayoutWidth.Call(
 		uintptr(hShape),
 		uintptr(nType),
 		uintptr(width))
 }
 
-func XShapePicSetLayoutHeight(hShape HXCGUI, nType layout_size_type_, height int) {
+func XShapePicSetLayoutHeight(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, height int) {
 	xShapePic_SetLayoutHeight.Call(
 		uintptr(hShape),
 		uintptr(nType),
 		uintptr(height))
 }
 
-func XShapePicGetLayoutWidth(hShape HXCGUI, nType layout_size_type_, pWidth *int) {
+func XShapePicGetLayoutWidth(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, pWidth *int) {
 	xShapePic_GetLayoutWidth.Call(
 		uintptr(hShape),
 		uintptr(nType),
 		uintptr(unsafe.Pointer(pWidth)))
 }
 
-func XShapePicGetLayoutHeight(hShape HXCGUI, nType layout_size_type_, pHeight *int) {
+func XShapePicGetLayoutHeight(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, pHeight *int) {
 	xShapePic_GetLayoutHeight.Call(
 		uintptr(hShape),
 		uintptr(nType),

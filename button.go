@@ -164,7 +164,11 @@ func (b *Button) SetText(value string) {
 
 func (b *Button) GetText() string {
 	// textLength := xc.SendMessage(xc.HWND(b.hEle), xc.WM_GETTEXTLENGTH, 0, 0)
-	textLength := xc.XEleGetContentSize(b.hEle)
+	pSize := make([]uint16, 256)
+	xc.XEleGetContentSize(b.hEle, &pSize[0])
+	textLength := pSize[0]
+	// fmt.Println("textLength:", textLength)
+
 	buf := make([]uint16, textLength+1)
 	xc.XBtnGetText(b.hEle, &buf[0], int(textLength)+1)
 

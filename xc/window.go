@@ -191,11 +191,11 @@ func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle ui
 // @Calls: XEle_RegEventC
 // @Input: hWindow 窗口句柄. nEvent 事件类型. pFun 事件函数.
 // *******************************************************************
-func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun CallBack) {
+func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun uintptr) {
     XWnd_RegEventC.Call(
         uintptr(hWindow),
         uintptr(nEvent),
-        syscall.NewCallback(pFun))
+        pFun)
 }
 
 // *******************************************************************

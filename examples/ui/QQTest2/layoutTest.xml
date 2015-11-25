@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<!--炫彩界面库-窗口布局文件-->
+<windowUI left="100" top="100" width="300" height="500" layoutLeft="8" layoutTop="28" layoutRight="8" layoutBottom="8">
+    <layoutObject layout.width="fill" layout.height="fill" layout.alignH="left" layout.alignV="top" layout.horizon="false" layout.space="2" layout.padding="2,2,2,2" layout.flag="XC_LAYOUT_BODY" showT="true">
+        <layoutObject layout.width=":1" layout.height=":1" layout.alignH="left" layout.alignV="top" layout.horizon="true" showT="true">
+            <buttonUI left="10" top="30" width="93" height="34" content="Button" imageLeave="@ID_IMAGE_QQZone" imageStay="@ID_IMAGE_VASFlagEnable" showT="true" />
+            <buttonUI left="103" top="30" width="88" height="32" content="Button" showT="true" />
+        </layoutObject>
+        <layoutObject layout.width=":1" layout.height=":1" layout.alignH="left" layout.alignV="top" layout.horizon="true" showT="true" />
+        <layoutObject layout.width=":1" layout.height=":1" layout.alignH="left" layout.alignV="top" layout.horizon="true" showT="true" />
+    </layoutObject>
+    <buttonUI left="221" top="4" width="60" height="19" content="close" buttonType="close" showT="true" />
+</windowUI>

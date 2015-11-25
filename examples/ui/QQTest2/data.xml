@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="gb2312" ?>
+
+<xc_data_table>
+	<header>
+		<item  name="name"  value="aaa" />
+		<item  name="name2" value="bbb" />
+		<item  name="name3" value="ccc" />
+	</header>
+	<body>
+		<column>
+			<item  name="name"  value="aaa-1" />
+			<item  name="name2" value="bbb-2" />
+			<item  name="name3" value="ccc-3" />
+		</column>
+		<row_data>
+			<row>
+				<item  value="1-aaa"  />
+				<item  value="1-bbb"  />
+				<item  value="1-ccc"  />
+			</row>
+			<row>
+				<item  value="2-aaa"  />
+				<item  value="2-bbb"  />
+				<item  value="2-ccc"  />
+			</row>
+		</row_data>
+	</body>
+</xc_data_table>

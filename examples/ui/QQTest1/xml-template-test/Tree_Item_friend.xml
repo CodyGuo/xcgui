@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<xc_template_tree>
+	<layoutObject type="item"  layout.horizon="true" layout.alignH="left"  layout.alignV="center" layout.width="auto" layout.height="fill" layout.space=6 layout.padding="5,2,2,2" >
+		<elementUI itemID=3 width=22 height=22 border="false" image="{binding field=name3 source=data bSync=false}" />
+		<shapeText itemID=2 layout.width="auto" layout.height="fill" content="{binding field=name source=data bSync=false}" />
+		<shapeText itemID=2 layout.width="auto" layout.height="fill" content="{binding field=name2 source=data bSync=false}" />
+		<elementUI itemID=3 width=30 height=10 border="false" enableFocus="false" transparent="true" image="{binding field=name5 source=data bSync=false}" />
+	</layoutObject>
+</xc_template_tree>

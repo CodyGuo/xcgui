@@ -6,7 +6,7 @@ package main
 import (
 	"fmt"
 	xcgui "github.com/CodyGuo/xcgui/xc"
-	//"syscall"
+	"syscall"
 )
 
 func main() {
@@ -18,6 +18,8 @@ func main() {
 	//button
 	btn := xcgui.XBtnCreate(10, 5, 80, 22, "关闭", parent)
 	xcgui.XBtnSetType(btn, xcgui.BUTTON_TYPE_CLOSE)
+	//监听btn事件
+	xcgui.XEleRegEventC(btn, xcgui.XE_BNCLICK, syscall.NewCallback(OnBtnClick))
 	//label
 	lb := xcgui.XShapeTextCreate(50, 100, 100, 22, "hello world!", parent)
 	xcgui.XShapeTextSetText(lb, "hello 世界!")
@@ -31,4 +33,9 @@ func main() {
 	xcgui.XWndShowWindow(hwnd, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
+}
+
+func OnBtnClick() int {
+	fmt.Println("你点了按钮")
+	return 0
 }

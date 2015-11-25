@@ -16,13 +16,14 @@ func init() {
 	xShapeLine_SetColor = XCDLL.MustFindProc("XShapeLine_SetColor")
 }
 
-func XShapeLineCreate(x1, int, y1 int, x2 int, y2 int, hParent HXCGUI) {
-	xShapeLine_Create.Call(
+func XShapeLineCreate(x1, int, y1 int, x2 int, y2 int, hParent HXCGUI) HXCGUI {
+	ret, _, _ := xShapeLine_Create.Call(
 		uintptr(x1),
 		uintptr(y1),
 		uintptr(x2),
 		uintptr(y2),
 		uintptr(hParent))
+	return HXCGUI(ret)
 }
 
 func XShapeLineSetPosition(hShape HXCGUI, x1 int, y1 int, x2 int, y2 int) {

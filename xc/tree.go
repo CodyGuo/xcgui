@@ -104,25 +104,25 @@ func XTreeSetItemTemplateXMLSel(hEle HELE, pXmlFile string) bool {
 	return ret == TRUE
 }
 
-func XTree_SetItemTemplateXMLFromString(hEle HELE, pXmlFile string) bool {
+func XTreeSetItemTemplateXMLFromString(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
 	return ret == TRUE
 }
 
-func XTree_SetItemTemplateXMLSelFromString(hEle HELE, pXmlFile string) bool {
+func XTreeSetItemTemplateXMLSelFromString(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLSelFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
 	return ret == TRUE
 }
 
-func XTree_SetDrawItemBkFlags(hEle HELE, nFlags int) {
+func XTreeSetDrawItemBkFlags(hEle HELE, nFlags int) {
 	xTree_SetDrawItemBkFlags.Call(uintptr(hEle), uintptr(nFlags))
 }
 
-func XTree_SetItemData(hEle HELE, nID int, nUserData int) bool {
+func XTreeSetItemData(hEle HELE, nID int, nUserData int) bool {
 	ret, _, _ := xTree_SetItemData.Call(
 		uintptr(hEle),
 		uintptr(nID),
@@ -131,95 +131,95 @@ func XTree_SetItemData(hEle HELE, nID int, nUserData int) bool {
 
 }
 
-func XTree_GetItemData(hEle HELE, nID int) int {
+func XTreeGetItemData(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetItemData.Call(uintptr(hEle),
 		uintptr(nID))
 	return int(ret)
 }
 
-func XTree_SetSelectItem(hEle HELE, nID int) bool {
+func XTreeSetSelectItem(hEle HELE, nID int) bool {
 	ret, _, _ := xTree_SetSelectItem.Call(uintptr(hEle),
 		uintptr(nID))
 	return ret == TRUE
 }
 
-func XTree_GetSelectItem(hEle HELE) int {
+func XTreeGetSelectItem(hEle HELE) int {
 	ret, _, _ := xTree_GetSelectItem.Call(uintptr(hEle))
 	return int(ret)
 }
 
-func XTree_IsExpand(hEle HELE, nID int) bool {
+func XTreeIsExpand(hEle HELE, nID int) bool {
 	ret, _, _ := xTree_IsExpand.Call(uintptr(hEle), uintptr(nID))
 	return ret == TRUE
 }
 
-func XTree_ExpandItem(hEle HELE, nID int, bExpand bool) bool {
+func XTreeExpandItem(hEle HELE, nID int, bExpand bool) bool {
 	ret, _, _ := xTree_ExpandItem.Call(uintptr(hEle), uintptr(nID), uintptr(BoolToBOOL(bExpand)))
 	return ret == TRUE
 }
 
-func XTree_HitTest(hEle HELE, pPt *POINT) int {
+func XTreeHitTest(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xTree_HitTest.Call(uintptr(hEle), uintptr(unsafe.Pointer(pPt)))
 	return int(ret)
 }
 
-func XTree_HitTestOffet(hEle HELE, pPt *POINT) int {
+func XTreeHitTestOffet(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xTree_HitTestOffet.Call(uintptr(hEle), uintptr(unsafe.Pointer(pPt)))
 	return int(ret)
 }
 
-func XTree_GetFirstChildItem(hEle HELE, nID int) int {
+func XTreeGetFirstChildItem(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetFirstChildItem.Call(uintptr(hEle), uintptr(nID))
 	return int(ret)
 }
 
-func XTree_GetNextSiblingItem(hEle HELE, nID int) int {
+func XTreeGetNextSiblingItem(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetNextSiblingItem.Call(uintptr(hEle), uintptr(nID))
 	return int(ret)
 }
 
-func XTree_GetParentItem(hEle HELE, nID int) int {
+func XTreeGetParentItem(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetParentItem.Call(uintptr(hEle), uintptr(nID))
 	return int(ret)
 }
 
-func XTree_BindAdapter(hEle HELE, hAdapter HXCGUI) {
+func XTreeBindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xTree_BindAdapter.Call(
 		uintptr(hEle), uintptr(hAdapter))
 }
 
-func XTree_GetAdapter(hEle HELE) HXCGUI {
+func XTreeGetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xTree_GetAdapter.Call(uintptr(hEle))
 	return HXCGUI(ret)
 }
 
-func XTree_SetIndentation(hEle HELE, nWidth int) {
+func XTreeSetIndentation(hEle HELE, nWidth int) {
 	xTree_SetIndentation.Call(uintptr(hEle), uintptr(nWidth))
 }
 
-func XTree_GetIndentation(hEle HELE) int {
+func XTreeGetIndentation(hEle HELE) int {
 	ret, _, _ := xTree_GetIndentation.Call(uintptr(hEle))
 	return int(ret)
 }
 
-func XTree_SetItemHeightDefault(hEle HELE, nHeight int, nSelHeight int) {
+func XTreeSetItemHeightDefault(hEle HELE, nHeight int, nSelHeight int) {
 	xTree_SetItemHeightDefault.Call(uintptr(hEle), uintptr(nHeight), uintptr(nSelHeight))
 }
 
-func XTree_GetItemHeightDefault(hEle HELE, pHeight *int, pSelHeight *int) {
+func XTreeGetItemHeightDefault(hEle HELE, pHeight *int, pSelHeight *int) {
 	xTree_GetItemHeightDefault.Call(uintptr(hEle), uintptr(unsafe.Pointer(pHeight)), uintptr(unsafe.Pointer(pSelHeight)))
 }
 
-func XTree_SetItemHeight(hEle HELE, nID int, nHeight int, nSelHeight int) {
+func XTreeSetItemHeight(hEle HELE, nID int, nHeight int, nSelHeight int) {
 	xTree_SetItemHeight.Call(uintptr(hEle), uintptr(nHeight), uintptr(nSelHeight))
 }
 
-func XTree_GetItemHeight(hEle HELE, nID int, pHeight *int, pSelHeight *int) {
+func XTreeGetItemHeight(hEle HELE, nID int, pHeight *int, pSelHeight *int) {
 	xTree_GetItemHeight.Call(uintptr(hEle), uintptr(nID), uintptr(unsafe.Pointer(pHeight)), uintptr(unsafe.Pointer(pSelHeight)))
 
 }
 
-func XTree_AddItemBkBorder(hEle HELE, nState tree_item_state_, color COLORREF, alpha byte, width int) {
+func XTreeAddItemBkBorder(hEle HELE, nState tree_item_state_, color COLORREF, alpha byte, width int) {
 	xTree_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -228,7 +228,7 @@ func XTree_AddItemBkBorder(hEle HELE, nState tree_item_state_, color COLORREF, a
 		uintptr(width))
 }
 
-func XTree_AddItemBkFill(hEle HELE, nState tree_item_state_, color COLORREF, alpha byte) {
+func XTreeAddItemBkFill(hEle HELE, nState tree_item_state_, color COLORREF, alpha byte) {
 	xTree_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -236,7 +236,7 @@ func XTree_AddItemBkFill(hEle HELE, nState tree_item_state_, color COLORREF, alp
 		uintptr(alpha))
 }
 
-func XTree_AddItemBkImage(hEle HELE, nState tree_item_state_, hImage HIMAGE) {
+func XTreeAddItemBkImage(hEle HELE, nState tree_item_state_, hImage HIMAGE) {
 	xTree_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -244,27 +244,27 @@ func XTree_AddItemBkImage(hEle HELE, nState tree_item_state_, hImage HIMAGE) {
 
 }
 
-func XTree_GetItemBkInfoCount(hEle HELE, nState tree_item_state_) int {
+func XTreeGetItemBkInfoCount(hEle HELE, nState tree_item_state_) int {
 	ret, _, _ := xTree_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
 	return int(ret)
 }
 
-func XTree_ClearItemBkInfo(hEle HELE, nState tree_item_state_) {
+func XTreeClearItemBkInfo(hEle HELE, nState tree_item_state_) {
 	xTree_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
 }
 
-func XTree_GetItemBkInfoManager(hEle HELE, nState tree_item_state_) HBKINFOM {
+func XTreeGetItemBkInfoManager(hEle HELE, nState tree_item_state_) HBKINFOM {
 	ret, _, _ := xTree_GetItemBkInfoManager.Call(
 		uintptr(hEle),
 		uintptr(nState))
 	return HBKINFOM(ret)
 }
 
-func XTree_GetTemplateObject(hEle HELE, nID int, nTempItemID int) HXCGUI {
+func XTreeGetTemplateObject(hEle HELE, nID int, nTempItemID int) HXCGUI {
 	ret, _, _ := xTree_GetTemplateObject.Call(
 		uintptr(hEle),
 		uintptr(nID),
@@ -272,7 +272,7 @@ func XTree_GetTemplateObject(hEle HELE, nID int, nTempItemID int) HXCGUI {
 	return HXCGUI(ret)
 }
 
-func XTree_GetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
+func XTreeGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xTree_GetItemIDFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI))

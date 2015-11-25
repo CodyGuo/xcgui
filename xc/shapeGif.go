@@ -39,28 +39,28 @@ func xShapeGifSetImage(hShape HXCGUI, hImage HIMAGE) {
 		uintptr(hImage))
 }
 
-func xShapeGifSetLayoutWidth(hShape HXCGUI, nType layout_size_type_, width int) {
+func xShapeGifSetLayoutWidth(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, width int) {
 	xShapeGif_SetLayoutWidth.Call(
 		uintptr(hShape),
 		uintptr(nType),
 		uintptr(width))
 }
 
-func xShapeGifSetLayoutHeight(hShape HXCGUI, nType layout_size_type_, height int) {
+func xShapeGifSetLayoutHeight(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, height int) {
 	xShapeGif_SetLayoutHeight.Call(
 		uintptr(hShape),
 		uintptr(nType),
 		uintptr(height))
 }
 
-func xShapeGifGetLayoutWidth(hShape HXCGUI, nType layout_size_type_, pWidth *int) {
+func xShapeGifGetLayoutWidth(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, pWidth *int) {
 	xShapeGif_GetLayoutWidth.Call(
 		uintptr(hShape),
 		uintptr(nType),
 		uintptr(unsafe.Pointer(pWidth)))
 }
 
-func xShapeGifGetLayoutHeight(hShape HXCGUI, nType layout_size_type_, pHeight *int) {
+func xShapeGifGetLayoutHeight(hShape HXCGUI, nType LAYOUT_SIZE_TYPE_, pHeight *int) {
 	xShapeGif_GetLayoutHeight.Call(
 		uintptr(hShape),
 		uintptr(nType),

@@ -20,3 +20,8 @@ const (
 	WINDOW_POSITION_BODY
 	WINDOW_POSITION_WINDOW
 )
+
+type Position struct {
+	iRow    int
+	iColumn int
+}

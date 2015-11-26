@@ -1,7 +1,9 @@
+// 暂时不注释了
 package xc
 
 import (
 	"syscall"
+	"unsafe"
 )
 
 var (
@@ -63,28 +65,212 @@ func init() {
 
 }
 
-// xMenu_Create
-// xMenu_AddItem
-// xMenu_AddItemIcon
-// xMenu_InsertItem
-// xMenu_InsertItemIcon
-// xMenu_SetAutoDestroy
-// xMenu_EnableDrawBackground
-// xMenu_EnableDrawItem
-// xMenu_Popup
-// xMenu_DestroyMenu
-// xMenu_CloseMenu
-// xMenu_SetBkImage
-// xMenu_SetItemText
-// xMenu_GetItemText
-// xMenu_GetItemTextLength
-// xMenu_SetItemIcon
-// xMenu_SetItemFlags
-// xMenu_SetItemHeight
-// xMenu_GetItemHeight
-// xMenu_SetBorderColor
-// xMenu_GetLeftWidth
-// xMenu_GetLeftSpaceText
-// xMenu_GetItemCount
-// xMenu_SetItemCheck
-// xMenu_IsItemCheck
+func XMenuCreate() HMENUX {
+	ret, _, _ := xMenu_Create.Call()
+
+	return HMENUX(ret)
+}
+
+func XMenuAddItem(hMenu HMENUX, nID int, pText string, nParentID int, nFlags MENU_STATE_FLAGS_) {
+	xMenu_AddItem.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		StringToUintPtr(pText),
+		uintptr(nParentID),
+		uintptr(nFlags))
+}
+
+func XMenuAddItemIcon(hMenu HMENUX, nID int, pText string, nParentID int, hIcon HIMAGE, nFlags MENU_STATE_FLAGS_) {
+	xMenu_AddItemIcon.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		StringToUintPtr(pText),
+		uintptr(nParentID),
+		uintptr(hIcon),
+		uintptr(nFlags))
+}
+
+func XMenuInsertItem(hMenu HMENUX, nID int, pText string, nFlags MENU_STATE_FLAGS_, insertID int) {
+	xMenu_InsertItem.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		StringToUintPtr(pText),
+		uintptr(nFlags),
+		uintptr(insertID))
+}
+
+func XMenuInsertItemIcon(hMenu HMENUX, nID int, pText string, hIcon HIMAGE, nFlags MENU_STATE_FLAGS_, insertID int) {
+	xMenu_InsertItemIcon.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		StringToUintPtr(pText),
+		uintptr(hIcon),
+		uintptr(nFlags),
+		uintptr(insertID))
+}
+
+func XMenuSetAutoDestroy(hMenu HMENUX, bAuto bool) {
+	xMenu_SetAutoDestroy.Call(
+		uintptr(hMenu),
+		uintptr(BoolToBOOL(bAuto)))
+}
+
+func XMenuEnableDrawBackground(hMenu HMENUX, bEnable bool) {
+	xMenu_EnableDrawBackground.Call(
+		uintptr(hMenu),
+		uintptr(BoolToBOOL(bEnable)))
+}
+
+func XMenuEnableDrawItem(hMenu HMENUX, bEnable bool) {
+	xMenu_EnableDrawItem.Call(
+		uintptr(hMenu),
+		uintptr(BoolToBOOL(bEnable)))
+}
+
+func XMenuPopup(hMenu HMENUX, hParentWnd HWND, x, y int, hParentEle HELE, nPosition MENU_POPUP_POSITION_) bool {
+	ret, _, _ := xMenu_Popup.Call(
+		uintptr(hMenu),
+		uintptr(hParentWnd),
+		uintptr(x),
+		uintptr(y),
+		uintptr(hParentEle),
+		uintptr(nPosition))
+
+	if ret != TRUE {
+		return false
+	}
+
+	return true
+
+}
+
+func XMenuDestroyMenu(hMenu HMENUX) {
+	xMenu_DestroyMenu.Call(uintptr(hMenu))
+}
+
+func XMenuCloseMenu(hMenu HMENUX) {
+	xMenu_CloseMenu.Call(uintptr(hMenu))
+}
+
+func XMenuSetBkImage(hMenu HMENUX, hImage HIMAGE) {
+	xMenu_SetBkImage.Call(
+		uintptr(hMenu),
+		uintptr(hImage))
+}
+
+func XMenuSetItemText(hMenu HMENUX, nID int, pText string) bool {
+	ret, _, _ := xMenu_SetItemText.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		StringToUintPtr(pText))
+
+	if ret != TRUE {
+		return false
+	}
+
+	return true
+}
+
+func XMenuGetItemText(hMenu HMENUX, nID int, pOut *uint16, nOutLen int) bool {
+	ret, _, _ := xMenu_GetItemText.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		uintptr(unsafe.Pointer(pOut)),
+		uintptr(nOutLen))
+
+	if ret != TRUE {
+		return false
+	}
+
+	return true
+}
+
+func XMenuGetItemTextLength(hMenu HMENUX, nID int) int {
+	ret, _, _ := xMenu_GetItemTextLength.Call(
+		uintptr(hMenu),
+		uintptr(nID))
+
+	return int(ret)
+}
+
+func XMenuSetItemIcon(hMenu HMENUX, nID int, hIcon HIMAGE) bool {
+	ret, _, _ := xMenu_SetItemIcon.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		uintptr(hIcon))
+
+	if ret != TRUE {
+		return false
+	}
+
+	return true
+}
+
+func XMenuSetItemFlags(hMenu HMENUX, nID int, uFlags MENU_STATE_FLAGS_) bool {
+	ret, _, _ := xMenu_SetItemFlags.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		uintptr(uFlags))
+
+	if ret != TRUE {
+		return false
+	}
+
+	return true
+}
+
+func XMenuSetItemHeight(hMenu HMENUX, height int) {
+	xMenu_SetItemHeight.Call(
+		uintptr(hMenu),
+		uintptr(height))
+}
+
+func XMenuGetItemHeight(hMenu HMENUX) int {
+	ret, _, _ := xMenu_GetItemHeight.Call(uintptr(hMenu))
+
+	return int(ret)
+}
+
+func XMenuSetBorderColor(hMenu HMENUX, crColor COLORREF, alpha byte) {
+	xMenu_SetBorderColor.Call(
+		uintptr(hMenu),
+		uintptr(crColor),
+		uintptr(alpha))
+}
+
+func XMenuGetLeftWidth(hMenu HMENUX) int {
+	ret, _, _ := xMenu_GetLeftWidth.Call(uintptr(hMenu))
+
+	return int(ret)
+}
+
+func XMenuGetLeftSpaceText(hMenu HMENUX) int {
+	ret, _, _ := xMenu_GetLeftSpaceText.Call(uintptr(hMenu))
+
+	return int(ret)
+}
+
+func XMenuGetItemCount(hMenu HMENUX) int {
+	ret, _, _ := xMenu_GetItemCount.Call(uintptr(hMenu))
+
+	return int(ret)
+}
+
+func XMenuSetItemCheck(hMenu HMENUX, nID int, bCheck bool) {
+	xMenu_SetItemCheck.Call(
+		uintptr(hMenu),
+		uintptr(nID),
+		uintptr(BoolToBOOL(bCheck)))
+}
+
+func XMenuIsItemCheck(hMenu HMENUX, nID int) bool {
+	ret, _, _ := xMenu_IsItemCheck.Call(
+		uintptr(hMenu),
+		uintptr(nID))
+
+	if ret != TRUE {
+		return false
+	}
+
+	return true
+}

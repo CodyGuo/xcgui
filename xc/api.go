@@ -25,22 +25,22 @@ var (
 
 var (
 	// Functions
-	XC_UnicodeToAnsi         *syscall.Proc
-	XC_AnsiToUnicode         *syscall.Proc
-	XC_DebugToFileInfo       *syscall.Proc
-	XC_IsHELE                *syscall.Proc
-	XC_IsHWINDOW             *syscall.Proc
-	XC_IsShape               *syscall.Proc
-	XC_IsHXCGUI              *syscall.Proc
-	XC_hWindowFromHWnd       *syscall.Proc
-	XC_IsSViewExtend         *syscall.Proc
-	XC_GetObjectType         *syscall.Proc
-	XC_GetObjectByID         *syscall.Proc
-	XC_RectInRect            *syscall.Proc
-	XC_CombineRect           *syscall.Proc
-	XC_ShowLayoutFrame       *syscall.Proc
-	XC_SetLayoutFrameColor   *syscall.Proc
-	XC_EnableErrorMessageBox *syscall.Proc
+	xC_UnicodeToAnsi         *syscall.Proc
+	xC_AnsiToUnicode         *syscall.Proc
+	xC_DebugToFileInfo       *syscall.Proc
+	xC_IsHELE                *syscall.Proc
+	xC_IsHWINDOW             *syscall.Proc
+	xC_IsShape               *syscall.Proc
+	xC_IsHXCGUI              *syscall.Proc
+	xC_hWindowFromHWnd       *syscall.Proc
+	xC_IsSViewExtend         *syscall.Proc
+	xC_GetObjectType         *syscall.Proc
+	xC_GetObjectByID         *syscall.Proc
+	xC_RectInRect            *syscall.Proc
+	xC_CombineRect           *syscall.Proc
+	xC_ShowLayoutFrame       *syscall.Proc
+	xC_SetLayoutFrameColor   *syscall.Proc
+	xC_EnableErrorMessageBox *syscall.Proc
 	xInitXCGUI               *syscall.Proc
 	xRunXCGUI                *syscall.Proc
 	xExitXCGUI               *syscall.Proc
@@ -82,22 +82,22 @@ func init() {
 	}
 
 	// Functions
-	XC_UnicodeToAnsi = XCDLL.MustFindProc("XC_UnicodeToAnsi")
-	XC_AnsiToUnicode = XCDLL.MustFindProc("XC_AnsiToUnicode")
-	XC_DebugToFileInfo = XCDLL.MustFindProc("XC_DebugToFileInfo")
-	XC_IsHELE = XCDLL.MustFindProc("XC_IsHELE")
-	XC_IsHWINDOW = XCDLL.MustFindProc("XC_IsHWINDOW")
-	XC_IsShape = XCDLL.MustFindProc("XC_IsShape")
-	XC_IsHXCGUI = XCDLL.MustFindProc("XC_IsHXCGUI")
-	XC_hWindowFromHWnd = XCDLL.MustFindProc("XC_hWindowFromHWnd")
-	XC_IsSViewExtend = XCDLL.MustFindProc("XC_IsSViewExtend")
-	XC_GetObjectType = XCDLL.MustFindProc("XC_GetObjectType")
-	XC_GetObjectByID = XCDLL.MustFindProc("XC_GetObjectByID")
-	XC_RectInRect = XCDLL.MustFindProc("XC_RectInRect")
-	XC_CombineRect = XCDLL.MustFindProc("XC_CombineRect")
-	XC_ShowLayoutFrame = XCDLL.MustFindProc("XC_ShowLayoutFrame")
-	XC_SetLayoutFrameColor = XCDLL.MustFindProc("XC_SetLayoutFrameColor")
-	XC_EnableErrorMessageBox = XCDLL.MustFindProc("XC_EnableErrorMessageBox")
+	xC_UnicodeToAnsi = XCDLL.MustFindProc("XC_UnicodeToAnsi")
+	xC_AnsiToUnicode = XCDLL.MustFindProc("XC_AnsiToUnicode")
+	xC_DebugToFileInfo = XCDLL.MustFindProc("XC_DebugToFileInfo")
+	xC_IsHELE = XCDLL.MustFindProc("XC_IsHELE")
+	xC_IsHWINDOW = XCDLL.MustFindProc("XC_IsHWINDOW")
+	xC_IsShape = XCDLL.MustFindProc("XC_IsShape")
+	xC_IsHXCGUI = XCDLL.MustFindProc("XC_IsHXCGUI")
+	xC_hWindowFromHWnd = XCDLL.MustFindProc("XC_hWindowFromHWnd")
+	xC_IsSViewExtend = XCDLL.MustFindProc("XC_IsSViewExtend")
+	xC_GetObjectType = XCDLL.MustFindProc("XC_GetObjectType")
+	xC_GetObjectByID = XCDLL.MustFindProc("XC_GetObjectByID")
+	xC_RectInRect = XCDLL.MustFindProc("XC_RectInRect")
+	xC_CombineRect = XCDLL.MustFindProc("XC_CombineRect")
+	xC_ShowLayoutFrame = XCDLL.MustFindProc("XC_ShowLayoutFrame")
+	xC_SetLayoutFrameColor = XCDLL.MustFindProc("XC_SetLayoutFrameColor")
+	xC_EnableErrorMessageBox = XCDLL.MustFindProc("XC_EnableErrorMessageBox")
 	xInitXCGUI = XCDLL.MustFindProc("XInitXCGUI")
 	xRunXCGUI = XCDLL.MustFindProc("XRunXCGUI")
 	xExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
@@ -145,7 +145,7 @@ func XInitXCGUI() bool {
 // @Return: 如果成功,返回写入接收缓冲区字节数量.
 // *******************************************
 func XCUnicodeToAnsi(pIn string, inLen int, pOut string, outLen int) int {
-	ret, _, _ := XC_UnicodeToAnsi.Call(
+	ret, _, _ := xC_UnicodeToAnsi.Call(
 		StringToUintPtr(pIn),
 		uintptr(inLen),
 		StringToUintPtr(pOut),
@@ -165,7 +165,7 @@ func XCUnicodeToAnsi(pIn string, inLen int, pOut string, outLen int) int {
 // @Return: 如果成功,返回写入接收缓冲区字符wchar_t数量.
 // *******************************************
 func XCAnsiToUnicode(pIn string, inLen int, pOut string, outLen int) int {
-	ret, _, _ := XC_AnsiToUnicode.Call(
+	ret, _, _ := xC_AnsiToUnicode.Call(
 		StringToUintPtr(pIn),
 		uintptr(inLen),
 		StringToUintPtr(pOut),
@@ -183,13 +183,13 @@ func XCDebugToFileInfo(pInfo string) {
 	})(unsafe.Pointer(&pInfo))
 	// fmt.Println("p.info:", p.pInfo)
 
-	XC_DebugToFileInfo.Call(p.pInfo)
+	xC_DebugToFileInfo.Call(p.pInfo)
 
 	// str := syscall.StringToUTF16(pInfo)
 	// s := syscall.UTF16ToString(str)
 	// fmt.Println("str长度:", len(str), str, s)
 	// m := str[0 : len(str)-1]
-	// XC_DebugToFileInfo.Call(uintptr(unsafe.Pointer(&m)))
+	// xC_DebugToFileInfo.Call(uintptr(unsafe.Pointer(&m)))
 	// fmt.Println(pInfo)
 }
 
@@ -203,7 +203,7 @@ func XCDebugToFileInfo(pInfo string) {
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XCIsHELE(hEle HXCGUI) bool {
-	ret, _, _ := XC_IsHELE.Call(uintptr(hEle))
+	ret, _, _ := xC_IsHELE.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -222,7 +222,7 @@ func XCIsHELE(hEle HXCGUI) bool {
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XCIsHWINDOW(hWindow HXCGUI) bool {
-	ret, _, _ := XC_IsHWINDOW.Call(uintptr(hWindow))
+	ret, _, _ := xC_IsHWINDOW.Call(uintptr(hWindow))
 
 	if ret != TRUE {
 		return false
@@ -241,7 +241,7 @@ func XCIsHWINDOW(hWindow HXCGUI) bool {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XCIsShape(hShape HXCGUI) bool {
-	ret, _, _ := XC_IsShape.Call(uintptr(hShape))
+	ret, _, _ := xC_IsShape.Call(uintptr(hShape))
 
 	if ret != TRUE {
 		return false
@@ -260,7 +260,7 @@ func XCIsShape(hShape HXCGUI) bool {
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XCIsHXCGUI(hXCGUI HXCGUI, nType XC_OBJECT_TYPE) bool {
-	ret, _, _ := XC_IsHXCGUI.Call(
+	ret, _, _ := xC_IsHXCGUI.Call(
 		uintptr(hXCGUI),
 		uintptr(nType))
 
@@ -281,7 +281,7 @@ func XCIsHXCGUI(hXCGUI HXCGUI, nType XC_OBJECT_TYPE) bool {
 // @Return: 返回HWINDOW句柄.
 // *******************************************
 func XChWindowFromHWnd(hWnd HWND) HWINDOW {
-	ret, _, _ := XC_hWindowFromHWnd.Call(uintptr(hWnd))
+	ret, _, _ := xC_hWindowFromHWnd.Call(uintptr(hWnd))
 
 	return HWINDOW(ret)
 }
@@ -296,7 +296,7 @@ func XChWindowFromHWnd(hWnd HWND) HWINDOW {
 // @Return: 如果是返回TRUE,否则相反.
 // *******************************************
 func XCIsSViewExtend(hEle HELE) bool {
-	ret, _, _ := XC_IsSViewExtend.Call(uintptr(hEle))
+	ret, _, _ := xC_IsSViewExtend.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -315,7 +315,7 @@ func XCIsSViewExtend(hEle HELE) bool {
 // @Return: 返回句柄类型.
 // *******************************************
 func XCGetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
-	ret, _, _ := XC_GetObjectType.Call(uintptr(hXCGUI))
+	ret, _, _ := xC_GetObjectType.Call(uintptr(hXCGUI))
 
 	return XC_OBJECT_TYPE(ret)
 }
@@ -330,7 +330,7 @@ func XCGetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
 // @Return: 成功返回句柄,否则返回NULL.
 // *******************************************
 func XCGetObjectByID(nID int) HXCGUI {
-	ret, _, _ := XC_GetObjectByID.Call(uintptr(nID))
+	ret, _, _ := xC_GetObjectByID.Call(uintptr(nID))
 
 	if ret == NULL {
 		panic("XCGetObjectByID get HXCGUI failed.")
@@ -349,7 +349,7 @@ func XCGetObjectByID(nID int) HXCGUI {
 // @Return: 如果两个矩形相交返回TRUE,否则相反.
 // *******************************************
 func XCRectInRect(pRect1, pRect2 *RECT) bool {
-	ret, _, _ := XC_RectInRect.Call(
+	ret, _, _ := xC_RectInRect.Call(
 		uintptr(unsafe.Pointer(pRect1)),
 		uintptr(unsafe.Pointer(pRect2)))
 
@@ -370,7 +370,7 @@ func XCRectInRect(pRect1, pRect2 *RECT) bool {
 // @Return:
 // *******************************************
 func XCCombineRect(pDest, pSrc1, pSrc2 *RECT) {
-	XC_CombineRect.Call(
+	xC_CombineRect.Call(
 		uintptr(unsafe.Pointer(pDest)),
 		uintptr(unsafe.Pointer(pSrc1)),
 		uintptr(unsafe.Pointer(pSrc2)))
@@ -386,7 +386,7 @@ func XCCombineRect(pDest, pSrc1, pSrc2 *RECT) {
 // @Return:
 // *******************************************
 func XCShowLayoutFrame(bShow bool) {
-	XC_ShowLayoutFrame.Call(uintptr(BoolToBOOL(bShow)))
+	xC_ShowLayoutFrame.Call(uintptr(BoolToBOOL(bShow)))
 }
 
 // *******************************************
@@ -399,7 +399,7 @@ func XCShowLayoutFrame(bShow bool) {
 // @Return:
 // *******************************************
 func XCSetLayoutFrameColor(color COLORREF) {
-	XC_SetLayoutFrameColor.Call(uintptr(color))
+	xC_SetLayoutFrameColor.Call(uintptr(color))
 }
 
 // *******************************************
@@ -412,7 +412,7 @@ func XCSetLayoutFrameColor(color COLORREF) {
 // @Return:
 // *******************************************
 func XCEnableErrorMessageBox(bEnabel bool) {
-	XC_EnableErrorMessageBox.Call(uintptr(BoolToBOOL(bEnabel)))
+	xC_EnableErrorMessageBox.Call(uintptr(BoolToBOOL(bEnabel)))
 }
 
 // 运行消息循环,当炫彩窗口数量为0时退出.

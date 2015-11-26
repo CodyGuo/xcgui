@@ -7,89 +7,89 @@ import (
 
 var (
 	// Functions
-	XRichEdit_Create                         *syscall.Proc
-	XRichEdit_InsertString                   *syscall.Proc
-	XRichEdit_InsertImage                    *syscall.Proc
-	XRichEdit_InsertGif                      *syscall.Proc
-	XRichEdit_InsertStringEx                 *syscall.Proc
-	XRichEdit_InsertImageEx                  *syscall.Proc
-	XRichEdit_InsertGifEx                    *syscall.Proc
-	XRichEdit_SetText                        *syscall.Proc
-	XRichEdit_SetTextInt                     *syscall.Proc
-	XRichEdit_GetText                        *syscall.Proc
-	XRichEdit_GetHTMLFormat                  *syscall.Proc
-	XRichEdit_GetData                        *syscall.Proc
-	XRichEdit_InsertData                     *syscall.Proc
-	XRichEdit_EnableReadOnly                 *syscall.Proc
-	XRichEdit_EnableMultiLine                *syscall.Proc
-	XRichEdit_EnablePassword                 *syscall.Proc
-	XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE *syscall.Proc
-	XRichEdit_EnableAutoWrap                 *syscall.Proc
-	XRichEdit_EnableAutoCancelSel            *syscall.Proc
-	XRichEdit_GetTextLength                  *syscall.Proc
-	XRichEdit_SetRowHeight                   *syscall.Proc
-	XRichEdit_GetCurrentRow                  *syscall.Proc
-	XRichEdit_GetCurrentColumn               *syscall.Proc
-	XRichEdit_SetCurrentPos                  *syscall.Proc
-	XRichEdit_GetRowCount                    *syscall.Proc
-	XRichEdit_GetRowLength                   *syscall.Proc
-	XRichEdit_GetSelectText                  *syscall.Proc
-	XRichEdit_GetSelectPosition              *syscall.Proc
-	XRichEdit_SetSelect                      *syscall.Proc
-	XRichEdit_SetItemFontEx                  *syscall.Proc
-	XRichEdit_SetItemColorEx                 *syscall.Proc
-	XRichEdit_CancelSelect                   *syscall.Proc
-	XRichEdit_SetSelectBkColor               *syscall.Proc
-	XRichEdit_IsEmpty                        *syscall.Proc
-	XRichEdit_SelectAll                      *syscall.Proc
-	XRichEdit_DeleteSelect                   *syscall.Proc
-	XRichEdit_DeleteAll                      *syscall.Proc
-	XRichEdit_ClipboardCut                   *syscall.Proc
-	XRichEdit_ClipboardCopy                  *syscall.Proc
-	XRichEdit_ClipboardPaste                 *syscall.Proc
+	xRichEdit_Create                         *syscall.Proc
+	xRichEdit_InsertString                   *syscall.Proc
+	xRichEdit_InsertImage                    *syscall.Proc
+	xRichEdit_InsertGif                      *syscall.Proc
+	xRichEdit_InsertStringEx                 *syscall.Proc
+	xRichEdit_InsertImageEx                  *syscall.Proc
+	xRichEdit_InsertGifEx                    *syscall.Proc
+	xRichEdit_SetText                        *syscall.Proc
+	xRichEdit_SetTextInt                     *syscall.Proc
+	xRichEdit_GetText                        *syscall.Proc
+	xRichEdit_GetHTMLFormat                  *syscall.Proc
+	xRichEdit_GetData                        *syscall.Proc
+	xRichEdit_InsertData                     *syscall.Proc
+	xRichEdit_EnableReadOnly                 *syscall.Proc
+	xRichEdit_EnableMultiLine                *syscall.Proc
+	xRichEdit_EnablePassword                 *syscall.Proc
+	xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE *syscall.Proc
+	xRichEdit_EnableAutoWrap                 *syscall.Proc
+	xRichEdit_EnableAutoCancelSel            *syscall.Proc
+	xRichEdit_GetTextLength                  *syscall.Proc
+	xRichEdit_SetRowHeight                   *syscall.Proc
+	xRichEdit_GetCurrentRow                  *syscall.Proc
+	xRichEdit_GetCurrentColumn               *syscall.Proc
+	xRichEdit_SetCurrentPos                  *syscall.Proc
+	xRichEdit_GetRowCount                    *syscall.Proc
+	xRichEdit_GetRowLength                   *syscall.Proc
+	xRichEdit_GetSelectText                  *syscall.Proc
+	xRichEdit_GetSelectPosition              *syscall.Proc
+	xRichEdit_SetSelect                      *syscall.Proc
+	xRichEdit_SetItemFontEx                  *syscall.Proc
+	xRichEdit_SetItemColorEx                 *syscall.Proc
+	xRichEdit_CancelSelect                   *syscall.Proc
+	xRichEdit_SetSelectBkColor               *syscall.Proc
+	xRichEdit_IsEmpty                        *syscall.Proc
+	xRichEdit_SelectAll                      *syscall.Proc
+	xRichEdit_DeleteSelect                   *syscall.Proc
+	xRichEdit_DeleteAll                      *syscall.Proc
+	xRichEdit_ClipboardCut                   *syscall.Proc
+	xRichEdit_ClipboardCopy                  *syscall.Proc
+	xRichEdit_ClipboardPaste                 *syscall.Proc
 )
 
 func init() {
-	XRichEdit_Create = XCDLL.MustFindProc("XRichEdit_Create")
-	XRichEdit_InsertString = XCDLL.MustFindProc("XRichEdit_InsertString")
-	XRichEdit_InsertImage = XCDLL.MustFindProc("XRichEdit_InsertImage")
-	XRichEdit_InsertGif = XCDLL.MustFindProc("XRichEdit_InsertGif")
-	XRichEdit_InsertStringEx = XCDLL.MustFindProc("XRichEdit_InsertStringEx")
-	XRichEdit_InsertImageEx = XCDLL.MustFindProc("XRichEdit_InsertImageEx")
-	XRichEdit_InsertGifEx = XCDLL.MustFindProc("XRichEdit_InsertGifEx")
-	XRichEdit_SetText = XCDLL.MustFindProc("XRichEdit_SetText")
-	XRichEdit_SetTextInt = XCDLL.MustFindProc("XRichEdit_SetTextInt")
-	XRichEdit_GetText = XCDLL.MustFindProc("XRichEdit_GetText")
-	XRichEdit_GetHTMLFormat = XCDLL.MustFindProc("XRichEdit_GetHTMLFormat")
-	XRichEdit_GetData = XCDLL.MustFindProc("XRichEdit_GetData")
-	XRichEdit_InsertData = XCDLL.MustFindProc("XRichEdit_InsertData")
-	XRichEdit_EnableReadOnly = XCDLL.MustFindProc("XRichEdit_EnableReadOnly")
-	XRichEdit_EnableMultiLine = XCDLL.MustFindProc("XRichEdit_EnableMultiLine")
-	XRichEdit_EnablePassword = XCDLL.MustFindProc("XRichEdit_EnablePassword")
-	XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE = XCDLL.MustFindProc("XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE")
-	XRichEdit_EnableAutoWrap = XCDLL.MustFindProc("XRichEdit_EnableAutoWrap")
-	XRichEdit_EnableAutoCancelSel = XCDLL.MustFindProc("XRichEdit_EnableAutoCancelSel")
-	XRichEdit_GetTextLength = XCDLL.MustFindProc("XRichEdit_GetTextLength")
-	XRichEdit_SetRowHeight = XCDLL.MustFindProc("XRichEdit_SetRowHeight")
-	XRichEdit_GetCurrentRow = XCDLL.MustFindProc("XRichEdit_GetCurrentRow")
-	XRichEdit_GetCurrentColumn = XCDLL.MustFindProc("XRichEdit_GetCurrentColumn")
-	XRichEdit_SetCurrentPos = XCDLL.MustFindProc("XRichEdit_SetCurrentPos")
-	XRichEdit_GetRowCount = XCDLL.MustFindProc("XRichEdit_GetRowCount")
-	XRichEdit_GetRowLength = XCDLL.MustFindProc("XRichEdit_GetRowLength")
-	XRichEdit_GetSelectText = XCDLL.MustFindProc("XRichEdit_GetSelectText")
-	XRichEdit_GetSelectPosition = XCDLL.MustFindProc("XRichEdit_GetSelectPosition")
-	XRichEdit_SetSelect = XCDLL.MustFindProc("XRichEdit_SetSelect")
-	XRichEdit_SetItemFontEx = XCDLL.MustFindProc("XRichEdit_SetItemFontEx")
-	XRichEdit_SetItemColorEx = XCDLL.MustFindProc("XRichEdit_SetItemColorEx")
-	XRichEdit_CancelSelect = XCDLL.MustFindProc("XRichEdit_CancelSelect")
-	XRichEdit_SetSelectBkColor = XCDLL.MustFindProc("XRichEdit_SetSelectBkColor")
-	XRichEdit_IsEmpty = XCDLL.MustFindProc("XRichEdit_IsEmpty")
-	XRichEdit_SelectAll = XCDLL.MustFindProc("XRichEdit_SelectAll")
-	XRichEdit_DeleteSelect = XCDLL.MustFindProc("XRichEdit_DeleteSelect")
-	XRichEdit_DeleteAll = XCDLL.MustFindProc("XRichEdit_DeleteAll")
-	XRichEdit_ClipboardCut = XCDLL.MustFindProc("XRichEdit_ClipboardCut")
-	XRichEdit_ClipboardCopy = XCDLL.MustFindProc("XRichEdit_ClipboardCopy")
-	XRichEdit_ClipboardPaste = XCDLL.MustFindProc("XRichEdit_ClipboardPaste")
+	xRichEdit_Create = XCDLL.MustFindProc("XRichEdit_Create")
+	xRichEdit_InsertString = XCDLL.MustFindProc("XRichEdit_InsertString")
+	xRichEdit_InsertImage = XCDLL.MustFindProc("XRichEdit_InsertImage")
+	xRichEdit_InsertGif = XCDLL.MustFindProc("XRichEdit_InsertGif")
+	xRichEdit_InsertStringEx = XCDLL.MustFindProc("XRichEdit_InsertStringEx")
+	xRichEdit_InsertImageEx = XCDLL.MustFindProc("XRichEdit_InsertImageEx")
+	xRichEdit_InsertGifEx = XCDLL.MustFindProc("XRichEdit_InsertGifEx")
+	xRichEdit_SetText = XCDLL.MustFindProc("XRichEdit_SetText")
+	xRichEdit_SetTextInt = XCDLL.MustFindProc("XRichEdit_SetTextInt")
+	xRichEdit_GetText = XCDLL.MustFindProc("XRichEdit_GetText")
+	xRichEdit_GetHTMLFormat = XCDLL.MustFindProc("XRichEdit_GetHTMLFormat")
+	xRichEdit_GetData = XCDLL.MustFindProc("XRichEdit_GetData")
+	xRichEdit_InsertData = XCDLL.MustFindProc("XRichEdit_InsertData")
+	xRichEdit_EnableReadOnly = XCDLL.MustFindProc("XRichEdit_EnableReadOnly")
+	xRichEdit_EnableMultiLine = XCDLL.MustFindProc("XRichEdit_EnableMultiLine")
+	xRichEdit_EnablePassword = XCDLL.MustFindProc("XRichEdit_EnablePassword")
+	xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE = XCDLL.MustFindProc("XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE")
+	xRichEdit_EnableAutoWrap = XCDLL.MustFindProc("XRichEdit_EnableAutoWrap")
+	xRichEdit_EnableAutoCancelSel = XCDLL.MustFindProc("XRichEdit_EnableAutoCancelSel")
+	xRichEdit_GetTextLength = XCDLL.MustFindProc("XRichEdit_GetTextLength")
+	xRichEdit_SetRowHeight = XCDLL.MustFindProc("XRichEdit_SetRowHeight")
+	xRichEdit_GetCurrentRow = XCDLL.MustFindProc("XRichEdit_GetCurrentRow")
+	xRichEdit_GetCurrentColumn = XCDLL.MustFindProc("XRichEdit_GetCurrentColumn")
+	xRichEdit_SetCurrentPos = XCDLL.MustFindProc("XRichEdit_SetCurrentPos")
+	xRichEdit_GetRowCount = XCDLL.MustFindProc("XRichEdit_GetRowCount")
+	xRichEdit_GetRowLength = XCDLL.MustFindProc("XRichEdit_GetRowLength")
+	xRichEdit_GetSelectText = XCDLL.MustFindProc("XRichEdit_GetSelectText")
+	xRichEdit_GetSelectPosition = XCDLL.MustFindProc("XRichEdit_GetSelectPosition")
+	xRichEdit_SetSelect = XCDLL.MustFindProc("XRichEdit_SetSelect")
+	xRichEdit_SetItemFontEx = XCDLL.MustFindProc("XRichEdit_SetItemFontEx")
+	xRichEdit_SetItemColorEx = XCDLL.MustFindProc("XRichEdit_SetItemColorEx")
+	xRichEdit_CancelSelect = XCDLL.MustFindProc("XRichEdit_CancelSelect")
+	xRichEdit_SetSelectBkColor = XCDLL.MustFindProc("XRichEdit_SetSelectBkColor")
+	xRichEdit_IsEmpty = XCDLL.MustFindProc("XRichEdit_IsEmpty")
+	xRichEdit_SelectAll = XCDLL.MustFindProc("XRichEdit_SelectAll")
+	xRichEdit_DeleteSelect = XCDLL.MustFindProc("XRichEdit_DeleteSelect")
+	xRichEdit_DeleteAll = XCDLL.MustFindProc("XRichEdit_DeleteAll")
+	xRichEdit_ClipboardCut = XCDLL.MustFindProc("XRichEdit_ClipboardCut")
+	xRichEdit_ClipboardCopy = XCDLL.MustFindProc("XRichEdit_ClipboardCopy")
+	xRichEdit_ClipboardPaste = XCDLL.MustFindProc("XRichEdit_ClipboardPaste")
 }
 
 // *******************************************
@@ -97,13 +97,13 @@ func init() {
 // @Date: 2015-11-25 10:32:00
 // @Function: XRichEditCreate
 // @Description: 创建富文本编辑框.
-// @Calls: XRichEdit_Create
+// @Calls: xRichEdit_Create
 // @Input: x 元素x坐标. y 元素y坐标. cx 宽度. cy 高度.
 //         hParent 父是窗口资源句柄或UI元素资源句柄.如果是窗口资源句柄将被添加到窗口, 如果是元素资源句柄将被添加到元素.
 // @Return: 元素句柄.
 // *******************************************
 func XRichEditCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
-	ret, _, _ := XRichEdit_Create.Call(
+	ret, _, _ := xRichEdit_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
@@ -118,12 +118,12 @@ func XRichEditCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 // @Date: 2015-11-25 10:35:49
 // @Function: XRichEditInsertString
 // @Description: 插入字符串到当前位置.
-// @Calls: XRichEdit_InsertString
+// @Calls: xRichEdit_InsertString
 // @Input: hEle 元素句柄. pString 字符串指针. pFont 字体. color 颜色.
 // @Return: 元素句柄.
 // *******************************************
 func XRichEditInsertString(hEle HELE, pString string, pFont *LOGFONTW, color COLORREF) {
-	XRichEdit_InsertString.Call(
+	xRichEdit_InsertString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pString),
 		uintptr(unsafe.Pointer(pFont)),
@@ -135,12 +135,12 @@ func XRichEditInsertString(hEle HELE, pString string, pFont *LOGFONTW, color COL
 // @Date: 2015-11-25 11:04:08
 // @Function: XRichEditInsertString
 // @Description: 插入图片到当前位置.
-// @Calls: XRichEdit_InsertString
+// @Calls: xRichEdit_InsertString
 // @Input: hEle 元素句柄. hImage 图片句柄. pImagePath 图片路径,用于图片的复制.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath *string) bool {
-	ret, _, _ := XRichEdit_InsertImage.Call(
+	ret, _, _ := xRichEdit_InsertImage.Call(
 		uintptr(hEle),
 		uintptr(hImage),
 		uintptr(unsafe.Pointer(pImagePath)))
@@ -157,12 +157,12 @@ func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath *string) bool {
 // @Date: 2015-11-25 20:10:08
 // @Function: XRichEditInsertGif
 // @Description: 插入GIF动画图片到当前位置.
-// @Calls: XRichEdit_InsertGif
+// @Calls: xRichEdit_InsertGif
 // @Input: hEle 元素句柄. hImage 图片句柄. pImagePath 图片路径,用于图片的复制.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath *string) bool {
-	ret, _, _ := XRichEdit_InsertGif.Call(
+	ret, _, _ := xRichEdit_InsertGif.Call(
 		uintptr(hEle),
 		uintptr(hImage),
 		uintptr(unsafe.Pointer(pImagePath)))
@@ -179,12 +179,12 @@ func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath *string) bool {
 // @Date: 2015-11-25 20:11:34
 // @Function: XRichEditInsertStringEx
 // @Description: 插入字符串.
-// @Calls: XRichEdit_InsertStringEx
+// @Calls: xRichEdit_InsertStringEx
 // @Input: hEle 元素句柄. iRow 行索引. iColumn 列索引. pString 字符串指针. pFont 字体. color 颜色.
 // @Return:
 // *******************************************
 func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString *string, pFont *LOGFONTW, color COLORREF) {
-	XRichEdit_InsertStringEx.Call(
+	xRichEdit_InsertStringEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
 		uintptr(iColumn),
@@ -198,13 +198,13 @@ func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString *string, pFon
 // @Date: 2015-11-25 20:15:32
 // @Function: XRichEditInsertImageEx
 // @Description: 插入图片.
-// @Calls: XRichEdit_InsertImageEx
+// @Calls: xRichEdit_InsertImageEx
 // @Input: hEle 元素句柄. iRow 插入的行位置,如果值为-1插入到末尾行. iColumn 插入的列位置,如果值为-1插入末尾列.
 //         hImage 图片句柄. pImagePath 图片路径,用于图片的复制.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath *string) bool {
-	ret, _, _ := XRichEdit_InsertImageEx.Call(
+	ret, _, _ := xRichEdit_InsertImageEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
 		uintptr(iColumn),
@@ -223,13 +223,13 @@ func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImageP
 // @Date: 2015-11-25 20:47:02
 // @Function: XRichEditInsertGifEx
 // @Description: 插入GIF动画图片.
-// @Calls: XRichEdit_InsertGifEx
+// @Calls: xRichEdit_InsertGifEx
 // @Input: hEle 元素句柄. iRow 插入的行位置,如果值为-1插入到末尾行. iColumn 插入的列位置,如果值为-1插入末尾列.
 //         hImage 图片句柄. pImagePath 图片路径,用于图片的复制.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath *string) bool {
-	ret, _, _ := XRichEdit_InsertGifEx.Call(
+	ret, _, _ := xRichEdit_InsertGifEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
 		uintptr(iColumn),
@@ -248,12 +248,12 @@ func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePat
 // @Date: 2015-11-25 20:48:33
 // @Function: XRichEditSetText
 // @Description: 设置文本内容.
-// @Calls: XRichEdit_SetText
+// @Calls: xRichEdit_SetText
 // @Input: hEle 元素句柄. pString 字符串指针.
 // @Return:
 // *******************************************
 func XRichEditSetText(hEle HELE, pString *string) {
-	XRichEdit_SetText.Call(
+	xRichEdit_SetText.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pString)))
 }
@@ -263,12 +263,12 @@ func XRichEditSetText(hEle HELE, pString *string) {
 // @Date: 2015-11-25 20:50:10
 // @Function: XRichEditSetTextInt
 // @Description: 设置内容.
-// @Calls: XRichEdit_SetTextInt
+// @Calls: xRichEdit_SetTextInt
 // @Input: hEle 元素句柄. nVaule 整型值.
 // @Return:
 // *******************************************
 func XRichEditSetTextInt(hEle HELE, nVaule int) {
-	XRichEdit_SetTextInt.Call(
+	xRichEdit_SetTextInt.Call(
 		uintptr(hEle),
 		uintptr(nVaule))
 }
@@ -278,12 +278,12 @@ func XRichEditSetTextInt(hEle HELE, nVaule int) {
 // @Date: 2015-11-25 20:51:23
 // @Function: XRichEditGetText
 // @Description: 获取文本内容.
-// @Calls: XRichEdit_GetText
+// @Calls: xRichEdit_GetText
 // @Input: hEle 元素句柄. pOut 接收内容缓冲区. len 缓冲区长度,字符为单位.
 // @Return: 返回内容长度,不包含空终止符.
 // *******************************************
 func XRichEditGetText(hEle HELE, pOut *uint16, len int) int {
-	ret, _, _ := XRichEdit_GetText.Call(
+	ret, _, _ := xRichEdit_GetText.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
 		uintptr(len))
@@ -296,12 +296,12 @@ func XRichEditGetText(hEle HELE, pOut *uint16, len int) int {
 // @Date: 2015-11-25 20:54:14
 // @Function: XRichEditGetHTMLFormat
 // @Description: 获取HTML格式内容.
-// @Calls: XRichEdit_GetHTMLFormat
+// @Calls: xRichEdit_GetHTMLFormat
 // @Input: hEle 元素句柄. pOut 接收内容缓冲区. len 缓冲区长度,字符为单位.
 // @Return: 返回内容长度,不包含空终止符.
 // *******************************************
 func XRichEditGetHTMLFormat(hEle HELE, pOut *uint16, len int) {
-	XRichEdit_GetHTMLFormat.Call(
+	xRichEdit_GetHTMLFormat.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
 		uintptr(len))
@@ -313,12 +313,12 @@ func XRichEditGetHTMLFormat(hEle HELE, pOut *uint16, len int) {
 // @Date: 2015-11-25 20:55:09
 // @Function: XRichEditGetData
 // @Description: 获取富文本数据,包含字体,图片,颜色信息.
-// @Calls: XRichEdit_GetData
+// @Calls: xRichEdit_GetData
 // @Input: hEle 元素句柄. pDataSize 返回数据大小,字节为单位.
 // @Return: 返回数据内存指针,不用之后需要释放内容XC_Free().
 // *******************************************
 func XRichEditGetData(hEle HELE, pDataSize *int) {
-	XRichEdit_GetData.Call(
+	xRichEdit_GetData.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pDataSize)))
 }
@@ -328,12 +328,12 @@ func XRichEditGetData(hEle HELE, pDataSize *int) {
 // @Date: 2015-11-25 20:57:12
 // @Function: XRichEditInsertData
 // @Description: 插入数据内容,包含字体,图片,颜色信息.
-// @Calls: XRichEdit_InsertData
+// @Calls: xRichEdit_InsertData
 // @Input: hEle 元素句柄. pData 数据指针. iRow 插入的行位置,如果值为-1插入到末尾行. iColumn 插入的列位置,如果值为-1插入末尾列.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditInsertData(hEle HELE, pData *interface{}, iRow, iColumn int) bool {
-	ret, _, _ := XRichEdit_InsertData.Call(
+	ret, _, _ := xRichEdit_InsertData.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pData)),
 		uintptr(iRow),
@@ -351,12 +351,12 @@ func XRichEditInsertData(hEle HELE, pData *interface{}, iRow, iColumn int) bool 
 // @Date: 2015-11-25 21:03:44
 // @Function: XRichEditEnableReadOnly
 // @Description: 启用只读模式.
-// @Calls: XRichEdit_EnableReadOnly
+// @Calls: xRichEdit_EnableReadOnly
 // @Input: hEle 元素句柄. bEnable 是否启用.
 // @Return:
 // *******************************************
 func XRichEditEnableReadOnly(hEle HELE, bEnable bool) {
-	XRichEdit_EnableReadOnly.Call(
+	xRichEdit_EnableReadOnly.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
@@ -366,12 +366,12 @@ func XRichEditEnableReadOnly(hEle HELE, bEnable bool) {
 // @Date: 2015-11-25 21:05:11
 // @Function: XRichEditEnableMultiLine
 // @Description: 启用多行模式.
-// @Calls: XRichEdit_EnableMultiLine
+// @Calls: xRichEdit_EnableMultiLine
 // @Input: hEle 元素句柄. bEnable 是否启用.
 // @Return:
 // *******************************************
 func XRichEditEnableMultiLine(hEle HELE, bEnable bool) {
-	XRichEdit_EnableMultiLine.Call(
+	xRichEdit_EnableMultiLine.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
@@ -381,12 +381,12 @@ func XRichEditEnableMultiLine(hEle HELE, bEnable bool) {
 // @Date: 2015-11-25 21:05:58
 // @Function: XRichEditEnablePassword
 // @Description: 启用密码模式.
-// @Calls: XRichEdit_EnablePassword
+// @Calls: xRichEdit_EnablePassword
 // @Input: hEle 元素句柄. bEnable 是否启用.
 // @Return:
 // *******************************************
 func XRichEditEnablePassword(hEle HELE, bEnable bool) {
-	XRichEdit_EnablePassword.Call(
+	xRichEdit_EnablePassword.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
@@ -396,12 +396,12 @@ func XRichEditEnablePassword(hEle HELE, bEnable bool) {
 // @Date: 2015-11-25 21:06:41
 // @Function: XRichEditEnableEvent_XE_RICHEDIT_CHANGE
 // @Description: 启用XE_RICHEDIT_CHANGE事件.
-// @Calls: XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE
+// @Calls: xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE
 // @Input: hEle 元素句柄. bEnable 是否启用.
 // @Return:
 // *******************************************
 func XRichEditEnableEvent_XE_RICHEDIT_CHANGE(hEle HELE, bEnable bool) {
-	XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE.Call(
+	xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
@@ -411,12 +411,12 @@ func XRichEditEnableEvent_XE_RICHEDIT_CHANGE(hEle HELE, bEnable bool) {
 // @Date: 2015-11-25 21:07:27
 // @Function: XRichEditEnableAutoWrap
 // @Description: 启用自动换行.
-// @Calls: XRichEdit_EnableAutoWrap
+// @Calls: xRichEdit_EnableAutoWrap
 // @Input: hEle 元素句柄. bEnable 是否启用.
 // @Return:
 // *******************************************
 func XRichEditEnableAutoWrap(hEle HELE, bEnable bool) {
-	XRichEdit_EnableAutoWrap.Call(
+	xRichEdit_EnableAutoWrap.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
@@ -426,12 +426,12 @@ func XRichEditEnableAutoWrap(hEle HELE, bEnable bool) {
 // @Date: 2015-11-25 21:08:12
 // @Function: XRichEditEnableAutoCancelSel
 // @Description: 当失去焦点时,自动取消选择内容.
-// @Calls: XRichEdit_EnableAutoCancelSel
+// @Calls: xRichEdit_EnableAutoCancelSel
 // @Input: hEle 元素句柄. bEnable 是否启用.
 // @Return:
 // *******************************************
 func XRichEditEnableAutoCancelSel(hEle HELE, bEnable bool) {
-	XRichEdit_EnableAutoCancelSel.Call(
+	xRichEdit_EnableAutoCancelSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
@@ -441,12 +441,12 @@ func XRichEditEnableAutoCancelSel(hEle HELE, bEnable bool) {
 // @Date: 2015-11-25 21:09:01
 // @Function: XRichEditGetTextLength
 // @Description: 获取文本内容长度.
-// @Calls: XRichEdit_GetTextLength
+// @Calls: xRichEdit_GetTextLength
 // @Input: hEle 元素句柄.
 // @Return: 长度,不包含空终止符.
 // *******************************************
 func XRichEditGetTextLength(hEle HELE) int {
-	ret, _, _ := XRichEdit_GetTextLength.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_GetTextLength.Call(uintptr(hEle))
 
 	return int(ret)
 }
@@ -456,12 +456,12 @@ func XRichEditGetTextLength(hEle HELE) int {
 // @Date: 2015-11-25 21:10:09
 // @Function: XRichEditSetRowHeight
 // @Description: 设置默认行高.
-// @Calls: XRichEdit_SetRowHeight
+// @Calls: xRichEdit_SetRowHeight
 // @Input: hEle 元素句柄. nHeight 高度.
 // @Return:
 // *******************************************
 func XRichEditSetRowHeight(hEle HELE, nHeight uint) {
-	XRichEdit_SetRowHeight.Call(
+	xRichEdit_SetRowHeight.Call(
 		uintptr(hEle),
 		uintptr(nHeight))
 }
@@ -471,12 +471,12 @@ func XRichEditSetRowHeight(hEle HELE, nHeight uint) {
 // @Date: 2015-11-25 21:12:09
 // @Function: XRichEditGetCurrentRow
 // @Description: 获取当前行索引.
-// @Calls: XRichEdit_GetCurrentRow
+// @Calls: xRichEdit_GetCurrentRow
 // @Input: hEle 元素句柄.
 // @Return: 当前行索引.
 // *******************************************
 func XRichEditGetCurrentRow(hEle HELE) int {
-	ret, _, _ := XRichEdit_GetCurrentRow.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_GetCurrentRow.Call(uintptr(hEle))
 
 	return int(ret)
 }
@@ -486,12 +486,12 @@ func XRichEditGetCurrentRow(hEle HELE) int {
 // @Date: 2015-11-25 21:15:58
 // @Function: XRichEditGetCurrentColumn
 // @Description: 获取当前列索引.
-// @Calls: XRichEdit_GetCurrentColumn
+// @Calls: xRichEdit_GetCurrentColumn
 // @Input: hEle 元素句柄.
 // @Return: 当前列索引.
 // *******************************************
 func XRichEditGetCurrentColumn(hEle HELE) int {
-	ret, _, _ := XRichEdit_GetCurrentColumn.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_GetCurrentColumn.Call(uintptr(hEle))
 
 	return int(ret)
 }
@@ -501,12 +501,12 @@ func XRichEditGetCurrentColumn(hEle HELE) int {
 // @Date: 2015-11-25 21:16:51
 // @Function: XRichEditSetCurrentPos
 // @Description: 设置当前输入位置.
-// @Calls: XRichEdit_SetCurrentPos
+// @Calls: xRichEdit_SetCurrentPos
 // @Input: hEle 元素句柄. iRow 行索引,-1代表末尾行. iColumn 列索引,-1代表末尾列.
 // @Return:
 // *******************************************
 func XRichEditSetCurrentPos(hEle HELE, iColumn, iRow int) {
-	XRichEdit_SetCurrentPos.Call(
+	xRichEdit_SetCurrentPos.Call(
 		uintptr(hEle),
 		uintptr(iColumn),
 		uintptr(iRow))
@@ -517,12 +517,12 @@ func XRichEditSetCurrentPos(hEle HELE, iColumn, iRow int) {
 // @Date: 2015-11-25 21:18:41
 // @Function: XRichEditGetRowCount
 // @Description: 获取行数量.
-// @Calls: XRichEdit_GetRowCount
+// @Calls: xRichEdit_GetRowCount
 // @Input: hEle 元素句柄.
 // @Return: 行数量.
 // *******************************************
 func XRichEditGetRowCount(hEle HELE) int {
-	ret, _, _ := XRichEdit_GetRowCount.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_GetRowCount.Call(uintptr(hEle))
 
 	return int(ret)
 }
@@ -532,12 +532,12 @@ func XRichEditGetRowCount(hEle HELE) int {
 // @Date: 2015-11-25 21:20:09
 // @Function: XRichEditGetRowLength
 // @Description: 获取指定行长度.
-// @Calls: XRichEdit_GetRowLength
+// @Calls: xRichEdit_GetRowLength
 // @Input: hEle 元素句柄. iRow 行索引.
 // @Return: 行长度.
 // *******************************************
 func XRichEditGetRowLength(hEle HELE, iRow int) int {
-	ret, _, _ := XRichEdit_GetRowLength.Call(
+	ret, _, _ := xRichEdit_GetRowLength.Call(
 		uintptr(hEle),
 		uintptr(iRow))
 
@@ -549,12 +549,12 @@ func XRichEditGetRowLength(hEle HELE, iRow int) int {
 // @Date: 2015-11-25 21:21:40
 // @Function: XRichEditGetSelectText
 // @Description: 获取选择文本.
-// @Calls: XRichEdit_GetSelectText
+// @Calls: xRichEdit_GetSelectText
 // @Input: hEle 元素句柄. pOut 接收内容缓冲区. len 缓冲区长度,字符为单位.
 // @Return: 返回内容长度,字符为单位,不包含空终止符.
 // *******************************************
 func XRichEditGetSelectText(hEle HELE, pOut *uint16, len int) int {
-	ret, _, _ := XRichEdit_GetSelectText.Call(
+	ret, _, _ := xRichEdit_GetSelectText.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
 		uintptr(len))
@@ -567,12 +567,12 @@ func XRichEditGetSelectText(hEle HELE, pOut *uint16, len int) int {
 // @Date: 2015-11-25 21:23:43
 // @Function: XRichEditGetSelectPosition
 // @Description: 获取选择内容位置.
-// @Calls: XRichEdit_GetSelectPosition
+// @Calls: xRichEdit_GetSelectPosition
 // @Input: hEle 元素句柄. pBegin 开始位置点. pEnd 结束位置点.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditGetSelectPosition(hEle HELE, pBegin *Position, pEnd *Position) bool {
-	ret, _, _ := XRichEdit_GetSelectPosition.Call(
+	ret, _, _ := xRichEdit_GetSelectPosition.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pBegin)),
 		uintptr(unsafe.Pointer(pEnd)))
@@ -589,12 +589,12 @@ func XRichEditGetSelectPosition(hEle HELE, pBegin *Position, pEnd *Position) boo
 // @Date: 2015-11-25 21:28:29
 // @Function: XRichEditSetSelect
 // @Description: 设置选择内容.
-// @Calls: XRichEdit_SetSelect
+// @Calls: xRichEdit_SetSelect
 // @Input: hEle 元素句柄. iStartRow 开始行索引. iStartCol 开始行列索引. iEndRow 结束行索引. iEndCol 结束列索引.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditSetSelect(hEle HELE, iStartRow, iStartCol, iEndRow, iEndCol int) bool {
-	ret, _, _ := XRichEdit_SetSelect.Call(
+	ret, _, _ := xRichEdit_SetSelect.Call(
 		uintptr(hEle),
 		uintptr(iStartRow),
 		uintptr(iStartCol),
@@ -613,12 +613,12 @@ func XRichEditSetSelect(hEle HELE, iStartRow, iStartCol, iEndRow, iEndCol int) b
 // @Date: 2015-11-25 21:31:06
 // @Function: XRichEditSetItemFontEx
 // @Description: 设置指定内容字体.
-// @Calls: XRichEdit_SetItemFontEx
+// @Calls: xRichEdit_SetItemFontEx
 // @Input: hEle 元素句柄. beginRow 开始行索引. beginColumn 开始行列索引. endRow 结束行索引. endColumn 结束行列索引. pFont 字体信息.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditSetItemFontEx(hEle HELE, beginRow, beginColumn, endRow, endColumn int, pFont *LOGFONTW) bool {
-	ret, _, _ := XRichEdit_SetItemFontEx.Call(
+	ret, _, _ := xRichEdit_SetItemFontEx.Call(
 		uintptr(hEle),
 		uintptr(beginRow),
 		uintptr(beginColumn),
@@ -638,13 +638,13 @@ func XRichEditSetItemFontEx(hEle HELE, beginRow, beginColumn, endRow, endColumn 
 // @Date: 2015-11-25 21:33:57
 // @Function: XRichEditSetItemColorEx
 // @Description: 设置指定内容字体颜色.
-// @Calls: XRichEdit_SetItemColorEx
+// @Calls: xRichEdit_SetItemColorEx
 // @Input: hEle 元素句柄. beginRow 开始行索引. beginColumn 开始行列索引.
 //         endRow 结束行索引. endColumn 结束行列索引. color RGB颜色. alpha 透明度.
 // @Return: 成功返回TRUE,否则相反.
 // *******************************************
 func XRichEditSetItemColorEx(hEle HELE, beginRow, beginColumn, endRow, endColumn int, color COLORREF, alpha byte) bool {
-	ret, _, _ := XRichEdit_SetItemColorEx.Call(
+	ret, _, _ := xRichEdit_SetItemColorEx.Call(
 		uintptr(hEle),
 		uintptr(beginRow),
 		uintptr(beginColumn),
@@ -665,12 +665,12 @@ func XRichEditSetItemColorEx(hEle HELE, beginRow, beginColumn, endRow, endColumn
 // @Date: 2015-11-25 21:36:20
 // @Function: XRichEditCancelSelect
 // @Description: 取消选择.
-// @Calls: XRichEdit_CancelSelect
+// @Calls: xRichEdit_CancelSelect
 // @Input: hEle 元素句柄.
 // @Return:
 // *******************************************
 func XRichEditCancelSelect(hEle HELE) {
-	XRichEdit_CancelSelect.Call(uintptr(hEle))
+	xRichEdit_CancelSelect.Call(uintptr(hEle))
 }
 
 // *******************************************
@@ -678,12 +678,12 @@ func XRichEditCancelSelect(hEle HELE) {
 // @Date: 2015-11-25 21:37:46
 // @Function: XRichEditSetSelectBkColor
 // @Description: 设置选择内容背景颜色.
-// @Calls: XRichEdit_SetSelectBkColor
+// @Calls: xRichEdit_SetSelectBkColor
 // @Input: hEle 元素句柄. color 颜色值. alpha 透明度.
 // @Return:
 // *******************************************
 func XRichEditSetSelectBkColor(hEle HELE, color COLORREF, alpha byte) {
-	XRichEdit_SetSelectBkColor.Call(
+	xRichEdit_SetSelectBkColor.Call(
 		uintptr(hEle),
 		uintptr(color),
 		uintptr(alpha))
@@ -694,12 +694,12 @@ func XRichEditSetSelectBkColor(hEle HELE, color COLORREF, alpha byte) {
 // @Date: 2015-11-25 21:37:46
 // @Function: XRichEditIsEmpty
 // @Description: 内容是否为空.
-// @Calls: XRichEdit_IsEmpty
+// @Calls: xRichEdit_IsEmpty
 // @Input: hEle 元素句柄.
 // @Return: 如果为空返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditIsEmpty(hEle HELE) bool {
-	ret, _, _ := XRichEdit_IsEmpty.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_IsEmpty.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -713,12 +713,12 @@ func XRichEditIsEmpty(hEle HELE) bool {
 // @Date: 2015-11-25 21:43:26
 // @Function: XRichEditSelectAll
 // @Description: 选择所有内容.
-// @Calls: XRichEdit_SelectAll
+// @Calls: xRichEdit_SelectAll
 // @Input: hEle 元素句柄.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditSelectAll(hEle HELE) bool {
-	ret, _, _ := XRichEdit_SelectAll.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_SelectAll.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -732,12 +732,12 @@ func XRichEditSelectAll(hEle HELE) bool {
 // @Date: 2015-11-25 21:44:17
 // @Function: XRichEditDeleteSelect
 // @Description: 删除选择内容.
-// @Calls: XRichEdit_DeleteSelect
+// @Calls: xRichEdit_DeleteSelect
 // @Input: hEle 元素句柄.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditDeleteSelect(hEle HELE) bool {
-	ret, _, _ := XRichEdit_DeleteSelect.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_DeleteSelect.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -751,12 +751,12 @@ func XRichEditDeleteSelect(hEle HELE) bool {
 // @Date: 2015-11-25 21:45:01
 // @Function: XRichEditDeleteAll
 // @Description: 删除所有内容.
-// @Calls: XRichEdit_DeleteAll
+// @Calls: xRichEdit_DeleteAll
 // @Input: hEle 元素句柄.
 // @Return:
 // *******************************************
 func XRichEditDeleteAll(hEle HELE) {
-	XRichEdit_DeleteAll.Call(uintptr(hEle))
+	xRichEdit_DeleteAll.Call(uintptr(hEle))
 }
 
 // *******************************************
@@ -764,12 +764,12 @@ func XRichEditDeleteAll(hEle HELE) {
 // @Date: 2015-11-25 21:49:55
 // @Function: XRichEditClipboardCut
 // @Description: 剪切选择内容到剪贴板.
-// @Calls: XRichEdit_ClipboardCut
+// @Calls: xRichEdit_ClipboardCut
 // @Input: hEle 元素句柄.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditClipboardCut(hEle HELE) bool {
-	ret, _, _ := XRichEdit_ClipboardCut.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_ClipboardCut.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -783,12 +783,12 @@ func XRichEditClipboardCut(hEle HELE) bool {
 // @Date: 2015-11-25 21:50:53
 // @Function: XRichEditClipboardCopy
 // @Description: 复制选择内容到剪贴板.
-// @Calls: XRichEdit_ClipboardCopy
+// @Calls: xRichEdit_ClipboardCopy
 // @Input: hEle 元素句柄.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditClipboardCopy(hEle HELE) bool {
-	ret, _, _ := XRichEdit_ClipboardCopy.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_ClipboardCopy.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false
@@ -802,12 +802,12 @@ func XRichEditClipboardCopy(hEle HELE) bool {
 // @Date: 2015-11-25 21:52:12
 // @Function: XRichEditClipboardPaste
 // @Description: 从剪贴板粘贴内容到当前位置.
-// @Calls: XRichEdit_ClipboardPaste
+// @Calls: xRichEdit_ClipboardPaste
 // @Input: hEle 元素句柄.
 // @Return: 成功返回TRUE否则返回FALSE.
 // *******************************************
 func XRichEditClipboardPaste(hEle HELE) bool {
-	ret, _, _ := XRichEdit_ClipboardPaste.Call(uintptr(hEle))
+	ret, _, _ := xRichEdit_ClipboardPaste.Call(uintptr(hEle))
 
 	if ret != TRUE {
 		return false

@@ -1,6 +1,6 @@
 package xc
 
-type list_drawItemBk_flags_ uint32
+type LIST_DRAWITEMBK_FLAGS_ uint32
 
 /* List,ListBox,Tree,项背景绘制标志位
 list_drawItemBk_flags_nothing 不绘制
@@ -9,8 +9,14 @@ list_drawItemBk_flags_stay 绘制鼠标选择状态项背景
 list_drawItemBk_flags_select 绘制鼠标停留状态项项背景
 */
 const (
-	LIST_DRAWITEMBK_FLAGS_NOTHING list_drawItemBk_flags_ = 0x000
-	LIST_DRAWITEMBK_FLAGS_LEAVE   list_drawItemBk_flags_ = 0x001
-	LIST_DRAWITEMBK_FLAGS_STAY    list_drawItemBk_flags_ = 0x002
-	LIST_DRAWITEMBK_FLAGS_SELECT  list_drawItemBk_flags_ = 0x004
+	LIST_DRAWITEMBK_FLAGS_NOTHING LIST_DRAWITEMBK_FLAGS_ = 0x000
+	LIST_DRAWITEMBK_FLAGS_LEAVE   LIST_DRAWITEMBK_FLAGS_ = 0x001
+	LIST_DRAWITEMBK_FLAGS_STAY    LIST_DRAWITEMBK_FLAGS_ = 0x002
+	LIST_DRAWITEMBK_FLAGS_SELECT  LIST_DRAWITEMBK_FLAGS_ = 0x004
 )
+
+type LISTBOX_ITEM_INFO_I struct {
+	nUserData  int //用户绑定数据
+	nHeight    int
+	nSelHeight int
+}

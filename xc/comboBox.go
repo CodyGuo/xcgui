@@ -20,7 +20,7 @@ var (
 	xComboBox_AddBkBorder                  *syscall.Proc
 	xComboBox_AddBkFill                    *syscall.Proc
 	xComboBox_AddBkImage                   *syscall.Proc
-	XComboboX_GetBkInfoCount               *syscall.Proc
+	xCombobox_GetBkInfoCount               *syscall.Proc
 	xComboBox_ClearBkInfo                  *syscall.Proc
 	xComboBox_GetBkInfoManager             *syscall.Proc
 	xComboBox_GetSelItem                   *syscall.Proc
@@ -43,7 +43,7 @@ func init() {
 	xComboBox_AddBkFill = XCDLL.MustFindProc("XComboBox_AddBkFill")
 	xComboBox_AddBkImage = XCDLL.MustFindProc("XComboBox_AddBkImage")
 	xComboBox_GetBkInfoManager = XCDLL.MustFindProc("XComboBox_GetBkInfoManager")
-	XComboboX_GetBkInfoCount = XCDLL.MustFindProc("XComboboX_GetBkInfoCount")
+	xCombobox_GetBkInfoCount = XCDLL.MustFindProc("XComboboX_GetBkInfoCount")
 	xComboBox_Create = XCDLL.MustFindProc("XComboBox_Create")
 	xComboBox_GetSelItem = XCDLL.MustFindProc("XComboBox_GetSelItem")
 	xComboBox_ClearBkInfo = XCDLL.MustFindProc("XComboBox_ClearBkInfo")
@@ -120,7 +120,7 @@ func XComboBoxEnableEdit(hEle HELE, bEdit bool) {
 		uintptr(BoolToBOOL(bEdit)))
 }
 
-func XComboBoxAddBkBorder(hEle HELE, nState comboBox_state_, color COLORREF, alpha byte, width int) {
+func XComboBoxAddBkBorder(hEle HELE, nState ComboBox_state_, color COLORREF, alpha byte, width int) {
 	xComboBox_AddBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -129,7 +129,7 @@ func XComboBoxAddBkBorder(hEle HELE, nState comboBox_state_, color COLORREF, alp
 		uintptr(width))
 }
 
-func XComboBoxAddBkFill(hEle HELE, nState comboBox_state_, color COLORREF, alpha byte) {
+func XComboBoxAddBkFill(hEle HELE, nState ComboBox_state_, color COLORREF, alpha byte) {
 	xComboBox_AddBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -137,27 +137,27 @@ func XComboBoxAddBkFill(hEle HELE, nState comboBox_state_, color COLORREF, alpha
 		uintptr(alpha))
 }
 
-func XComboBoxAddBkImage(hEle HELE, nState comboBox_state_, hImage HIMAGE) {
+func XComboBoxAddBkImage(hEle HELE, nState ComboBox_state_, hImage HIMAGE) {
 	xComboBox_AddBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
 		uintptr(hImage))
 }
 
-func XComboboXGetBkInfoCount(hEle HELE, nState comboBox_state_) int {
-	ret, _, _ := XComboboX_GetBkInfoCount.Call(
+func XComboboxGetBkInfoCount(hEle HELE, nState ComboBox_state_) int {
+	ret, _, _ := xCombobox_GetBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
 	return int(ret)
 }
 
-func XComboBoxClearBkInfo(hEle HELE, nState comboBox_state_) {
+func XComboBoxClearBkInfo(hEle HELE, nState ComboBox_state_) {
 	xComboBox_ClearBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
 }
 
-func XComboBoxGetBkInfoManager(hEle HELE, nState comboBox_state_) HBKINFOM {
+func XComboBoxGetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
 	ret, _, _ := xComboBox_GetBkInfoManager.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -170,8 +170,8 @@ func XComboBoxGetSelItem(hEle HELE) int {
 	return int(ret)
 }
 
-func XComboBoxGetState(hEle HELE) comboBox_state_ {
+func XComboBoxGetState(hEle HELE) ComboBox_state_ {
 	ret, _, _ := xComboBox_GetState.Call(
 		uintptr(hEle))
-	return comboBox_state_(ret)
+	return ComboBox_state_(ret)
 }

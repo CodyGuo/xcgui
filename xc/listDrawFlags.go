@@ -20,3 +20,8 @@ type LISTBOX_ITEM_INFO_I struct {
 	nHeight    int
 	nSelHeight int
 }
+
+type LISTVIEW_ITEM_ID_I struct {
+	iGroup int ///<组索引
+	iItem  int ///<项索引
+}

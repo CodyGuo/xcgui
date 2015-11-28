@@ -36,6 +36,7 @@ var (
 	xC_IsSViewExtend         *syscall.Proc
 	xC_GetObjectType         *syscall.Proc
 	xC_GetObjectByID         *syscall.Proc
+	xC_GetResIDValue         *syscall.Proc
 	xC_RectInRect            *syscall.Proc
 	xC_CombineRect           *syscall.Proc
 	xC_ShowLayoutFrame       *syscall.Proc
@@ -93,6 +94,7 @@ func init() {
 	xC_IsSViewExtend = XCDLL.MustFindProc("XC_IsSViewExtend")
 	xC_GetObjectType = XCDLL.MustFindProc("XC_GetObjectType")
 	xC_GetObjectByID = XCDLL.MustFindProc("XC_GetObjectByID")
+	xC_GetResIDValue = XCDLL.MustFindProc("XC_GetResIDValue")
 	xC_RectInRect = XCDLL.MustFindProc("XC_RectInRect")
 	xC_CombineRect = XCDLL.MustFindProc("XC_CombineRect")
 	xC_ShowLayoutFrame = XCDLL.MustFindProc("XC_ShowLayoutFrame")
@@ -102,15 +104,6 @@ func init() {
 	xRunXCGUI = XCDLL.MustFindProc("XRunXCGUI")
 	xExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
 
-	// *******************************************
-	// @Author: cody.guo
-	// @Date: 2015-11-7 09:40:36
-	// @Function: XInitXCGUI
-	// @Description: 初始化界面库.
-	// @Calls: XInitXCGUI
-	// @Input: pText 保留参数.
-	// @Return: 成功返回TRUE否则返回FALSE.
-	// *******************************************
 	ret, _, _ := xInitXCGUI.Call(StringToUintPtr("XCGUI Library For Go"))
 	// XCGUI的返回值: true 为 1 ，false 为 0
 	if ret != TRUE {
@@ -118,7 +111,14 @@ func init() {
 	}
 }
 
-//由于在init已经调用过了，这里只留个函数名字
+/* 由于在init已经调用过了，这里只留个函数名字
+初始化界面库.
+
+参数:
+	pText 保留参数.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XInitXCGUI() bool {
 	//	pText := ""
 
@@ -134,16 +134,17 @@ func XInitXCGUI() bool {
 	return true
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 09:49:55
-// @Function: XCUnicodeToAnsi
-// @Description: Unicode转换Ansi编码,.
-// @Calls: XC_UnicodeToAnsi
-// @Input: [in] pIn 指向待转换的Unicode字符串指针. [in] inLen pIn字符数量.
-//         [out] pOut 指向接收转换后的Ansi字符串缓冲区指针. [in] outLen pOut缓冲区大小,字节单位.
-// @Return: 如果成功,返回写入接收缓冲区字节数量.
-// *******************************************
+/*
+Unicode转换Ansi编码,.
+
+参数:
+	[in] pIn 指向待转换的Unicode字符串指针.
+	[in] inLen pIn字符数量.
+	[out] pOut 指向接收转换后的Ansi字符串缓冲区指针.
+	[in] outLen pOut缓冲区大小,字节单位.
+返回:
+	如果成功,返回写入接收缓冲区字节数量.
+*/
 func XCUnicodeToAnsi(pIn string, inLen int, pOut string, outLen int) int {
 	ret, _, _ := xC_UnicodeToAnsi.Call(
 		StringToUintPtr(pIn),
@@ -154,16 +155,17 @@ func XCUnicodeToAnsi(pIn string, inLen int, pOut string, outLen int) int {
 	return int(ret)
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 09:56:23
-// @Function: XCAnsiToUnicode
-// @Description: Ansi转换Unicode编码,.
-// @Calls: XC_AnsiToUnicode
-// @Input: [in] pIn 指向待转换的Ansi字符串指针. [in] inLen pIn字符数量.
-//         [out] pOut 指向接收转换后的Unicode字符串缓冲区指针. [in] pOut缓冲区大小,字符wchar_t单位.
-// @Return: 如果成功,返回写入接收缓冲区字符wchar_t数量.
-// *******************************************
+/*
+Ansi转换Unicode编码,.
+
+参数:
+	[in] pIn 指向待转换的Ansi字符串指针.
+	[in] inLen pIn字符数量.
+	[out] pOut 指向接收转换后的Unicode字符串缓冲区指针.
+	[in] outLen pOut缓冲区大小,字符wchar_t单位.
+返回:
+	如果成功,返回写入接收缓冲区字符wchar_t数量.
+*/
 func XCAnsiToUnicode(pIn string, inLen int, pOut string, outLen int) int {
 	ret, _, _ := xC_AnsiToUnicode.Call(
 		StringToUintPtr(pIn),
@@ -193,142 +195,115 @@ func XCDebugToFileInfo(pInfo string) {
 	// fmt.Println(pInfo)
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 17:33:08
-// @Function: XCIsHELE
-// @Description: 判断是否为元素句柄.
-// @Calls: XC_IsHELE
-// @Input: hEle 元素句柄.
-// @Return: 成功返回TRUE,否则相反.
-// *******************************************
+/*
+判断是否为元素句柄.
+
+参数:
+	hEle 元素句柄.
+返回:
+	成功返回TRUE,否则相反.
+*/
 func XCIsHELE(hEle HXCGUI) bool {
 	ret, _, _ := xC_IsHELE.Call(uintptr(hEle))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 17:35:34
-// @Function: XCIsHWINDOW
-// @Description: 判断是否为窗口句柄.
-// @Calls: XC_IsHWINDOW
-// @Input: hWindow 窗口句柄.
-// @Return: 成功返回TRUE,否则相反.
-// *******************************************
+/*
+判断是否为窗口句柄.
+
+参数:
+	hWindow 窗口句柄.
+返回:
+	成功返回TRUE,否则相反.
+*/
 func XCIsHWINDOW(hWindow HXCGUI) bool {
 	ret, _, _ := xC_IsHWINDOW.Call(uintptr(hWindow))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 17:37:47
-// @Function: XCIsShape
-// @Description: 判断是否为形状对象.
-// @Calls: XC_IsShape
-// @Input: hShape 形状对象句柄.
-// @Return: 成功返回TRUE否则返回FALSE.
-// *******************************************
+/*
+判断是否为形状对象.
+
+参数:
+	hShape 形状对象句柄.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XCIsShape(hShape HXCGUI) bool {
 	ret, _, _ := xC_IsShape.Call(uintptr(hShape))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 17:43:41
-// @Function: XCIsHXCGUI
-// @Description: 判断句柄是否拥有该类型.
-// @Calls: XC_IsHXCGUI
-// @Input: hXCGUI 炫彩句柄. nType 句柄类型. 参考objectType.go中的 XC_OBJECT_TYPE.
-// @Return: 成功返回TRUE否则返回FALSE.
-// *******************************************
+/*
+判断句柄是否拥有该类型.
+
+参数:
+	hXCGUI 炫彩句柄.
+	nType 句柄类型.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XCIsHXCGUI(hXCGUI HXCGUI, nType XC_OBJECT_TYPE) bool {
 	ret, _, _ := xC_IsHXCGUI.Call(
 		uintptr(hXCGUI),
 		uintptr(nType))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:22:44
-// @Function: XChWindowFromHWnd
-// @Description: 通过窗口HWND句柄获取HWINDOW句柄.
-// @Calls: XC_hWindowFromHWnd
-// @Input: hWnd 窗口HWND句柄.
-// @Return: 返回HWINDOW句柄.
-// *******************************************
+/*
+通过窗口HWND句柄获取HWINDOW句柄.
+
+参数:
+	hWnd 窗口HWND句柄.
+返回:
+	返回HWINDOW句柄.
+*/
 func XChWindowFromHWnd(hWnd HWND) HWINDOW {
 	ret, _, _ := xC_hWindowFromHWnd.Call(uintptr(hWnd))
 
 	return HWINDOW(ret)
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:24:36
-// @Function: XCIsSViewExtend
-// @Description: 判断元素是否从滚动视图元素扩展的新元素,包含滚动视图元素.
-// @Calls: XC_IsSViewExtend
-// @Input: hEle 元素句柄.
-// @Return: 如果是返回TRUE,否则相反.
-// *******************************************
+/*
+判断元素是否从滚动视图元素扩展的新元素,包含滚动视图元素.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果是返回TRUE,否则相反.
+*/
 func XCIsSViewExtend(hEle HELE) bool {
 	ret, _, _ := xC_IsSViewExtend.Call(uintptr(hEle))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:26:37
-// @Function: XCGetObjectType
-// @Description: 获取句柄类型.
-// @Calls: XC_GetObjectType
-// @Input: hXCGUI 炫彩对象句柄.
-// @Return: 返回句柄类型.
-// *******************************************
+/*
+获取句柄类型.
+
+参数:
+	hXCGUI 炫彩对象句柄.
+返回:
+	返回句柄类型.
+*/
 func XCGetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
 	ret, _, _ := xC_GetObjectType.Call(uintptr(hXCGUI))
 
 	return XC_OBJECT_TYPE(ret)
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:31:03
-// @Function: XCGetObjectByID
-// @Description: 通过ID获取对象句柄.
-// @Calls: XC_GetObjectByID
-// @Input: nID ID值.
-// @Return: 成功返回句柄,否则返回NULL.
-// *******************************************
+/*
+通过ID获取对象句柄.
+
+参数:
+	nID ID值.
+返回:
+	成功返回句柄,否则返回NULL.
+*/
 func XCGetObjectByID(nID int) HXCGUI {
 	ret, _, _ := xC_GetObjectByID.Call(uintptr(nID))
 
@@ -339,36 +314,45 @@ func XCGetObjectByID(nID int) HXCGUI {
 	return HXCGUI(ret)
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:36:38
-// @Function: XCRectInRect
-// @Description: 判断两个矩形是否相交及重叠.
-// @Calls: XC_RectInRect
-// @Input: pRect1 矩形1. pRect2 矩形2.
-// @Return: 如果两个矩形相交返回TRUE,否则相反.
-// *******************************************
+/*
+获取资源ID整型值.
+
+参数:
+	pName 资源ID名称.
+返回:
+	返回整型值. 注解:int nID=XC_GetResIDValue(L"ID_BUTTON_1");
+*/
+func XCGetResIDValue(pName string) int {
+	ret, _, _ := xC_GetResIDValue.Call(StringToUintPtr(pName))
+
+	return int(ret)
+}
+
+/*
+判断两个矩形是否相交及重叠.
+
+参数:
+	pRect1 矩形1.
+	pRect2 矩形2.
+返回:
+	如果两个矩形相交返回TRUE,否则相反.
+*/
 func XCRectInRect(pRect1, pRect2 *RECT) bool {
 	ret, _, _ := xC_RectInRect.Call(
 		uintptr(unsafe.Pointer(pRect1)),
 		uintptr(unsafe.Pointer(pRect2)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:47:04
-// @Function: XCCombineRect
-// @Description: 组合两个矩形区域.
-// @Calls: XC_CombineRect
-// @Input: pDest 新的矩形区域. pSrc1 源矩形1. pSrc2 源矩形2.
-// @Return:
-// *******************************************
+/*
+组合两个矩形区域.
+
+参数:
+	pDest 新的矩形区域.
+	pSrc1 源矩形1.
+	pSrc2 源矩形2.
+*/
 func XCCombineRect(pDest, pSrc1, pSrc2 *RECT) {
 	xC_CombineRect.Call(
 		uintptr(unsafe.Pointer(pDest)),
@@ -376,41 +360,32 @@ func XCCombineRect(pDest, pSrc1, pSrc2 *RECT) {
 		uintptr(unsafe.Pointer(pSrc2)))
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:49:09
-// @Function: XCShowLayoutFrame
-// @Description: 显示布局对象边界.
-// @Calls: XC_ShowLayoutFrame
-// @Input: bShow 是否显示.
-// @Return:
-// *******************************************
+/*
+显示布局对象边界.
+
+参数:
+	bShow 是否显示.
+*/
 func XCShowLayoutFrame(bShow bool) {
 	xC_ShowLayoutFrame.Call(uintptr(BoolToBOOL(bShow)))
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:51:12
-// @Function: XCSetLayoutFrameColor
-// @Description: 设置布局边框颜色.
-// @Calls: XC_SetLayoutFrameColor
-// @Input: color RGB颜色值.
-// @Return:
-// *******************************************
+/*
+设置布局边框颜色.
+
+参数:
+	color RGB颜色值.
+*/
 func XCSetLayoutFrameColor(color COLORREF) {
 	xC_SetLayoutFrameColor.Call(uintptr(color))
 }
 
-// *******************************************
-// @Author: cody.guo
-// @Date: 2015-11-7 18:55:21
-// @Function: XCEnableErrorMessageBox
-// @Description: 启用错误弹出,通过该接口可以设置遇到严重错误时不弹出消息提示框.
-// @Calls: XC_EnableErrorMessageBox
-// @Input: bEnabel 是否启用.
-// @Return:
-// *******************************************
+/*
+启用错误弹出,通过该接口可以设置遇到严重错误时不弹出消息提示框.
+
+参数:
+	bEnabel 是否启用.
+*/
 func XCEnableErrorMessageBox(bEnabel bool) {
 	xC_EnableErrorMessageBox.Call(uintptr(BoolToBOOL(bEnabel)))
 }

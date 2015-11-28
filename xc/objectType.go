@@ -4,11 +4,12 @@ package xc
 type XC_OBJECT_TYPE int32
 
 /*
- XC_ERROR 错误类型
- XC_WINDOW 窗口
- XC_MODALWINDOW 模态窗口
- XC_FRAMEWND 框架窗口
- XC_FLOATWND 浮动窗口
+接口句柄类型
+	XC_ERROR 错误类型
+	XC_WINDOW 窗口
+	XC_MODALWINDOW 模态窗口
+	XC_FRAMEWND 框架窗口
+	XC_FLOATWND 浮动窗口
 */
 const (
 	XC_ERROR  XC_OBJECT_TYPE = -1
@@ -19,37 +20,38 @@ const (
 )
 
 /*
-XC_ELE 基础元素
-XC_BUTTON 按钮
-XC_RICHEDIT 富文本编辑框
-XC_COMBOBOX 下拉组合框元素
-XC_SCROLLBAR 滚动条元素
-XC_SCROLLVIEW 滚动视图元素
-XC_LIST 列表元素
-XC_LISTBOX 列表框元素
-XC_LISTVIEW 列表视图,大图标
-XC_TREE 树元素
-XC_MENUBAR 菜单条
-XC_SLIDERBAR 滑动条
-XC_PROGRESSBAR 进度条
-XC_TOOLBAR 工具条
-XC_MONTHCAL 月历元素
-XC_DATETIME 时间元素
-XC_PROPERTYGRID 属性网格
-XC_RICHEDIT_COLOR 颜色选择元素
-XC_TABBAR tab条
-XC_TEXTLINK 文本链接按钮
-XC_PANE 布局窗格
-XC_PANE_SPLIT 布局窗格拖动分割条
-XC_MENUBAR_BUTTON 菜单条上的按钮
-XC_TOOLBAR_BUTTON 工具条上按钮
-XC_PROPERTYPAGE_LABEL 属性页标签按钮
-XC_PIER 窗格停靠码头
-XC_BUTTON_MENU 弹出菜单按钮
-XC_VIRTUAL_ELE 虚拟元素
-XC_RICHEDIT_FILE RichEditFile 文件选择编辑框
-XC_RICHEDIT_FOLDER RichEditFolder 文件夹选择编辑框
-XC_LIST_HEADER 列表头元素
+接口句柄类型
+	XC_ELE 基础元素
+	XC_BUTTON 按钮
+	XC_RICHEDIT 富文本编辑框
+	XC_COMBOBOX 下拉组合框元素
+	XC_SCROLLBAR 滚动条元素
+	XC_SCROLLVIEW 滚动视图元素
+	XC_LIST 列表元素
+	XC_LISTBOX 列表框元素
+	XC_LISTVIEW 列表视图,大图标
+	XC_TREE 树元素
+	XC_MENUBAR 菜单条
+	XC_SLIDERBAR 滑动条
+	XC_PROGRESSBAR 进度条
+	XC_TOOLBAR 工具条
+	XC_MONTHCAL 月历元素
+	XC_DATETIME 时间元素
+	XC_PROPERTYGRID 属性网格
+	XC_RICHEDIT_COLOR 颜色选择元素
+	XC_TABBAR tab条
+	XC_TEXTLINK 文本链接按钮
+	XC_PANE 布局窗格
+	XC_PANE_SPLIT 布局窗格拖动分割条
+	XC_MENUBAR_BUTTON 菜单条上的按钮
+	XC_TOOLBAR_BUTTON 工具条上按钮
+	XC_PROPERTYPAGE_LABEL 属性页标签按钮
+	XC_PIER 窗格停靠码头
+	XC_BUTTON_MENU 弹出菜单按钮
+	XC_VIRTUAL_ELE 虚拟元素
+	XC_RICHEDIT_FILE RichEditFile 文件选择编辑框
+	XC_RICHEDIT_FOLDER RichEditFolder 文件夹选择编辑框
+	XC_LIST_HEADER 列表头元素
 */
 const (
 	XC_ELE    XC_OBJECT_TYPE = 21
@@ -86,14 +88,15 @@ const (
 )
 
 /*
-XC_SHAPE 形状对象
-XC_SHAPE_TEXT 形状对象-文本
-XC_SHAPE_PICTURE 形状对象-图片
-XC_SHAPE_RECT 形状对象-矩形
-XC_SHAPE_ELLIPSE 形状对象-圆
-XC_SHAPE_LINE 形状对象-直线
-XC_SHAPE_GROUPBOX 形状对象-组框
-XC_SHAPE_GIF 形状对象-GIF
+接口句柄类型
+	XC_SHAPE 形状对象
+	XC_SHAPE_TEXT 形状对象-文本
+	XC_SHAPE_PICTURE 形状对象-图片
+	XC_SHAPE_RECT 形状对象-矩形
+	XC_SHAPE_ELLIPSE 形状对象-圆
+	XC_SHAPE_LINE 形状对象-直线
+	XC_SHAPE_GROUPBOX 形状对象-组框
+	XC_SHAPE_GIF 形状对象-GIF
 */
 const (
 	XC_SHAPE      XC_OBJECT_TYPE = 61
@@ -107,11 +110,12 @@ const (
 )
 
 /*
-XC_MENU 弹出菜单
-XC_IMAGE 图片操作
-XC_HDRAW 绘图操作
-XC_FONT 炫彩字体
-XC_FLASH flash
+接口句柄类型
+	XC_MENU 弹出菜单
+	XC_IMAGE 图片操作
+	XC_HDRAW 绘图操作
+	XC_FONT 炫彩字体
+	XC_FLASH flash
 */
 const (
 	XC_MENU  XC_OBJECT_TYPE = 81
@@ -122,11 +126,12 @@ const (
 )
 
 /*
-XC_LAYOUT_OBJECT 布局对象LayoutObject
-XC_ADAPTER_TABLE 数据适配器AdapterTable
-XC_ADAPTER_TREE 数据适配器AdapterTree
-XC_ADAPTER_LISTVIEW 数据适配器AdapterListView
-XC_ADAPTER_MAP 数据适配器AdapterMap
+接口句柄类型
+	XC_LAYOUT_OBJECT 布局对象LayoutObject
+	XC_ADAPTER_TABLE 数据适配器AdapterTable
+	XC_ADAPTER_TREE 数据适配器AdapterTree
+	XC_ADAPTER_LISTVIEW 数据适配器AdapterListView
+	XC_ADAPTER_MAP 数据适配器AdapterMap
 */
 const (
 	XC_LAYOUT_OBJECT XC_OBJECT_TYPE = 101

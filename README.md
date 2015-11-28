@@ -4,6 +4,9 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
 有钱的朋友可以去官方网站购买正式版，支持正版将有更多功能。<br>
 官方网站：[www.xcgui.com](http://www.xcgui.com "xcgui 官方网站")<br>
 
+# DOC
+帮助文档在doc目录下，或者访问：[godoc.org](https://godoc.org/github.com/CodyGuo/xcgui/xc "xcgui api")<br>
+
 # GOAL
 
   Hopefully support following widgets and methods enough to run general application.

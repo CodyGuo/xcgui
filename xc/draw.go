@@ -2,7 +2,7 @@ package xc
 
 import (
 	"syscall"
-	"unsafe"
+	// "unsafe"
 )
 
 var (
@@ -131,9 +131,9 @@ func init() {
 	xDraw_TextOutA = XCDLL.MustFindProc("XDraw_TextOutA")
 }
 
-func XDrawCreate() {
-	xDraw_Create
-}
+// func XDrawCreate() {
+// 	xDraw_Create
+// }
 
 //
 // XDraw_Destroy

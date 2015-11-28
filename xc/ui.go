@@ -5,8 +5,8 @@ import (
 	"unsafe"
 )
 
-type template_info_i struct //模板项
-{
+//模板项
+type template_info_i struct {
 	info int
 }
 

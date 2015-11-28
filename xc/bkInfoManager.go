@@ -59,7 +59,6 @@ func XBkInfoMDestroy(hBkInfoM HBKINFOM) {
 参数:
 	hBkInfoM 背景内容管理器句柄.
 	pText 背景内容字符串.
-
 返回:
 	返回添加的背景内容数量.
 */
@@ -121,7 +120,6 @@ func XBkInfoMAddImage(hBkInfoM HBKINFOM, hImage HIMAGE) {
 
 参数:
 	hBkInfoM 背景内容管理器句柄.
-
 返回:
 	背景内容数量.
 */
@@ -148,7 +146,6 @@ func XBkInfoMClear(hBkInfoM HBKINFOM) {
 	hBkInfoM 背景内容管理器句柄.
 	hDraw 图形绘制句柄.
 	pRect 区域坐标.
-
 返回:
 	成功返回TRUE否则返回FALSE.
 */

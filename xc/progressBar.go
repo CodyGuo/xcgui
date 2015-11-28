@@ -1,4 +1,3 @@
-//ProgressBar-进度条
 package xc
 
 import (

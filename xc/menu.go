@@ -1,4 +1,3 @@
-// 暂时不注释了
 package xc
 
 import (

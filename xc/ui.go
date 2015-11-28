@@ -1,4 +1,3 @@
-//ui 设计器支持函数
 package xc
 
 import (

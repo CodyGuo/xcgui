@@ -41,6 +41,9 @@ type (
 	// 炫彩字体句柄
 	HFONTX HXCGUI
 
+	// 炫彩HFONT句柄
+	HFONT HXCGUI
+
 	// 窗格组句柄
 	HPANE_GROUP HXCGUI
 

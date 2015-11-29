@@ -48,6 +48,8 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	xcgui.DebugToFileInfo("中文写入debug文件.")
+
 	mw.Run()
 
 	mw.Close()

@@ -173,3 +173,11 @@ func (wb *WindowBase) WndProc(hwnd xc.HWND, msg uint32, wparam, lparam uintptr) 
 	fmt.Println("WidgetBase.WndProc")
 	return uintptr(0)
 }
+
+func DebugToFileInfo(str string) {
+	// 中文转换为Ansi
+	buffer := make([]byte, len(str)+1)
+	xc.XCUnicodeToAnsi(xc.StringToUTF16Ptr(str), len(str), &buffer[0], len(str)*2)
+
+	xc.XCDebugToFileInfo(&buffer[0])
+}

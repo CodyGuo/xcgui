@@ -145,11 +145,11 @@ Unicode转换Ansi编码,.
 返回:
 	如果成功,返回写入接收缓冲区字节数量.
 */
-func XCUnicodeToAnsi(pIn string, inLen int, pOut string, outLen int) int {
+func XCUnicodeToAnsi(pIn *uint16, inLen int, pOut *byte, outLen int) int {
 	ret, _, _ := xC_UnicodeToAnsi.Call(
-		StringToUintPtr(pIn),
+		uintptr(unsafe.Pointer(pIn)),
 		uintptr(inLen),
-		StringToUintPtr(pOut),
+		uintptr(unsafe.Pointer(pOut)),
 		uintptr(outLen))
 
 	return int(ret)
@@ -166,33 +166,28 @@ Ansi转换Unicode编码,.
 返回:
 	如果成功,返回写入接收缓冲区字符wchar_t数量.
 */
-func XCAnsiToUnicode(pIn string, inLen int, pOut string, outLen int) int {
+func XCAnsiToUnicode(pIn *uint16, inLen int, pOut *byte, outLen int) int {
 	ret, _, _ := xC_AnsiToUnicode.Call(
-		StringToUintPtr(pIn),
+		uintptr(unsafe.Pointer(pIn)),
 		uintptr(inLen),
-		StringToUintPtr(pOut),
+		uintptr(unsafe.Pointer(pOut)),
 		uintptr(outLen))
 
 	return int(ret)
 }
 
 // 打印调试信息到文件xcgui_debug.txt.
-func XCDebugToFileInfo(pInfo string) {
+func XCDebugToFileInfo(pInfo *byte) {
 	// fmt.Println("正在打印debug", pInfo)
-	p := (*struct {
-		pInfo uintptr
-		len   int
-	})(unsafe.Pointer(&pInfo))
+	// p := (*struct {
+	// 	pInfo uintptr
+	// 	len   int
+	// })(unsafe.Pointer(&pInfo))
 	// fmt.Println("p.info:", p.pInfo)
 
-	xC_DebugToFileInfo.Call(p.pInfo)
+	// xC_DebugToFileInfo.Call(p.pInfo)
 
-	// str := syscall.StringToUTF16(pInfo)
-	// s := syscall.UTF16ToString(str)
-	// fmt.Println("str长度:", len(str), str, s)
-	// m := str[0 : len(str)-1]
-	// xC_DebugToFileInfo.Call(uintptr(unsafe.Pointer(&m)))
-	// fmt.Println(pInfo)
+	xC_DebugToFileInfo.Call(uintptr(unsafe.Pointer(pInfo)))
 }
 
 /*
@@ -322,8 +317,8 @@ func XCGetObjectByID(nID int) HXCGUI {
 返回:
 	返回整型值. 注解:int nID=XC_GetResIDValue(L"ID_BUTTON_1");
 */
-func XCGetResIDValue(pName string) int {
-	ret, _, _ := xC_GetResIDValue.Call(StringToUintPtr(pName))
+func XCGetResIDValue(pName *uint16) int {
+	ret, _, _ := xC_GetResIDValue.Call(uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }
@@ -407,6 +402,10 @@ func StringToUintPtr(str string) uintptr {
 
 func StringToUTF16Ptr(str string) *uint16 {
 	return syscall.StringToUTF16Ptr(str)
+}
+
+func StringBytePtr(str string) *byte {
+	return syscall.StringBytePtr(str)
 }
 
 func FullPath(path string) (p string) {

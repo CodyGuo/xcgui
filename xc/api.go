@@ -405,6 +405,10 @@ func StringToUintPtr(str string) uintptr {
 	return uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(str)))
 }
 
+func StringToUTF16Ptr(str string) *uint16 {
+	return syscall.StringToUTF16Ptr(str)
+}
+
 func FullPath(path string) (p string) {
 	p, _ = filepath.Abs(path)
 	return

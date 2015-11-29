@@ -28,7 +28,7 @@ func NewIconFromFile(filePath string) (hIcon xc.HIMAGE, err error) {
 	}
 
 	hIcon = xc.HIMAGE(xc.XImageLoadFile(
-		absFilePath,
+		xc.StringToUTF16Ptr(absFilePath),
 		false))
 
 	if hIcon == 0 {

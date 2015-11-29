@@ -64,4 +64,7 @@ type (
 
 	// 区域句柄
 	HRGN HXCGUI
+
+	// 位图句柄
+	HBITMAP HXCGUI
 )

@@ -49,4 +49,16 @@ type (
 
 	// 鼠标光标句柄.
 	HCURSOR HXCGUI
+
+	// 设备上下文句柄HDC
+	HDC HXCGUI
+
+	// 纯色逻辑刷句柄
+	HBRUSH HXCGUI
+
+	// 逻辑笔句柄
+	HPEN HXCGUI
+
+	// 区域句柄
+	HRGN HXCGUI
 )

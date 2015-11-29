@@ -87,7 +87,7 @@ func (b *Button) SetChecked(checked bool) {
 		return
 	}
 
-	xc.XBtnSetCheck(b.hEle, xc.BoolToBOOL(checked))
+	xc.XBtnSetCheck(b.hEle, checked)
 }
 
 func (b *Button) SetStyle(nStyle xc.BUTTON_STYLE_) {
@@ -188,7 +188,7 @@ func (b *Button) AddAnimationFrame(hImage xc.HIMAGE, uElapse uint) {
 }
 
 func (b *Button) EnableAnimation(bEnable, bLoopPlay bool) {
-	xc.XBtnEnableAnimation(b.hEle, xc.BoolToBOOL(bEnable), xc.BoolToBOOL(bLoopPlay))
+	xc.XBtnEnableAnimation(b.hEle, bEnable, bLoopPlay)
 }
 
 func (b *Button) AddBkBorder(nState xc.BUTTON_STATE_, color Color, alpha byte, width int) {

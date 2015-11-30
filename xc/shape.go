@@ -26,21 +26,21 @@ var (
 
 func init() {
 	// Functions
-	xShape_GetParentEle = XCDLL.MustFindProc("XShape_GetParentEle")
-	xShape_GetParentLayout = XCDLL.MustFindProc("XShape_GetParentLayout")
-	xShape_GetHWINDOW = XCDLL.MustFindProc("XShape_GetHWINDOW")
-	xShape_GetParent = XCDLL.MustFindProc("XShape_GetParent")
-	xShape_SetID = XCDLL.MustFindProc("XShape_SetID")
-	xShape_GetID = XCDLL.MustFindProc("XShape_GetID")
-	xShape_Redraw = XCDLL.MustFindProc("XShape_Redraw")
-	xShape_GetWidth = XCDLL.MustFindProc("XShape_GetWidth")
-	xShape_GetHeight = XCDLL.MustFindProc("XShape_GetHeight")
-	xShape_GetRect = XCDLL.MustFindProc("XShape_GetRect")
-	xShape_SetRect = XCDLL.MustFindProc("XShape_SetRect")
-	xShape_GetContentSize = XCDLL.MustFindProc("XShape_GetContentSize")
-	xShape_ShowLayout = XCDLL.MustFindProc("XShape_ShowLayout")
-	xShape_AdjustLayout = XCDLL.MustFindProc("XShape_AdjustLayout")
-	xShape_Destroy = XCDLL.MustFindProc("XShape_Destroy")
+	xShape_GetParentEle = xcDLL.MustFindProc("XShape_GetParentEle")
+	xShape_GetParentLayout = xcDLL.MustFindProc("XShape_GetParentLayout")
+	xShape_GetHWINDOW = xcDLL.MustFindProc("XShape_GetHWINDOW")
+	xShape_GetParent = xcDLL.MustFindProc("XShape_GetParent")
+	xShape_SetID = xcDLL.MustFindProc("XShape_SetID")
+	xShape_GetID = xcDLL.MustFindProc("XShape_GetID")
+	xShape_Redraw = xcDLL.MustFindProc("XShape_Redraw")
+	xShape_GetWidth = xcDLL.MustFindProc("XShape_GetWidth")
+	xShape_GetHeight = xcDLL.MustFindProc("XShape_GetHeight")
+	xShape_GetRect = xcDLL.MustFindProc("XShape_GetRect")
+	xShape_SetRect = xcDLL.MustFindProc("XShape_SetRect")
+	xShape_GetContentSize = xcDLL.MustFindProc("XShape_GetContentSize")
+	xShape_ShowLayout = xcDLL.MustFindProc("XShape_ShowLayout")
+	xShape_AdjustLayout = xcDLL.MustFindProc("XShape_AdjustLayout")
+	xShape_Destroy = xcDLL.MustFindProc("XShape_Destroy")
 }
 
 func XShapeGetParentEle(hShape HXCGUI) HELE {

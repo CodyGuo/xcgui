@@ -18,15 +18,15 @@ var (
 )
 
 func init() {
-	xPane_Create = XCDLL.MustFindProc("XPane_Create")
-	xPane_SetView = XCDLL.MustFindProc("XPane_SetView")
-	xPane_GetTitle = XCDLL.MustFindProc("XPane_GetTitle")
-	xPane_IsShowPane = XCDLL.MustFindProc("XPane_IsShowPane")
-	xPane_HidePane = XCDLL.MustFindProc("XPane_HidePane")
-	xPane_ShowPane = XCDLL.MustFindProc("XPane_ShowPane")
-	xPane_DockPane = XCDLL.MustFindProc("XPane_DockPane")
-	xPane_LockPane = XCDLL.MustFindProc("XPane_LockPane")
-	xPane_FloatPane = XCDLL.MustFindProc("XPane_FloatPane")
+	xPane_Create = xcDLL.MustFindProc("XPane_Create")
+	xPane_SetView = xcDLL.MustFindProc("XPane_SetView")
+	xPane_GetTitle = xcDLL.MustFindProc("XPane_GetTitle")
+	xPane_IsShowPane = xcDLL.MustFindProc("XPane_IsShowPane")
+	xPane_HidePane = xcDLL.MustFindProc("XPane_HidePane")
+	xPane_ShowPane = xcDLL.MustFindProc("XPane_ShowPane")
+	xPane_DockPane = xcDLL.MustFindProc("XPane_DockPane")
+	xPane_LockPane = xcDLL.MustFindProc("XPane_LockPane")
+	xPane_FloatPane = xcDLL.MustFindProc("XPane_FloatPane")
 
 }
 

@@ -62,17 +62,17 @@ var (
 )
 
 func init() {
-	xc_LoadLayout = XCDLL.MustFindProc("XC_LoadLayout")
-	xc_LoadLayoutFromString = XCDLL.MustFindProc("XC_LoadLayoutFromString")
-	xc_LoadResource = XCDLL.MustFindProc("XC_LoadResource")
-	xc_LoadResourceFromString = XCDLL.MustFindProc("XC_LoadResourceFromString")
-	xc_LoadTemplate = XCDLL.MustFindProc("XC_LoadTemplate")
-	xc_LoadTemplateFromString = XCDLL.MustFindProc("XC_LoadTemplateFromString")
-	xc_TemplateDestroy = XCDLL.MustFindProc("XC_TemplateDestroy")
-	xc_GetDefaultFont = XCDLL.MustFindProc("XC_GetDefaultFont")
-	xc_InitFont = XCDLL.MustFindProc("XC_InitFont")
-	xc_Malloc = XCDLL.MustFindProc("XC_Malloc")
-	xc_Free = XCDLL.MustFindProc("XC_Free")
+	xc_LoadLayout = xcDLL.MustFindProc("XC_LoadLayout")
+	xc_LoadLayoutFromString = xcDLL.MustFindProc("XC_LoadLayoutFromString")
+	xc_LoadResource = xcDLL.MustFindProc("XC_LoadResource")
+	xc_LoadResourceFromString = xcDLL.MustFindProc("XC_LoadResourceFromString")
+	xc_LoadTemplate = xcDLL.MustFindProc("XC_LoadTemplate")
+	xc_LoadTemplateFromString = xcDLL.MustFindProc("XC_LoadTemplateFromString")
+	xc_TemplateDestroy = xcDLL.MustFindProc("XC_TemplateDestroy")
+	xc_GetDefaultFont = xcDLL.MustFindProc("XC_GetDefaultFont")
+	xc_InitFont = xcDLL.MustFindProc("XC_InitFont")
+	xc_Malloc = xcDLL.MustFindProc("XC_Malloc")
+	xc_Free = xcDLL.MustFindProc("XC_Free")
 }
 
 func XCLoadLayout(pFileName string, hParent HXCGUI) HXCGUI {

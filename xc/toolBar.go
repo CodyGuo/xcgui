@@ -19,17 +19,17 @@ var (
 )
 
 func init() {
-	xToolBar_Create = XCDLL.MustFindProc("XToolBar_Create")
-	xToolBar_InsertEle = XCDLL.MustFindProc("XToolBar_InsertEle")
-	xToolBar_InsertSeparator = XCDLL.MustFindProc("XToolBar_InsertSeparator")
-	xToolBar_EnableButtonMenu = XCDLL.MustFindProc("XToolBar_EnableButtonMenu")
-	xToolBar_GetHEle = XCDLL.MustFindProc("XToolBar_GetHEle")
-	xToolBar_GetButtonLeft = XCDLL.MustFindProc("XToolBar_GetButtonLeft")
-	xToolBar_GetButtonRight = XCDLL.MustFindProc("XToolBar_GetButtonRight")
-	xToolBar_GetButtonMenu = XCDLL.MustFindProc("XToolBar_GetButtonMenu")
-	xToolBar_SetSpace = XCDLL.MustFindProc("XToolBar_SetSpace")
-	xToolBar_DeleteEle = XCDLL.MustFindProc("XToolBar_DeleteEle")
-	xToolBar_DeleteAllEle = XCDLL.MustFindProc("XToolBar_DeleteAllEle")
+	xToolBar_Create = xcDLL.MustFindProc("XToolBar_Create")
+	xToolBar_InsertEle = xcDLL.MustFindProc("XToolBar_InsertEle")
+	xToolBar_InsertSeparator = xcDLL.MustFindProc("XToolBar_InsertSeparator")
+	xToolBar_EnableButtonMenu = xcDLL.MustFindProc("XToolBar_EnableButtonMenu")
+	xToolBar_GetHEle = xcDLL.MustFindProc("XToolBar_GetHEle")
+	xToolBar_GetButtonLeft = xcDLL.MustFindProc("XToolBar_GetButtonLeft")
+	xToolBar_GetButtonRight = xcDLL.MustFindProc("XToolBar_GetButtonRight")
+	xToolBar_GetButtonMenu = xcDLL.MustFindProc("XToolBar_GetButtonMenu")
+	xToolBar_SetSpace = xcDLL.MustFindProc("XToolBar_SetSpace")
+	xToolBar_DeleteEle = xcDLL.MustFindProc("XToolBar_DeleteEle")
+	xToolBar_DeleteAllEle = xcDLL.MustFindProc("XToolBar_DeleteAllEle")
 }
 
 func XToolBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {

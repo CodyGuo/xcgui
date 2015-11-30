@@ -19,17 +19,17 @@ var (
 )
 
 func init() {
-	xSliderBar_Create = XCDLL.MustFindProc("XSliderBar_Create")
-	xSliderBar_SetRange = XCDLL.MustFindProc("XSliderBar_SetRange")
-	xSliderBar_GetRange = XCDLL.MustFindProc("XSliderBar_GetRange")
-	xSliderBar_SetImageLoad = XCDLL.MustFindProc("XSliderBar_SetImageLoad")
-	xSliderBar_SetButtonWidth = XCDLL.MustFindProc("XSliderBar_SetButtonWidth")
-	xSliderBar_SetButtonHeight = XCDLL.MustFindProc("XSliderBar_SetButtonHeight")
-	xSliderBar_SetSpaceTwo = XCDLL.MustFindProc("XSliderBar_SetSpaceTwo")
-	xSliderBar_SetPos = XCDLL.MustFindProc("XSliderBar_SetPos")
-	xSliderBar_GetPos = XCDLL.MustFindProc("XSliderBar_GetPos")
-	xSliderBar_GetButton = XCDLL.MustFindProc("XSliderBar_GetButton")
-	xSliderBar_SetHorizon = XCDLL.MustFindProc("XSliderBar_SetHorizon")
+	xSliderBar_Create = xcDLL.MustFindProc("XSliderBar_Create")
+	xSliderBar_SetRange = xcDLL.MustFindProc("XSliderBar_SetRange")
+	xSliderBar_GetRange = xcDLL.MustFindProc("XSliderBar_GetRange")
+	xSliderBar_SetImageLoad = xcDLL.MustFindProc("XSliderBar_SetImageLoad")
+	xSliderBar_SetButtonWidth = xcDLL.MustFindProc("XSliderBar_SetButtonWidth")
+	xSliderBar_SetButtonHeight = xcDLL.MustFindProc("XSliderBar_SetButtonHeight")
+	xSliderBar_SetSpaceTwo = xcDLL.MustFindProc("XSliderBar_SetSpaceTwo")
+	xSliderBar_SetPos = xcDLL.MustFindProc("XSliderBar_SetPos")
+	xSliderBar_GetPos = xcDLL.MustFindProc("XSliderBar_GetPos")
+	xSliderBar_GetButton = xcDLL.MustFindProc("XSliderBar_GetButton")
+	xSliderBar_SetHorizon = xcDLL.MustFindProc("XSliderBar_SetHorizon")
 }
 
 func XSliderBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {

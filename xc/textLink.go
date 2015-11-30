@@ -14,12 +14,12 @@ var (
 )
 
 func init() {
-	xTextLink_Create = XCDLL.MustFindProc("XTextLink_Create")
-	xTextLink_EnableUnderlineLeave = XCDLL.MustFindProc("XTextLink_EnableUnderlineLeave")
-	xTextLink_EnableUnderlineStay = XCDLL.MustFindProc("XTextLink_EnableUnderlineStay")
-	xTextLink_SetTextColorStay = XCDLL.MustFindProc("XTextLink_SetTextColorStay")
-	xTextLink_SetUnderlineColorLeave = XCDLL.MustFindProc("XTextLink_SetUnderlineColorLeave")
-	xTextLink_SetUnderlineColorStay = XCDLL.MustFindProc("XTextLink_SetUnderlineColorStay")
+	xTextLink_Create = xcDLL.MustFindProc("XTextLink_Create")
+	xTextLink_EnableUnderlineLeave = xcDLL.MustFindProc("XTextLink_EnableUnderlineLeave")
+	xTextLink_EnableUnderlineStay = xcDLL.MustFindProc("XTextLink_EnableUnderlineStay")
+	xTextLink_SetTextColorStay = xcDLL.MustFindProc("XTextLink_SetTextColorStay")
+	xTextLink_SetUnderlineColorLeave = xcDLL.MustFindProc("XTextLink_SetUnderlineColorLeave")
+	xTextLink_SetUnderlineColorStay = xcDLL.MustFindProc("XTextLink_SetUnderlineColorStay")
 }
 
 func XTextLinkCreate(x int, y int, cx int, cy int, pName string, hParent HXCGUI) HELE {

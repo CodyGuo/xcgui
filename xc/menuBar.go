@@ -13,11 +13,11 @@ var (
 )
 
 func init() {
-	xMenuBar_Create = XCDLL.MustFindProc("XMenuBar_Create")
-	xMenuBar_AddButton = XCDLL.MustFindProc("XMenuBar_AddButton")
-	xMenuBar_SetButtonHeight = XCDLL.MustFindProc("XMenuBar_SetButtonHeight")
-	xMenuBar_GetMenu = XCDLL.MustFindProc("XMenuBar_GetMenu")
-	xMenuBar_DeleteButton = XCDLL.MustFindProc("XMenuBar_DeleteButton")
+	xMenuBar_Create = xcDLL.MustFindProc("XMenuBar_Create")
+	xMenuBar_AddButton = xcDLL.MustFindProc("XMenuBar_AddButton")
+	xMenuBar_SetButtonHeight = xcDLL.MustFindProc("XMenuBar_SetButtonHeight")
+	xMenuBar_GetMenu = xcDLL.MustFindProc("XMenuBar_GetMenu")
+	xMenuBar_DeleteButton = xcDLL.MustFindProc("XMenuBar_DeleteButton")
 }
 
 func XMenuBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {

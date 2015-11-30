@@ -11,9 +11,9 @@ var (
 )
 
 func init() {
-	xShapeLine_Create = XCDLL.MustFindProc("XShapeLine_Create")
-	xShapeLine_SetPosition = XCDLL.MustFindProc("XShapeLine_SetPosition")
-	xShapeLine_SetColor = XCDLL.MustFindProc("XShapeLine_SetColor")
+	xShapeLine_Create = xcDLL.MustFindProc("XShapeLine_Create")
+	xShapeLine_SetPosition = xcDLL.MustFindProc("XShapeLine_SetPosition")
+	xShapeLine_SetColor = xcDLL.MustFindProc("XShapeLine_SetColor")
 }
 
 func XShapeLineCreate(x1, int, y1 int, x2 int, y2 int, hParent HXCGUI) HXCGUI {

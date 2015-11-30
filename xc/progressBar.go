@@ -16,14 +16,14 @@ var (
 )
 
 func init() {
-	xProgBar_Create = XCDLL.MustFindProc("XProgBar_Create")
-	xProgBar_SetRange = XCDLL.MustFindProc("XProgBar_SetRange")
-	xProgBar_GetRange = XCDLL.MustFindProc("XProgBar_GetRange")
-	xProgBar_SetImageLoad = XCDLL.MustFindProc("XProgBar_SetImageLoad")
-	xProgBar_SetSpaceTwo = XCDLL.MustFindProc("XProgBar_SetSpaceTwo")
-	xProgBar_SetPos = XCDLL.MustFindProc("XProgBar_SetPos")
-	xProgBar_GetPos = XCDLL.MustFindProc("XProgBar_GetPos")
-	xProgBar_SetHorizon = XCDLL.MustFindProc("XProgBar_SetHorizon")
+	xProgBar_Create = xcDLL.MustFindProc("XProgBar_Create")
+	xProgBar_SetRange = xcDLL.MustFindProc("XProgBar_SetRange")
+	xProgBar_GetRange = xcDLL.MustFindProc("XProgBar_GetRange")
+	xProgBar_SetImageLoad = xcDLL.MustFindProc("XProgBar_SetImageLoad")
+	xProgBar_SetSpaceTwo = xcDLL.MustFindProc("XProgBar_SetSpaceTwo")
+	xProgBar_SetPos = xcDLL.MustFindProc("XProgBar_SetPos")
+	xProgBar_GetPos = xcDLL.MustFindProc("XProgBar_GetPos")
+	xProgBar_SetHorizon = xcDLL.MustFindProc("XProgBar_SetHorizon")
 }
 
 func XProgBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {

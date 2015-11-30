@@ -15,12 +15,12 @@ var (
 )
 
 func init() {
-	xShapePic_Create = XCDLL.MustFindProc("XShapePic_Create")
-	xShapePic_SetImage = XCDLL.MustFindProc("XShapePic_SetImage")
-	xShapePic_SetLayoutWidth = XCDLL.MustFindProc("XShapePic_SetLayoutWidth")
-	xShapePic_SetLayoutHeight = XCDLL.MustFindProc("XShapePic_SetLayoutHeight")
-	xShapePic_GetLayoutWidth = XCDLL.MustFindProc("XShapePic_GetLayoutWidth")
-	xShapePic_GetLayoutHeight = XCDLL.MustFindProc("XShapePic_GetLayoutHeight")
+	xShapePic_Create = xcDLL.MustFindProc("XShapePic_Create")
+	xShapePic_SetImage = xcDLL.MustFindProc("XShapePic_SetImage")
+	xShapePic_SetLayoutWidth = xcDLL.MustFindProc("XShapePic_SetLayoutWidth")
+	xShapePic_SetLayoutHeight = xcDLL.MustFindProc("XShapePic_SetLayoutHeight")
+	xShapePic_GetLayoutWidth = xcDLL.MustFindProc("XShapePic_GetLayoutWidth")
+	xShapePic_GetLayoutHeight = xcDLL.MustFindProc("XShapePic_GetLayoutHeight")
 }
 
 func XShapePicCreate(x int, y int, cx int, cy int, hParent HXCGUI) HXCGUI {

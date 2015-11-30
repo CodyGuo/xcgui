@@ -21,16 +21,16 @@ var (
 
 func init() {
 	// Functions
-	xShapeGroupBox_Create = XCDLL.MustFindProc("XShapeGroupBox_Create")
-	xShapeGroupBox_SetBorderColor = XCDLL.MustFindProc("XShapeGroupBox_SetBorderColor")
-	xShapeGroupBox_SetTextColor = XCDLL.MustFindProc("XShapeGroupBox_SetTextColor")
-	xShapeGroupBox_SetFontX = XCDLL.MustFindProc("XShapeGroupBox_SetFontX")
-	xShapeGroupBox_SetTextOffset = XCDLL.MustFindProc("XShapeGroupBox_SetTextOffset")
-	xShapeGroupBox_SetRoundAngle = XCDLL.MustFindProc("XShapeGroupBox_SetRoundAngle")
-	xShapeGroupBox_SetText = XCDLL.MustFindProc("XShapeGroupBox_SetText")
-	xShapeGroupBox_GetTextOffset = XCDLL.MustFindProc("XShapeGroupBox_GetTextOffset")
-	xShapeGroupBox_GetRoundAngle = XCDLL.MustFindProc("XShapeGroupBox_GetRoundAngle")
-	xShapeGroupBox_EnableRoundAngle = XCDLL.MustFindProc("XShapeGroupBox_EnableRoundAngle")
+	xShapeGroupBox_Create = xcDLL.MustFindProc("XShapeGroupBox_Create")
+	xShapeGroupBox_SetBorderColor = xcDLL.MustFindProc("XShapeGroupBox_SetBorderColor")
+	xShapeGroupBox_SetTextColor = xcDLL.MustFindProc("XShapeGroupBox_SetTextColor")
+	xShapeGroupBox_SetFontX = xcDLL.MustFindProc("XShapeGroupBox_SetFontX")
+	xShapeGroupBox_SetTextOffset = xcDLL.MustFindProc("XShapeGroupBox_SetTextOffset")
+	xShapeGroupBox_SetRoundAngle = xcDLL.MustFindProc("XShapeGroupBox_SetRoundAngle")
+	xShapeGroupBox_SetText = xcDLL.MustFindProc("XShapeGroupBox_SetText")
+	xShapeGroupBox_GetTextOffset = xcDLL.MustFindProc("XShapeGroupBox_GetTextOffset")
+	xShapeGroupBox_GetRoundAngle = xcDLL.MustFindProc("XShapeGroupBox_GetRoundAngle")
+	xShapeGroupBox_EnableRoundAngle = xcDLL.MustFindProc("XShapeGroupBox_EnableRoundAngle")
 }
 
 /*

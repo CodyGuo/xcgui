@@ -18,13 +18,13 @@ var (
 
 func init() {
 	// Functions
-	xFont_Create = XCDLL.MustFindProc("XFont_Create")
-	xFont_Create2 = XCDLL.MustFindProc("XFont_Create2")
-	xFont_CreateEx = XCDLL.MustFindProc("XFont_CreateEx")
-	xFont_CreateFromHFONT = XCDLL.MustFindProc("XFont_CreateFromHFONT")
-	xFont_EnableAutoDestroy = XCDLL.MustFindProc("XFont_EnableAutoDestroy")
-	xFont_Destroy = XCDLL.MustFindProc("XFont_Destroy")
-	xFont_GetHFONT = XCDLL.MustFindProc("XFont_GetHFONT")
+	xFont_Create = xcDLL.MustFindProc("XFont_Create")
+	xFont_Create2 = xcDLL.MustFindProc("XFont_Create2")
+	xFont_CreateEx = xcDLL.MustFindProc("XFont_CreateEx")
+	xFont_CreateFromHFONT = xcDLL.MustFindProc("XFont_CreateFromHFONT")
+	xFont_EnableAutoDestroy = xcDLL.MustFindProc("XFont_EnableAutoDestroy")
+	xFont_Destroy = xcDLL.MustFindProc("XFont_Destroy")
+	xFont_GetHFONT = xcDLL.MustFindProc("XFont_GetHFONT")
 }
 
 /*

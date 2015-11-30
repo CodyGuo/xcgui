@@ -17,15 +17,15 @@ var (
 )
 
 func init() {
-	xShapeRect_Create = XCDLL.MustFindProc("XShapeRect_Create")
-	xShapeRect_SetBorderColor = XCDLL.MustFindProc("XShapeRect_SetBorderColor")
-	xShapeRect_SetFillColor = XCDLL.MustFindProc("XShapeRect_SetFillColor")
-	xShapeRect_SetRoundAngle = XCDLL.MustFindProc("XShapeRect_SetRoundAngle")
-	xShapeRect_GetRoundAngle = XCDLL.MustFindProc("XShapeRect_GetRoundAngle")
-	xShapeRect_EnableBorder = XCDLL.MustFindProc("XShapeRect_EnableBorder")
-	xShapeRect_Create = XCDLL.MustFindProc("XShapeRect_Create")
-	xShapeRect_EnableFill = XCDLL.MustFindProc("XShapeRect_EnableFill")
-	xShapeRect_EnableRoundAngle = XCDLL.MustFindProc("XShapeRect_EnableRoundAngle")
+	xShapeRect_Create = xcDLL.MustFindProc("XShapeRect_Create")
+	xShapeRect_SetBorderColor = xcDLL.MustFindProc("XShapeRect_SetBorderColor")
+	xShapeRect_SetFillColor = xcDLL.MustFindProc("XShapeRect_SetFillColor")
+	xShapeRect_SetRoundAngle = xcDLL.MustFindProc("XShapeRect_SetRoundAngle")
+	xShapeRect_GetRoundAngle = xcDLL.MustFindProc("XShapeRect_GetRoundAngle")
+	xShapeRect_EnableBorder = xcDLL.MustFindProc("XShapeRect_EnableBorder")
+	xShapeRect_Create = xcDLL.MustFindProc("XShapeRect_Create")
+	xShapeRect_EnableFill = xcDLL.MustFindProc("XShapeRect_EnableFill")
+	xShapeRect_EnableRoundAngle = xcDLL.MustFindProc("XShapeRect_EnableRoundAngle")
 }
 
 func XShapeRectCreate(x1, int, y1 int, x2 int, y2 int, hParent HXCGUI) HXCGUI {

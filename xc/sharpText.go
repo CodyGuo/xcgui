@@ -25,19 +25,19 @@ var (
 )
 
 func init() {
-	xShapeText_Create = XCDLL.MustFindProc("XShapeText_Create")
-	xShapeText_SetText = XCDLL.MustFindProc("XShapeText_SetText")
-	xShapeText_GetText = XCDLL.MustFindProc("XShapeText_GetText")
-	xShapeText_GetTextLength = XCDLL.MustFindProc("XShapeText_GetTextLength")
-	xShapeText_SetFont = XCDLL.MustFindProc("XShapeText_SetFont")
-	xShapeText_SetTextColor = XCDLL.MustFindProc("XShapeText_SetTextColor")
-	xShapeText_GetTextColor = XCDLL.MustFindProc("XShapeText_GetTextColor")
-	xShapeText_SetTextAlign = XCDLL.MustFindProc("XShapeText_SetTextAlign")
-	xShapeText_SetOffset = XCDLL.MustFindProc("XShapeText_SetOffset")
-	xShapeText_SetLayoutWidth = XCDLL.MustFindProc("XShapeText_SetLayoutWidth")
-	xShapeText_SetLayoutHeight = XCDLL.MustFindProc("XShapeText_SetLayoutHeight")
-	xShapeText_GetLayoutWidth = XCDLL.MustFindProc("XShapeText_GetLayoutWidth")
-	xShapeText_GetLayoutHeight = XCDLL.MustFindProc("XShapeText_GetLayoutHeight")
+	xShapeText_Create = xcDLL.MustFindProc("XShapeText_Create")
+	xShapeText_SetText = xcDLL.MustFindProc("XShapeText_SetText")
+	xShapeText_GetText = xcDLL.MustFindProc("XShapeText_GetText")
+	xShapeText_GetTextLength = xcDLL.MustFindProc("XShapeText_GetTextLength")
+	xShapeText_SetFont = xcDLL.MustFindProc("XShapeText_SetFont")
+	xShapeText_SetTextColor = xcDLL.MustFindProc("XShapeText_SetTextColor")
+	xShapeText_GetTextColor = xcDLL.MustFindProc("XShapeText_GetTextColor")
+	xShapeText_SetTextAlign = xcDLL.MustFindProc("XShapeText_SetTextAlign")
+	xShapeText_SetOffset = xcDLL.MustFindProc("XShapeText_SetOffset")
+	xShapeText_SetLayoutWidth = xcDLL.MustFindProc("XShapeText_SetLayoutWidth")
+	xShapeText_SetLayoutHeight = xcDLL.MustFindProc("XShapeText_SetLayoutHeight")
+	xShapeText_GetLayoutWidth = xcDLL.MustFindProc("XShapeText_GetLayoutWidth")
+	xShapeText_GetLayoutHeight = xcDLL.MustFindProc("XShapeText_GetLayoutHeight")
 }
 
 func XShapeTextCreate(x int, y int, cx int, cy int, pName string, hParent HXCGUI) HXCGUI {

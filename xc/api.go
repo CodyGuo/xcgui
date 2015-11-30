@@ -20,7 +20,7 @@ const (
 )
 
 var (
-	XCDLL *syscall.DLL
+	xcDLL *syscall.DLL
 )
 
 var (
@@ -73,36 +73,36 @@ func init() {
 	runtime.LockOSThread()
 
 	if FileExist(xcDll) {
-		XCDLL = syscall.MustLoadDLL(xcDll)
+		xcDLL = syscall.MustLoadDLL(xcDll)
 	} else if FileExist("lib/" + xcDll) {
-		XCDLL = syscall.MustLoadDLL("lib/" + xcDll)
+		xcDLL = syscall.MustLoadDLL("lib/" + xcDll)
 	} else if FileExist("../lib/" + xcDll) {
-		XCDLL = syscall.MustLoadDLL("../lib/" + xcDll)
+		xcDLL = syscall.MustLoadDLL("../lib/" + xcDll)
 	} else {
 		panic("xcgui library not found")
 	}
 
 	// Functions
-	xC_UnicodeToAnsi = XCDLL.MustFindProc("XC_UnicodeToAnsi")
-	xC_AnsiToUnicode = XCDLL.MustFindProc("XC_AnsiToUnicode")
-	xC_DebugToFileInfo = XCDLL.MustFindProc("XC_DebugToFileInfo")
-	xC_IsHELE = XCDLL.MustFindProc("XC_IsHELE")
-	xC_IsHWINDOW = XCDLL.MustFindProc("XC_IsHWINDOW")
-	xC_IsShape = XCDLL.MustFindProc("XC_IsShape")
-	xC_IsHXCGUI = XCDLL.MustFindProc("XC_IsHXCGUI")
-	xC_hWindowFromHWnd = XCDLL.MustFindProc("XC_hWindowFromHWnd")
-	xC_IsSViewExtend = XCDLL.MustFindProc("XC_IsSViewExtend")
-	xC_GetObjectType = XCDLL.MustFindProc("XC_GetObjectType")
-	xC_GetObjectByID = XCDLL.MustFindProc("XC_GetObjectByID")
-	xC_GetResIDValue = XCDLL.MustFindProc("XC_GetResIDValue")
-	xC_RectInRect = XCDLL.MustFindProc("XC_RectInRect")
-	xC_CombineRect = XCDLL.MustFindProc("XC_CombineRect")
-	xC_ShowLayoutFrame = XCDLL.MustFindProc("XC_ShowLayoutFrame")
-	xC_SetLayoutFrameColor = XCDLL.MustFindProc("XC_SetLayoutFrameColor")
-	xC_EnableErrorMessageBox = XCDLL.MustFindProc("XC_EnableErrorMessageBox")
-	xInitXCGUI = XCDLL.MustFindProc("XInitXCGUI")
-	xRunXCGUI = XCDLL.MustFindProc("XRunXCGUI")
-	xExitXCGUI = XCDLL.MustFindProc("XExitXCGUI")
+	xC_UnicodeToAnsi = xcDLL.MustFindProc("XC_UnicodeToAnsi")
+	xC_AnsiToUnicode = xcDLL.MustFindProc("XC_AnsiToUnicode")
+	xC_DebugToFileInfo = xcDLL.MustFindProc("XC_DebugToFileInfo")
+	xC_IsHELE = xcDLL.MustFindProc("XC_IsHELE")
+	xC_IsHWINDOW = xcDLL.MustFindProc("XC_IsHWINDOW")
+	xC_IsShape = xcDLL.MustFindProc("XC_IsShape")
+	xC_IsHXCGUI = xcDLL.MustFindProc("XC_IsHXCGUI")
+	xC_hWindowFromHWnd = xcDLL.MustFindProc("XC_hWindowFromHWnd")
+	xC_IsSViewExtend = xcDLL.MustFindProc("XC_IsSViewExtend")
+	xC_GetObjectType = xcDLL.MustFindProc("XC_GetObjectType")
+	xC_GetObjectByID = xcDLL.MustFindProc("XC_GetObjectByID")
+	xC_GetResIDValue = xcDLL.MustFindProc("XC_GetResIDValue")
+	xC_RectInRect = xcDLL.MustFindProc("XC_RectInRect")
+	xC_CombineRect = xcDLL.MustFindProc("XC_CombineRect")
+	xC_ShowLayoutFrame = xcDLL.MustFindProc("XC_ShowLayoutFrame")
+	xC_SetLayoutFrameColor = xcDLL.MustFindProc("XC_SetLayoutFrameColor")
+	xC_EnableErrorMessageBox = xcDLL.MustFindProc("XC_EnableErrorMessageBox")
+	xInitXCGUI = xcDLL.MustFindProc("XInitXCGUI")
+	xRunXCGUI = xcDLL.MustFindProc("XRunXCGUI")
+	xExitXCGUI = xcDLL.MustFindProc("XExitXCGUI")
 
 	ret, _, _ := xInitXCGUI.Call(StringToUintPtr("XCGUI Library For Go"))
 	// XCGUI的返回值: true 为 1 ，false 为 0

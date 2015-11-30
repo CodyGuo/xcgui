@@ -27,13 +27,13 @@ var (
 
 func init() {
 	// Functions
-	xFrameWnd_Create = XCDLL.MustFindProc("XFrameWnd_Create")
-	xFrameWnd_CreateEx = XCDLL.MustFindProc("XFrameWnd_CreateEx")
-	xFrameWnd_GetLayoutAreaRect = XCDLL.MustFindProc("XFrameWnd_GetLayoutAreaRect")
-	xFrameWnd_SetView = XCDLL.MustFindProc("XFrameWnd_SetView")
-	xFrameWnd_SetPaneSplitBarColor = XCDLL.MustFindProc("XFrameWnd_SetPaneSplitBarColor")
-	xFrameWnd_AddPane = XCDLL.MustFindProc("XFrameWnd_AddPane")
-	xFrameWnd_MergePane = XCDLL.MustFindProc("XFrameWnd_MergePane")
+	xFrameWnd_Create = xcDLL.MustFindProc("XFrameWnd_Create")
+	xFrameWnd_CreateEx = xcDLL.MustFindProc("XFrameWnd_CreateEx")
+	xFrameWnd_GetLayoutAreaRect = xcDLL.MustFindProc("XFrameWnd_GetLayoutAreaRect")
+	xFrameWnd_SetView = xcDLL.MustFindProc("XFrameWnd_SetView")
+	xFrameWnd_SetPaneSplitBarColor = xcDLL.MustFindProc("XFrameWnd_SetPaneSplitBarColor")
+	xFrameWnd_AddPane = xcDLL.MustFindProc("XFrameWnd_AddPane")
+	xFrameWnd_MergePane = xcDLL.MustFindProc("XFrameWnd_MergePane")
 }
 
 // *******************************************

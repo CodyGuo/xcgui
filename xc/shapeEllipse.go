@@ -13,11 +13,11 @@ var (
 )
 
 func init() {
-	xShapeEllipse_Create = XCDLL.MustFindProc("XShapeEllipse_Create")
-	xShapeEllipse_SetBorderColor = XCDLL.MustFindProc("XShapeEllipse_SetBorderColor")
-	xShapeEllipse_SetFillColor = XCDLL.MustFindProc("XShapeEllipse_SetFillColor")
-	xShapeEllipse_EnableBorder = XCDLL.MustFindProc("XShapeEllipse_EnableBorder")
-	xShapeEllipse_EnableFill = XCDLL.MustFindProc("XShapeEllipse_EnableFill")
+	xShapeEllipse_Create = xcDLL.MustFindProc("XShapeEllipse_Create")
+	xShapeEllipse_SetBorderColor = xcDLL.MustFindProc("XShapeEllipse_SetBorderColor")
+	xShapeEllipse_SetFillColor = xcDLL.MustFindProc("XShapeEllipse_SetFillColor")
+	xShapeEllipse_EnableBorder = xcDLL.MustFindProc("XShapeEllipse_EnableBorder")
+	xShapeEllipse_EnableFill = xcDLL.MustFindProc("XShapeEllipse_EnableFill")
 }
 
 func XShapeEllipseCreate(x int, y int, cx int, cy int, hParent HXCGUI) HXCGUI {

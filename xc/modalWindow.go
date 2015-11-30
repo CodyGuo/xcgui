@@ -15,11 +15,11 @@ var (
 
 func init() {
 	// Funtions
-	xModalWnd_Create = XCDLL.MustFindProc("XModalWnd_Create")
-	xModalWnd_CreateEx = XCDLL.MustFindProc("XModalWnd_CreateEx")
-	xModalWnd_EnableAutoClose = XCDLL.MustFindProc("XModalWnd_EnableAutoClose")
-	xModalWnd_DoModal = XCDLL.MustFindProc("XModalWnd_DoModal")
-	xModalWnd_EndModal = XCDLL.MustFindProc("XModalWnd_EndModal")
+	xModalWnd_Create = xcDLL.MustFindProc("XModalWnd_Create")
+	xModalWnd_CreateEx = xcDLL.MustFindProc("XModalWnd_CreateEx")
+	xModalWnd_EnableAutoClose = xcDLL.MustFindProc("XModalWnd_EnableAutoClose")
+	xModalWnd_DoModal = xcDLL.MustFindProc("XModalWnd_DoModal")
+	xModalWnd_EndModal = xcDLL.MustFindProc("XModalWnd_EndModal")
 }
 
 // *******************************************************************

@@ -20,15 +20,15 @@ var (
 
 func init() {
 	// Functions
-	xBkInfoM_Create = XCDLL.MustFindProc("XBkInfoM_Create")
-	xBkInfoM_Destroy = XCDLL.MustFindProc("XBkInfoM_Destroy")
-	xBkInfoM_SetBkInfo = XCDLL.MustFindProc("XBkInfoM_SetBkInfo")
-	xBkInfoM_AddBorder = XCDLL.MustFindProc("XBkInfoM_AddBorder")
-	xBkInfoM_AddFill = XCDLL.MustFindProc("XBkInfoM_AddFill")
-	xBkInfoM_AddImage = XCDLL.MustFindProc("XBkInfoM_AddImage")
-	xBkInfoM_GetCount = XCDLL.MustFindProc("XBkInfoM_GetCount")
-	xBkInfoM_Clear = XCDLL.MustFindProc("XBkInfoM_Clear")
-	xBkInfoM_Draw = XCDLL.MustFindProc("XBkInfoM_Draw")
+	xBkInfoM_Create = xcDLL.MustFindProc("XBkInfoM_Create")
+	xBkInfoM_Destroy = xcDLL.MustFindProc("XBkInfoM_Destroy")
+	xBkInfoM_SetBkInfo = xcDLL.MustFindProc("XBkInfoM_SetBkInfo")
+	xBkInfoM_AddBorder = xcDLL.MustFindProc("XBkInfoM_AddBorder")
+	xBkInfoM_AddFill = xcDLL.MustFindProc("XBkInfoM_AddFill")
+	xBkInfoM_AddImage = xcDLL.MustFindProc("XBkInfoM_AddImage")
+	xBkInfoM_GetCount = xcDLL.MustFindProc("XBkInfoM_GetCount")
+	xBkInfoM_Clear = xcDLL.MustFindProc("XBkInfoM_Clear")
+	xBkInfoM_Draw = xcDLL.MustFindProc("XBkInfoM_Draw")
 }
 
 /*

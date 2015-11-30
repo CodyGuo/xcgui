@@ -79,13 +79,13 @@ func init() {
 
 // 关闭
 func CloseBtn(hWindow HWINDOW) {
-	XBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
+	XBtnSetType(XBtnCreate(10, 5, 35, 20, StringToUTF16Ptr("关闭"), HXCGUI(hWindow)),
 		BUTTON_TYPE_CLOSE)
 }
 
 // 最小化
 func MinBtn(hWindow HWINDOW) {
-	XBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
+	XBtnSetType(XBtnCreate(60, 5, 45, 20, StringToUTF16Ptr("最小化"), HXCGUI(hWindow)),
 		BUTTON_TYPE_MIN)
 }
 
@@ -102,13 +102,13 @@ func MinBtn(hWindow HWINDOW) {
 返回:
 	按钮元素句柄.
 */
-func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
+func XBtnCreate(x, y, cx, cy int, pName *uint16, hParent HXCGUI) HELE {
 	ret, _, _ := xBtn_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		StringToUintPtr(pName),
+		uintptr(unsafe.Pointer(pName)),
 		uintptr(hParent))
 
 	return HELE(ret)
@@ -398,10 +398,10 @@ func XBtnGetText(hEle HELE, pOut *uint16, nOutLen int) {
 	hEle 元素句柄.
 	pName 文本内容.
 */
-func XBtnSetText(hEle HELE, pName string) {
+func XBtnSetText(hEle HELE, pName *uint16) {
 	xBtn_SetText.Call(
 		uintptr(hEle),
-		StringToUintPtr(pName))
+		uintptr(unsafe.Pointer(pName)))
 }
 
 /*
@@ -438,7 +438,7 @@ func XBtnSetIconDisable(hEle HELE, hImage HIMAGE) {
 	hImage 图片句柄
 	uElapse 图片帧延时,单位毫秒.
 */
-func XBtnAddAnimationFrame(hEle HELE, hImage HIMAGE, uElapse uint) {
+func XBtnAddAnimationFrame(hEle HELE, hImage HIMAGE, uElapse uint32) {
 	xBtn_AddAnimationFrame.Call(
 		uintptr(hEle),
 		uintptr(hImage),

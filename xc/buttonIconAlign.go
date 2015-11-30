@@ -1,6 +1,6 @@
 package xc
 
-type BUTTON_ICON_ALIGN_ uint32
+type Button_icon_align_ uint32
 
 /*
 按钮图标对齐方式
@@ -10,7 +10,7 @@ type BUTTON_ICON_ALIGN_ uint32
 	button_icon_align_bottom 图标在底部
 */
 const (
-	BUTTON_ICON_ALIGN_LEFT BUTTON_ICON_ALIGN_ = iota
+	BUTTON_ICON_ALIGN_LEFT Button_icon_align_ = iota
 	BUTTON_ICON_ALIGN_TOP
 	BUTTON_ICON_ALIGN_RIGHT
 	BUTTON_ICON_ALIGN_BOTTOM

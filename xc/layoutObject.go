@@ -310,7 +310,7 @@ func XLayoutGetRectFrame(hLayout HXCGUI, pRect *RECT) {
 	hLayout 布局对象句柄.
 	nAlign 对齐方式参见宏定义.
 */
-func XLayoutSetAlignH(hLayout HXCGUI, nAlign LAYOUT_ALIGN_) {
+func XLayoutSetAlignH(hLayout HXCGUI, nAlign Layout_align_) {
 	xLayout_SetAlignH.Call(
 		uintptr(hLayout),
 		uintptr(nAlign))
@@ -323,7 +323,7 @@ func XLayoutSetAlignH(hLayout HXCGUI, nAlign LAYOUT_ALIGN_) {
 	hLayout 布局对象句柄.
 	nAlign 对齐方式参见宏定义.
 */
-func XLayoutSetAlignV(hLayout HXCGUI, nAlign LAYOUT_ALIGN_) {
+func XLayoutSetAlignV(hLayout HXCGUI, nAlign Layout_align_) {
 	xLayout_SetAlignV.Call(
 		uintptr(hLayout),
 		uintptr(nAlign))
@@ -356,7 +356,7 @@ func XLayoutSetPadding(hLayout HXCGUI, left, top, right, bottom int) {
 	nType 属性类型.
 	nWidth 宽度.
 */
-func XLayoutSetLayoutWidth(hLayout HXCGUI, nType LAYOUT_SIZE_TYPE_, nWidth int) {
+func XLayoutSetLayoutWidth(hLayout HXCGUI, nType Layout_size_type_, nWidth int) {
 	xLayout_SetLayoutWidth.Call(
 		uintptr(hLayout),
 		uintptr(nType),
@@ -371,7 +371,7 @@ func XLayoutSetLayoutWidth(hLayout HXCGUI, nType LAYOUT_SIZE_TYPE_, nWidth int) 
 	nType 属性类型.
 	nHeight 高度.
 */
-func XLayoutSetLayoutHeight(hLayout HXCGUI, nType LAYOUT_SIZE_TYPE_, nHeight int) {
+func XLayoutSetLayoutHeight(hLayout HXCGUI, nType Layout_size_type_, nHeight int) {
 	xLayout_SetLayoutHeight.Call(
 		uintptr(hLayout),
 		uintptr(nType),
@@ -386,7 +386,7 @@ func XLayoutSetLayoutHeight(hLayout HXCGUI, nType LAYOUT_SIZE_TYPE_, nHeight int
 	pType 属性标识.
 	pWidth 宽度.
 */
-func XLayoutGetLayoutWidth(hLayout HXCGUI, pType *LAYOUT_SIZE_TYPE_, pWidth *int) {
+func XLayoutGetLayoutWidth(hLayout HXCGUI, pType *Layout_size_type_, pWidth *int) {
 	xLayout_GetLayoutWidth.Call(
 		uintptr(hLayout),
 		uintptr(unsafe.Pointer(pType)),
@@ -401,7 +401,7 @@ func XLayoutGetLayoutWidth(hLayout HXCGUI, pType *LAYOUT_SIZE_TYPE_, pWidth *int
 	pType 属性标识.
 	pHeight 高度.
 */
-func XLayoutGetLayoutHeight(hLayout HXCGUI, pType *LAYOUT_SIZE_TYPE_, pHeight *int) {
+func XLayoutGetLayoutHeight(hLayout HXCGUI, pType *Layout_size_type_, pHeight *int) {
 	xLayout_GetLayoutHeight.Call(
 		uintptr(hLayout),
 		uintptr(unsafe.Pointer(pType)),

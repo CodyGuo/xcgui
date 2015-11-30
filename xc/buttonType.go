@@ -1,6 +1,6 @@
 package xc
 
-type BUTTON_TYPE_ uint32
+type Button_type_ uint32
 
 /*
 button_type_ 按钮类型(用于区分功能)
@@ -12,7 +12,7 @@ button_type_ 按钮类型(用于区分功能)
 	button_type_max 窗口最大化还原按钮
 */
 const (
-	BUTTON_TYPE_DEFAULT BUTTON_TYPE_ = iota
+	BUTTON_TYPE_DEFAULT Button_type_ = iota
 	BUTTON_TYPE_CHECK
 	BUTTON_TYPE_RADIO
 	BUTTON_TYPE_CLOSE

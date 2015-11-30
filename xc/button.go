@@ -152,7 +152,7 @@ func XBtnSetCheck(hEle HELE, bCheck bool) bool {
 	hEle 元素句柄.
 	nStyle 样式.
 */
-func XBtnSetStyle(hEle HELE, nStyle BUTTON_STYLE_) {
+func XBtnSetStyle(hEle HELE, nStyle Button_style_) {
 	xBtn_SetStyle.Call(
 		uintptr(hEle),
 		uintptr(nStyle))
@@ -165,7 +165,7 @@ func XBtnSetStyle(hEle HELE, nStyle BUTTON_STYLE_) {
 	hEle 元素句柄.
 	nState 按钮状态见宏定义.
 */
-func XBtnSetState(hEle HELE, nState COMMON_STATE3_) {
+func XBtnSetState(hEle HELE, nState Common_state3_) {
 	xBtn_SetState.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -179,10 +179,10 @@ func XBtnSetState(hEle HELE, nState COMMON_STATE3_) {
 返回:
 	返回按钮状态.
 */
-func XBtnGetState(hEle HELE) COMMON_STATE3_ {
+func XBtnGetState(hEle HELE) Common_state3_ {
 	ret, _, _ := xBtn_GetState.Call(uintptr(hEle))
 
-	return COMMON_STATE3_(ret)
+	return Common_state3_(ret)
 }
 
 /*
@@ -193,10 +193,10 @@ func XBtnGetState(hEle HELE) COMMON_STATE3_ {
 返回:
 	返回按钮状态.
 */
-func XBtnGetStateEx(hEle HELE) BUTTON_STATE_ {
+func XBtnGetStateEx(hEle HELE) Button_state_ {
 	ret, _, _ := xBtn_GetStateEx.Call(uintptr(hEle))
 
-	return BUTTON_STATE_(ret)
+	return Button_state_(ret)
 }
 
 /*
@@ -207,10 +207,10 @@ func XBtnGetStateEx(hEle HELE) BUTTON_STATE_ {
 返回:
 	按钮样式,参见宏定义.
 */
-func XBtnGetStyle(hEle HELE) BUTTON_STYLE_ {
+func XBtnGetStyle(hEle HELE) Button_style_ {
 	ret, _, _ := xBtn_GetStyle.Call(uintptr(hEle))
 
-	return BUTTON_STYLE_(ret)
+	return Button_style_(ret)
 }
 
 /*
@@ -220,7 +220,7 @@ func XBtnGetStyle(hEle HELE) BUTTON_STYLE_ {
 	hEle 元素句柄.
 	nType 按钮类型,参见宏定义.
 */
-func XBtnSetType(hEle HELE, nType BUTTON_TYPE_) {
+func XBtnSetType(hEle HELE, nType Button_type_) {
 	xBtn_SetType.Call(
 		uintptr(hEle),
 		uintptr(nType))
@@ -234,10 +234,10 @@ func XBtnSetType(hEle HELE, nType BUTTON_TYPE_) {
 返回:
 	按钮类型,参见宏定义.
 */
-func XBtnGetType(hEle HELE) BUTTON_TYPE_ {
+func XBtnGetType(hEle HELE) Button_type_ {
 	ret, _, _ := xBtn_GetType.Call(uintptr(hEle))
 
-	return BUTTON_TYPE_(ret)
+	return Button_type_(ret)
 }
 
 /*
@@ -327,7 +327,7 @@ func XBtnGetTextAlign(hEle HELE) int {
 	hEle 元素句柄.
 	align 对齐方式.
 */
-func XBtnSetIconAlign(hEle HELE, align BUTTON_ICON_ALIGN_) {
+func XBtnSetIconAlign(hEle HELE, align Button_icon_align_) {
 	xBtn_SetIconAlign.Call(
 		uintptr(hEle),
 		uintptr(align))
@@ -470,7 +470,7 @@ func XBtnEnableAnimation(hEle HELE, bEnable, bLoopPlay bool) {
 	alpha 透明度.
 	width 线宽.
 */
-func XBtnAddBkBorder(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte, width int) {
+func XBtnAddBkBorder(hEle HELE, nState Button_state_, color COLORREF, alpha byte, width int) {
 	xBtn_AddBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -488,7 +488,7 @@ func XBtnAddBkBorder(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte
 	color RGB颜色.
 	alpha 透明度.
 */
-func XBtnAddBkFill(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte) {
+func XBtnAddBkFill(hEle HELE, nState Button_state_, color COLORREF, alpha byte) {
 	xBtn_AddBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -504,7 +504,7 @@ func XBtnAddBkFill(hEle HELE, nState BUTTON_STATE_, color COLORREF, alpha byte) 
 	nState 按钮状态.
 	hImage 图片句柄.
 */
-func XBtnAddBkImage(hEle HELE, nState BUTTON_STATE_, hImage HIMAGE) {
+func XBtnAddBkImage(hEle HELE, nState Button_state_, hImage HIMAGE) {
 	xBtn_AddBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -520,7 +520,7 @@ func XBtnAddBkImage(hEle HELE, nState BUTTON_STATE_, hImage HIMAGE) {
 返回:
 	成功返回背景内容数量,否则返回XC_ID_ERROR.
 */
-func XBtnGetBkInfoCount(hEle HELE, nState BUTTON_STATE_) int {
+func XBtnGetBkInfoCount(hEle HELE, nState Button_state_) int {
 	ret, _, _ := xBtn_GetBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -535,7 +535,7 @@ func XBtnGetBkInfoCount(hEle HELE, nState BUTTON_STATE_) int {
 	hEle 元素句柄.
 	nState 按钮状态.
 */
-func XBtnClearBkInfo(hEle HELE, nState BUTTON_STATE_) {
+func XBtnClearBkInfo(hEle HELE, nState Button_state_) {
 	xBtn_ClearBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -550,7 +550,7 @@ func XBtnClearBkInfo(hEle HELE, nState BUTTON_STATE_) {
 返回:
 	背景内容管理器.
 */
-func XBtnGetBkInfoManager(hEle HELE, nState BUTTON_STATE_) HBKINFOM {
+func XBtnGetBkInfoManager(hEle HELE, nState Button_state_) HBKINFOM {
 	ret, _, _ := xBtn_GetBkInfoManager.Call(
 		uintptr(hEle),
 		uintptr(nState))

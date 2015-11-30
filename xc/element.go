@@ -1523,7 +1523,7 @@ func XEleSetCapture(hEle HELE, b bool) {
 // @Input: hEle 元素句柄. nType 属性标识. nWidth 宽度.
 // @Return:
 // *******************************************
-func XEleSetLayoutWidth(hEle HELE, nType LAYOUT_SIZE_TYPE_, nWidth int) {
+func XEleSetLayoutWidth(hEle HELE, nType Layout_size_type_, nWidth int) {
 	xEle_SetLayoutWidth.Call(
 		uintptr(hEle),
 		uintptr(nType),
@@ -1539,7 +1539,7 @@ func XEleSetLayoutWidth(hEle HELE, nType LAYOUT_SIZE_TYPE_, nWidth int) {
 // @Input: hEle 元素句柄. nType 属性标识. nHeight 高度.
 // @Return:
 // *******************************************
-func XEleSetLayoutHeight(hEle HELE, nType LAYOUT_SIZE_TYPE_, nHeight int) {
+func XEleSetLayoutHeight(hEle HELE, nType Layout_size_type_, nHeight int) {
 	xEle_SetLayoutHeight.Call(
 		uintptr(hEle),
 		uintptr(nType),
@@ -1555,7 +1555,7 @@ func XEleSetLayoutHeight(hEle HELE, nType LAYOUT_SIZE_TYPE_, nHeight int) {
 // @Input: hEle 元素句柄. nType 属性标识. pWidth 宽度.
 // @Return:
 // *******************************************
-func XEleGetLayoutWidth(hEle HELE, nType *LAYOUT_SIZE_TYPE_, nWidth *uint16) {
+func XEleGetLayoutWidth(hEle HELE, nType *Layout_size_type_, nWidth *uint16) {
 	xEle_GetLayoutWidth.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(nType)),
@@ -1571,7 +1571,7 @@ func XEleGetLayoutWidth(hEle HELE, nType *LAYOUT_SIZE_TYPE_, nWidth *uint16) {
 // @Input: hEle 元素句柄. nType 属性标识. nHeight 高度.
 // @Return:
 // *******************************************
-func XEleGetLayoutHeight(hEle HELE, nType *LAYOUT_SIZE_TYPE_, nHeight *uint16) {
+func XEleGetLayoutHeight(hEle HELE, nType *Layout_size_type_, nHeight *uint16) {
 	xEle_GetLayoutHeight.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(nType)),

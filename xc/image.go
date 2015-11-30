@@ -445,7 +445,7 @@ func XImageIsTile(hImage HIMAGE) bool {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XImageSetDrawType(hImage HIMAGE, nType IMAGE_DRAW_TYPE_) bool {
+func XImageSetDrawType(hImage HIMAGE, nType Image_draw_type_) bool {
 	ret, _, _ := xImage_SetDrawType.Call(
 		uintptr(hImage),
 		uintptr(nType))
@@ -565,10 +565,10 @@ func XImageIsCenter(hImage HIMAGE) bool {
 返回:
 	图片绘制类型.
 */
-func XImageGetDrawType(hImage HIMAGE) IMAGE_DRAW_TYPE_ {
+func XImageGetDrawType(hImage HIMAGE) Image_draw_type_ {
 	ret, _, _ := xImage_GetDrawType.Call(uintptr(hImage))
 
-	return IMAGE_DRAW_TYPE_(ret)
+	return Image_draw_type_(ret)
 }
 
 /*

@@ -1,6 +1,6 @@
 package xc
 
-type BUTTON_STATE_ uint32
+type Button_state_ uint32
 
 /*
 button_state_ 按钮状态
@@ -11,7 +11,7 @@ button_state_ 按钮状态
 	button_state_disable 禁用状态
 */
 const (
-	BUTTON_STATE_LEAVE BUTTON_STATE_ = iota
+	BUTTON_STATE_LEAVE Button_state_ = iota
 	BUTTON_STATE_STAY
 	BUTTON_STATE_DOWN
 	BUTTON_STATE_CHECK

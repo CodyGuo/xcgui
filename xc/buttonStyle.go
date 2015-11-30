@@ -1,6 +1,6 @@
 package xc
 
-type BUTTON_STYLE_ uint32
+type Button_style_ uint32
 
 /*
 button_style_ 按钮样式(用于区分外观)
@@ -22,7 +22,7 @@ button_style_ 按钮样式(用于区分外观)
 	button_style_pane_dockV 框架窗口上边或下边码头上按钮
 */
 const (
-	BUTTON_STYLE_DEFAULT BUTTON_STYLE_ = iota
+	BUTTON_STYLE_DEFAULT Button_style_ = iota
 	BUTTON_STYLE_CHECK
 	BUTTON_STYLE_RADIO
 	BUTTON_STYLE_SCROLLBAR_UP

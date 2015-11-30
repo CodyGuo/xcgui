@@ -1,6 +1,6 @@
 package xc
 
-type IMAGE_DRAW_TYPE_ uint32
+type Image_draw_type_ uint32
 
 /*
 图片绘制类型
@@ -10,7 +10,7 @@ type IMAGE_DRAW_TYPE_ uint32
 	image_draw_type_tile 平铺
 */
 const (
-	IMAGE_DRAW_TYPE_DEFAULT IMAGE_DRAW_TYPE_ = iota
+	IMAGE_DRAW_TYPE_DEFAULT Image_draw_type_ = iota
 	IMAGE_DRAW_TYPE_STRETCH
 	IMAGE_DRAW_TYPE_ADAPTIVE
 	IMAGE_DRAW_TYPE_TILE

@@ -68,6 +68,7 @@ func XComboBoxCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
 		uintptr(cx),
 		uintptr(cy),
 		uintptr(hParent))
+
 	return HELE(ret)
 }
 
@@ -84,6 +85,7 @@ func XComboBoxSetSelItem(hEle HELE, iIndex int) bool {
 	ret, _, _ := xComboBox_SetSelItem.Call(
 		uintptr(hEle),
 		uintptr(iIndex))
+
 	return ret == TRUE
 
 }
@@ -150,6 +152,7 @@ func XComboBoxSetDropHeight(hEle HELE, height int) {
 */
 func XComboBoxGetDropHeight(hEle HELE) int {
 	ret, _, _ := xComboBox_GetDropHeight.Call(uintptr(hEle))
+
 	return int(ret)
 }
 
@@ -160,10 +163,10 @@ func XComboBoxGetDropHeight(hEle HELE) int {
 	hEle 元素句柄.
 	pXmlFile 项模板文件.
 */
-func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile string) {
+func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile *uint16) {
 	xComboBox_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		StringToUintPtr(pXmlFile))
+		uintptr(unsafe.Pointer(pXmlFile)))
 }
 
 /*
@@ -173,10 +176,10 @@ func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile string) {
 	hEle 元素句柄.
 	pStringXML 字符串指针.
 */
-func XComboBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) {
+func XComboBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML *uint16) {
 	xComboBox_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		StringToUintPtr(pStringXML))
+		uintptr(unsafe.Pointer(pStringXML)))
 }
 
 /*
@@ -268,6 +271,7 @@ func XComboboxGetBkInfoCount(hEle HELE, nState ComboBox_state_) int {
 	ret, _, _ := xCombobox_GetBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
+
 	return int(ret)
 }
 
@@ -297,6 +301,7 @@ func XComboBoxGetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
 	ret, _, _ := xComboBox_GetBkInfoManager.Call(
 		uintptr(hEle),
 		uintptr(nState))
+
 	return HBKINFOM(ret)
 }
 
@@ -311,6 +316,7 @@ func XComboBoxGetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
 func XComboBoxGetSelItem(hEle HELE) int {
 	ret, _, _ := xComboBox_GetSelItem.Call(
 		uintptr(hEle))
+
 	return int(ret)
 }
 
@@ -325,5 +331,6 @@ func XComboBoxGetSelItem(hEle HELE) int {
 func XComboBoxGetState(hEle HELE) ComboBox_state_ {
 	ret, _, _ := xComboBox_GetState.Call(
 		uintptr(hEle))
+
 	return ComboBox_state_(ret)
 }

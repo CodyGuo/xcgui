@@ -1,6 +1,6 @@
 package xc
 
-type LAYOUT_SIZE_TYPE_ uint32
+type Layout_size_type_ uint32
 
 /*
 布局大小类型
@@ -11,7 +11,7 @@ type LAYOUT_SIZE_TYPE_ uint32
 	layout_size_type_disable disable 不使用
 */
 const (
-	LAYOUT_SIZE_TYPE_FIXED LAYOUT_SIZE_TYPE_ = iota
+	LAYOUT_SIZE_TYPE_FIXED Layout_size_type_ = iota
 	LAYOUT_SIZE_TYPE_FILL
 	LAYOUT_SIZE_TYPE_AUTO
 	LAYOUT_SIZE_TYPE_WEIGHT

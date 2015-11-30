@@ -118,28 +118,28 @@ func XShapeTextSetOffset(hTextBlock HXCGUI, x int, y int) {
 		uintptr(y))
 }
 
-func XShapeTextSetLayoutWidth(hTextBlock HXCGUI, nType LAYOUT_SIZE_TYPE_, width int) {
+func XShapeTextSetLayoutWidth(hTextBlock HXCGUI, nType Layout_size_type_, width int) {
 	xShapeText_SetLayoutWidth.Call(
 		uintptr(hTextBlock),
 		uintptr(nType),
 		uintptr(width))
 }
 
-func XShapeTextSetLayoutHeight(hTextBlock HXCGUI, nType LAYOUT_SIZE_TYPE_, height int) {
+func XShapeTextSetLayoutHeight(hTextBlock HXCGUI, nType Layout_size_type_, height int) {
 	xShapeText_SetLayoutHeight.Call(
 		uintptr(hTextBlock),
 		uintptr(nType),
 		uintptr(height))
 }
 
-func XShapeTextGetLayoutWidth(hTextBlock HXCGUI, pType *LAYOUT_SIZE_TYPE_, pWidth *out_int) {
+func XShapeTextGetLayoutWidth(hTextBlock HXCGUI, pType *Layout_size_type_, pWidth *out_int) {
 	xShapeText_GetLayoutWidth.Call(
 		uintptr(hTextBlock),
 		uintptr(unsafe.Pointer(pType)),
 		uintptr(unsafe.Pointer(pWidth)))
 }
 
-func XShapeTextGetLayoutHeight(hTextBlock HXCGUI, pType *LAYOUT_SIZE_TYPE_, pHeight *out_int) {
+func XShapeTextGetLayoutHeight(hTextBlock HXCGUI, pType *Layout_size_type_, pHeight *out_int) {
 	xShapeText_GetLayoutHeight.Call(
 		uintptr(hTextBlock),
 		uintptr(unsafe.Pointer(pType)),

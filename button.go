@@ -90,31 +90,31 @@ func (b *Button) SetChecked(checked bool) {
 	xc.XBtnSetCheck(b.hEle, checked)
 }
 
-func (b *Button) SetStyle(nStyle xc.BUTTON_STYLE_) {
+func (b *Button) SetStyle(nStyle xc.Button_style_) {
 	xc.XBtnSetStyle(b.hEle, nStyle)
 }
 
-func (b *Button) GetStyle() xc.BUTTON_STYLE_ {
+func (b *Button) GetStyle() xc.Button_style_ {
 	return xc.XBtnGetStyle(b.hEle)
 }
 
-func (b *Button) SetState(nState xc.COMMON_STATE3_) {
+func (b *Button) SetState(nState xc.Common_state3_) {
 	xc.XBtnSetState(b.hEle, nState)
 }
 
-func (b *Button) GetState() xc.COMMON_STATE3_ {
+func (b *Button) GetState() xc.Common_state3_ {
 	return xc.XBtnGetState(b.hEle)
 }
 
-func (b *Button) GetstateEx() xc.BUTTON_STATE_ {
+func (b *Button) GetstateEx() xc.Button_state_ {
 	return xc.XBtnGetStateEx(b.hEle)
 }
 
-func (b *Button) SetType(nType xc.BUTTON_TYPE_) {
+func (b *Button) SetType(nType xc.Button_type_) {
 	xc.XBtnSetType(b.hEle, nType)
 }
 
-func (b *Button) GetType() xc.BUTTON_TYPE_ {
+func (b *Button) GetType() xc.Button_type_ {
 	return xc.XBtnGetType(b.hEle)
 }
 
@@ -142,7 +142,7 @@ func (b *Button) GetTextAlign() int {
 	return xc.XBtnGetTextAlign(b.hEle)
 }
 
-func (b *Button) SetIconAlign(align xc.BUTTON_ICON_ALIGN_) {
+func (b *Button) SetIconAlign(align xc.Button_icon_align_) {
 	xc.XBtnSetIconAlign(b.hEle, align)
 }
 
@@ -191,27 +191,27 @@ func (b *Button) EnableAnimation(bEnable, bLoopPlay bool) {
 	xc.XBtnEnableAnimation(b.hEle, bEnable, bLoopPlay)
 }
 
-func (b *Button) AddBkBorder(nState xc.BUTTON_STATE_, color Color, alpha byte, width int) {
+func (b *Button) AddBkBorder(nState xc.Button_state_, color Color, alpha byte, width int) {
 	xc.XBtnAddBkBorder(b.hEle, nState, xc.COLORREF(color), alpha, width)
 }
 
-func (b *Button) AddBkFill(nState xc.BUTTON_STATE_, color Color, alpha byte) {
+func (b *Button) AddBkFill(nState xc.Button_state_, color Color, alpha byte) {
 	xc.XBtnAddBkFill(b.hEle, nState, xc.COLORREF(color), alpha)
 }
 
-func (b *Button) AddBkImage(nState xc.BUTTON_STATE_, hImage xc.HIMAGE) {
+func (b *Button) AddBkImage(nState xc.Button_state_, hImage xc.HIMAGE) {
 	xc.XBtnAddBkImage(b.hEle, nState, hImage)
 }
 
-func (b *Button) GetBkInfoCount(nState xc.BUTTON_STATE_) int {
+func (b *Button) GetBkInfoCount(nState xc.Button_state_) int {
 	return xc.XBtnGetBkInfoCount(b.hEle, nState)
 }
 
-func (b *Button) ClearBkInfo(nState xc.BUTTON_STATE_) {
+func (b *Button) ClearBkInfo(nState xc.Button_state_) {
 	xc.XBtnClearBkInfo(b.hEle, nState)
 }
 
-func (b *Button) GetBkInfoManager(nState xc.BUTTON_STATE_) int {
+func (b *Button) GetBkInfoManager(nState xc.Button_state_) int {
 	return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
 }
 

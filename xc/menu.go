@@ -64,68 +64,150 @@ func init() {
 
 }
 
+/*
+创建菜单.默认弹出菜单窗口关闭后自动销毁.
+
+返回:
+	菜单句柄.
+*/
 func XMenuCreate() HMENUX {
 	ret, _, _ := xMenu_Create.Call()
 
 	return HMENUX(ret)
 }
 
-func XMenuAddItem(hMenu HMENUX, nID int, pText string, nParentID int, nFlags MENU_STATE_FLAGS_) {
+/*
+添加菜单项.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	pText 文本内容.
+	nParentID 父项ID.
+	nFlags 标识参见宏定义 menu_state_flags_.
+*/
+func XMenuAddItem(hMenu HMENUX, nID int, pText *uint16, nParentID int, nFlags MENU_STATE_FLAGS_) {
 	xMenu_AddItem.Call(
 		uintptr(hMenu),
 		uintptr(nID),
-		StringToUintPtr(pText),
+		uintptr(unsafe.Pointer(pText)),
 		uintptr(nParentID),
 		uintptr(nFlags))
 }
 
-func XMenuAddItemIcon(hMenu HMENUX, nID int, pText string, nParentID int, hIcon HIMAGE, nFlags MENU_STATE_FLAGS_) {
+/*
+添加菜单项.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	pText 文本内容.
+	nParentID 父项ID.
+	hIcon 菜单项图标句柄.
+	nFlags 标识参见宏定义 menu_state_flags_.
+*/
+func XMenuAddItemIcon(hMenu HMENUX, nID int, pText *uint16, nParentID int, hIcon HIMAGE, nFlags MENU_STATE_FLAGS_) {
 	xMenu_AddItemIcon.Call(
 		uintptr(hMenu),
 		uintptr(nID),
-		StringToUintPtr(pText),
+		uintptr(unsafe.Pointer(pText)),
 		uintptr(nParentID),
 		uintptr(hIcon),
 		uintptr(nFlags))
 }
 
-func XMenuInsertItem(hMenu HMENUX, nID int, pText string, nFlags MENU_STATE_FLAGS_, insertID int) {
+/*
+插入菜单项.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	pText 文本内容.
+	nFlags 标识参见宏定义 menu_state_flags_.
+	insertID 插入位置ID.
+*/
+func XMenuInsertItem(hMenu HMENUX, nID int, pText *uint16, nFlags MENU_STATE_FLAGS_, insertID int) {
 	xMenu_InsertItem.Call(
 		uintptr(hMenu),
 		uintptr(nID),
-		StringToUintPtr(pText),
+		uintptr(unsafe.Pointer(pText)),
 		uintptr(nFlags),
 		uintptr(insertID))
 }
 
-func XMenuInsertItemIcon(hMenu HMENUX, nID int, pText string, hIcon HIMAGE, nFlags MENU_STATE_FLAGS_, insertID int) {
+/*
+插入菜单项.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	pText 文本内容.
+	hIcon 菜单项图标句柄.
+	nFlags 标识参见宏定义 menu_state_flags_.
+	insertID 插入位置ID.
+*/
+func XMenuInsertItemIcon(hMenu HMENUX, nID int, pText *uint16, hIcon HIMAGE, nFlags MENU_STATE_FLAGS_, insertID int) {
 	xMenu_InsertItemIcon.Call(
 		uintptr(hMenu),
 		uintptr(nID),
-		StringToUintPtr(pText),
+		uintptr(unsafe.Pointer(pText)),
 		uintptr(hIcon),
 		uintptr(nFlags),
 		uintptr(insertID))
 }
 
+/*
+设置是否自动销毁菜单.
+
+参数:
+	hMenu 菜单句柄.
+	bAuto 是否自动销毁.
+*/
 func XMenuSetAutoDestroy(hMenu HMENUX, bAuto bool) {
 	xMenu_SetAutoDestroy.Call(
 		uintptr(hMenu),
 		uintptr(BoolToBOOL(bAuto)))
 }
 
+/*
+是否有用户绘制菜单背景,如果启用XWM_MENU_DRAW_BACKGROUND和XE_MENU_DRAW_BACKGROUND事件有效.
+
+参数:
+	hMenu 菜单句柄.
+	bEnable 是否启用.
+*/
 func XMenuEnableDrawBackground(hMenu HMENUX, bEnable bool) {
 	xMenu_EnableDrawBackground.Call(
 		uintptr(hMenu),
 		uintptr(BoolToBOOL(bEnable)))
 }
 
+/*
+是否有用户绘制菜单项,如果启用XWM_MENU_DRAWITEM和XE_MENU_DRAWITEM事件有效.
+
+参数:
+	hMenu 菜单句柄.
+	bEnable 是否启用.
+*/
 func XMenuEnableDrawItem(hMenu HMENUX, bEnable bool) {
 	xMenu_EnableDrawItem.Call(
 		uintptr(hMenu),
 		uintptr(BoolToBOOL(bEnable)))
 }
 
+/*
+弹出菜单.
+
+参数:
+	hMenu 菜单句柄.
+	hParentWnd 父窗口句柄.
+	x x坐标.
+	y y坐标.
+	hParentEle 父元素句柄,如果该值不为NULL,hParentEle元素将接收菜单消息事件, 否则将由hParentWnd窗口接收菜单的消息事件
+	nPosition 弹出位置,参见宏定义.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XMenuPopup(hMenu HMENUX, hParentWnd HWND, x, y int, hParentEle HELE, nPosition MENU_POPUP_POSITION_) bool {
 	ret, _, _ := xMenu_Popup.Call(
 		uintptr(hMenu),
@@ -135,41 +217,73 @@ func XMenuPopup(hMenu HMENUX, hParentWnd HWND, x, y int, hParentEle HELE, nPosit
 		uintptr(hParentEle),
 		uintptr(nPosition))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 
 }
 
+/*
+销毁菜单.
+
+参数:
+	hMenu 菜单句柄.
+*/
 func XMenuDestroyMenu(hMenu HMENUX) {
 	xMenu_DestroyMenu.Call(uintptr(hMenu))
 }
 
+/*
+关闭菜单.
+
+参数:
+	hMenu 菜单句柄.
+*/
 func XMenuCloseMenu(hMenu HMENUX) {
 	xMenu_CloseMenu.Call(uintptr(hMenu))
 }
 
+/*
+设置菜单背景图片.
+
+参数:
+	hMenu 菜单句柄.
+	hImage 图片句柄.
+*/
 func XMenuSetBkImage(hMenu HMENUX, hImage HIMAGE) {
 	xMenu_SetBkImage.Call(
 		uintptr(hMenu),
 		uintptr(hImage))
 }
 
-func XMenuSetItemText(hMenu HMENUX, nID int, pText string) bool {
+/*
+设置项文本.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	pText 文本内容.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
+func XMenuSetItemText(hMenu HMENUX, nID int, pText *uint16) bool {
 	ret, _, _ := xMenu_SetItemText.Call(
 		uintptr(hMenu),
 		uintptr(nID),
-		StringToUintPtr(pText))
+		uintptr(unsafe.Pointer(pText)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+获取项文件.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	pOut 接收内容缓冲区.
+	nOutLen 缓冲区长度,字符为单位.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XMenuGetItemText(hMenu HMENUX, nID int, pOut *uint16, nOutLen int) bool {
 	ret, _, _ := xMenu_GetItemText.Call(
 		uintptr(hMenu),
@@ -177,13 +291,18 @@ func XMenuGetItemText(hMenu HMENUX, nID int, pOut *uint16, nOutLen int) bool {
 		uintptr(unsafe.Pointer(pOut)),
 		uintptr(nOutLen))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+获取项文本长度,不包含字符串空终止符.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+返回:
+	长度,字符为单位.
+*/
 func XMenuGetItemTextLength(hMenu HMENUX, nID int) int {
 	ret, _, _ := xMenu_GetItemTextLength.Call(
 		uintptr(hMenu),
@@ -192,44 +311,79 @@ func XMenuGetItemTextLength(hMenu HMENUX, nID int) int {
 	return int(ret)
 }
 
+/*
+设置菜单项图标.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	hIcon 菜单项图标句柄.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XMenuSetItemIcon(hMenu HMENUX, nID int, hIcon HIMAGE) bool {
 	ret, _, _ := xMenu_SetItemIcon.Call(
 		uintptr(hMenu),
 		uintptr(nID),
 		uintptr(hIcon))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+设置项标识.
+
+参数:
+	hMenu 菜单句柄.
+	nID 项ID.
+	uFlags 标识参见宏定义 menu_state_flags_.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XMenuSetItemFlags(hMenu HMENUX, nID int, uFlags MENU_STATE_FLAGS_) bool {
 	ret, _, _ := xMenu_SetItemFlags.Call(
 		uintptr(hMenu),
 		uintptr(nID),
 		uintptr(uFlags))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+设置项高度.
+
+参数:
+	hMenu 菜单句柄.
+	height 高度.
+*/
 func XMenuSetItemHeight(hMenu HMENUX, height int) {
 	xMenu_SetItemHeight.Call(
 		uintptr(hMenu),
 		uintptr(height))
 }
 
+/*
+获取项高度.
+
+参数:
+	hMenu 菜单句柄.
+返回:
+	返回项高度.
+*/
 func XMenuGetItemHeight(hMenu HMENUX) int {
 	ret, _, _ := xMenu_GetItemHeight.Call(uintptr(hMenu))
 
 	return int(ret)
 }
 
+/*
+设置菜单边框颜色.
+
+参数:
+	hMenu 菜单句柄.
+	crColor 颜色.
+	alpha 透明度0-255.
+*/
 func XMenuSetBorderColor(hMenu HMENUX, crColor COLORREF, alpha byte) {
 	xMenu_SetBorderColor.Call(
 		uintptr(hMenu),
@@ -237,24 +391,58 @@ func XMenuSetBorderColor(hMenu HMENUX, crColor COLORREF, alpha byte) {
 		uintptr(alpha))
 }
 
+/*
+获取左侧区域宽度.
+
+参数:
+	hMenu 菜单句柄.
+返回:
+	返回左侧区域宽度.
+*/
 func XMenuGetLeftWidth(hMenu HMENUX) int {
 	ret, _, _ := xMenu_GetLeftWidth.Call(uintptr(hMenu))
 
 	return int(ret)
 }
 
+/*
+获取菜单项文本左间隔.
+
+参数:
+	hMenu 菜单句柄.
+返回:
+	返回菜单项文件左间隔大小.
+*/
 func XMenuGetLeftSpaceText(hMenu HMENUX) int {
 	ret, _, _ := xMenu_GetLeftSpaceText.Call(uintptr(hMenu))
 
 	return int(ret)
 }
 
+/*
+获取菜单项数量,包含子菜单项.
+
+参数:
+	hMenu 菜单句柄.
+返回:
+	菜单项数量.
+*/
 func XMenuGetItemCount(hMenu HMENUX) int {
 	ret, _, _ := xMenu_GetItemCount.Call(uintptr(hMenu))
 
 	return int(ret)
 }
 
+/*
+设置菜单项勾选状态.
+
+参数:
+	hMenu 菜单句柄.
+	nID 菜单项ID
+	bCheck 勾选TRUE,非勾选FALSE
+返回:
+	如果勾选返回TRUE,否则返回FALSE.
+*/
 func XMenuSetItemCheck(hMenu HMENUX, nID int, bCheck bool) {
 	xMenu_SetItemCheck.Call(
 		uintptr(hMenu),
@@ -262,14 +450,19 @@ func XMenuSetItemCheck(hMenu HMENUX, nID int, bCheck bool) {
 		uintptr(BoolToBOOL(bCheck)))
 }
 
+/*
+判断菜单项是否勾选.
+
+参数:
+	hMenu 菜单句柄.
+	nID 菜单项ID
+返回:
+	如果勾选返回TRUE,否则返回FALSE.
+*/
 func XMenuIsItemCheck(hMenu HMENUX, nID int) bool {
 	ret, _, _ := xMenu_IsItemCheck.Call(
 		uintptr(hMenu),
 		uintptr(nID))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }

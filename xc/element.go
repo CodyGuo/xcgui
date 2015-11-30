@@ -178,7 +178,7 @@ func init() {
 	xEle_DrawFocus = xcDLL.MustFindProc("XEle_DrawFocus")
 	xEle_BindLayoutObject = xcDLL.MustFindProc("XEle_BindLayoutObject")
 	xEle_GetLayoutObject = xcDLL.MustFindProc("XEle_GetLayoutObject")
-	// xEle_GetParentLayoutObject = xcDLL.MustFindProc("XEle_GetParentLayoutObject")
+	xEle_GetParentLayoutObject = xcDLL.MustFindProc("XEle_GetParentLayoutObject")
 	xEle_SetUserData = xcDLL.MustFindProc("XEle_SetUserData")
 	xEle_GetUserData = xcDLL.MustFindProc("XEle_GetUserData")
 	xEle_GetContentSize = xcDLL.MustFindProc("XEle_GetContentSize")
@@ -1448,11 +1448,11 @@ func XEleGetLayoutObject(hEle HELE) HXCGUI {
 // @Input: hEle 元素句柄.
 // @Return: 布局对象句柄.
 // *******************************************
-// func XEleGetParentLayoutObject(hEle HELE) HXCGUI {
-// 	ret, _, _ := xEle_GetParentLayoutObject.Call(uintptr(hEle))
+func XEleGetParentLayoutObject(hEle HELE) HXCGUI {
+	ret, _, _ := xEle_GetParentLayoutObject.Call(uintptr(hEle))
 
-// 	return HXCGUI(ret)
-// }
+	return HXCGUI(ret)
+}
 
 // *******************************************
 // @Author: cody.guo

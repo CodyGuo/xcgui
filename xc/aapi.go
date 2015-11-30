@@ -79,7 +79,7 @@ func init() {
 	} else if FileExist("../lib/" + xcDll) {
 		xcDLL = syscall.MustLoadDLL("../lib/" + xcDll)
 	} else {
-		panic("xcgui library not found")
+		panic("xcgui library not found,XCGUI.dll or ./lib/XCGUI.dll or ../lib/XCGUI.dll.")
 	}
 
 	// Functions
@@ -393,6 +393,7 @@ func XRunXCGUI() {
 // 退出界面库释放资源.
 func XExitXCGUI() {
 	xExitXCGUI.Call()
+	xcDLL.Release()
 }
 
 func StringToUintPtr(str string) uintptr {

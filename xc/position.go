@@ -1,6 +1,6 @@
 package xc
 
-type window_position_ int32
+type WINDOW_POSITION_ int32
 
 /*
 窗口位置
@@ -13,8 +13,8 @@ type window_position_ int32
 	window_position_window window 整个窗口
 */
 const (
-	WINDOW_POSITION_ERROR window_position_ = -1
-	WINDOW_POSITION_TOP   window_position_ = iota + WINDOW_POSITION_ERROR
+	WINDOW_POSITION_ERROR WINDOW_POSITION_ = -1
+	WINDOW_POSITION_TOP   WINDOW_POSITION_ = iota + WINDOW_POSITION_ERROR
 	WINDOW_POSITION_BOTTOM
 	WINDOW_POSITION_LEFT
 	WINDOW_POSITION_RIGHT

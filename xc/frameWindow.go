@@ -81,7 +81,7 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle 
 返回:
 	GUI库窗口资源句柄.
 */
-func XFrameWndCreateEx(dwExStyle int, lpClassName, lpWindowName *uint16, dwStyle int, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
+func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName *uint16, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
 	ret, _, _ := xFrameWnd_CreateEx.Call(
 		uintptr(dwExStyle),
 		uintptr(unsafe.Pointer(lpClassName)),

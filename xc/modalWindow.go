@@ -63,12 +63,12 @@ func XModalWndCreate(bWidth, nHeight int, pTitle *uint16, hWndParent HWND, XCSty
 返回:
 	GUI库窗口资源句柄.
 */
-func XModalWndCreateEx(dwExStyle uintptr, lpClassName, lpWindowName *uint16, dwStyle uintptr, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
+func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName *uint16, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xModalWnd_CreateEx.Call(
-		dwExStyle,
+		uintptr(dwExStyle),
 		uintptr(unsafe.Pointer(lpClassName)),
 		uintptr(unsafe.Pointer(lpWindowName)),
-		dwStyle,
+		uintptr(dwStyle),
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),

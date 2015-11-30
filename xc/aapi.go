@@ -60,7 +60,7 @@ type SIZE struct {
 }
 
 type BorderSize_ struct {
-	Left, Top, Right, Bottom int32
+	Left, Top, Right, Bottom int
 }
 
 type (

@@ -1,6 +1,6 @@
 package xc
 
-type window_transparent_ int32
+type WINDOW_TRANSPARENT_ int32
 
 /*
 炫彩窗口透明标识
@@ -11,7 +11,7 @@ type window_transparent_ int32
 	window_transparent_win7 WIN7玻璃窗口,需要WIN7开启特效,当前未启用.
 */
 const (
-	WINDOW_TRANSPARENT_FALSE window_transparent_ = iota
+	WINDOW_TRANSPARENT_FALSE WINDOW_TRANSPARENT_ = iota
 	WINDOW_TRANSPARENT_SHAPED
 	WINDOW_TRANSPARENT_SHADOW
 	WINDOW_TRANSPARENT_SIMPLE

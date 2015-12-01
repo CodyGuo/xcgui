@@ -49,7 +49,7 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
         - ShapeLine                     : 100% (  3/  3) -直线(形状对象)
 
     + 数据适配器
-        - AdapterListView               :   0% (  0/ 24) -数据适配器-列表视元素
+        - AdapterListView               : 100% ( 24/ 24) -数据适配器-列表视元素
         - AdapterTable                  : 100% ( 25/ 25) -数据适配器-XList-XListBox
         - AdapterMap                    : 100% (  7/  7) -数据适配器-单列Map
         - AdapterTree                   : 100% ( 18/ 18) -数据适配器-树元素
@@ -93,4 +93,4 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
     + RegEventC                         :  100% (  7/  7) -注册事件C - 在window和Element中已定义
     -----------------------------------------------------------------------------------------
 
-    Total progress                      :   98% (1289/1313)
+    Total progress                      :  100% (1313/1313)

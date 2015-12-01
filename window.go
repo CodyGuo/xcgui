@@ -3,7 +3,6 @@ package xcgui
 import (
 	"errors"
 	"fmt"
-	// "syscall"
 )
 
 import (

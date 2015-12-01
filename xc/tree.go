@@ -49,7 +49,6 @@ func init() {
 	xTree_SetItemTemplateXMLSelFromString = xcDLL.MustFindProc("XTree_SetItemTemplateXMLSelFromString")
 	xTree_SetDrawItemBkFlags = xcDLL.MustFindProc("XTree_SetDrawItemBkFlags")
 	xTree_SetItemData = xcDLL.MustFindProc("XTree_SetItemData")
-
 	xTree_GetItemData = xcDLL.MustFindProc("XTree_GetItemData")
 	xTree_SetSelectItem = xcDLL.MustFindProc("XTree_SetSelectItem")
 	xTree_GetSelectItem = xcDLL.MustFindProc("XTree_GetSelectItem")

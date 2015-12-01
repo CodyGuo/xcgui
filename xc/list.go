@@ -85,6 +85,18 @@ func init() {
 	xList_RefreshData = xcDLL.MustFindProc("XList_RefreshData")
 }
 
+/*
+创建列表元素.
+
+参数:
+	x 元素x坐标.
+	y 元素y坐标.
+	cx 宽度.
+	cy 高度.
+	hParent 父是窗口资源句柄或UI元素资源句柄.如果是窗口资源句柄将被添加到窗口, 如果是元素资源句柄将被添加到元素.
+返回:
+	元素句柄.
+*/
 func XListCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xList_Create.Call(
 		uintptr(x),
@@ -96,6 +108,15 @@ func XListCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	return HELE(ret)
 }
 
+/*
+增加列.
+
+参数:
+	hEle 元素句柄.
+	width 列宽度.
+返回:
+	返回位置索引.
+*/
 func XListAddColumn(hEle HELE, width int) int {
 	ret, _, _ := xList_AddColumn.Call(
 		uintptr(hEle),
@@ -104,6 +125,16 @@ func XListAddColumn(hEle HELE, width int) int {
 	return int(ret)
 }
 
+/*
+插入列.
+
+参数:
+	hEle 元素句柄.
+	width 列宽度.
+	iItem 插入位置索引.
+返回:
+	返回插入位置索引.
+*/
 func XListInsertColumn(hEle HELE, width, iItem int) int {
 	ret, _, _ := xList_InsertColumn.Call(
 		uintptr(hEle),
@@ -113,18 +144,40 @@ func XListInsertColumn(hEle HELE, width, iItem int) int {
 	return int(ret)
 }
 
+/*
+启用或关闭多选功能.
+
+参数:
+	hEle 元素句柄.
+	bEnable 是否启用.
+*/
 func XListEnableMultiSel(hEle HELE, bEnable bool) {
 	xList_EnableMultiSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
 
+/*
+设置是否绘制指定状态下项的背景.
+
+参数:
+	hEle 元素句柄.
+	nFlags 标志位 list_drawItemBk_flags_.
+*/
 func XListSetDrawItemBkFlags(hEle HELE, nFlags List_drawitembk_flags_) {
 	xList_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
 }
 
+/*
+设置列宽度.
+
+参数:
+	hEle 元素句柄.
+	iItem 列索引.
+	width 宽度.
+*/
 func XListSetColumnWidth(hEle HELE, iItem, width int) {
 	xList_SetColumnWidth.Call(
 		uintptr(hEle),
@@ -132,6 +185,14 @@ func XListSetColumnWidth(hEle HELE, iItem, width int) {
 		uintptr(width))
 }
 
+/*
+设置列最小宽度.
+
+参数:
+	hEle 元素句柄.
+	iItem 列索引.
+	width 宽度.
+*/
 func XListSetColumnMinWidth(hEle HELE, iItem, width int) {
 	xList_SetColumnMinWidth.Call(
 		uintptr(hEle),
@@ -139,6 +200,17 @@ func XListSetColumnMinWidth(hEle HELE, iItem, width int) {
 		uintptr(width))
 }
 
+/*
+设置项用户数据.
+
+参数:
+	hEle 元素句柄.
+	iItem 项索引.
+	iSubItem 子项索引.
+	data 用户数据.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XListSetItemData(hEle HELE, iItem, iSubItem, data int) bool {
 	ret, _, _ := xList_SetItemData.Call(
 		uintptr(hEle),
@@ -146,13 +218,19 @@ func XListSetItemData(hEle HELE, iItem, iSubItem, data int) bool {
 		uintptr(iSubItem),
 		uintptr(data))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+获取项用户数据.
+
+参数:
+	hEle 元素句柄.
+	iItem 项索引.
+	iSubItem 子项索引.
+返回:
+	返回用户数据.
+*/
 func XListGetItemData(hEle HELE, iItem, iSubItem int) int {
 	ret, _, _ := xList_GetItemData.Call(
 		uintptr(hEle),
@@ -162,99 +240,186 @@ func XListGetItemData(hEle HELE, iItem, iSubItem int) int {
 	return int(ret)
 }
 
+/*
+设置选择项.
+
+参数:
+	hEle 元素句柄.
+	iItem 项索引.
+	bSelect 是否选择.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XListSetSelectItem(hEle HELE, iItem int, bSelect bool) bool {
 	ret, _, _ := xList_SetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(iItem),
 		uintptr(BoolToBOOL(bSelect)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+获取选择项.
+
+参数:
+	hEle 元素句柄.
+返回:
+	项索引.
+*/
 func XListGetSelectItem(hEle HELE) int {
 	ret, _, _ := xList_GetSelectItem.Call(uintptr(hEle))
 
 	return int(ret)
 }
 
+/*
+获取选择项数量.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回选择项数量.
+*/
 func XListGetSelectItemCount(hEle HELE) int {
 	ret, _, _ := xList_GetSelectItemCount.Call(uintptr(hEle))
 
 	return int(ret)
 }
 
+/*
+选择全部行.
+
+参数:
+	hEle 元素句柄.
+*/
 func XListSelectAll(hEle HELE) {
 	xList_SelectAll.Call(uintptr(hEle))
 }
 
+/*
+获取列表头元素.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回列表头元素句柄.
+*/
 func XListGetHeaderHELE(hEle HELE) HELE {
 	ret, _, _ := xList_GetHeaderHELE.Call(uintptr(hEle))
 
 	return HELE(ret)
 }
 
+/*
+删除列.
+
+参数:
+	hEle 元素句柄.
+	iItem 项索引.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XListDeleteColumn(hEle HELE, iItem int) bool {
 	ret, _, _ := xList_DeleteColumn.Call(
 		uintptr(hEle),
 		uintptr(iItem))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+删除所有的列.
+
+参数:
+	hEle 元素句柄.
+*/
 func XListDeleteColumnAll(hEle HELE) {
 	xList_DeleteColumnAll.Call(uintptr(hEle))
 }
 
+/*
+绑定数据适配器.
+
+参数:
+	hEle 元素句柄.
+	hAdapter 数据适配器句柄 XAdapterTable.
+*/
 func XListBindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xList_BindAdapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
 }
 
+/*
+列表头绑定数据适配器.
+
+参数:
+	hEle 元素句柄.
+	hAdapter 数据适配器句柄 XAdapterMap.
+*/
 func XListBindAdapterHeader(hEle HELE, hAdapter HXCGUI) {
 	xList_BindAdapterHeader.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
 }
 
+/*
+获取数据适配器.
+
+参数:
+	hEle 元素句柄.
+返回:
+	数据适配器句柄.
+*/
 func XListGetAdapter(hEle HELE) HELE {
 	ret, _, _ := xList_GetAdapter.Call(uintptr(hEle))
 
 	return HELE(ret)
 }
 
-func XListSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
+/*
+设置项布局模板文件.
+
+参数:
+	hEle 元素句柄.
+	pXmlFile 文件名.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
+func XListSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
 	ret, _, _ := xList_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		StringToUintPtr(pXmlFile))
+		uintptr(unsafe.Pointer(pXmlFile)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
-func XListSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
+/*
+设置项布局模板文件.
+参数:
+hEle 元素句柄.
+pStringXML 字符串指针.
+返回:成功返回TRUE否则返回FALSE.
+*/
+func XListSetItemTemplateXMLFromString(hEle HELE, pStringXML *uint16) bool {
 	ret, _, _ := xList_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		StringToUintPtr(pStringXML))
+		uintptr(unsafe.Pointer(pStringXML)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+通过模板项ID,获取实例化模板项ID对应的对象句柄.
+
+参数:
+	hEle 元素句柄.
+	iItem 项索引.
+	nTempItemID 模板项ID.
+返回:
+	成功返回对象句柄,否则返回NULL.
+*/
 func XListGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	ret, _, _ := xList_GetTemplateObject.Call(
 		uintptr(hEle),
@@ -264,6 +429,15 @@ func XListGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	return HXCGUI(ret)
 }
 
+/*
+获取当前对象所在模板实例,属于列表中哪一个项.
+
+参数:
+	hEle 元素句柄.
+	hXCGUI 对象句柄, UI元素句柄或形状对象句柄.
+返回:
+	成功返回项索引, 否则返回XC_ID_ERROR.
+*/
 func XListGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xList_GetItemIndexFromHXCGUI.Call(
 		uintptr(hEle),
@@ -272,18 +446,43 @@ func XListGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	return int(ret)
 }
 
+/*
+设置列表头高度.
+
+参数:
+	hEle 元素句柄.
+	height 高度.
+*/
 func XListSetHeaderHeight(hEle HELE, height int) {
 	xList_SetHeaderHeight.Call(
 		uintptr(hEle),
 		uintptr(height))
 }
 
+/*
+获取列表头高度.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回列表头高度.
+*/
 func XListGetHeaderHeight(hEle HELE) int {
 	ret, _, _ := xList_GetHeaderHeight.Call(uintptr(hEle))
 
 	return int(ret)
 }
 
+/*
+添加项背景内容边框.
+
+参数:
+	hEle 元素句柄.
+	nState 项状态.
+	color RGB颜色.
+	alpha 透明度.
+	width 线宽.
+*/
 func XListAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
 	xList_AddItemBkBorder.Call(
 		uintptr(hEle),
@@ -293,6 +492,15 @@ func XListAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, al
 		uintptr(width))
 }
 
+/*
+添加项背景内容填充.
+
+参数:
+	hEle 元素句柄.
+	nState 项状态.
+	color RGB颜色.
+	alpha 透明度.
+*/
 func XListAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
 	xList_AddItemBkFill.Call(
 		uintptr(hEle),
@@ -301,6 +509,14 @@ func XListAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alph
 		uintptr(alpha))
 }
 
+/*
+添加项背景内容图片.
+
+参数:
+	hEle 元素句柄.
+	nState 项状态.
+	hImage 图片句柄.
+*/
 func XListAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 	xList_AddItemBkImage.Call(
 		uintptr(hEle),
@@ -308,6 +524,15 @@ func XListAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 		uintptr(hImage))
 }
 
+/*
+获取背景内容数量.
+
+参数:
+	hEle 元素句柄.
+	nState 项状态.
+返回:
+	成功返回背景内容数量,否则返回XC_ID_ERROR.
+*/
 func XListGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	ret, _, _ := xList_GetItemBkInfoCount.Call(
 		uintptr(hEle),
@@ -317,6 +542,13 @@ func XListGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 
 }
 
+/*
+清空项背景内容; 如果背景没有内容,将使用系统默认内容,以便保证背景正确.
+
+参数:
+	hEle 元素句柄.
+	nState 项状态.
+*/
 func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xList_ClearItemBkInfo.Call(
 		uintptr(hEle),
@@ -324,6 +556,15 @@ func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 
 }
 
+/*
+获取项背景内容管理器.
+
+参数:
+	hEle 元素句柄.
+	nState 项状态.
+返回:
+	项背景内容管理器.
+*/
 func XListGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 	ret, _, _ := xList_GetItemBkInfoManager.Call(
 		uintptr(hEle),
@@ -332,6 +573,14 @@ func XListGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 	return HBKINFOM(ret)
 }
 
+/*
+设置项默认高度.
+
+参数:
+	hEle 元素句柄.
+	nHeight 高度.
+	nSelHeight 选中时高度.
+*/
 func XListSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	xList_SetItemHeightDefault.Call(
 		uintptr(hEle),
@@ -339,6 +588,14 @@ func XListSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 		uintptr(nSelHeight))
 }
 
+/*
+获取项默认高度.
+
+参数:
+	hEle 元素句柄.
+	pHeight 高度.
+	pSelHeight 选中时高度.
+*/
 func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *uint16) {
 	xList_GetItemHeightDefault.Call(
 		uintptr(hEle),
@@ -346,6 +603,17 @@ func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *uint16) {
 		uintptr(unsafe.Pointer(pSelHeight)))
 }
 
+/*
+检测坐标点所在项.
+
+参数:
+	hEle 元素句柄.
+	pPt 坐标点.
+	piItem 项索引.
+	piSubItem 子项索引.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
 	ret, _, _ := xList_HitTest.Call(
 		uintptr(hEle),
@@ -353,13 +621,20 @@ func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
 		uintptr(unsafe.Pointer(piItem)),
 		uintptr(unsafe.Pointer(piSubItem)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+检查坐标点所在项,自动添加滚动视图偏移量.
+
+参数:
+	hEle 元素句柄.
+	pPt 坐标点.
+	piItem 项索引.
+	piSubItem 子项索引.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XListHitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
 	ret, _, _ := xList_HitTestOffset.Call(
 		uintptr(hEle),
@@ -367,13 +642,15 @@ func XListHitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
 		uintptr(unsafe.Pointer(piItem)),
 		uintptr(unsafe.Pointer(piSubItem)))
 
-	if ret != TRUE {
-		return false
-	}
-
-	return true
+	return ret == TRUE
 }
 
+/*
+刷新数据.
+
+参数:
+	hEle 元素句柄.
+*/
 func XListRefreshData(hEle HELE) {
 	xList_RefreshData.Call(uintptr(hEle))
 }

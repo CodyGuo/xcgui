@@ -119,7 +119,7 @@ func XListEnableMultiSel(hEle HELE, bEnable bool) {
 		uintptr(BoolToBOOL(bEnable)))
 }
 
-func XListSetDrawItemBkFlags(hEle HELE, nFlags LIST_DRAWITEMBK_FLAGS_) {
+func XListSetDrawItemBkFlags(hEle HELE, nFlags List_drawitembk_flags_) {
 	xList_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
@@ -284,7 +284,7 @@ func XListGetHeaderHeight(hEle HELE) int {
 	return int(ret)
 }
 
-func XListAddItemBkBorder(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, alpha byte, width int) {
+func XListAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
 	xList_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -293,7 +293,7 @@ func XListAddItemBkBorder(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, al
 		uintptr(width))
 }
 
-func XListAddItemBkFill(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, alpha byte) {
+func XListAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
 	xList_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -301,14 +301,14 @@ func XListAddItemBkFill(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, alph
 		uintptr(alpha))
 }
 
-func XListAddItemBkImage(hEle HELE, nState LIST_ITEM_STATE_, hImage HIMAGE) {
+func XListAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 	xList_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
 		uintptr(hImage))
 }
 
-func XListGetItemBkInfoCount(hEle HELE, nState LIST_ITEM_STATE_) int {
+func XListGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	ret, _, _ := xList_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -317,14 +317,14 @@ func XListGetItemBkInfoCount(hEle HELE, nState LIST_ITEM_STATE_) int {
 
 }
 
-func XListClearItemBkInfo(hEle HELE, nState LIST_ITEM_STATE_) {
+func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xList_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
 
 }
 
-func XListGetItemBkInfoManager(hEle HELE, nState LIST_ITEM_STATE_) HBKINFOM {
+func XListGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 	ret, _, _ := xList_GetItemBkInfoManager.Call(
 		uintptr(hEle),
 		uintptr(nState))

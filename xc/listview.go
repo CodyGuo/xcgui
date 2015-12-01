@@ -189,7 +189,7 @@ func XListViewEnableMultiSel(hEle HELE, bEnable bool) {
 		uintptr(BoolToBOOL(bEnable)))
 }
 
-func XListViewSetDrawItemBkFlags(hEle HELE, nFlags LIST_DRAWITEMBK_FLAGS_) {
+func XListViewSetDrawItemBkFlags(hEle HELE, nFlags List_drawitembk_flags_) {
 	xListView_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
@@ -228,7 +228,7 @@ func XListViewGetSelectItemCount(hEle HELE) int {
 	return int(ret)
 }
 
-func XListViewGetSelectItemAll(hEle HELE, pArray *LISTVIEW_ITEM_ID_I, nArraySize int) int {
+func XListViewGetSelectItemAll(hEle HELE, pArray *Listview_item_id_i, nArraySize int) int {
 	ret, _, _ := xListView_GetSelectItemAll.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pArray)),
@@ -295,7 +295,7 @@ func XListViewGetGroupHeight(hEle HELE) int {
 	return int(ret)
 }
 
-func XListViewAddItemBkBorder(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, alpha byte, width int) {
+func XListViewAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
 	xListView_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -304,7 +304,7 @@ func XListViewAddItemBkBorder(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF
 		uintptr(width))
 }
 
-func XListViewAddItemBkFill(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, alpha byte) {
+func XListViewAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
 	xListView_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -312,14 +312,14 @@ func XListViewAddItemBkFill(hEle HELE, nState LIST_ITEM_STATE_, color COLORREF, 
 		uintptr(alpha))
 }
 
-func XListViewAddItemBkImage(hEle HELE, nState LIST_ITEM_STATE_, hImage HIMAGE) {
+func XListViewAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 	xListView_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
 		uintptr(hImage))
 }
 
-func XListViewGetItemBkInfoCount(hEle HELE, nState LIST_ITEM_STATE_) int {
+func XListViewGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	ret, _, _ := xListView_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -327,13 +327,13 @@ func XListViewGetItemBkInfoCount(hEle HELE, nState LIST_ITEM_STATE_) int {
 	return int(ret)
 }
 
-func XListViewClearItemBkInfo(hEle HELE, nState LIST_ITEM_STATE_) {
+func XListViewClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xListView_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
 }
 
-func XListViewGetItemBkInfoManager(hEle HELE, nState LIST_ITEM_STATE_) HBKINFOM {
+func XListViewGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 	ret, _, _ := xListView_GetItemBkInfoManager.Call(
 		uintptr(hEle),
 		uintptr(nState))

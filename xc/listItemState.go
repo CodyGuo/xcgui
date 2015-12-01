@@ -1,6 +1,6 @@
 package xc
 
-type LIST_ITEM_STATE_ uint32
+type List_item_state_ uint32
 
 /*
 List项状态
@@ -9,7 +9,7 @@ List项状态
 	list_item_state_select 项选择状态
 */
 const (
-	LIST_ITEM_STATE_LEAVE LIST_ITEM_STATE_ = iota
+	LIST_ITEM_STATE_LEAVE List_item_state_ = iota
 	LIST_ITEM_STATE_STAY
 	LIST_ITEM_STATE_SELECT
 )

@@ -54,9 +54,9 @@ func XFontCreate(size int) HFONTX {
 返回:
 	字体句柄.
 */
-func XFontCreate2(pName string, size int, bBold, bItalic, bUnderline, bStrikeOut bool) HFONTX {
+func XFontCreate2(pName *uint16, size int, bBold, bItalic, bUnderline, bStrikeOut bool) HFONTX {
 	ret, _, _ := xFont_Create2.Call(
-		StringToUintPtr(pName),
+		uintptr(unsafe.Pointer(pName)),
 		uintptr(size),
 		uintptr(BoolToBOOL(bBold)),
 		uintptr(BoolToBOOL(bItalic)),

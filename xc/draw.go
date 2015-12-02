@@ -320,10 +320,10 @@ func XDrawSetFont(hDraw HDRAW, size int) {
 	pName 字体名称.
 	size 大小.
 */
-func XDrawSetFont2(hDraw HDRAW, pName string, size int) {
+func XDrawSetFont2(hDraw HDRAW, pName *uint16, size int) {
 	xDraw_SetFont2.Call(
 		uintptr(hDraw),
-		StringToUintPtr(pName),
+		uintptr(unsafe.Pointer(pName)),
 		uintptr(size))
 }
 
@@ -664,11 +664,11 @@ func XDrawRectangle(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect in
 	textAlpha 文本透明度.
 	pOffset 文本偏移
 */
-func XDrawDrawGroupBoxRect(hDraw HDRAW, pRect *RECT, pName string, textColor COLORREF, textAlpha byte, pOffset *POINT) {
+func XDrawDrawGroupBoxRect(hDraw HDRAW, pRect *RECT, pName *uint16, textColor COLORREF, textAlpha byte, pOffset *POINT) {
 	xDraw_DrawGroupBox_Rect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
-		StringToUintPtr(pName),
+		uintptr(unsafe.Pointer(pName)),
 		uintptr(textColor),
 		uintptr(textAlpha),
 		uintptr(unsafe.Pointer(pOffset)))
@@ -687,11 +687,11 @@ func XDrawDrawGroupBoxRect(hDraw HDRAW, pRect *RECT, pName string, textColor COL
 	nWidth 圆角宽度.
 	nHeight 圆角高度.
 */
-func XDrawDrawGroupBoxRoundRect(hDraw HDRAW, pRect *RECT, pName string, textColor COLORREF, textAlpha byte, pOffset *POINT, nWidth, nHeight int) {
+func XDrawDrawGroupBoxRoundRect(hDraw HDRAW, pRect *RECT, pName *uint16, textColor COLORREF, textAlpha byte, pOffset *POINT, nWidth, nHeight int) {
 	xDraw_DrawGroupBox_RoundRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
-		StringToUintPtr(pName),
+		uintptr(unsafe.Pointer(pName)),
 		uintptr(textColor),
 		uintptr(textAlpha),
 		uintptr(unsafe.Pointer(pOffset)),
@@ -952,7 +952,7 @@ func XDrawCheck(hDraw HDRAW, x, y int, color COLORREF, bCheck bool) {
 	diFlags .
 返回:
 */
-func XDrawDrawIconEx(hDraw HDRAW, xLeft, yTop int, hIcon HICON, cxWidth, cyWidth int, istepIfAniCur uint, hbrFlickerFreeDraw HBRUSH, diFlags uint) bool {
+func XDrawDrawIconEx(hDraw HDRAW, xLeft, yTop int, hIcon HICON, cxWidth, cyWidth int, istepIfAniCur uint32, hbrFlickerFreeDraw HBRUSH, diFlags uint32) bool {
 	ret, _, _ := xDraw_DrawIconEx.Call(
 		uintptr(hDraw),
 		uintptr(xLeft),
@@ -1222,10 +1222,10 @@ DrawText() 参见MSDN.
 	nCount 字符串长度.
 	lpRect 坐标.
 */
-func XDrawDrawText(hDraw HDRAW, lpString string, nCount int, lpRect *RECT) {
+func XDrawDrawText(hDraw HDRAW, lpString *uint16, nCount int, lpRect *RECT) {
 	xDraw_DrawText.Call(
 		uintptr(hDraw),
-		StringToUintPtr(lpString),
+		uintptr(unsafe.Pointer(lpString)),
 		uintptr(nCount),
 		uintptr(unsafe.Pointer(lpRect)))
 }
@@ -1241,10 +1241,10 @@ func XDrawDrawText(hDraw HDRAW, lpString string, nCount int, lpRect *RECT) {
 	colorLine 下划线颜色.
 	alphaLine 下划线透明度.
 */
-func XDrawDrawTextUnderline(hDraw HDRAW, lpString string, nCount int, lpRect *RECT, colorLine COLORREF, alphaLine byte) {
+func XDrawDrawTextUnderline(hDraw HDRAW, lpString *uint16, nCount int, lpRect *RECT, colorLine COLORREF, alphaLine byte) {
 	xDraw_DrawTextUnderline.Call(
 		uintptr(hDraw),
-		StringToUintPtr(lpString),
+		uintptr(unsafe.Pointer(lpString)),
 		uintptr(nCount),
 		uintptr(unsafe.Pointer(lpRect)),
 		uintptr(colorLine),
@@ -1262,12 +1262,12 @@ TextOut() 参见MSDN.
 	lpString XX.
 	cbString XX.
 */
-func XDrawTextOut(hDraw HDRAW, nXStart, nYStart int, lpString string, cbString int) {
+func XDrawTextOut(hDraw HDRAW, nXStart, nYStart int, lpString *uint16, cbString int) {
 	xDraw_TextOut.Call(
 		uintptr(hDraw),
 		uintptr(nXStart),
 		uintptr(nYStart),
-		StringToUintPtr(lpString),
+		uintptr(unsafe.Pointer(lpString)),
 		uintptr(cbString))
 }
 

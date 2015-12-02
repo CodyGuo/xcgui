@@ -33,7 +33,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XMenuBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
+func XMenuBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xMenuBar_Create.Call(
 		uintptr(x),
 		uintptr(y),

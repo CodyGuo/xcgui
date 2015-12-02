@@ -71,88 +71,208 @@ func init() {
 	xSView_ScrollBottom = xcDLL.MustFindProc("XSView_ScrollBottom")
 }
 
-func XSViewCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
+/*
+创建滚动视图元素.
+
+参数:
+	x 元素x坐标.
+	y 元素y坐标.
+	cx 宽度.
+	cy 高度.
+	hParent 父是窗口资源句柄或UI元素资源句柄.如果是窗口资源句柄将被添加到窗口, 如果是元素资源句柄将被添加到元素.
+返回:
+	元素句柄.
+*/
+func XSViewCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xSView_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
 		uintptr(hParent))
+
 	return HELE(ret)
 }
 
-func XSViewSetTotalSize(hEle HELE, cx int, cy int) bool {
+/*
+设置内容大小.
+
+参数:
+	hEle 元素句柄.
+	cx 宽度.
+	cy 高度.
+返回:
+	如果内容改变返回TRUE否则返回FALSE.
+*/
+func XSViewSetTotalSize(hEle HELE, cx, cy int) bool {
 	ret, _, _ := xSView_SetTotalSize.Call(
 		uintptr(hEle),
 		uintptr(cx),
 		uintptr(cy))
+
 	return ret == TRUE
 
 }
 
+/*
+获取内容总大小.
+
+参数:
+	hEle 元素句柄.
+	pSize 大小.
+*/
 func XSViewGetTotalSize(hEle HELE, pSize *SIZE) {
 	xSView_GetTotalSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
 }
 
-func XSViewSetLineSize(hEle HELE, nHeight int, nWidth int) bool {
+/*
+设置滚动单位大小.
+
+参数:
+	hEle 元素句柄.
+	nHeight 宽度.
+	nWidth 高度.
+返回:
+	如果内容改变返回TRUE否则返回FALSE.
+*/
+func XSViewSetLineSize(hEle HELE, nHeight, nWidth int) bool {
 	ret, _, _ := xSView_SetLineSize.Call(
 		uintptr(hEle),
 		uintptr(nHeight),
 		uintptr(nWidth))
+
 	return ret == TRUE
 }
 
+/*
+获取滚动单位大小.
+
+参数:
+	hEle 元素句柄.
+	pSize 返回大小.
+*/
 func XSViewGetLineSize(hEle HELE, pSize *SIZE) {
 	xSView_GetLineSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
 }
 
+/*
+获取视口原点X坐标.
+
+参数:
+	hEle 元素句柄.
+返回:
+	视口原点X坐标.
+*/
 func XSViewGetViewPosH(hEle HELE) int {
 	ret, _, _ := xSView_GetViewPosH.Call(
 		uintptr(hEle))
+
 	return int(ret)
 }
 
+/*
+获取视口原点Y坐标.
+
+参数:
+	hEle 元素句柄.
+返回:
+	视口原点Y坐标.
+*/
 func XSViewGetViewPosV(hEle HELE) int {
 	ret, _, _ := xSView_GetViewPosV.Call(
 		uintptr(hEle))
+
 	return int(ret)
 }
 
+/*
+获取视口宽度.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回视口宽度.
+*/
 func XSViewGetViewWidth(hEle HELE) int {
 	ret, _, _ := xSView_GetViewWidth.Call(
 		uintptr(hEle))
+
 	return int(ret)
 }
 
+/*
+获取视口高度.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回视口高度.
+*/
 func XSViewGetViewHeight(hEle HELE) int {
 	ret, _, _ := xSView_GetViewHeight.Call(
 		uintptr(hEle))
+
 	return int(ret)
 }
 
+/*
+获取视口坐标.
+
+参数:
+	hEle 元素句柄.
+	pRect 坐标.
+*/
 func XSViewGetViewRect(hEle HELE, pRect *RECT) {
 	xSView_GetLineSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
 }
 
+/*
+获取水平滚动条.
+
+参数:
+	hEle 元素句柄.
+返回:
+	滚动条句柄.
+*/
 func XSViewGetScrollBarH(hEle HELE) HELE {
 	ret, _, _ := xSView_GetScrollBarH.Call(
 		uintptr(hEle))
+
 	return HELE(ret)
 }
 
+/*
+获取垂直滚动条.
+
+参数:
+	hEle 元素句柄.
+返回:
+	垂直滚动条句柄.
+*/
 func XSViewGetScrollBarV(hEle HELE) HELE {
 	ret, _, _ := xSView_GetScrollBarV.Call(
 		uintptr(hEle))
+
 	return HELE(ret)
 }
 
-func XSViewSetPadding(hEle HELE, left int, top int, right int, bottom int) {
+/*
+设置边框内填充大小.
+
+参数:
+	hEle 元素句柄.
+	left 左边大小.
+	top 上边大小.
+	right 右边大小.
+	bottom 下边大小.
+*/
+func XSViewSetPadding(hEle HELE, left, top, right, bottom int) {
 	xSView_SetPadding.Call(
 		uintptr(hEle),
 		uintptr(left),
@@ -161,102 +281,242 @@ func XSViewSetPadding(hEle HELE, left int, top int, right int, bottom int) {
 		uintptr(bottom))
 }
 
+/*
+获取边框内填充大小.
+
+参数:
+	hEle 元素句柄.
+	pPadding 大小.
+*/
 func XSViewGetPadding(hEle HELE, pPadding *PaddingSize_) {
 	xSView_GetPadding.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPadding)))
 }
 
+/*
+水平滚动条,滚动到指定位置点.
+
+参数:
+	hEle 元素句柄.
+	pos 位置点.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XSViewScrollPosH(hEle HELE, pos int) bool {
 	ret, _, _ := xSView_ScrollPosH.Call(
 		uintptr(hEle),
 		uintptr(pos))
+
 	return ret == TRUE
 }
 
+/*
+垂直滚动条,滚动到指定位置点.
+
+参数:
+	hEle 元素句柄.
+	pos 位置点.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XSViewScrollPosV(hEle HELE, pos int) bool {
 	ret, _, _ := xSView_ScrollPosV.Call(
 		uintptr(hEle),
 		uintptr(pos))
+
 	return ret == TRUE
 }
 
+/*
+水平滚动条,滚动到指定坐标.
+
+参数:
+	hEle 元素句柄.
+	posX X坐标.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XSViewScrollPosXH(hEle HELE, posX int) bool {
 	ret, _, _ := xSView_ScrollPosXH.Call(
 		uintptr(hEle),
 		uintptr(posX))
+
 	return ret == TRUE
 }
 
+/*
+垂直滚动条,滚动到指定坐标.
+
+参数:
+	hEle 元素句柄.
+	posY Y坐标.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
 func XSViewScrollPosYV(hEle HELE, posY int) bool {
 	ret, _, _ := xSView_ScrollPosYV.Call(
 		uintptr(hEle),
 		uintptr(posY))
+
 	return ret == TRUE
 }
 
+/*
+显示水平滚动条.
+
+参数:
+	hEle 元素句柄.
+	bShow 是否显示.
+*/
 func XSViewShowSBarH(hEle HELE, bShow bool) {
 	xSView_ShowSBarH.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bShow)))
 }
 
+/*
+显示垂直滚动条.
+
+参数:
+	hEle 元素句柄.
+	bShow 是否显示.
+*/
 func XSViewShowSBarV(hEle HELE, bShow bool) {
 	xSView_ShowSBarV.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bShow)))
 }
 
+/*
+启用自动显示滚动条.
+
+参数:
+	hEle 元素句柄.
+	bEnable 是否启用.
+*/
 func XSViewEnableAutoShowScrollBar(hEle HELE, bEnable bool) {
 	xSView_EnableAutoShowScrollBar.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }
 
+/*
+向左滚动.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollLeftLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollLeftLine.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+向右滚动.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollRightLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollRightLine.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+向上滚动.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollTopLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollTopLine.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+向下滚动.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollBottomLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollBottomLine.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+水平滚动到左侧.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollLeft(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollLeft.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+水平滚动到右侧.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollRight(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollRight.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+垂直滚动到顶部.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollTop(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollTop.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }
 
+/*
+垂直滚动到底部.
+
+参数:
+	hEle 元素句柄.
+返回:
+	如果成功返回TRUE,否则相反.
+*/
 func XSViewScrollBottom(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollBottom.Call(
 		uintptr(hEle))
+
 	return ret == TRUE
 }

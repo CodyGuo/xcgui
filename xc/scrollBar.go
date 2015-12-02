@@ -54,7 +54,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XSBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
+func XSBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xSBar_Create.Call(
 		uintptr(x),
 		uintptr(y),

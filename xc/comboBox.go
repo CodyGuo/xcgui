@@ -61,7 +61,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XComboBoxCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
+func XComboBoxCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xComboBox_Create.Call(
 		uintptr(x),
 		uintptr(y),

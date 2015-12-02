@@ -164,7 +164,7 @@ func XListEnableMultiSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	nFlags 标志位 list_drawItemBk_flags_.
 */
-func XListSetDrawItemBkFlags(hEle HELE, nFlags List_drawitembk_flags_) {
+func XListSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	xList_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))

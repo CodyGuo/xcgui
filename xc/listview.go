@@ -286,7 +286,7 @@ func XListViewEnableMultiSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	nFlags 标志位 list_drawItemBk_flags_.
 */
-func XListViewSetDrawItemBkFlags(hEle HELE, nFlags List_drawitembk_flags_) {
+func XListViewSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	xListView_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))

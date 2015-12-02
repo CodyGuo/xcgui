@@ -105,7 +105,7 @@ func XListBoxCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	hEle 元素句柄.
 	nFlags 标志位 list_drawItemBk_flags_.
 */
-func XListBoxSetDrawItemBkFlags(hEle HELE, nFlags List_drawitembk_flags_) {
+func XListBoxSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	xListBox_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))

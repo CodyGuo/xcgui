@@ -23,22 +23,50 @@ func init() {
 	xShapePic_GetLayoutHeight = xcDLL.MustFindProc("XShapePic_GetLayoutHeight")
 }
 
-func XShapePicCreate(x int, y int, cx int, cy int, hParent HXCGUI) HXCGUI {
+/*
+创建形状对象-图片.
+
+参数:
+	x x坐标.
+	y y坐标.
+	cx 宽度.
+	cy 高度.
+	hParent 父对象句柄.
+返回:
+	成功返回图片对象句柄,否则返回NULL.
+*/
+func XShapePicCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapePic_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
 		uintptr(hParent))
+
 	return HXCGUI(ret)
 }
 
+/*
+设置图片.
+
+参数:
+	hShape 形状对象句柄.
+	hImage 图片句柄.
+*/
 func XShapePicSetImage(hShape HXCGUI, hImage HIMAGE) {
 	xShapePic_SetImage.Call(
 		uintptr(hShape),
 		uintptr(hImage))
 }
 
+/*
+设置布局宽度.
+
+参数:
+	hShape 形状对象句柄.
+	nType 标识.
+	width 宽度.
+*/
 func XShapePicSetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, width int) {
 	xShapePic_SetLayoutWidth.Call(
 		uintptr(hShape),
@@ -46,6 +74,14 @@ func XShapePicSetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, width int) 
 		uintptr(width))
 }
 
+/*
+设置布局高度.
+
+参数:
+	hShape 形状对象句柄.
+	nType 标识.
+	height 高度.
+*/
 func XShapePicSetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, height int) {
 	xShapePic_SetLayoutHeight.Call(
 		uintptr(hShape),
@@ -53,6 +89,14 @@ func XShapePicSetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, height int
 		uintptr(height))
 }
 
+/*
+获取布局宽度.
+
+参数:
+	hShape 形状对象句柄.
+	pType 属性标识.
+	pWidth 宽度.
+*/
 func XShapePicGetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, pWidth *int) {
 	xShapePic_GetLayoutWidth.Call(
 		uintptr(hShape),
@@ -60,6 +104,14 @@ func XShapePicGetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, pWidth *int
 		uintptr(unsafe.Pointer(pWidth)))
 }
 
+/*
+获取布局高度.
+
+参数:
+	hShape 形状对象句柄.
+	pType 属性标识.
+	pHeight 高度.
+*/
 func XShapePicGetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, pHeight *int) {
 	xShapePic_GetLayoutHeight.Call(
 		uintptr(hShape),

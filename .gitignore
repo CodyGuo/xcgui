@@ -2,6 +2,7 @@ doc/*
 !doc/*.h
 !doc/*.dll
 !doc/*.chm
+!doc/cToGo.go
 *.exe
 *.txt
 *.chw

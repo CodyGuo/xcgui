@@ -41,9 +41,9 @@ func init() {
 返回:
 	元素句柄.
 */
-func XPaneCreate(pName string, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE {
+func XPaneCreate(pName *uint16, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE {
 	ret, _, _ := xPane_Create.Call(
-		StringToUintPtr(pName),
+		uintptr(unsafe.Pointer(pName)),
 		uintptr(nWidth),
 		uintptr(nHeight),
 		uintptr(hFrameWnd))

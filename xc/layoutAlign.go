@@ -1,7 +1,7 @@
 package xc
 
 // 对齐方式
-type Layout_align_ uint32
+type Layout_align_ int
 
 /*
 对齐方式
@@ -13,10 +13,10 @@ type Layout_align_ uint32
 	layout_align_equidistant  等距
 */
 const (
-	LAYOUT_ALIGN_LEFT Layout_align_ = iota
-	LAYOUT_ALIGN_TOP
-	LAYOUT_ALIGN_RIGHT
-	LAYOUT_ALIGN_BOTTOM
-	LAYOUT_ALIGN_CENTER
-	LAYOUT_ALIGN_EQUIDISTANT
+	Layout_align_left Layout_align_ = iota
+	Layout_align_top
+	Layout_align_right
+	Layout_align_bottom
+	Layout_align_center
+	Layout_align_equidistant
 )

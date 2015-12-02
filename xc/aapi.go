@@ -438,3 +438,7 @@ func UTF16PtrToString(s *uint16) string {
 	}
 	return syscall.UTF16ToString((*[1 << 29]uint16)(unsafe.Pointer(s))[0:])
 }
+
+func CallBack(pFun interface{}) uintptr {
+	return syscall.NewCallback(pFun)
+}

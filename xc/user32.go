@@ -39,29 +39,41 @@ type MSG struct {
 }
 
 var (
-	User32 *syscall.DLL
+	user32 *syscall.DLL
 )
 
 var (
 	// Functions
-	MessageBoxW       *syscall.Proc
-	SendMessageW      *syscall.Proc
-	GetMessageW       *syscall.Proc
-	TranslateMessageW *syscall.Proc
-	DispatchMessageW  *syscall.Proc
+	clientToScreen *syscall.Proc
+
+	messageBox       *syscall.Proc
+	sendMessage      *syscall.Proc
+	getMessage       *syscall.Proc
+	translateMessage *syscall.Proc
+	dispatchMessage  *syscall.Proc
 )
 
 func init() {
-	User32 = syscall.MustLoadDLL("User32.dll")
-	MessageBoxW = User32.MustFindProc("MessageBoxW")
-	SendMessageW = User32.MustFindProc("SendMessageW")
-	GetMessageW = User32.MustFindProc("GetMessageW")
-	TranslateMessageW = User32.MustFindProc("TranslateMessage")
-	DispatchMessageW = User32.MustFindProc("DispatchMessageW")
+	user32 = syscall.MustLoadDLL("User32.dll")
+
+	clientToScreen = user32.MustFindProc("ClientToScreen")
+	messageBox = user32.MustFindProc("MessageBoxW")
+	sendMessage = user32.MustFindProc("SendMessageW")
+	getMessage = user32.MustFindProc("GetMessageW")
+	translateMessage = user32.MustFindProc("TranslateMessage")
+	dispatchMessage = user32.MustFindProc("DispatchMessageW")
+}
+
+func ClientToScreen(hwnd HWND, lpPoint *POINT) bool {
+	ret, _, _ := clientToScreen.Call(
+		uintptr(hwnd),
+		uintptr(unsafe.Pointer(lpPoint)))
+
+	return ret != 0
 }
 
 func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
-	ret, _, _ := MessageBoxW.Call(
+	ret, _, _ := messageBox.Call(
 		uintptr(hWnd),
 		StringToUintPtr(lpText),
 		StringToUintPtr(lpCaption),
@@ -71,7 +83,7 @@ func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
 }
 
 func SendMessage(hWnd HWND, msg uint32, wParam, lParam uintptr) uintptr {
-	ret, _, _ := SendMessageW.Call(
+	ret, _, _ := sendMessage.Call(
 		uintptr(hWnd),
 		uintptr(msg),
 		wParam,
@@ -82,7 +94,7 @@ func SendMessage(hWnd HWND, msg uint32, wParam, lParam uintptr) uintptr {
 }
 
 func GetMessage(msg *MSG, hWnd HWND, msgFilterMin, msgFilterMax uint32) BOOL {
-	ret, _, _ := GetMessageW.Call(
+	ret, _, _ := getMessage.Call(
 		uintptr(unsafe.Pointer(msg)),
 		uintptr(hWnd),
 		uintptr(msgFilterMin),
@@ -92,13 +104,13 @@ func GetMessage(msg *MSG, hWnd HWND, msgFilterMin, msgFilterMax uint32) BOOL {
 }
 
 func TranslateMessage(msg *MSG) bool {
-	ret, _, _ := TranslateMessageW.Call(uintptr(unsafe.Pointer(msg)))
+	ret, _, _ := translateMessage.Call(uintptr(unsafe.Pointer(msg)))
 
 	return ret != 0
 }
 
 func DispatchMessage(msg *MSG) uintptr {
-	ret, _, _ := DispatchMessageW.Call(
+	ret, _, _ := dispatchMessage.Call(
 		uintptr(unsafe.Pointer(msg)))
 
 	return ret

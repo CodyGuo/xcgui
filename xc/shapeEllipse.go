@@ -20,16 +20,37 @@ func init() {
 	xShapeEllipse_EnableFill = xcDLL.MustFindProc("XShapeEllipse_EnableFill")
 }
 
-func XShapeEllipseCreate(x int, y int, cx int, cy int, hParent HXCGUI) HXCGUI {
+/*
+创建圆形形状对象.
+
+参数:
+	x X坐标.
+	y Y坐标.
+	cx 宽度.
+	cy 高度.
+	hParent 父对象句柄.
+返回:
+	返回句柄.
+*/
+func XShapeEllipseCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeEllipse_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
 		uintptr(hParent))
+
 	return HXCGUI(ret)
 }
 
+/*
+设置边框颜色.
+
+参数:
+	hShape 形状对象句柄.
+	color RGB颜色值.
+	alpha 透明度.
+*/
 func XShapeEllipseSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeEllipse_SetBorderColor.Call(
 		uintptr(hShape),
@@ -37,6 +58,14 @@ func XShapeEllipseSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 		uintptr(alpha))
 }
 
+/*
+设置填充颜色.
+
+参数:
+	hShape 形状对象句柄.
+	color RGB颜色值.
+	alpha 透明度.
+*/
 func XShapeEllipseSetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeEllipse_SetFillColor.Call(
 		uintptr(hShape),
@@ -44,12 +73,26 @@ func XShapeEllipseSetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
 		uintptr(alpha))
 }
 
+/*
+启用绘制圆边框.
+
+参数:
+	hShape 形状对象句柄.
+	bEnable 是否启用.
+*/
 func XShapeEllipseEnableBorder(hShape HXCGUI, bEnable bool) {
 	xShapeEllipse_EnableBorder.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))
 }
 
+/*
+启用填充圆.
+
+参数:
+	hShape 形状对象句柄.
+	bEnable 是否启用.
+*/
 func XShapeEllipseEnableFill(hShape HXCGUI, bEnable bool) {
 	xShapeEllipse_EnableFill.Call(
 		uintptr(hShape),

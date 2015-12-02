@@ -32,30 +32,72 @@ func init() {
 	xToolBar_DeleteAllEle = xcDLL.MustFindProc("XToolBar_DeleteAllEle")
 }
 
-func XToolBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
+/*
+创建工具条元素;如果指定了父为窗口,默认调用XWnd_AddToolBar()函数,将工具条添加到窗口非客户区.
+
+参数:
+	x 元素x坐标.
+	y 元素y坐标.
+	cx 宽度.
+	cy 高度.
+	hParent 父是窗口资源句柄或UI元素资源句柄.如果是窗口资源句柄将被添加到窗口, 如果是元素资源句柄将被添加到元素.
+返回:
+	元素句柄.
+*/
+func XToolBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xTextLink_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
 		uintptr(hParent))
+
 	return HELE(ret)
 }
 
-func XToolBarInsertEle(hEle HELE, hNewEle HELE, index int) int {
+/*
+插入元素到工具条.
+
+参数:
+	hEle 元素句柄.
+	hNewEle 将要插入的元素.
+	index 插入位置索引.
+返回:
+	返回插入位置索引.
+*/
+func XToolBarInsertEle(hEle, hNewEle HELE, index int) int {
 	ret, _, _ := xToolBar_InsertEle.Call(
 		uintptr(hEle),
 		uintptr(hNewEle),
 		uintptr(index))
+
 	return int(ret)
 }
+
+/*
+插入分隔符到工具条.
+
+参数:
+	hEle 元素句柄.
+	index 插入位置索引.
+返回:
+	返回插入位置索引.
+*/
 func XToolBarInsertSeparator(hEle HELE, index int) int {
 	ret, _, _ := xToolBar_InsertSeparator.Call(
 		uintptr(hEle),
 		uintptr(index))
+
 	return int(ret)
 }
 
+/*
+启用下拉菜单,显示隐藏的项.
+
+参数:
+	hEle 元素句柄.
+	bEnable 是否启用.
+*/
 func XToolBarEnableButtonMenu(hEle HELE, bEnable bool) {
 	xToolBar_EnableButtonMenu.Call(
 		uintptr(hEle),
@@ -63,37 +105,97 @@ func XToolBarEnableButtonMenu(hEle HELE, bEnable bool) {
 
 }
 
+/*
+获取工具条上指定元素.
+
+参数:
+	hEle 元素句柄.
+	index 索引值.
+返回:
+	返回元素句柄.
+*/
 func XToolBarGetHEle(hEle HELE, index int) HELE {
 	ret, _, _ := xToolBar_GetHEle.Call(
 		uintptr(hEle),
 		uintptr(index))
+
 	return HELE(ret)
 }
 
+/*
+获取左滚动按钮.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回按钮句柄.
+*/
 func XToolBarGetButtonLeft(hEle HELE) HELE {
-	ret, _, _ := xToolBar_GetButtonLeft.Call(
-		uintptr(hEle))
+	ret, _, _ := xToolBar_GetButtonLeft.Call(uintptr(hEle))
+
 	return HELE(ret)
 }
 
+/*
+获取右滚动按钮.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回按钮句柄.
+*/
 func XToolBarGetButtonRight(hEle HELE) HELE {
-	ret, _, _ := xToolBar_GetButtonRight.Call(
-		uintptr(hEle))
+	ret, _, _ := xToolBar_GetButtonRight.Call(uintptr(hEle))
+
 	return HELE(ret)
 }
 
+/*
+获取菜单按钮.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回菜单按钮句柄.
+*/
 func XToolBarGetButtonMenu(hEle HELE) HELE {
-	ret, _, _ := xToolBar_GetButtonMenu.Call(
-		uintptr(hEle))
+	ret, _, _ := xToolBar_GetButtonMenu.Call(uintptr(hEle))
+
 	return HELE(ret)
 }
 
+/*
+设置对象之间的间距.
+
+参数:
+	hEle 元素句柄.
+	nSize 间距大小.
+*/
 func XToolBarSetSpace(hEle HELE, nSize int) {
-	xToolBar_SetSpace.Call(uintptr(hEle), uintptr(nSize))
+	xToolBar_SetSpace.Call(
+		uintptr(hEle),
+		uintptr(nSize))
 }
+
+/*
+删除元素,并且销毁.
+
+参数:
+	hEle 元素句柄.
+	index 索引值.
+*/
 func XToolBarDeleteEle(hEle HELE, index int) {
-	xToolBar_DeleteEle.Call(uintptr(hEle), uintptr(index))
+	xToolBar_DeleteEle.Call(
+		uintptr(hEle),
+		uintptr(index))
 }
+
+/*
+删除所有元素,并且销毁.
+
+参数:
+	hEle 元素句柄.
+*/
 func XToolBarDeleteAllEle(hEle HELE) {
 	xToolBar_DeleteAllEle.Call(uintptr(hEle))
 }

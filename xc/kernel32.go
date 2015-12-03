@@ -125,7 +125,7 @@ func init() {
 	getNumberFormat = libkernel32.MustFindProc("GetNumberFormatW")
 	getProfileString = libkernel32.MustFindProc("GetProfileStringW")
 	getThreadLocale = libkernel32.MustFindProc("GetThreadLocale")
-	getThreadUILanguage = libkernel32.MustFindProc("GetThreadUILanguage")
+	getThreadUILanguage, _ = libkernel32.FindProc("GetThreadUILanguage")
 	getVersion = libkernel32.MustFindProc("GetVersion")
 	globalAlloc = libkernel32.MustFindProc("GlobalAlloc")
 	globalFree = libkernel32.MustFindProc("GlobalFree")
@@ -227,6 +227,11 @@ func GetThreadLocale() LCID {
 }
 
 func GetThreadUILanguage() LANGID {
+	getThreadUILanguageAddr, _ := syscall.GetProcAddress(libkernel32.Handle, "GetThreadUILanguage")
+	if getThreadUILanguageAddr == 0 {
+		return 0
+	}
+
 	ret, _, _ := getThreadUILanguage.Call()
 
 	return LANGID(ret)

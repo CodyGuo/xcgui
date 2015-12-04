@@ -6,6 +6,7 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
 
 # DOC
 帮助文档在doc目录下，或者访问：[godoc.org](https://godoc.org/github.com/CodyGuo/xcgui/xc "xcgui api")<br>
+友情提醒：64位编译环境下需要设置 set GOARCH=386 ，可用写入bat编译。
 
 # GOAL
 

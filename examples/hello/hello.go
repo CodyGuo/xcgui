@@ -15,7 +15,7 @@ func main() {
 
 	parent := xcgui.HXCGUI(hwnd)
 	//button
-	btn := xcgui.XBtnCreate(10, 5, 80, 22, xcgui.StringToUTF16Ptr("关闭"), parent)
+	btn := xcgui.XBtnCreate(10, 5, 80, 22, "关闭", parent)
 	xcgui.XBtnSetType(btn, xcgui.BUTTON_TYPE_CLOSE)
 	//监听btn事件
 	xcgui.XEleRegEventC(btn, xcgui.XE_BNCLICK, syscall.NewCallback(OnBtnClick))

@@ -60,7 +60,7 @@ func NewButton(parent Window, rect Rectangle) (*Button, error) {
 		rect.Y,
 		rect.Width,
 		rect.Height,
-		xc.StringToUTF16Ptr(""),
+		"",
 		xc.HXCGUI(parent.AsWindowBase().hWindow))
 
 	if btn.hEle == 0 {
@@ -159,7 +159,7 @@ func (b *Button) SetIconSpace(sizeNum int) {
 }
 
 func (b *Button) SetText(value string) {
-	xc.XBtnSetText(b.hEle, xc.StringToUTF16Ptr(value))
+	xc.XBtnSetText(b.hEle, value)
 }
 
 func (b *Button) GetText() string {

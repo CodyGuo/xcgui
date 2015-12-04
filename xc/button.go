@@ -79,13 +79,13 @@ func init() {
 
 // 关闭
 func CloseBtn(hWindow HWINDOW) {
-	XBtnSetType(XBtnCreate(10, 5, 35, 20, StringToUTF16Ptr("关闭"), HXCGUI(hWindow)),
+	XBtnSetType(XBtnCreate(10, 5, 35, 20, "关闭", HXCGUI(hWindow)),
 		BUTTON_TYPE_CLOSE)
 }
 
 // 最小化
 func MinBtn(hWindow HWINDOW) {
-	XBtnSetType(XBtnCreate(60, 5, 45, 20, StringToUTF16Ptr("最小化"), HXCGUI(hWindow)),
+	XBtnSetType(XBtnCreate(60, 5, 45, 20, "最小化", HXCGUI(hWindow)),
 		BUTTON_TYPE_MIN)
 }
 
@@ -97,18 +97,19 @@ func MinBtn(hWindow HWINDOW) {
 	y 按钮y坐标
 	cx 宽度
 	cy 高度
-	pName 标题
+	pName 标题 *uint16
 	hParent 父是窗口句柄或元素句柄.
 返回:
 	按钮元素句柄.
 */
-func XBtnCreate(x, y, cx, cy int, pName *uint16, hParent HXCGUI) HELE {
+func XBtnCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
 	ret, _, _ := xBtn_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hParent))
 
 	return HELE(ret)
@@ -396,12 +397,13 @@ func XBtnGetText(hEle HELE, pOut *uint16, nOutLen int) {
 
 参数:
 	hEle 元素句柄.
-	pName 文本内容.
+	pName 文本内容. *uint16
 */
-func XBtnSetText(hEle HELE, pName *uint16) {
+func XBtnSetText(hEle HELE, pName string) {
 	xBtn_SetText.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 }
 
 /*

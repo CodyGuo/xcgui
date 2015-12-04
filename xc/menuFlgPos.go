@@ -1,6 +1,6 @@
 package xc
 
-type MENU_STATE_FLAGS_ uint32
+type Menu_state_flags_ uint32
 
 /*
 弹出菜单项标识
@@ -12,15 +12,15 @@ type MENU_STATE_FLAGS_ uint32
 	menu_state_flags_disable 禁用
 */
 const (
-	MENU_STATE_FLAGS_NORMAL    MENU_STATE_FLAGS_ = 0x00
-	MENU_STATE_FLAGS_SELECT    MENU_STATE_FLAGS_ = 0x01
-	MENU_STATE_FLAGS_CHECK     MENU_STATE_FLAGS_ = 0x02
-	MENU_STATE_FLAGS_POPUP     MENU_STATE_FLAGS_ = 0x04
-	MENU_STATE_FLAGS_SEPARATOR MENU_STATE_FLAGS_ = 0x08
-	MENU_STATE_FLAGS_DISABLE   MENU_STATE_FLAGS_ = 0x10
+	MENU_STATE_FLAGS_NORMAL    Menu_state_flags_ = 0x00
+	MENU_STATE_FLAGS_SELECT    Menu_state_flags_ = 0x01
+	MENU_STATE_FLAGS_CHECK     Menu_state_flags_ = 0x02
+	MENU_STATE_FLAGS_POPUP     Menu_state_flags_ = 0x04
+	MENU_STATE_FLAGS_SEPARATOR Menu_state_flags_ = 0x08
+	MENU_STATE_FLAGS_DISABLE   Menu_state_flags_ = 0x10
 )
 
-type MENU_POPUP_POSITION_ uint32
+type Menu_popup_position_ uint32
 
 /*
 弹出菜单方向
@@ -34,7 +34,7 @@ type MENU_POPUP_POSITION_ uint32
 	menu_popup_position_center_bottom 下居中
 */
 const (
-	MENU_POPUP_POSITION_LEFT_TOP MENU_POPUP_POSITION_ = iota
+	MENU_POPUP_POSITION_LEFT_TOP Menu_popup_position_ = iota
 	MENU_POPUP_POSITION_LEFT_BOTTOM
 	MENU_POPUP_POSITION_RIGHT_TOP
 	MENU_POPUP_POSITION_RIGHT_BOTTOM

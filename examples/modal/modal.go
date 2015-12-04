@@ -25,7 +25,7 @@ func main() {
 }
 
 func OnBtnClick(pbHandled *bool) int {
-	hWindowModal := xcgui.XModalWndCreate(200, 200, xcgui.StringToUTF16Ptr("炫彩界面窗口"), xcgui.XWndGetHWND(hWindow), xcgui.XC_WINDOW_STYLE_MODAL)
+	hWindowModal := xcgui.XModalWndCreate(200, 200, "炫彩界面窗口", xcgui.XWndGetHWND(hWindow), xcgui.XC_WINDOW_STYLE_MODAL)
 	xcgui.XBtnSetType(xcgui.XBtnCreate(5, 3, 60, 20, xcgui.StringToUTF16Ptr("Close"), xcgui.HXCGUI(hWindowModal)), xcgui.BUTTON_TYPE_CLOSE)
 
 	nResult := xcgui.XModalWndDoModal(hWindowModal)

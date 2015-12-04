@@ -2,7 +2,7 @@ package xc
 
 import (
 	"syscall"
-	"unsafe"
+	// "unsafe"
 )
 
 var (
@@ -29,17 +29,18 @@ func init() {
 参数:
 	nWidth 宽度.
 	nHeight 高度.
-	pTitle 窗口标题内容.
+	pTitle 窗口标题内容. *uint16
 	hWndParent 父窗口句柄.
 	XCStyle 炫彩窗口样式,样式请参见宏定义.
 返回:
 	模态窗口句柄.
 */
-func XModalWndCreate(bWidth, nHeight int, pTitle *uint16, hWndParent HWND, XCStyle int) HWINDOW {
+func XModalWndCreate(bWidth, nHeight int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xModalWnd_Create.Call(
 		uintptr(bWidth),
 		uintptr(nHeight),
-		uintptr(unsafe.Pointer(pTitle)),
+		StringToUintPtr(pTitle),
+		// uintptr(unsafe.Pointer(pTitle)),
 		uintptr(hWndParent),
 		uintptr(XCStyle))
 
@@ -51,8 +52,8 @@ func XModalWndCreate(bWidth, nHeight int, pTitle *uint16, hWndParent HWND, XCSty
 
 参数:
 	dwExStyle 窗口扩展样式.
-	lpClassName 窗口类名.
-	lpWindowName 窗口名.
+	lpClassName 窗口类名.*uint16
+	lpWindowName 窗口名.*uint16
 	dwStyle 窗口样式.
 	x 窗口左上角x坐标.
 	y 窗口左上角y坐标.
@@ -63,11 +64,13 @@ func XModalWndCreate(bWidth, nHeight int, pTitle *uint16, hWndParent HWND, XCSty
 返回:
 	GUI库窗口资源句柄.
 */
-func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName *uint16, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
+func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xModalWnd_CreateEx.Call(
 		uintptr(dwExStyle),
-		uintptr(unsafe.Pointer(lpClassName)),
-		uintptr(unsafe.Pointer(lpWindowName)),
+		StringToUintPtr(lpClassName),
+		StringToUintPtr(lpWindowName),
+		// uintptr(unsafe.Pointer(lpClassName)),
+		// uintptr(unsafe.Pointer(lpWindowName)),
 		uintptr(dwStyle),
 		uintptr(x),
 		uintptr(y),

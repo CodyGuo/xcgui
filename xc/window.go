@@ -148,19 +148,20 @@ func init() {
 	y 窗口左上角y坐标.
 	cx 窗口宽度.
 	cy 窗口高度.
-	pTitle 窗口标题.
+	pTitle 窗口标题.*uint16
 	hWndParent 父窗口.
 	XCStyle GUI库窗口样式,样式请参见宏定义 xc_window_style_.
 返回:
 	GUI库窗口资源句柄.
 */
-func XWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle int) HWINDOW {
+func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xWnd_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		uintptr(unsafe.Pointer(pTitle)),
+		StringToUintPtr(pTitle),
+		// uintptr(unsafe.Pointer(pTitle)),
 		uintptr(hWndParent),
 		uintptr(XCStyle))
 
@@ -172,8 +173,8 @@ func XWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle int) 
 
 参数:
 	dwExStyle 窗口扩展样式.
-	lpClassName 窗口类名.
-	lpWindowName 窗口名.
+	lpClassName 窗口类名.*uint16
+	lpWindowName 窗口名.*uint16
 	dwStyle 窗口样式
 	x 窗口左上角x坐标.
 	y 窗口左上角y坐标.
@@ -184,11 +185,13 @@ func XWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle int) 
 返回:
 	GUI库窗口资源句柄.
 */
-func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName *uint16, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
+func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xWnd_CreateEx.Call(
 		uintptr(dwExStyle),
-		uintptr(unsafe.Pointer(lpClassName)),
-		uintptr(unsafe.Pointer(lpWindowName)),
+		StringToUintPtr(lpClassName),
+		StringToUintPtr(lpWindowName),
+		// uintptr(unsafe.Pointer(lpClassName)),
+		// uintptr(unsafe.Pointer(lpWindowName)),
 		uintptr(dwStyle),
 		uintptr(x),
 		uintptr(y),
@@ -527,7 +530,7 @@ func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
 返回:
 	成功返回TRUE否则返回FALSE
 */
-func XWndBindLayoutEle(hWindow HWINDOW, nPosition WINDOW_POSITION_, hEle HELE) bool {
+func XWndBindLayoutEle(hWindow HWINDOW, nPosition Window_position_, hEle HELE) bool {
 	ret, _, _ := xWnd_BindLayoutEle.Call(
 		uintptr(hWindow),
 		uintptr(nPosition),
@@ -545,7 +548,7 @@ func XWndBindLayoutEle(hWindow HWINDOW, nPosition WINDOW_POSITION_, hEle HELE) b
 返回:
 	元素句柄.
 */
-func XWndGetLayoutEle(hWindow HWINDOW, nPosition WINDOW_POSITION_) HELE {
+func XWndGetLayoutEle(hWindow HWINDOW, nPosition Window_position_) HELE {
 	ret, _, _ := xWnd_GetLayoutEle.Call(
 		uintptr(hWindow),
 		uintptr(nPosition))
@@ -819,7 +822,7 @@ func XWndCloseWindow(hWindow HWINDOW) {
 	nPosition 参见宏定义.
 	hLayout 布局对象.
 */
-func XWndBindLayoutObject(hWindow HWINDOW, nPosition WINDOW_POSITION_, hLayout HXCGUI) {
+func XWndBindLayoutObject(hWindow HWINDOW, nPosition Window_position_, hLayout HXCGUI) {
 	xWnd_BindLayoutObject.Call(
 		uintptr(hWindow),
 		uintptr(nPosition),
@@ -835,7 +838,7 @@ func XWndBindLayoutObject(hWindow HWINDOW, nPosition WINDOW_POSITION_, hLayout H
 返回:
 	布局对象句柄.
 */
-func XWndGetLayoutObject(hWindow HWINDOW, nPosition WINDOW_POSITION_) HXCGUI {
+func XWndGetLayoutObject(hWindow HWINDOW, nPosition Window_position_) HXCGUI {
 	ret, _, _ := xWnd_GetLayoutObject.Call(
 		uintptr(hWindow),
 		uintptr(nPosition))
@@ -1055,7 +1058,7 @@ func XWndKillTimer(hWindow HWINDOW, nIDEvent uint32) bool {
 返回:
 	背景内容管理器.
 */
-func XWndGetBkInfoManager(hWindow HWINDOW, nPosition WINDOW_POSITION_) HBKINFOM {
+func XWndGetBkInfoManager(hWindow HWINDOW, nPosition Window_position_) HBKINFOM {
 	ret, _, _ := xWnd_GetBkInfoManager.Call(
 		uintptr(hWindow),
 		uintptr(nPosition))
@@ -1070,7 +1073,7 @@ func XWndGetBkInfoManager(hWindow HWINDOW, nPosition WINDOW_POSITION_) HBKINFOM 
 	hWindow 窗口句柄.
 	nType 窗口透明类型.
 */
-func XWndSetTransparentType(hWindow HWINDOW, nType WINDOW_TRANSPARENT_) {
+func XWndSetTransparentType(hWindow HWINDOW, nType Window_transparent_) {
 	xWnd_SetTransparentType.Call(
 		uintptr(hWindow),
 		uintptr(nType))

@@ -53,7 +53,8 @@ func InitWindow(window, parent Window, width, height int, title string, style ui
 		xc.CW_USEDEFAULT,
 		width,
 		height,
-		xc.StringToUTF16Ptr(title),
+		title,
+		// xc.StringToUTF16Ptr(title),
 		hwndParent,
 		int(style))
 

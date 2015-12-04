@@ -11,7 +11,7 @@ import (
 
 func main() {
 	xcgui.XInitXCGUI()
-	hwnd := xcgui.XWndCreate(400, 200, 300, 200, xcgui.StringToUTF16Ptr("标题"), xcgui.NULL, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hwnd := xcgui.XWndCreate(400, 200, 300, 200, "标题", xcgui.NULL, xcgui.XC_WINDOW_STYLE_DEFAULT)
 
 	parent := xcgui.HXCGUI(hwnd)
 	//button

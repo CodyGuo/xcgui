@@ -34,9 +34,9 @@ func OnWndButtonUp(nFlags uint32, pPt *xcgui.POINT, pbHandled *bool) int {
 	pt := *pPt
 
 	hMenu := xcgui.XMenuCreate()
-	xcgui.XMenuAddItem(hMenu, 201, xcgui.StringToUTF16Ptr("窗格1"), 0, 0)
-	xcgui.XMenuAddItem(hMenu, 202, xcgui.StringToUTF16Ptr("窗格2"), 0, 0)
-	xcgui.XMenuAddItem(hMenu, 203, xcgui.StringToUTF16Ptr("窗格3"), 0, 0)
+	xcgui.XMenuAddItem(hMenu, 201, "窗格1", 0, 0)
+	xcgui.XMenuAddItem(hMenu, 202, "窗格2", 0, 0)
+	xcgui.XMenuAddItem(hMenu, 203, "窗格3", 0, 0)
 
 	xcgui.ClientToScreen(xcgui.XWndGetHWND(mw), &pt)
 	xcgui.XMenuPopup(hMenu, xcgui.XWndGetHWND(mw), pt.X, pt.Y, 0, 0)

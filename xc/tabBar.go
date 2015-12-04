@@ -83,14 +83,15 @@ func XTabBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 
 参数:
 	hEle 元素句柄
-	*pName 标签文本内容.
+	*pName 标签文本内容.*uint16
 返回:
 	标签索引.
 */
-func XTabBarAddLabel(hEle HELE, pName *uint16) int {
+func XTabBarAddLabel(hEle HELE, pName string) int {
 	ret, _, _ := xTabBar_AddLabel.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }
@@ -101,15 +102,16 @@ func XTabBarAddLabel(hEle HELE, pName *uint16) int {
 参数:
 	hEle 元素句柄.
 	index 插入位置.
-	*pName 标签文本内容.
+	*pName 标签文本内容.*uint16
 返回:
 	标签索引.
 */
-func XTabBarInsertLabel(hEle HELE, index int, pName *uint16) int {
+func XTabBarInsertLabel(hEle HELE, index int, pName string) int {
 	ret, _, _ := xTabBar_InsertLabel.Call(
 		uintptr(hEle),
 		uintptr(index),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }

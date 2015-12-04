@@ -58,14 +58,15 @@ func XBkInfoMDestroy(hBkInfoM HBKINFOM) {
 
 参数:
 	hBkInfoM 背景内容管理器句柄.
-	pText 背景内容字符串.
+	pText 背景内容字符串.*uint16
 返回:
 	返回添加的背景内容数量.
 */
-func XBkInfoMSetBkInfo(hBkInfoM HBKINFOM, pText *uint16) int {
+func XBkInfoMSetBkInfo(hBkInfoM HBKINFOM, pText string) int {
 	ret, _, _ := xBkInfoM_SetBkInfo.Call(
 		uintptr(hBkInfoM),
-		uintptr(unsafe.Pointer(pText)))
+		StringToUintPtr(pText))
+	// uintptr(unsafe.Pointer(pText)))
 
 	return int(ret)
 }

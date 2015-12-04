@@ -429,7 +429,7 @@ func XListBoxSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	pHeight 高度.
 	pSelHeight 选中时高度.
 */
-func XListBoxGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *uint16) {
+func XListBoxGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
 	xListBox_GetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pHeight)),
@@ -492,14 +492,15 @@ func XListBoxHitTestOffset(hEle HELE, pPt *POINT) int {
 
 参数:
 	hEle 元素句柄.
-	pXmlFile 文件名.
+	pXmlFile 文件名.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
+func XListBoxSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xListBox_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }
@@ -509,14 +510,15 @@ func XListBoxSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
 
 参数:
 	hEle 元素句柄.
-	pStringXML 字符串指针.
+	pStringXML 字符串指针.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML *uint16) bool {
+func XListBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 	ret, _, _ := xListBox_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pStringXML)))
+		StringToUintPtr(pStringXML))
+	// uintptr(unsafe.Pointer(pStringXML)))
 
 	return ret == TRUE
 }

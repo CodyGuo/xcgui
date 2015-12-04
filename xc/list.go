@@ -383,14 +383,15 @@ func XListGetAdapter(hEle HELE) HELE {
 
 参数:
 	hEle 元素句柄.
-	pXmlFile 文件名.
+	pXmlFile 文件名.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
+func XListSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xList_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }
@@ -399,13 +400,14 @@ func XListSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
 设置项布局模板文件.
 参数:
 hEle 元素句柄.
-pStringXML 字符串指针.
+pStringXML 字符串指针.*uint16
 返回:成功返回TRUE否则返回FALSE.
 */
-func XListSetItemTemplateXMLFromString(hEle HELE, pStringXML *uint16) bool {
+func XListSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 	ret, _, _ := xList_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pStringXML)))
+		StringToUintPtr(pStringXML))
+	// uintptr(unsafe.Pointer(pStringXML)))
 
 	return ret == TRUE
 }
@@ -596,7 +598,7 @@ func XListSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	pHeight 高度.
 	pSelHeight 选中时高度.
 */
-func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *uint16) {
+func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
 	xList_GetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pHeight)),
@@ -614,7 +616,7 @@ func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *uint16) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
+func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
 	ret, _, _ := xList_HitTest.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -635,7 +637,7 @@ func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListHitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *uint16) bool {
+func XListHitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
 	ret, _, _ := xList_HitTestOffset.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),

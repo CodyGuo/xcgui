@@ -2,7 +2,7 @@ package xc
 
 import (
 	"syscall"
-	"unsafe"
+	// "unsafe"
 )
 
 var (
@@ -77,14 +77,15 @@ func init() {
 加载图片从文件.
 
 参数:
-	pImageName 图片文件.
+	pImageName 图片文件.*uint16
 	bStretch 是否拉伸图片
 返回:
 	图片句柄.
 */
-func XImageLoadFile(pImageName *uint16, bStretch bool) HIMAGE {
+func XImageLoadFile(pImageName string, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadFile.Call(
-		uintptr(unsafe.Pointer(pImageName)),
+		StringToUintPtr(pImageName),
+		// uintptr(unsafe.Pointer(pImageName)),
 		uintptr(BoolToBOOL(bStretch)))
 
 	return HIMAGE(ret)
@@ -94,7 +95,7 @@ func XImageLoadFile(pImageName *uint16, bStretch bool) HIMAGE {
 加载图片从文件,自适应图片.
 
 参数:
-	pImageName 图片文件.
+	pImageName 图片文件.*uint16
 	leftSize 坐标.
 	topSize 坐标.
 	rightSize 坐标.
@@ -102,9 +103,10 @@ func XImageLoadFile(pImageName *uint16, bStretch bool) HIMAGE {
 返回:
 	图片句柄.
 */
-func XImageLoadFileAdaptive(pImageName *uint16, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
+func XImageLoadFileAdaptive(pImageName string, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
 	ret, _, _ := xImage_LoadFileAdaptive.Call(
-		uintptr(unsafe.Pointer(pImageName)),
+		StringToUintPtr(pImageName),
+		// uintptr(unsafe.Pointer(pImageName)),
 		uintptr(leftSize),
 		uintptr(topSize),
 		uintptr(rightSize),
@@ -117,7 +119,7 @@ func XImageLoadFileAdaptive(pImageName *uint16, leftSize, topSize, rightSize, bo
 加载图片,指定区位置及大小.
 
 参数:
-	pImageName 图片文件.
+	pImageName 图片文件.*uint16
 	x 坐标.
 	y 坐标.
 	cx 宽度.
@@ -125,9 +127,10 @@ func XImageLoadFileAdaptive(pImageName *uint16, leftSize, topSize, rightSize, bo
 返回:
 	图片句柄.
 */
-func XImageLoadFileRect(pImageName *uint16, x, y, cx, cy int) HIMAGE {
+func XImageLoadFileRect(pImageName string, x, y, cx, cy int) HIMAGE {
 	ret, _, _ := xImage_LoadFileRect.Call(
-		uintptr(unsafe.Pointer(pImageName)),
+		StringToUintPtr(pImageName),
+		// uintptr(unsafe.Pointer(pImageName)),
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
@@ -141,7 +144,7 @@ func XImageLoadFileRect(pImageName *uint16, x, y, cx, cy int) HIMAGE {
 
 参数:
 	id 资源ID.
-	pType 资源类型.
+	pType 资源类型.*uint16
 	leftSize 坐标.
 	topSize 坐标.
 	rightSize 坐标.
@@ -149,10 +152,11 @@ func XImageLoadFileRect(pImageName *uint16, x, y, cx, cy int) HIMAGE {
 返回:
 	图片句柄.
 */
-func XImageLoadResAdaptive(id int, pType *uint16, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
+func XImageLoadResAdaptive(id int, pType string, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
 	ret, _, _ := xImage_LoadResAdaptive.Call(
 		uintptr(id),
-		uintptr(unsafe.Pointer(pType)),
+		StringToUintPtr(pType),
+		// uintptr(unsafe.Pointer(pType)),
 		uintptr(leftSize),
 		uintptr(topSize),
 		uintptr(rightSize),
@@ -166,15 +170,16 @@ func XImageLoadResAdaptive(id int, pType *uint16, leftSize, topSize, rightSize, 
 
 参数:
 	id 资源ID.
-	pType 资源类型.
+	pType 资源类型.*uint16
 	bStretch 是否拉伸图片
 返回:
 	图片句柄.
 */
-func XImageLoadRes(id int, pType *uint16, bStretch bool) HIMAGE {
+func XImageLoadRes(id int, pType string, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadRes.Call(
 		uintptr(id),
-		uintptr(unsafe.Pointer(pType)),
+		StringToUintPtr(pType),
+		// uintptr(unsafe.Pointer(pType)),
 		uintptr(BoolToBOOL(bStretch)))
 
 	return HIMAGE(ret)
@@ -184,18 +189,21 @@ func XImageLoadRes(id int, pType *uint16, bStretch bool) HIMAGE {
 加载图片从ZIP压缩包.
 
 参数:
-	pZipFileName ZIP压缩包文件名.
-	pImageName 图片文件名.
-	pPassword ZIP压缩包密码.
+	pZipFileName ZIP压缩包文件名.*uint16
+	pImageName 图片文件名.*uint16
+	pPassword ZIP压缩包密码.*uint16
 	bStretch 是否拉伸图片
 返回:
 	图片句柄.
 */
-func XImageLoadZip(pZipFileName, pImageName, pPassword *uint16, bStretch bool) HIMAGE {
+func XImageLoadZip(pZipFileName, pImageName, pPassword string, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadZip.Call(
-		uintptr(unsafe.Pointer(pZipFileName)),
-		uintptr(unsafe.Pointer(pImageName)),
-		uintptr(unsafe.Pointer(pPassword)),
+		StringToUintPtr(pZipFileName),
+		StringToUintPtr(pImageName),
+		StringToUintPtr(pPassword),
+		// uintptr(unsafe.Pointer(pZipFileName)),
+		// uintptr(unsafe.Pointer(pImageName)),
+		// uintptr(unsafe.Pointer(pPassword)),
 		uintptr(BoolToBOOL(bStretch)))
 
 	return HIMAGE(ret)
@@ -205,9 +213,9 @@ func XImageLoadZip(pZipFileName, pImageName, pPassword *uint16, bStretch bool) H
 加载图片从ZIP压缩包,自适应图片.
 
 参数:
-	pZipFileName ZIP压缩包文件名.
-	pImageName 图片文件名.
-	pPassword ZIP压缩包密码,如果没有填NULL.
+	pZipFileName ZIP压缩包文件名.*uint16
+	pImageName 图片文件名.*uint16
+	pPassword ZIP压缩包密码,如果没有填NULL.*uint16
 	x1 坐标.
 	x2 坐标.
 	y1 坐标.
@@ -215,11 +223,14 @@ func XImageLoadZip(pZipFileName, pImageName, pPassword *uint16, bStretch bool) H
 返回:
 	图片句柄.
 */
-func XImageLoadZipAdaptive(pZipFileName, pImageName, pPassword *uint16, x1, x2, y1, y2 int) HIMAGE {
+func XImageLoadZipAdaptive(pZipFileName, pImageName, pPassword string, x1, x2, y1, y2 int) HIMAGE {
 	ret, _, _ := xImage_LoadZipAdaptive.Call(
-		uintptr(unsafe.Pointer(pZipFileName)),
-		uintptr(unsafe.Pointer(pImageName)),
-		uintptr(unsafe.Pointer(pPassword)),
+		StringToUintPtr(pZipFileName),
+		StringToUintPtr(pImageName),
+		StringToUintPtr(pPassword),
+		// uintptr(unsafe.Pointer(pZipFileName)),
+		// uintptr(unsafe.Pointer(pImageName)),
+		// uintptr(unsafe.Pointer(pPassword)),
 		uintptr(x1),
 		uintptr(x2),
 		uintptr(y1),
@@ -232,9 +243,9 @@ func XImageLoadZipAdaptive(pZipFileName, pImageName, pPassword *uint16, x1, x2, 
 加载ZIP图片,指定区位置及大小.
 
 参数:
-	pZipFileName ZIP文件.
-	pImageName 图片名称
-	pPassword 密码
+	pZipFileName ZIP文件.*uint16
+	pImageName 图片名称*uint16
+	pPassword 密码 *uint16
 	x 坐标.
 	y 坐标.
 	cx 宽度.
@@ -242,11 +253,14 @@ func XImageLoadZipAdaptive(pZipFileName, pImageName, pPassword *uint16, x1, x2, 
 返回:
 	图片句柄.
 */
-func XImageLoadZipRect(pZipFileName, pImageName, pPassword *uint16, x, y, cx, cy int) HIMAGE {
+func XImageLoadZipRect(pZipFileName, pImageName, pPassword string, x, y, cx, cy int) HIMAGE {
 	ret, _, _ := xImage_LoadZipRect.Call(
-		uintptr(unsafe.Pointer(pZipFileName)),
-		uintptr(unsafe.Pointer(pImageName)),
-		uintptr(unsafe.Pointer(pPassword)),
+		StringToUintPtr(pZipFileName),
+		StringToUintPtr(pImageName),
+		StringToUintPtr(pPassword),
+		// uintptr(unsafe.Pointer(pZipFileName)),
+		// uintptr(unsafe.Pointer(pImageName)),
+		// uintptr(unsafe.Pointer(pPassword)),
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
@@ -347,12 +361,13 @@ func XImageLoadFromImage(pImage uintptr) HIMAGE {
 加载文件图标,从一个EXE文件或DLL文件或图标文件;例如:*.exe文件的图标.
 
 参数:
-	pImageName 文件名.
+	pImageName 文件名.*uint16
 返回:
 	成功返回炫彩图片句柄,失败返回FALSE.
 */
-func XImageLoadFileFromExtractIcon(pImageName *uint16) HIMAGE {
-	ret, _, _ := xImage_LoadFileFromExtractIcon.Call(uintptr(unsafe.Pointer(pImageName)))
+func XImageLoadFileFromExtractIcon(pImageName string) HIMAGE {
+	// ret, _, _ := xImage_LoadFileFromExtractIcon.Call(uintptr(unsafe.Pointer(pImageName)))
+	ret, _, _ := xImage_LoadFileFromExtractIcon.Call(StringToUintPtr(pImageName))
 	if ret == FALSE {
 		return 0
 	}

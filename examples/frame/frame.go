@@ -12,9 +12,9 @@ func main() {
 	mw = xcgui.XFrameWndCreate(0, 0, 600, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.XBtnSetType(xcgui.XBtnCreate(3, 3, 20, 20, "X", xcgui.HXCGUI(mw)), xcgui.BUTTON_TYPE_CLOSE)
 
-	hPane1 := xcgui.XPaneCreate(xcgui.StringToUTF16Ptr("111"), 200, 200, mw)
-	hPane2 := xcgui.XPaneCreate(xcgui.StringToUTF16Ptr("2222222222"), 200, 200, mw)
-	hPane3 := xcgui.XPaneCreate(xcgui.StringToUTF16Ptr("333"), 200, 200, mw)
+	hPane1 := xcgui.XPaneCreate("111", 200, 200, mw)
+	hPane2 := xcgui.XPaneCreate("2222222222", 200, 200, mw)
+	hPane3 := xcgui.XPaneCreate("333", 200, 200, mw)
 
 	xcgui.XFrameWndAddPane(mw, 0, hPane1, xcgui.Align_left)
 

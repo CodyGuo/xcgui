@@ -45,15 +45,17 @@ func XAdapterMapCreate() HXCGUI {
 参数:
 	hAdapter 数据适配器句柄.
 	pName 项名称.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapAddItemText(hAdapter HXCGUI, pName, pValue *uint16) bool {
+func XAdapterMapAddItemText(hAdapter HXCGUI, pName, pValue string) bool {
 	ret, _, _ := xAdapterMap_AddItemText.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -63,15 +65,16 @@ func XAdapterMapAddItemText(hAdapter HXCGUI, pName, pValue *uint16) bool {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 项名称.
+	pName 项名称.*uint16
 	hImage 图片句柄.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapAddItemImage(hAdapter HXCGUI, pName *uint16, hImage HIMAGE) bool {
+func XAdapterMapAddItemImage(hAdapter HXCGUI, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterMap_AddItemImage.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return ret == TRUE
@@ -82,14 +85,15 @@ func XAdapterMapAddItemImage(hAdapter HXCGUI, pName *uint16, hImage HIMAGE) bool
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 项名称.
+	pName 项名称.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapDeleteItem(hAdapter HXCGUI, pName *uint16) bool {
+func XAdapterMapDeleteItem(hAdapter HXCGUI, pName string) bool {
 	ret, _, _ := xAdapterMap_DeleteItem.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return ret == TRUE
 }
@@ -134,14 +138,15 @@ func XAdapterMapGetItemText(hAdapter HXCGUI, pName, pOut *uint16, nOutLen int) b
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 项名称.
+	pName 项名称.*uint16
 返回:
 	返回图片句柄.
 */
-func XAdapterMapGetItemImage(hAdapter HXCGUI, pName *uint16) HIMAGE {
+func XAdapterMapGetItemImage(hAdapter HXCGUI, pName string) HIMAGE {
 	ret, _, _ := xAdapterMap_GetItemImage.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return HIMAGE(ret)
 }

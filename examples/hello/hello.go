@@ -20,8 +20,8 @@ func main() {
 	//监听btn事件
 	xcgui.XEleRegEventC(btn, xcgui.XE_BNCLICK, syscall.NewCallback(OnBtnClick))
 	//label
-	lb := xcgui.XShapeTextCreate(50, 100, 100, 22, xcgui.StringToUTF16Ptr("hello world!"), parent)
-	xcgui.XShapeTextSetText(lb, xcgui.StringToUTF16Ptr("hello 世界!"))
+	lb := xcgui.XShapeTextCreate(50, 100, 100, 22, "hello world!", parent)
+	xcgui.XShapeTextSetText(lb, "hello 世界!")
 	xcgui.XShapeTextSetTextColor(lb, 0xff0000, 255)
 
 	//取text及长度

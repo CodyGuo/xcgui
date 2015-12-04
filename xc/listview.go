@@ -134,14 +134,15 @@ func XListViewGetAdapter(hEle HELE) HXCGUI {
 
 参数:
 	hEle 元素句柄.
-	pXmlFile 文件名.
+	pXmlFile 文件名.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
+func XListViewSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xListView_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }
@@ -151,14 +152,15 @@ func XListViewSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
 
 参数:
 	hEle 元素句柄.
-	pStringXML 字符串指针.
+	pStringXML 字符串指针. *uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewSetItemTemplateXMLFromString(hEle HELE, pStringXML *uint16) bool {
+func XListViewSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 	ret, _, _ := xListView_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pStringXML)))
+		StringToUintPtr(pStringXML))
+	// uintptr(unsafe.Pointer(pStringXML)))
 
 	return ret == TRUE
 }
@@ -214,7 +216,7 @@ func XListViewGetTemplateObjectGroup(hEle HELE, iGroup, nTempItemID int) HXCGUI 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI, piGroup, piItem *uint16) bool {
+func XListViewGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI, piGroup, piItem *int32) bool {
 	ret, _, _ := xListView_GetItemIDFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI),
@@ -235,7 +237,7 @@ func XListViewGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI, piGroup, piItem *uin
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewHitTest(hEle HELE, pPt *POINT, pOutGroup, pOutItem *uint16) bool {
+func XListViewHitTest(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) bool {
 	ret, _, _ := xListView_HitTest.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -256,7 +258,7 @@ func XListViewHitTest(hEle HELE, pPt *POINT, pOutGroup, pOutItem *uint16) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewHitTestOffset(hEle HELE, pPt *POINT, pOutGroup, pOutItem *uint16) int {
+func XListViewHitTestOffset(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) int {
 	ret, _, _ := xListView_HitTestOffset.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -321,7 +323,7 @@ func XListViewSetSelectItem(hEle HELE, iGroup, iItem int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewGetSelectItem(hEle HELE, piGroup, piItem *uint16) bool {
+func XListViewGetSelectItem(hEle HELE, piGroup, piItem *int32) bool {
 	ret, _, _ := xListView_GetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(piGroup)),

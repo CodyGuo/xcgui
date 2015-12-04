@@ -46,18 +46,19 @@ func init() {
 	y Y坐标.
 	cx 宽度.
 	cy 高度.
-	pName 文本内容.
+	pName 文本内容.*uint16
 	hParent 父对象句柄.
 返回:
 	返回文本块句柄.
 */
-func XShapeTextCreate(x, y, cx, cy int, pName *uint16, hParent HXCGUI) HXCGUI {
+func XShapeTextCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeText_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hParent))
 
 	return HXCGUI(ret)
@@ -68,12 +69,13 @@ func XShapeTextCreate(x, y, cx, cy int, pName *uint16, hParent HXCGUI) HXCGUI {
 
 参数:
 	hTextBlock 形状对象文本句柄.
-	pName 文本内容.
+	pName 文本内容.*uint16
 */
-func XShapeTextSetText(hTextBlock HXCGUI, pName *uint16) {
+func XShapeTextSetText(hTextBlock HXCGUI, pName string) {
 	xShapeText_SetText.Call(
 		uintptr(hTextBlock),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 }
 
 /*

@@ -161,12 +161,13 @@ func XComboBoxGetDropHeight(hEle HELE) int {
 
 参数:
 	hEle 元素句柄.
-	pXmlFile 项模板文件.
+	pXmlFile 项模板文件.*uint16
 */
-func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile *uint16) {
+func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile string) {
 	xComboBox_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 }
 
 /*
@@ -174,12 +175,13 @@ func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile *uint16) {
 
 参数:
 	hEle 元素句柄.
-	pStringXML 字符串指针.
+	pStringXML 字符串指针. *uint16
 */
-func XComboBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML *uint16) {
+func XComboBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) {
 	xComboBox_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pStringXML)))
+		StringToUintPtr(pStringXML))
+	// uintptr(unsafe.Pointer(pStringXML)))
 }
 
 /*

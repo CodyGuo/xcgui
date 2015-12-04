@@ -66,14 +66,15 @@ func XAdapterTreeCreate() HXCGUI {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 名称.
+	pName 名称.*uint16
 返回:
 	返回索引值.
 */
-func XAdapterTreeAddColumn(hAdapter HXCGUI, pName *uint16) int {
+func XAdapterTreeAddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterTree_AddColumn.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }
@@ -83,14 +84,15 @@ func XAdapterTreeAddColumn(hAdapter HXCGUI, pName *uint16) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pColName 列名,多个列名用逗号分开.
+	pColName 列名,多个列名用逗号分开.*uint16
 返回:
 	返回列数量. 注解:例如: XAdapterTree_SetColumn(hAdapter, L"name1,name2,mame3");
 */
-func XAdapterTreeSetColumn(hAdapter HXCGUI, pColName *uint16) int {
+func XAdapterTreeSetColumn(hAdapter HXCGUI, pColName string) int {
 	ret, _, _ := xAdapterTree_SetColumn.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pColName)))
+		StringToUintPtr(pColName))
+	// uintptr(unsafe.Pointer(pColName)))
 
 	return int(ret)
 }
@@ -100,16 +102,17 @@ func XAdapterTreeSetColumn(hAdapter HXCGUI, pColName *uint16) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pValue 值.
+	pValue 值.*uint16
 	nParentID 父ID.
 	insertID 插入位置ID.
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemText(hAdapter HXCGUI, pValue *uint16, nParentID, insertID int) int {
+func XAdapterTreeInsertItemText(hAdapter HXCGUI, pValue string, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemText.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pValue)),
+		StringToUintPtr(pValue),
+		// uintptr(unsafe.Pointer(pValue)),
 		uintptr(nParentID),
 		uintptr(insertID))
 
@@ -121,18 +124,20 @@ func XAdapterTreeInsertItemText(hAdapter HXCGUI, pValue *uint16, nParentID, inse
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 列名称.
-	pValue 值.
+	pName 列名称.*uint16
+	pValue 值.*uint16
 	nParentID 父ID.
 	insertID 插入位置ID.
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemTextEx(hAdapter HXCGUI, pName, pValue *uint16, nParentID, insertID int) int {
+func XAdapterTreeInsertItemTextEx(hAdapter HXCGUI, pName, pValue string, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemTextEx.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)),
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue),
+		// uintptr(unsafe.Pointer(pName)),
+		// uintptr(unsafe.Pointer(pValue)),
 		uintptr(nParentID),
 		uintptr(insertID))
 
@@ -165,17 +170,18 @@ func XAdapterTreeInsertItemImage(hAdapter HXCGUI, hImage HIMAGE, nParentID, inse
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 列名称.
+	pName 列名称.*uint16
 	hImage 图片句柄.
 	nParentID 父ID.
 	insertID 插入位置ID.
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemImageEx(hAdapter HXCGUI, pName *uint16, hImage HIMAGE, nParentID, insertID int) int {
+func XAdapterTreeInsertItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemImageEx.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage),
 		uintptr(nParentID),
 		uintptr(insertID))
@@ -218,16 +224,17 @@ func XAdapterTreeGetCountColumn(hAdapter HXCGUI) int {
 	hAdapter 数据适配器句柄.
 	nID 项ID.
 	iColumn 列索引.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemText(hAdapter HXCGUI, nID, iColumn int, pValue *uint16) bool {
+func XAdapterTreeSetItemText(hAdapter HXCGUI, nID, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterTree_SetItemText.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
 		uintptr(iColumn),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -238,17 +245,19 @@ func XAdapterTreeSetItemText(hAdapter HXCGUI, nID, iColumn int, pValue *uint16) 
 参数:
 	hAdapter 数据适配器句柄.
 	nID 项ID.
-	pName 列名.
-	pValue 值.
+	pName 列名.*uint16
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemTextEx(hAdapter HXCGUI, nID int, pName, pValue *uint16) bool {
+func XAdapterTreeSetItemTextEx(hAdapter HXCGUI, nID int, pName, pValue string) bool {
 	ret, _, _ := xAdapterTree_SetItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -280,16 +289,17 @@ func XAdapterTreeSetItemImage(hAdapter HXCGUI, nID, iColumn int, hImage HIMAGE) 
 参数:
 	hAdapter 数据适配器句柄.
 	nID 项ID.
-	pName 列名.
+	pName 列名.*uint16
 	hImage 图片句柄.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemImageEx(hAdapter HXCGUI, nID int, pName *uint16, hImage HIMAGE) bool {
+func XAdapterTreeSetItemImageEx(hAdapter HXCGUI, nID int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTree_SetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return ret == TRUE
@@ -324,15 +334,16 @@ func XAdapterTreeGetItemTextEx(hAdapter HXCGUI, nID int, pName, pOut *uint16, nO
 参数:
 	hAdapter 数据适配器句柄.
 	nID 项ID.
-	pName 列名.
+	pName 列名. *uint16
 返回:
 	返回图片句柄.
 */
-func XAdapterTreeGetItemImageEx(hAdapter HXCGUI, nID int, pName *uint16) HIMAGE {
+func XAdapterTreeGetItemImageEx(hAdapter HXCGUI, nID int, pName string) HIMAGE {
 	ret, _, _ := xAdapterTree_GetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return HIMAGE(ret)
 }

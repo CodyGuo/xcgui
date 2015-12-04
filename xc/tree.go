@@ -106,14 +106,15 @@ func XTreeCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 
 参数:
 	hEle 元素句柄.
-	pXmlFile 文件名.
+	pXmlFile 文件名.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
+func XTreeSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXML.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }
@@ -123,14 +124,15 @@ func XTreeSetItemTemplateXML(hEle HELE, pXmlFile *uint16) bool {
 
 参数:
 	hEle 元素句柄.
-	pXmlFile 文件名.
+	pXmlFile 文件名.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXMLSel(hEle HELE, pXmlFile *uint16) bool {
+func XTreeSetItemTemplateXMLSel(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLSel.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }
@@ -140,14 +142,15 @@ func XTreeSetItemTemplateXMLSel(hEle HELE, pXmlFile *uint16) bool {
 
 参数:
 	hEle 元素句柄.
-	pStringXML 字符串指针.
+	pStringXML 字符串指针.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXMLFromString(hEle HELE, pXmlFile *uint16) bool {
+func XTreeSetItemTemplateXMLFromString(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }
@@ -157,14 +160,15 @@ func XTreeSetItemTemplateXMLFromString(hEle HELE, pXmlFile *uint16) bool {
 
 参数:
 	hEle 元素句柄.
-	pStringXML 字符串指针.
+	pStringXML 字符串指针.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXMLSelFromString(hEle HELE, pXmlFile *uint16) bool {
+func XTreeSetItemTemplateXMLSelFromString(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLSelFromString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pXmlFile)))
+		StringToUintPtr(pXmlFile))
+	// uintptr(unsafe.Pointer(pXmlFile)))
 
 	return ret == TRUE
 }

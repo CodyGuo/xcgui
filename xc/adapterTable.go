@@ -80,14 +80,15 @@ func XAdapterTableCreate() HXCGUI {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 名称.
+	pName 名称.*uint16
 返回:
 	返回列索引.
 */
-func XAdapterTableAddColumn(hAdapter HXCGUI, pName *uint16) int {
+func XAdapterTableAddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterTable_AddColumn.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }
@@ -97,14 +98,15 @@ func XAdapterTableAddColumn(hAdapter HXCGUI, pName *uint16) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pColName 列名,多个列名用逗号分开.
+	pColName 列名,多个列名用逗号分开.*uint16
 返回:
 	返回列数量. 注解:例如: XAdapterTable_SetColumn(hAdapter, L"name1,name2,mame3");
 */
-func XAdapterTableSetColumn(hAdapter HXCGUI, pColName *uint16) int {
+func XAdapterTableSetColumn(hAdapter HXCGUI, pColName string) int {
 	ret, _, _ := xAdapterTable_SetColumn.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pColName)))
+		StringToUintPtr(pColName))
+	// uintptr(unsafe.Pointer(pColName)))
 
 	return int(ret)
 }
@@ -114,14 +116,15 @@ func XAdapterTableSetColumn(hAdapter HXCGUI, pColName *uint16) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	返回项索引值.
 */
-func XAdapterTableAddItemText(hAdapter HXCGUI, pValue *uint16) int {
+func XAdapterTableAddItemText(hAdapter HXCGUI, pValue string) int {
 	ret, _, _ := xAdapterTable_AddItemText.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return int(ret)
 }
@@ -131,16 +134,18 @@ func XAdapterTableAddItemText(hAdapter HXCGUI, pValue *uint16) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 列名.
-	pValue 值.
+	pName 列名.*uint16
+	pValue 值.*uint16
 返回:
 	返回项索引.
 */
-func XAdapterTableAddItemTextEx(hAdapter HXCGUI, pName, pValue *uint16) int {
+func XAdapterTableAddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
 	ret, _, _ := xAdapterTable_AddItemTextEx.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return int(ret)
 }
@@ -167,15 +172,16 @@ func XAdapterTableAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 列名.
+	pName 列名.*uint16
 	hImage 图片句柄.
 返回:
 
 */
-func XAdapterTableAddItemImageEx(hAdapter HXCGUI, pName *uint16, hImage HIMAGE) int {
+func XAdapterTableAddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) int {
 	ret, _, _ := xAdapterTable_AddItemImageEx.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return int(ret)
@@ -187,15 +193,16 @@ func XAdapterTableAddItemImageEx(hAdapter HXCGUI, pName *uint16, hImage HIMAGE) 
 参数:
 	hAdapter 数据适配器句柄.
 	iItem 插入位置索引.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemText(hAdapter HXCGUI, iItem int, pValue *uint16) bool {
+func XAdapterTableInsertItemText(hAdapter HXCGUI, iItem int, pValue string) bool {
 	ret, _, _ := xAdapterTable_InsertItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -207,16 +214,18 @@ func XAdapterTableInsertItemText(hAdapter HXCGUI, iItem int, pValue *uint16) boo
 	hAdapter 数据适配器句柄.
 	iItem 插入位置索引.
 	pName 列名.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue *uint16) bool {
+func XAdapterTableInsertItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string) bool {
 	ret, _, _ := xAdapterTable_InsertItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -246,16 +255,17 @@ func XAdapterTableInsertItemImage(hAdapter HXCGUI, iItem int, hImage HIMAGE) boo
 参数:
 	hAdapter 数据适配器句柄.
 	iItem 插入位置索引.
-	pName 列名.
+	pName 列名.*uint16
 	hImage 图片句柄.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemImageEx(hAdapter HXCGUI, iItem int, pName *uint16, hImage HIMAGE) bool {
+func XAdapterTableInsertItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTable_InsertItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return ret == TRUE
@@ -268,16 +278,17 @@ func XAdapterTableInsertItemImageEx(hAdapter HXCGUI, iItem int, pName *uint16, h
 	hAdapter 数据适配器句柄.
 	iItem 项索引.
 	iColumn 列索引.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemText(hAdapter HXCGUI, iItem, iColumn int, pValue *uint16) bool {
+func XAdapterTableSetItemText(hAdapter HXCGUI, iItem, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterTable_SetItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
 		uintptr(iColumn),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -288,17 +299,19 @@ func XAdapterTableSetItemText(hAdapter HXCGUI, iItem, iColumn int, pValue *uint1
 参数:
 	hAdapter 数据适配器句柄.
 	iItem 项索引.
-	pName 列名.
-	pValue 值.
+	pName 列名.*uint16
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue *uint16) bool {
+func XAdapterTableSetItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string) bool {
 	ret, _, _ := xAdapterTable_SetItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -330,16 +343,17 @@ func XAdapterTableSetItemImage(hAdapter HXCGUI, iItem, iColumn int, hImage HIMAG
 参数:
 	hAdapter 数据适配器句柄.
 	iItem 项索引.
-	pName 列名.
+	pName 列名.*uint16
 	hImage 图片句柄.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemImageEx(hAdapter HXCGUI, iItem int, pName *uint16, hImage HIMAGE) bool {
+func XAdapterTableSetItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTable_SetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return ret == TRUE
@@ -500,15 +514,16 @@ func XAdapterTableGetItemTextEx(hAdapter HXCGUI, iItem int, pName, pOut *uint16,
 参数:
 	hAdapter 数据适配器句柄.
 	iItem 项索引.
-	pName 列名.
+	pName 列名.*uint16
 返回:
 	返回图片句柄.
 */
-func XAdapterTableGetItemImageEx(hAdapter HXCGUI, iItem int, pName *uint16) HIMAGE {
+func XAdapterTableGetItemImageEx(hAdapter HXCGUI, iItem int, pName string) HIMAGE {
 	ret, _, _ := xAdapterTable_GetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return HIMAGE(ret)
 }

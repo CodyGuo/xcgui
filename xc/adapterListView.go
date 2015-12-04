@@ -78,14 +78,15 @@ func XAdapterListViewCreate() HXCGUI {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 名称.
+	pName 名称.*uint16
 返回:
 	返回列索引.
 */
-func XAdapterListViewGroupAddColumn(hAdapter HXCGUI, pName *uint16) int {
+func XAdapterListViewGroupAddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterListView_Group_AddColumn.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }
@@ -95,14 +96,15 @@ func XAdapterListViewGroupAddColumn(hAdapter HXCGUI, pName *uint16) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemText(hAdapter HXCGUI, pValue *uint16) int {
+func XAdapterListViewGroupAddItemText(hAdapter HXCGUI, pValue string) int {
 	ret, _, _ := xAdapterListView_Group_AddItemText.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return int(ret)
 }
@@ -113,15 +115,17 @@ func XAdapterListViewGroupAddItemText(hAdapter HXCGUI, pValue *uint16) int {
 参数:
 	hAdapter 数据适配器句柄.
 	pName 列名.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemTextEx(hAdapter HXCGUI, pName, pValue *uint16) int {
+func XAdapterListViewGroupAddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
 	ret, _, _ := xAdapterListView_Group_AddItemTextEx.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return int(ret)
 }
@@ -148,15 +152,16 @@ func XAdapterListViewGroupAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 列名.
+	pName 列名. *uint16
 	hImage 图片句柄.
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemImageEx(hAdapter HXCGUI, pName *uint16, hImage HIMAGE) int {
+func XAdapterListViewGroupAddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) int {
 	ret, _, _ := xAdapterListView_Group_AddItemImageEx.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return int(ret)
@@ -169,16 +174,17 @@ func XAdapterListViewGroupAddItemImageEx(hAdapter HXCGUI, pName *uint16, hImage 
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
 	iColumn 列索引.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetText(hAdapter HXCGUI, iGroup, iColumn int, pValue *uint16) bool {
+func XAdapterListViewGroupSetText(hAdapter HXCGUI, iGroup, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterListView_Group_SetText.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
 		uintptr(iColumn),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -190,16 +196,18 @@ func XAdapterListViewGroupSetText(hAdapter HXCGUI, iGroup, iColumn int, pValue *
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
 	pName 字段名.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetTextEx(hAdapter HXCGUI, iGroup int, pName, pValue *uint16) bool {
+func XAdapterListViewGroupSetTextEx(hAdapter HXCGUI, iGroup int, pName, pValue string) bool {
 	ret, _, _ := xAdapterListView_Group_SetTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -231,16 +239,17 @@ func XAdapterListViewGroupSetImage(hAdapter HXCGUI, iGroup, iColumn int, hImage 
 参数:
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
-	pName 字段名.
+	pName 字段名.*uint16
 	hImage 图片句柄.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetImageEx(hAdapter HXCGUI, iGroup int, pName *uint16, hImage HIMAGE) bool {
+func XAdapterListViewGroupSetImageEx(hAdapter HXCGUI, iGroup int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterListView_Group_SetImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return ret == TRUE
@@ -251,14 +260,15 @@ func XAdapterListViewGroupSetImageEx(hAdapter HXCGUI, iGroup int, pName *uint16,
 
 参数:
 	hAdapter 数据适配器句柄.
-	pName 名称.
+	pName 名称.*uint16
 返回:
 	返回列索引.
 */
-func XAdapterListViewItemAddColumn(hAdapter HXCGUI, pName *uint16) int {
+func XAdapterListViewItemAddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterListView_Item_AddColumn.Call(
 		uintptr(hAdapter),
-		uintptr(unsafe.Pointer(pName)))
+		StringToUintPtr(pName))
+	// uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
 }
@@ -269,15 +279,16 @@ func XAdapterListViewItemAddColumn(hAdapter HXCGUI, pName *uint16) int {
 参数:
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemText(hAdapter HXCGUI, iGroup int, pValue *uint16) int {
+func XAdapterListViewItemAddItemText(hAdapter HXCGUI, iGroup int, pValue string) int {
 	ret, _, _ := xAdapterListView_Item_AddItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return int(ret)
 }
@@ -289,16 +300,18 @@ func XAdapterListViewItemAddItemText(hAdapter HXCGUI, iGroup int, pValue *uint16
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
 	pName 列名称.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemTextEx(hAdapter HXCGUI, iGroup int, pName, pValue *uint16) int {
+func XAdapterListViewItemAddItemTextEx(hAdapter HXCGUI, iGroup int, pName, pValue string) int {
 	ret, _, _ := xAdapterListView_Item_AddItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return int(ret)
 }
@@ -328,16 +341,17 @@ func XAdapterListViewItemAddItemImage(hAdapter HXCGUI, iGroup int, hImage HIMAGE
 参数:
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
-	pName 列名称.
+	pName 列名称. *uint16
 	hImage 图片句柄.
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemImageEx(hAdapter HXCGUI, iGroup int, pName *uint16, hImage HIMAGE) int {
+func XAdapterListViewItemAddItemImageEx(hAdapter HXCGUI, iGroup int, pName string, hImage HIMAGE) int {
 	ret, _, _ := xAdapterListView_Item_AddItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return int(ret)
@@ -443,17 +457,18 @@ func XAdapterListViewItemGetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName *u
 	iGroup 组索引.
 	iItem 项索引.
 	iColumn 列索引.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetText(hAdapter HXCGUI, iGroup, iItem, iColumn int, pValue *uint16) bool {
+func XAdapterListViewItemSetText(hAdapter HXCGUI, iGroup, iItem, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterListView_Item_SetText.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
 		uintptr(iItem),
 		uintptr(iColumn),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -466,17 +481,19 @@ func XAdapterListViewItemSetText(hAdapter HXCGUI, iGroup, iItem, iColumn int, pV
 	iGroup 组索引.
 	iItem 项索引.
 	pName 列名称.
-	pValue 值.
+	pValue 值.*uint16
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pValue *uint16) bool {
+func XAdapterListViewItemSetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pValue string) bool {
 	ret, _, _ := xAdapterListView_Item_SetTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)),
-		uintptr(unsafe.Pointer(pValue)))
+		StringToUintPtr(pName),
+		StringToUintPtr(pValue))
+	// uintptr(unsafe.Pointer(pName)),
+	// uintptr(unsafe.Pointer(pValue)))
 
 	return ret == TRUE
 }
@@ -511,17 +528,18 @@ func XAdapterListViewItemSetImage(hAdapter HXCGUI, iGroup, iItem, iColumn int, h
 	hAdapter 数据适配器句柄.
 	iGroup 组索引.
 	iItem 项索引.
-	pName 列名称.
+	pName 列名称.*uint16
 	hImage 图片句柄.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName *uint16, hImage HIMAGE) bool {
+func XAdapterListViewItemSetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterListView_Item_SetImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
 		uintptr(iItem),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hImage))
 
 	return ret == TRUE

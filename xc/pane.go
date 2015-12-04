@@ -34,16 +34,17 @@ func init() {
 创建窗格元素.
 
 参数:
-	pName 窗格标题.
+	pName 窗格标题.*uint16
 	nWidth 宽度.
 	nHeight 高度.
 	hFrameWnd 框架窗口.
 返回:
 	元素句柄.
 */
-func XPaneCreate(pName *uint16, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE {
+func XPaneCreate(pName string, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE {
 	ret, _, _ := xPane_Create.Call(
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(nWidth),
 		uintptr(nHeight),
 		uintptr(hFrameWnd))

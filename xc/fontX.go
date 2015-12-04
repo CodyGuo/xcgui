@@ -45,7 +45,7 @@ func XFontCreate(size int) HFONTX {
 创建炫彩字体.
 
 参数:
-	pName 字体名称.
+	pName 字体名称.*uint16
 	size 字体大小.
 	bBold 是否为粗体.
 	bItalic 是否为斜体.
@@ -54,9 +54,10 @@ func XFontCreate(size int) HFONTX {
 返回:
 	字体句柄.
 */
-func XFontCreate2(pName *uint16, size int, bBold, bItalic, bUnderline, bStrikeOut bool) HFONTX {
+func XFontCreate2(pName string, size int, bBold, bItalic, bUnderline, bStrikeOut bool) HFONTX {
 	ret, _, _ := xFont_Create2.Call(
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(size),
 		uintptr(BoolToBOOL(bBold)),
 		uintptr(BoolToBOOL(bItalic)),

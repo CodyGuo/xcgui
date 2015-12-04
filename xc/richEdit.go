@@ -120,14 +120,15 @@ func XRichEditCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 
 参数:
 	hEle 元素句柄.
-	pString 字符串指针.
+	pString 字符串指针. *uint16
 	pFont 字体.
 	color 颜色.
 */
-func XRichEditInsertString(hEle HELE, pString *uint16, pFont *LOGFONTW, color COLORREF) {
+func XRichEditInsertString(hEle HELE, pString string, pFont *LOGFONTW, color COLORREF) {
 	xRichEdit_InsertString.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pString)),
+		StringToUintPtr(pString),
+		// uintptr(unsafe.Pointer(pString)),
 		uintptr(unsafe.Pointer(pFont)),
 		uintptr(color))
 }
@@ -138,15 +139,16 @@ func XRichEditInsertString(hEle HELE, pString *uint16, pFont *LOGFONTW, color CO
 参数:
 	hEle 元素句柄.
 	hImage 图片句柄.
-	pImagePath 图片路径,用于图片的复制.
+	pImagePath 图片路径,用于图片的复制.*uint16
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath *uint16) bool {
+func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertImage.Call(
 		uintptr(hEle),
 		uintptr(hImage),
-		uintptr(unsafe.Pointer(pImagePath)))
+		StringToUintPtr(pImagePath))
+	// uintptr(unsafe.Pointer(pImagePath)))
 
 	return ret == TRUE
 }
@@ -157,15 +159,16 @@ func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath *uint16) bool {
 参数:
 	hEle 元素句柄.
 	hImage 图片句柄.
-	pImagePath 图片路径,用于图片的复制.
+	pImagePath 图片路径,用于图片的复制.*uint16
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath *uint16) bool {
+func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertGif.Call(
 		uintptr(hEle),
 		uintptr(hImage),
-		uintptr(unsafe.Pointer(pImagePath)))
+		StringToUintPtr(pImagePath))
+	// uintptr(unsafe.Pointer(pImagePath)))
 
 	return ret == TRUE
 }
@@ -177,16 +180,17 @@ func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath *uint16) bool {
 	hEle 元素句柄.
 	iRow 行索引.
 	iColumn 列索引.
-	pString 字符串指针.
+	pString 字符串指针.*uint16
 	pFont 字体.
 	color 颜色.
 */
-func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString *uint16, pFont *LOGFONTW, color COLORREF) {
+func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString string, pFont *LOGFONTW, color COLORREF) {
 	xRichEdit_InsertStringEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
 		uintptr(iColumn),
-		uintptr(unsafe.Pointer(pString)),
+		StringToUintPtr(pString),
+		// uintptr(unsafe.Pointer(pString)),
 		uintptr(unsafe.Pointer(pFont)),
 		uintptr(color))
 }
@@ -199,17 +203,18 @@ func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString *uint16, pFon
 	iRow 插入的行位置,如果值为-1插入到末尾行.
 	iColumn 插入的列位置,如果值为-1插入末尾列.
 	hImage 图片句柄.
-	pImagePath 图片路径,用于图片的复制.
+	pImagePath 图片路径,用于图片的复制.*uint16
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath *uint16) bool {
+func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertImageEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
 		uintptr(iColumn),
 		uintptr(hImage),
-		uintptr(unsafe.Pointer(pImagePath)))
+		StringToUintPtr(pImagePath))
+	// uintptr(unsafe.Pointer(pImagePath)))
 
 	return ret == TRUE
 }
@@ -222,17 +227,18 @@ func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImageP
 	iRow 插入的行位置,如果值为-1插入到末尾行.
 	iColumn 插入的列位置,如果值为-1插入末尾列.
 	hImage 图片句柄.
-	pImagePath 图片路径,用于图片的复制.
+	pImagePath 图片路径,用于图片的复制.*uint16
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath *uint16) bool {
+func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertGifEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
 		uintptr(iColumn),
 		uintptr(hImage),
-		uintptr(unsafe.Pointer(pImagePath)))
+		StringToUintPtr(pImagePath))
+	// uintptr(unsafe.Pointer(pImagePath)))
 
 	return ret == TRUE
 }
@@ -242,12 +248,13 @@ func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePat
 
 参数:
 	hEle 元素句柄.
-	pString 字符串指针.
+	pString 字符串指针.*uint16
 */
-func XRichEditSetText(hEle HELE, pString *uint16) {
+func XRichEditSetText(hEle HELE, pString string) {
 	xRichEdit_SetText.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pString)))
+		StringToUintPtr(pString))
+	// uintptr(unsafe.Pointer(pString)))
 }
 
 /*
@@ -542,7 +549,7 @@ func XRichEditGetSelectText(hEle HELE, pOut *uint16, reLen int) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditGetSelectPosition(hEle HELE, pBegin *Position, pEnd *Position) bool {
+func XRichEditGetSelectPosition(hEle HELE, pBegin, pEnd *Position) bool {
 	ret, _, _ := xRichEdit_GetSelectPosition.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pBegin)),

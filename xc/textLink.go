@@ -2,7 +2,7 @@ package xc
 
 import (
 	"syscall"
-	"unsafe"
+	// "unsafe"
 )
 
 var (
@@ -31,18 +31,19 @@ func init() {
 	y 元素y坐标.
 	cx 宽度.
 	cy 高度.
-	pName 文本内容.
+	pName 文本内容.*uint16
 	hParent 父是窗口资源句柄或UI元素资源句柄.如果是窗口资源句柄将被添加到窗口, 如果是元素资源句柄将被添加到元素.
 返回:
 	元素句柄.
 */
-func XTextLinkCreate(x, y, cx, cy int, pName *uint16, hParent HXCGUI) HELE {
+func XTextLinkCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
 	ret, _, _ := xTextLink_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hParent))
 
 	return HELE(ret)

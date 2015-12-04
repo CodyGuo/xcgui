@@ -41,19 +41,20 @@ func init() {
 	y Y坐标.
 	cx 宽度.
 	cy 高度.
-	pName 名称.
+	pName 名称.*uint16
 	hParent 父对象句柄.
 
 返回:
 	返回句柄.
 */
-func XShapeGroupBoxCreate(x, y, cx, cy int, pName *uint16, hParent HXCGUI) HXCGUI {
+func XShapeGroupBoxCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeGroupBox_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		uintptr(unsafe.Pointer(pName)),
+		StringToUintPtr(pName),
+		// uintptr(unsafe.Pointer(pName)),
 		uintptr(hParent))
 
 	return HXCGUI(ret)
@@ -79,12 +80,13 @@ func XShapeGroupBoxSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 
 参数:
 	hShape 形状对象句柄.
-	pText 文本内容.
+	pText 文本内容.*uint16
 */
-func XShapeGroupBoxSetTextColor(hShape HXCGUI, pText *uint16) {
+func XShapeGroupBoxSetTextColor(hShape HXCGUI, pText string) {
 	xShapeGroupBox_SetTextColor.Call(
 		uintptr(hShape),
-		uintptr(unsafe.Pointer(pText)))
+		StringToUintPtr(pText))
+	// uintptr(unsafe.Pointer(pText)))
 }
 
 /*
@@ -135,12 +137,13 @@ func XShapeGroupBoxSetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
 
 参数:
 	hShape 形状对象句柄.
-	pText 文本内容.
+	pText 文本内容.*uint16
 */
-func XShapeGroupBoxSetText(hShape HXCGUI, pText *uint16) {
+func XShapeGroupBoxSetText(hShape HXCGUI, pText string) {
 	xShapeGroupBox_SetText.Call(
 		uintptr(hShape),
-		uintptr(unsafe.Pointer(pText)))
+		StringToUintPtr(pText))
+	// uintptr(unsafe.Pointer(pText)))
 }
 
 /*

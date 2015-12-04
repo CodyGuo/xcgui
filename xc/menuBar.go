@@ -2,7 +2,7 @@ package xc
 
 import (
 	"syscall"
-	"unsafe"
+	// "unsafe"
 )
 
 var (
@@ -49,14 +49,15 @@ func XMenuBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 
 参数:
 	hEle 元素句柄.
-	pText 文本内容.
+	pText 文本内容.*uint16
 返回:
 	返回菜单按钮索引.
 */
-func XMenuBarAddButton(hEle HELE, pText *uint16) int {
+func XMenuBarAddButton(hEle HELE, pText string) int {
 	ret, _, _ := xMenuBar_AddButton.Call(
 		uintptr(hEle),
-		uintptr(unsafe.Pointer(pText)))
+		StringToUintPtr(pText))
+	// uintptr(unsafe.Pointer(pText)))
 
 	return int(ret)
 }

@@ -47,19 +47,20 @@ func init() {
 	y 窗口左上角y坐标.
 	cx 窗口宽度.
 	cy 窗口高度.
-	pTitle 窗口标题.
+	pTitle 窗口标题.*uint16
 	hWndParent 父窗口.
 	XCStyle GUI库窗口样式,样式请参见宏定义 xc_window_style_.
 返回:
 	GUI库窗口资源句柄.
 */
-func XFrameWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle int) HWINDOW {
+func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xFrameWnd_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),
 		uintptr(cy),
-		uintptr(unsafe.Pointer(pTitle)),
+		StringToUintPtr(pTitle),
+		// uintptr(unsafe.Pointer(pTitle)),
 		uintptr(hWndParent),
 		uintptr(XCStyle))
 
@@ -71,7 +72,7 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle 
 
 参数:
 	dwExStyle 窗口扩展样式.
-	lpClassName 窗口类名.
+	lpClassName 窗口类名.*uint16
 	lpWindowName 窗口名.
 	dwStyle 窗口样式
 	x 窗口左上角x坐标.
@@ -83,11 +84,13 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle *uint16, hWndParent HWND, XCStyle 
 返回:
 	GUI库窗口资源句柄.
 */
-func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName *uint16, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
+func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
 	ret, _, _ := xFrameWnd_CreateEx.Call(
 		uintptr(dwExStyle),
-		uintptr(unsafe.Pointer(lpClassName)),
-		uintptr(unsafe.Pointer(lpWindowName)),
+		StringToUintPtr(lpClassName),
+		StringToUintPtr(lpWindowName),
+		// uintptr(unsafe.Pointer(lpClassName)),
+		// uintptr(unsafe.Pointer(lpWindowName)),
 		uintptr(dwStyle),
 		uintptr(x),
 		uintptr(y),

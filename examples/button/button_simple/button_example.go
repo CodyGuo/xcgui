@@ -28,7 +28,7 @@ func main() {
 		xcgui.MsgBox(mw, "警告", "这是一条警告信息!", xcgui.MsgBoxIconWarning)
 	})
 
-	img, _ := xcgui.NewImageFromFile("../img/open.png")
+	img, _ := xcgui.NewImageFromFile("../../img/open.png")
 
 	button1.SetIcon(img)
 	button2.SetIcon(img)
@@ -40,7 +40,7 @@ func main() {
 	button1.AddBkBorder(xcgui.BUTTON_STATE_LEAVE, color, 255, 2)
 	button2.AddBkFill(xcgui.BUTTON_STATE_LEAVE, color, 255)
 
-	img_buy, _ := xcgui.NewImageFromFile("../img/buy.png")
+	img_buy, _ := xcgui.NewImageFromFile("../../img/buy.png")
 
 	button1.AddBkImage(xcgui.BUTTON_STATE_LEAVE, img_buy)
 	err := mw.Show()

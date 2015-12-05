@@ -1,0 +1,17 @@
+<!-- XListView_Item -->
+<?xml version="1.0" encoding="gb2312" ?>
+
+<xc_template_listView>
+	<listView_Group>
+		<layoutObject type="group" layout.horizon="true" layout.alignH="left"  layout.alignV="top" layout.width="fill" layout.height="fill" layout.space=2 layout.padding="2,2,2,2">
+			<buttonUI expandButton="true" width="80" layout.height="fill" buttonType="check" content="展开-收缩" />
+			<shapeText itemID=1 layout.width=":1" layout.height="fill" content="{binding field=name3 source=data bSync=false}" />
+		</layoutObject>
+	</listView_Group>
+	<listView_item>
+		<layoutObject type="item"  layout.horizon="false" layout.alignH="center"  layout.alignV="top" layout.width="fill" layout.height="fill" layout.space=2 layout.padding="2,5,2,2">
+			<shapePicture itemID=1 width=70 height=65 image="{binding field=name source=data bSync=false}" />	
+			<shapeText itemID=2 layout.width="fill" layout.height="20" content="{binding field=name2 source=data bSync=false}" />
+		</layoutObject>
+	</listView_item>
+</xc_template_listView>

@@ -1,0 +1,8 @@
+<!-- 组合框下拉列表项模板 -->
+<?xml version="1.0" ?>
+<xc_template_listBox>
+	<layoutObject type="item" layout.horizon="true" layout.alignH="left"  layout.alignV="top" layout.width="auto" layout.height="fill" layout.space=2 layout.padding="2,2,2,2" >
+		<shapeText itemID=1 layout.width="auto" layout.height="fill" content="{binding field=name source=data bSync=false}" />
+	</layoutObject>
+</xc_template_listBox>
+

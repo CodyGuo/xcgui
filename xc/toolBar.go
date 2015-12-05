@@ -45,7 +45,7 @@ func init() {
 	元素句柄.
 */
 func XToolBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
-	ret, _, _ := xTextLink_Create.Call(
+	ret, _, _ := xToolBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
 		uintptr(cx),

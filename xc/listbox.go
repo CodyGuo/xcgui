@@ -549,7 +549,7 @@ func XListBoxGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XListBox_EnableMultiSel(hEle HELE, bEnable bool) {
+func XListBoxEnableMultiSel(hEle HELE, bEnable bool) {
 	xListBox_EnableMultiSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -562,7 +562,7 @@ func XListBox_EnableMultiSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	hAdapter 数据适配器句柄 XAdapterTable.
 */
-func XListBox_BindAdapter(hEle HELE, hAdapter HXCGUI) {
+func XListBoxBindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xListBox_BindAdapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -576,7 +576,7 @@ func XListBox_BindAdapter(hEle HELE, hAdapter HXCGUI) {
 返回:
 	返回数据适配器句柄.
 */
-func XListBox_GetAdapter(hEle HELE) HXCGUI {
+func XListBoxGetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xListBox_GetAdapter.Call(uintptr(hEle))
 
 	return HXCGUI(ret)

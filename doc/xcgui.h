@@ -7,7 +7,7 @@
 \**************************************************************************/
 #pragma once
 
-//v1.8.9.5
+//v1.8.9.6
 ////////////输入输出///////////////////
 #define in_
 #define out_
@@ -396,6 +396,7 @@ enum  tree_item_state_
 	tree_item_state_select=1,  ///<项选择状态
 };
 
+
 ///@}
 
 
@@ -465,6 +466,18 @@ enum  propertyGrid_item_type_
 	propertyGrid_item_type_edit_set,    ///<设置
 	propertyGrid_item_type_comboBox,    ///<组合框
 	propertyGrid_item_type_group,       ///<组
+};
+
+///@}
+
+///@name Z序位置
+///@{
+enum zorder_
+{
+	zorder_top,    ///<最上面
+	zorder_bottom, ///<最下面
+	zorder_before, ///<指定目标下面
+	zorder_after,  ///<指定目标上面
 };
 
 ///@}
@@ -543,7 +556,6 @@ struct listBox_item_i
 	int     nUserData;  ///<用户绑定数据
 	int     nHeight;    ///<项默认高度
 	int     nSelHeight; ///<项选中时高度
-	//	BOOL    bSelect;    ///<是否选中
 	list_item_state_  nState;  ///<状态
 	int     index;      ///<项索引
 	RECT    rcItem;     ///<项坐标
@@ -569,7 +581,6 @@ struct list_item_i
 	int     index;
 	int     iSubItem;
 	int     nUserData;
-	//	BOOL    bSelect;
 	list_item_state_  nState;
 	RECT    rcItem;
 	HXCGUI  hLayout;     ///<布局对象
@@ -578,10 +589,12 @@ struct list_item_i
 
 struct list_header_item_i
 {
-	int       nState;
-	int       nUserData;
-	BOOL      bSelect;
+	int     index;
+	int     nUserData;
+	common_state3_  nState;
 	RECT      rcItem;
+	HXCGUI    hLayout;     ///<布局对象
+	template_info_i  *pInfo;   ///<模板信息
 };
 
 struct tree_item_i
@@ -1010,15 +1023,15 @@ enum  bkInfo_type_
 #define  XE_SBAR_SCROLL        56   //滚动条滚动事件 wParam:滚动点,lParam:0 (滚动条触发)
 
 ///@brief 菜单弹出
-///@code  int CALLBACK OnWndMenuPopup(HMENUX hMenu, BOOL *pbHandled); @endcode
+///@code  int CALLBACK OnMenuPopup(HMENUX hMenu, BOOL *pbHandled); @endcode
 #define  XE_MENU_POPUP       57
 
 ///@brief 菜单弹出窗口
-///@code  int CALLBACK OnWndMenuPopupWnd(HMENUX hMenu,menu_popupWnd_i* pInfo,BOOL *pbHandled); @endcode
+///@code  int CALLBACK OnMenuPopupWnd(HMENUX hMenu,menu_popupWnd_i* pInfo,BOOL *pbHandled); @endcode
 #define  XE_MENU_POPUP_WND     58
 
 /// @brief 弹出菜单项选择事件.
-/// @code  int CALLBACK OnEventMenuSelect(int nItem,BOOL *pbHandled); @endcode
+/// @code  int CALLBACK OnMenuSelect(int nItem,BOOL *pbHandled); @endcode
 /// @param nItem          菜单项id.
 #define  XE_MENU_SELECT      59  //菜单项选择 wParam:菜单ID,lParam:0
 
@@ -1106,9 +1119,30 @@ enum  bkInfo_type_
 /// @code  int CALLBACK OnListHeaderDrawItem(HDRAW hDraw, list_header_item_i* pItem, BOOL *pbHandled); @endcode
 #define  XE_LIST_HEADER_DRAWITEM         107
 
+/// @brief 列表元素,列表头项点击事件.
+/// @code  int CALLBACK OnListHeaderClick(int iItem, BOOL *pbHandled); @endcode
 #define  XE_LIST_HEADER_CLICK            108
 
+/// @brief 列表元素,列表头项宽度改变事件.
+/// @code  int CALLBACK OnListHeaderItemWidthChange(int iItem, int nWidth BOOL *pbHandled); @endcode
 #define  XE_LIST_HEADER_WIDTH_CHANGE     109
+
+/// @brief 列表元素,列表头项模板创建.
+/// @code  int CALLBACK OnListHeaderTemplateCreate(list_header_item_i* pItem,BOOL *pbHandled); @endcode
+#define  XE_LIST_HEADER_TEMP_CREATE          110
+
+/// @brief 列表元素,列表头项模板创建完成事件.
+/// @code  int CALLBACK OnListHeaderTemplateCreateEnd(list_header_item_i* pItem,BOOL *pbHandled); @endcode
+#define  XE_LIST_HEADER_TEMP_CREATE_END      111
+
+/// @brief 列表元素,列表头项模板销毁.
+/// @code int CALLBACK OnListHeaderTemplateDestroy(list_header_item_i* pItem,BOOL *pbHandled); @endcode
+#define  XE_LIST_HEADER_TEMP_DESTROY          112
+
+/// @brief 列表元素,列表头项模板调整坐标.
+/// @code  typedef int CALLBACK OnListHeaderTemplateAdjustCoordinate(list_header_item_i* pItem,BOOL *pbHandled); @endcode
+#define  XE_LIST_HEADER_TEMP_ADJUST_COORDINATE  113
+
 
 /// @brief 树元素,项模板创建.
 /// @code  int CALLBACK OnTreeTemplateCreate(tree_item_i* pItem,BOOL *pbHandled); @endcode
@@ -1428,6 +1462,9 @@ public:
 	typedef int(T_ClassName::*pFun_int_hDraw_pListItem_bPtr)(HDRAW,list_item_i*, BOOL*);
 
 	typedef int(T_ClassName::*pFun_int_hDraw_pListHeaderItem_bPtr)(HDRAW,list_header_item_i*, BOOL*);
+	typedef int(T_ClassName::*pFun_int_pListHeaderItem_bPtr)(list_header_item_i*, BOOL*);
+
+	typedef int(T_ClassName::*pFun_int_pListHeaderItem_bPtr)(list_header_item_i*, BOOL*);
 
 	typedef int(T_ClassName::*pFun_int_pTreeItem_bPtr)(tree_item_i*, BOOL*);
 	typedef int(T_ClassName::*pFun_int_hDraw_pTreeItem_bPtr)(HDRAW,tree_item_i*, BOOL*);
@@ -1436,6 +1473,9 @@ public:
 	typedef int(T_ClassName::*pFun_int_hDraw_pListViewItem_bPtr)(HDRAW,listView_item_i*, BOOL*);
 
 	typedef int(T_ClassName::*pFun_int_hMenu_bPtr)(HMENUX, BOOL*);
+	typedef int(T_ClassName::*pFun_int_w_hMenu_bPtr)(HWINDOW, HMENUX, BOOL*);
+	typedef int(T_ClassName::*pFun_int_e_hMenu_bPtr)(HELE, HMENUX, BOOL*);
+
 	typedef int(T_ClassName::*pFun_int_hMenu_pMenuPopupWnd_bPtr)(HMENUX, menu_popupWnd_i*, BOOL*);
 	typedef int(T_ClassName::*pFun_int_hDraw_pMenuDrawItem_bPtr)(HDRAW,menu_drawItem_i*,BOOL*);
 	typedef int(T_ClassName::*pFun_int_hDraw_pMenuDrawBackground_bPtr)(HDRAW,menu_drawBackground_i*, BOOL*);
@@ -1484,6 +1524,9 @@ public:
 	}
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_hMenu_bPtr pMember){
 		return (pThis->*pMember)((HMENUX)wParam, pbHandled);
+	}
+	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_w_hMenu_bPtr pMember){
+		return (pThis->*pMember)(hWindow, (HMENUX)wParam, pbHandled);
 	}
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_hMenu_pMenuPopupWnd_bPtr pMember){
 		return (pThis->*pMember)((HMENUX)wParam, (menu_popupWnd_i*)lParam, pbHandled);
@@ -1614,6 +1657,10 @@ public:
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_hDraw_pListHeaderItem_bPtr pMember){
 		return (pThis->*pMember)((HDRAW)wParam,(list_header_item_i*)lParam, pbHandled);
 	}
+	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_pListHeaderItem_bPtr pMember){
+		return (pThis->*pMember)((list_header_item_i*)wParam, pbHandled);
+	}
+
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_pTreeItem_bPtr pMember){
 		return (pThis->*pMember)((tree_item_i*)wParam, pbHandled);
 	}
@@ -1643,6 +1690,9 @@ public:
 	}
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_hMenu_bPtr pMember){
 		return (pThis->*pMember)((HMENUX)wParam, pbHandled);
+	}
+	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_e_hMenu_bPtr pMember){
+		return (pThis->*pMember)(hEventEle,(HMENUX)wParam, pbHandled);
 	}
 	BOOL  Handle(int nRegType, HELE hEle, HELE hEventEle, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT nEvent, T_ClassName* pThis, pFun_int_hMenu_pMenuPopupWnd_bPtr pMember){
 		return (pThis->*pMember)((HMENUX)wParam, (menu_popupWnd_i*)lParam, pbHandled);
@@ -1729,6 +1779,9 @@ public:
 		pArray[0]=XC_PARAM_uint;
 		pArray[1]=XC_PARAM_uint;
 	}
+	void Test(UINT nEvent,pFun_int_w_hMenu_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HMENUX;
+	}
 };
 
 //省略2参数验证
@@ -1783,6 +1836,9 @@ public:
 	void  Test(UINT nEvent, pFun_int_hDraw_pListHeaderItem_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_HDRAW;
 		pArray[1]=XC_PARAM_P_list_header_item_i;
+	}
+	void  Test(UINT nEvent, pFun_int_pListHeaderItem_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_P_list_header_item_i;
 	}
 	void  Test(UINT nEvent,pFun_int_pTreeItem_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_P_tree_item_i;
@@ -1857,6 +1913,9 @@ public:
 	}
 	void  Test(UINT nEvent,pFun_int_e_hDrop_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_HDROP;
+	}
+	void  Test(UINT nEvent,pFun_int_e_hMenu_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_HMENUX;
 	}
 };
 
@@ -2141,10 +2200,12 @@ XC_API BOOL WINAPI XC_IsHWINDOW(HXCGUI hWindow); //检查句柄
 XC_API BOOL WINAPI XC_IsShape(HXCGUI hShape); //检查句柄
 XC_API BOOL WINAPI XC_IsHXCGUI(HXCGUI hXCGUI,XC_OBJECT_TYPE nType);
 XC_API HWINDOW WINAPI XC_hWindowFromHWnd(HWND hWnd);
+XC_API BOOL WINAPI XC_RegisterWindowClassName(const wchar_t* pClassName); //注册窗口类名
 XC_API BOOL WINAPI XC_IsSViewExtend(HELE hEle);  //判断元素是否从滚动视图元素扩展的新元素,包含滚动视图元素
 XC_API XC_OBJECT_TYPE WINAPI XC_GetObjectType(HXCGUI hXCGUI);
 XC_API HXCGUI WINAPI XC_GetObjectByID(int nID); //通过ID获取对象句柄
 XC_API int  WINAPI XC_GetResIDValue(const wchar_t *pName);  //获取资源ID值
+XC_API void WINAPI XC_SetPaintFrequency(int nMilliseconds); //设置UI绘制频率
 XC_API BOOL WINAPI XC_RectInRect(RECT *pRect1, RECT *pRect2);
 XC_API void WINAPI XC_CombineRect(RECT *pDest, RECT *pSrc1, RECT *pSrc2);
 XC_API void WINAPI XC_ShowLayoutFrame(BOOL bShow);
@@ -2241,6 +2302,8 @@ XC_API BOOL WINAPI XAdapterListView_Group_SetText(HXCGUI hAdapter,int iGroup,int
 XC_API BOOL WINAPI XAdapterListView_Group_SetTextEx(HXCGUI hAdapter,int iGroup,const wchar_t *pName,const wchar_t *pValue);
 XC_API BOOL WINAPI XAdapterListView_Group_SetImage(HXCGUI hAdapter,int iGroup,int iColumn,HIMAGE hImage);
 XC_API BOOL WINAPI XAdapterListView_Group_SetImageEx(HXCGUI hAdapter,int iGroup,const wchar_t *pName,HIMAGE hImage);
+XC_API int  WINAPI XAdapterListView_Group_GetCount(HXCGUI hAdapter);
+XC_API int  WINAPI XAdapterListView_Item_GetCount(HXCGUI hAdapter, int iGroup);
 XC_API int  WINAPI XAdapterListView_Item_AddColumn(HXCGUI hAdapter,const wchar_t *pName);  //增加列
 XC_API int  WINAPI XAdapterListView_Item_AddItemText(HXCGUI hAdapter,int iGroup,const wchar_t *pValue);
 XC_API int  WINAPI XAdapterListView_Item_AddItemTextEx(HXCGUI hAdapter,int iGroup,const wchar_t *pName,const wchar_t *pValue);
@@ -2414,6 +2477,8 @@ XC_API BOOL WINAPI XEle_AddEle(HELE hEle, HELE hChildEle);
 XC_API BOOL WINAPI XEle_InsertEle(HELE hEle, HELE hChildEle,HELE hDestEle);  //插入到指定元素前面
 XC_API void WINAPI XEle_RemoveEle(HELE hEle);
 XC_API BOOL WINAPI XEle_AddShape(HELE hEle,HXCGUI hShape);
+XC_API BOOL WINAPI XEle_SetZOrder(HELE hEle, int index); 
+XC_API BOOL WINAPI XEle_SetZOrderEx(HELE hEle, HELE hDestEle,zorder_ nType);
 XC_API void WINAPI XEle_ShowEle(HELE hEle, BOOL bShow);
 XC_API XC_OBJECT_TYPE WINAPI XEle_GetType(HELE hEle);
 XC_API HWND WINAPI XEle_GetHWND(HELE hEle);
@@ -2439,6 +2504,7 @@ XC_API HXCGUI WINAPI XEle_GetChildShapeByIndex(HELE hEle, int index);
 XC_API HELE WINAPI XEle_HitChildEle(HELE hEle,in_ POINT  *pPt);  //判断坐标点在哪个元素上
 XC_API void WINAPI XEle_BindLayoutObject(HELE hEle,HXCGUI hLayout);
 XC_API HXCGUI WINAPI XEle_GetLayoutObject(HELE hEle);
+XC_API HXCGUI WINAPI XEle_GetParentLayoutObject(HELE hEle);
 XC_API void WINAPI XEle_SetUserData(HELE hEle,int nData);
 XC_API int  WINAPI XEle_GetUserData(HELE hEle);
 XC_API void WINAPI XEle_GetContentSize(HELE hEle,out_ SIZE* pSize);
@@ -2447,8 +2513,8 @@ XC_API void WINAPI XEle_SetLayoutWidth(HELE hEle,layout_size_type_ nType,int nWi
 XC_API void WINAPI XEle_SetLayoutHeight(HELE hEle,layout_size_type_ nType,int nHeight);
 XC_API void WINAPI XEle_GetLayoutWidth(HELE hEle, out_ layout_size_type_ *pType,out_ int *pWidth);
 XC_API void WINAPI XEle_GetLayoutHeight(HELE hEle, out_ layout_size_type_ *pType,out_ int *pHeight);
-XC_API void WINAPI XEle_RedrawEle(HELE hEle);
-XC_API void WINAPI XEle_RedrawRect(HELE hEle,RECT *pRect);
+XC_API void WINAPI XEle_RedrawEle(HELE hEle,BOOL bImmediate=FALSE);
+XC_API void WINAPI XEle_RedrawRect(HELE hEle,RECT *pRect,BOOL bImmediate=FALSE);
 XC_API void WINAPI XEle_Destroy(HELE hEle);  //销毁
 XC_API void WINAPI XEle_AddBkBorder(HELE hEle,COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XEle_AddBkFill(HELE hEle,COLORREF color,BYTE alpha);
@@ -2582,9 +2648,11 @@ XC_API HELE WINAPI XList_Create(int x,int y,int cx,int cy,HXCGUI hParent=NULL);
 XC_API int WINAPI XList_AddColumn(HELE hEle,int width); //增加列
 XC_API int WINAPI XList_InsertColumn(HELE hEle,int width,int iItem);
 XC_API void WINAPI XList_EnableMultiSel(HELE hEle, BOOL bEnable);
+XC_API void WINAPI XList_EnableDragChangeColumnWidth(HELE hEle, BOOL bEnable);
 XC_API void WINAPI XList_SetDrawItemBkFlags(HELE hEle,int style);
 XC_API void WINAPI XList_SetColumnWidth(HELE hEle,int iItem,int width);
 XC_API void WINAPI XList_SetColumnMinWidth(HELE hEle,int iItem,int width);
+XC_API void WINAPI XList_SetColumnWidthFixed(HELE hEle, int iColumn, BOOL bFixed);
 XC_API BOOL WINAPI XList_DeleteColumn(HELE hEle,int iItem);
 XC_API void WINAPI XList_DeleteColumnAll(HELE hEle);
 XC_API BOOL WINAPI XList_SetItemData(HELE hEle,int iItem,int iSubItem,int data);
@@ -2602,6 +2670,8 @@ XC_API BOOL WINAPI XList_SetItemTemplateXML(HELE hEle, const wchar_t* pXmlFile);
 XC_API BOOL WINAPI XList_SetItemTemplateXMLFromString(HELE hEle, const char* pStringXML);
 XC_API HXCGUI WINAPI XList_GetTemplateObject(HELE hEle, int iItem,int nTempItemID); //通过模板项ID,获取实例化模板项ID对应的对象.
 XC_API int    WINAPI XList_GetItemIndexFromHXCGUI(HELE hEle, HXCGUI hXCGUI);
+XC_API HXCGUI WINAPI XList_GetHeaderTemplateObject(HELE hEle, int iItem,int nTempItemID);
+XC_API int    WINAPI XList_GetHeaderItemIndexFromHXCGUI(HELE hEle, HXCGUI hXCGUI);
 XC_API void WINAPI XList_SetHeaderHeight(HELE hEle, int height);
 XC_API int  WINAPI XList_GetHeaderHeight(HELE hEle);
 XC_API void WINAPI XList_AddItemBkBorder(HELE hEle, list_item_state_ nState, COLORREF color,BYTE alpha, int width);
@@ -2735,6 +2805,7 @@ XC_API void WINAPI XRichEdit_EnablePassword(HELE hEle, BOOL bEnable);
 XC_API void WINAPI XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XRichEdit_EnableAutoWrap(HELE hEle, BOOL bEnable);
 XC_API void WINAPI XRichEdit_EnableAutoCancelSel(HELE hEle, BOOL bEnable);
+XC_API void WINAPI XRichEdit_EnableAutoSelAll(HELE hEle, BOOL bEnable);
 XC_API void WINAPI XRichEdit_SetText(HELE hEle,const wchar_t* pString);
 XC_API void WINAPI XRichEdit_SetTextInt(HELE hEle,int nVaule);
 XC_API int  WINAPI XRichEdit_GetText(HELE hEle,out_ wchar_t* pOut,int len);
@@ -2971,8 +3042,8 @@ XC_API void WINAPI XWnd_EnableDragWindow(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableDrawBk(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableAutoFocus(HWINDOW hWindow, BOOL bEnable); //当鼠标左键按下是否获得焦点
 XC_API void WINAPI XWnd_EnableMaxWindow(HWINDOW hWindow, BOOL bEnable);
-XC_API void WINAPI XWnd_RedrawWnd(HWINDOW hWindow);
-XC_API void WINAPI XWnd_RedrawWndRect(HWINDOW hWindow, RECT *pRect, BOOL bImmediately = FALSE); //重绘窗口指定区域
+XC_API void WINAPI XWnd_RedrawWnd(HWINDOW hWindow,BOOL bImmediate=FALSE);
+XC_API void WINAPI XWnd_RedrawWndRect(HWINDOW hWindow, RECT *pRect, BOOL bImmediate = FALSE); //重绘窗口指定区域
 XC_API void WINAPI XWnd_SetFocusEle(HWINDOW hWindow, HELE hFocusEle);
 XC_API HELE WINAPI XWnd_GetFocusEle(HWINDOW hWindow);
 XC_API void WINAPI XWnd_SetCursor(HWINDOW hWindow,HCURSOR hCursor);
@@ -3002,6 +3073,7 @@ XC_API HXCGUI WINAPI XWnd_GetChildShapeByIndex(HWINDOW hWindow, int index);
 XC_API void WINAPI XWnd_GetDrawRect(HWINDOW hWindow,RECT *pRcPaint);
 XC_API BOOL WINAPI XWnd_ShowWindow(HWINDOW hWindow, int nCmdShow);
 XC_API void WINAPI XWnd_AdjustLayout(HWINDOW hWindow);
+XC_API void WINAPI XWnd_AdjustLayoutObject(HWINDOW hWindow);
 XC_API void WINAPI XWnd_CloseWindow(HWINDOW hWindow);
 XC_API void WINAPI XWnd_CreateCaret(HWINDOW hWindow, HELE hEle, int width, int height);//创建插入符
 XC_API void WINAPI XWnd_SetCaretSize(HWINDOW hWindow, int width, int height); //设置插入符大小
@@ -3020,5 +3092,3 @@ XC_API void WINAPI XWnd_SetTransparentType(HWINDOW hWindow,window_transparent_ n
 XC_API void WINAPI XWnd_SetTransparentAlpha(HWINDOW hWindow,BYTE alpha); //设置窗口透明度
 XC_API void WINAPI XWnd_SetTransparentColor(HWINDOW hWindow,COLORREF color); //设置窗口透明色
 XC_API BOOL WINAPI XWnd_RegEventTest(int nEvent,BYTE* pParamType);
-XC_API void WINAPI XWnd_AdjustLayoutObject(HWINDOW hWindow);
-XC_API HXCGUI WINAPI XEle_GetParentLayoutObject(HELE hEle);

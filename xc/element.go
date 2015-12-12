@@ -59,6 +59,9 @@ var (
 	xEle_GetParentEle               *syscall.Proc
 	xEle_GetParent                  *syscall.Proc
 	xEle_RemoveEle                  *syscall.Proc
+	xEle_AddShape                   *syscall.Proc
+	xEle_SetZOrder                  *syscall.Proc
+	xEle_SetZOrderEx                *syscall.Proc
 	xEle_RedrawEle                  *syscall.Proc
 	xEle_RedrawRect                 *syscall.Proc
 	xEle_GetChildCount              *syscall.Proc
@@ -154,6 +157,9 @@ func init() {
 	xEle_GetParentEle = xcDLL.MustFindProc("XEle_GetParentEle")
 	xEle_GetParent = xcDLL.MustFindProc("XEle_GetParent")
 	xEle_RemoveEle = xcDLL.MustFindProc("XEle_RemoveEle")
+	xEle_AddShape = xcDLL.MustFindProc("XEle_AddShape")
+	xEle_SetZOrder = xcDLL.MustFindProc("XEle_SetZOrder")
+	xEle_SetZOrderEx = xcDLL.MustFindProc("XEle_SetZOrderEx")
 	xEle_RedrawEle = xcDLL.MustFindProc("XEle_RedrawEle")
 	xEle_RedrawRect = xcDLL.MustFindProc("XEle_RedrawRect")
 	xEle_GetChildCount = xcDLL.MustFindProc("XEle_GetChildCount")
@@ -953,6 +959,59 @@ func XEleGetParent(hEle HELE) HXCGUI {
 */
 func XEleRemoveEle(hEle HELE) {
 	xEle_RemoveEle.Call(uintptr(hEle))
+}
+
+/*
+添加形状对象.
+
+参数:
+	hEle 元素句柄.
+	hShape 形状对象句柄.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
+func XEleAddShape(hEle HELE, hShape HXCGUI) bool {
+	ret, _, _ := xEle_AddShape.Call(
+		uintptr(hEle),
+		uintptr(hShape))
+
+	return ret == TRUE
+}
+
+/*
+设置元素Z序.
+
+参数:
+	hEle 元素句柄.
+	index 位置索引.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
+func XEleSetZOrder(hEle HELE, index int) bool {
+	ret, _, _ := xEle_SetZOrder.Call(
+		uintptr(hEle),
+		uintptr(index))
+
+	return ret == TRUE
+}
+
+/*
+设置元素Z序.
+
+参数:
+	hEle 元素句柄.
+	hDestEle 目标元素.
+	nType 类型.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
+func XEleSetZOrderEx(hEle, hDestEle HELE, nType int) bool {
+	ret, _, _ := xEle_SetZOrderEx.Call(
+		uintptr(hEle),
+		uintptr(hDestEle),
+		uintptr(nType))
+
+	return ret == TRUE
 }
 
 /*

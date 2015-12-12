@@ -6,8 +6,8 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
 
 # DOC
 帮助文档在doc目录下，或者访问：[godoc.org](https://godoc.org/github.com/CodyGuo/xcgui/xc "xcgui api")<br>
-友情提醒：64位编译环境下需要设置 set GOARCH=386 ，可写入bat编译。
-支持与walk混写，参考[托盘](https://github.com/CodyGuo/xcgui/tree/master/examples/notifyicon)例子。
+友情提醒：64位编译环境下需要设置 set GOARCH=386 ，可写入bat编译。<br>
+支持与walk混写，参考[托盘](https://github.com/CodyGuo/xcgui/tree/master/examples/notifyicon) [浏览图片](https://github.com/CodyGuo/xcgui/tree/master/examples/imageviewer)例子。
 
 # GOAL
 

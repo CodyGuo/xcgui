@@ -3,9 +3,11 @@ doc/*
 !doc/*.dll
 !doc/*.chm
 !doc/cToGo.go
+!doc/update/
 XCGUI.dll
 !examples/lib/XCGUI.dll
 *.exe
 *.txt
 !doc/*.txt
+!doc/update/*.txt
 *.chw

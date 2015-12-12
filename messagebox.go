@@ -38,7 +38,7 @@ func MsgBox(owner Window, title, message string, style MsgBoxStyle) int {
 
 	return int(xc.MessageBox(
 		ownerHWnd,
-		message,
 		title,
+		message,
 		uint32(style)))
 }

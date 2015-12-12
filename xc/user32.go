@@ -44,13 +44,14 @@ var (
 
 var (
 	// Functions
-	clientToScreen *syscall.Proc
-
-	messageBox       *syscall.Proc
-	sendMessage      *syscall.Proc
-	getMessage       *syscall.Proc
-	translateMessage *syscall.Proc
-	dispatchMessage  *syscall.Proc
+	clientToScreen      *syscall.Proc
+	messageBox          *syscall.Proc
+	sendMessage         *syscall.Proc
+	getMessage          *syscall.Proc
+	translateMessage    *syscall.Proc
+	dispatchMessage     *syscall.Proc
+	getCursorPos        *syscall.Proc
+	setForegroundWindow *syscall.Proc
 )
 
 func init() {
@@ -62,6 +63,8 @@ func init() {
 	getMessage = user32.MustFindProc("GetMessageW")
 	translateMessage = user32.MustFindProc("TranslateMessage")
 	dispatchMessage = user32.MustFindProc("DispatchMessageW")
+	getCursorPos = user32.MustFindProc("GetCursorPos")
+	setForegroundWindow = user32.MustFindProc("SetForegroundWindow")
 }
 
 func ClientToScreen(hwnd HWND, lpPoint *POINT) bool {
@@ -72,7 +75,7 @@ func ClientToScreen(hwnd HWND, lpPoint *POINT) bool {
 	return ret != 0
 }
 
-func MessageBox(hWnd HWND, lpText, lpCaption string, uType uint32) int32 {
+func MessageBox(hWnd HWND, lpCaption, lpText string, uType uint32) int32 {
 	ret, _, _ := messageBox.Call(
 		uintptr(hWnd),
 		StringToUintPtr(lpText),
@@ -114,4 +117,16 @@ func DispatchMessage(msg *MSG) uintptr {
 		uintptr(unsafe.Pointer(msg)))
 
 	return ret
+}
+
+func GetCursorPos(lpPoint *POINT) bool {
+	ret, _, _ := getCursorPos.Call(uintptr(unsafe.Pointer(lpPoint)))
+
+	return ret != 0
+}
+
+func SetForegroundWindow(hWnd HWND) bool {
+	ret, _, _ := setForegroundWindow.Call(uintptr(hWnd))
+
+	return ret != 0
 }

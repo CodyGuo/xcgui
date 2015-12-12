@@ -13,7 +13,7 @@ import (
 func main() {
 	mw := new(MyMainWindow)
 
-	mw.hWindow = xcgui.XWndCreate(0, 0, 800, 600, "pTitle", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	mw.hWindow = xcgui.XWndCreate(0, 0, 800, 600, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(mw.hWindow)
 
 	hButton := xcgui.XBtnCreate(50, 100, 100, 30, "浏览图片", xcgui.HXCGUI(mw.hWindow))
@@ -66,6 +66,7 @@ func (mw *MyMainWindow) aboutAction_Triggered() int {
 	return 0
 }
 
+// 重载，返回炫彩窗口句柄
 func (mw *MyMainWindow) Handle() win.HWND {
 	return win.HWND(xcgui.XWndGetHWND(mw.hWindow))
 }

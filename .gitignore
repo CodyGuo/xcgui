@@ -7,4 +7,5 @@ XCGUI.dll
 !examples/lib/XCGUI.dll
 *.exe
 *.txt
+!doc/*.txt
 *.chw

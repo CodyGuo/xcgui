@@ -1,0 +1,31 @@
+
+v1.8.9.6
+*************升级前必读内容***************************
+升级前必读内容,避免带来不必须的麻烦.
+
+升级前做好文件备份,避免遇到错误时不可恢复.
+
+********************************************************
+重绘函数增加参数,支持立即重绘
+设置UI绘制频率
+设置元素Z序
+添加列表头项模板事件 
+添加列表头事件XE_LIST_HEADER_CLICK,XE_LIST_HEADER_WIDTH_CHANGE
+XTree  支持键盘操作选择项
+XList 设置某一列宽度固定
+XList 启用或禁用拖动改变列宽
+XRichEdit 启用或禁用当获得焦点时自动全选内容
+
+*****************增加函数************************************
+XC_API void WINAPI XC_SetPaintFrequency(int nMilliseconds); //设置UI绘制频率
+XC_API void WINAPI XRichEdit_EnableAutoSelAll(HELE hEle, BOOL bEnable)
+XC_API BOOL WINAPI XEle_SetZOrder(HELE hEle, int index); 
+XC_API BOOL WINAPI XEle_SetZOrderEx(HELE hEle, HELE hDestEle,zorder_ nType);
+XC_API int  WINAPI XAdapterListView_Group_GetCount(HXCGUI hAdapter);
+XC_API int  WINAPI XAdapterListView_Item_GetCount(HXCGUI hAdapter, int iGroup);
+XC_API HXCGUI WINAPI XList_GetHeaderTemplateObject(HELE hEle, int iItem,int nTempItemID);
+XC_API int    WINAPI XList_GetHeaderItemIndexFromHXCGUI(HELE hEle, HXCGUI hXCGUI);
+XC_API void WINAPI XList_EnableDragChangeColumnWidth(HELE hEle, BOOL bEnable);
+XC_API void WINAPI XList_SetColumnWidthFixed(HELE hEle, int iColumn, BOOL bFixed);
+
+*******************************************************

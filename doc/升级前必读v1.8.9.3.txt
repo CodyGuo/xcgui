@@ -1,0 +1,35 @@
+
+
+*************升级前必读内容***************************
+升级前必读内容,避免带来不必须的麻烦.
+
+升级前做好文件备份,避免遇到错误时不可恢复.
+
+v1.8.9.3 图片资源支持分类,所以旧版资源文件要通过UI设计器转换为新版(resource.xml)
+转换方式:用UI设计器打开resource.xml文件.返回保存即可.
+ 
+
+
+ *****************************************************
+XC_TemplateLoad() 改名 XC_LoadTemplate()
+
+*******************************************************
+
+
+
+增加事件:WM_DROPFILES,XE_DROPFILES
+XC_API void WINAPI XWnd_EnableMaxWindow(HWINDOW hWindow, BOOL bEnable);
+XC_API int  WINAPI XWnd_GetChildShapeCount(HWINDOW hWindow);
+XC_API HXCGUI WINAPI XWnd_GetChildShapeByIndex(HWINDOW hWindow, int index);
+XC_API int  WINAPI XEle_GetChildShapeCount(HELE hEle);
+XC_API HXCGUI WINAPI XEle_GetChildShapeByIndex(HELE hEle, int index);
+XEle_AdjustLayout();
+XC_TemplateLoad() 改名 XC_LoadTemplate()
+XC_API template_info_i* WINAPI XC_LoadTemplateFromString(XC_OBJECT_TYPE nType,const char* pStringXML);  //加载模板,从内存, 返回模板对象
+
+XC_API BOOL WINAPI XTree_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
+XC_API BOOL WINAPI XTree_SetItemTemplateXMLSelFromString(HELE hEle,const char* pStringXML);
+XC_API BOOL WINAPI XList_SetItemTemplateXMLFromString(HELE hEle, const char* pStringXML);
+XC_API BOOL WINAPI XListBox_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
+XC_API BOOL WINAPI XListView_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
+XC_API void WINAPI XComboBox_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);

@@ -1,0 +1,37 @@
+
+v1.8.9.4
+*************升级前必读内容***************************
+升级前必读内容,避免带来不必须的麻烦.
+
+升级前做好文件备份,避免遇到错误时不可恢复.
+
+
+*****************增加函数************************************
+int  SetColumn(const wchar_t*  pString); //设置列
+XC_API void WINAPI XAdapterTable_DeleteColumnAll(HXCGUI hAdapter);
+XC_API int WINAPI XAdapterTable_SetColumn(HXCGUI hAdapter, const wchar_t*  pString);
+XC_API void WINAPI XAdapterTree_DeleteColumnAll(HXCGUI hAdapter);
+XC_API int WINAPI XAdapterTree_SetColumn(HXCGUI hAdapter,const wchar_t* pColName);
+XC_API void WINAPI XListView_EnableMultiSel(HELE hEle,BOOL bEnable);
+XC_API int  WINAPI XListView_GetSelectItemCount(HELE hEle);
+XC_API int  WINAPI XListView_GetSelectItemAll(HELE hEle,listView_item_id_i *pArray,int nArraySize);
+XC_API void WINAPI XListView_SetSelectItemAll(HELE hEle);
+XC_API void WINAPI XListView_CancelSelectItemAll(HELE hEle);
+XC_API int  WINAPI XList_GetSelectItemCount(HELE hEle);
+XC_API button_state_   WINAPI XBtn_GetStateEx(HELE hEle);
+
+XC_API HXCGUI WINAPI XC_LoadLayout(const wchar_t *pFileName, HXCGUI hParent=NULL); //增加参数
+XC_API HXCGUI WINAPI XC_LoadLayoutFromString(const char *pStringXML, HXCGUI hParent=NULL); //增加参数
+*******************************************************
+背景内容编辑器-生成字符串
+图形操作, 支持设置线宽
+默认模板保存在内存中,当没有模板时使用默认模板
+layout_info_i  优化,结构体增加属性变量
+ListView  多选支持
+ListView  键盘操作选择
+ListView  开启多选 ,获取选择项数量,获取选择项列表
+ListView  组支持鼠标停留状态高亮
+ListView  双击组展开收缩
+加载布局文件接口 -> 增加参数 父,支持指定父.父可能是窗口或UI元素
+
+

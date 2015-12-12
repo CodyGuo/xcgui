@@ -1,0 +1,33 @@
+
+
+*************升级前必读内容***************************
+升级前必读内容,避免带来不必须的麻烦.
+
+升级前做好文件备份,避免遇到错误时不可恢复.
+
+1.8.9.2 修改了贴图接口, 用UI设计器打开布局文件,会自动将旧版的布局文件转换为新版格式,记得保存文件哦.
+1.8.9.2 移除背景颜色接口, 由背景内容接口替代.这部分升级需要手动修改.
+ 
+部分事件与用户操作有关,这类事件只有用户操作才能触发,
+例如:
+XE_RICHEDIT_CHANGE 用户操作触发  XRichEdit_SetText() 不会触发事件
+XE_LISTBOX_SELECT  用户操作触发
+
+
+ *****************************************************
+XEle_GetTemplateListItemID();      移除
+XEle_GetTemplateListItemGroupID(); 移除
+由以下接口替代:
+XList_GetItemIndexFromHXCGUI();    替代
+XListBox_GetItemIndexFromHXCGUI(); 替代
+XTree_GetItemIDFromHXCGUI();       替代
+XListView_GetItemIDFromHXCGUI();   替代
+XRichEdit_EnableAutoCancelSel();   替代
+
+
+X*_AddInfo() 移除
+由以下接口替代:
+XBkInfoM_SetBkInfo() 替代
+
+*******************************************************
+

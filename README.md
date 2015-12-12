@@ -90,9 +90,9 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
         - list_drawItemBk_flags_        :  100% (  4/  4) -List,ListBox,Tree,项背景绘制标志位
         - messageBox_flags_             :  100% (  3/  3) -弹出消息框
 
-    + API                               :  100% ( 20/ 20) -全局API
+    + API                               :  100% ( 21/ 21) -全局API
     + UI                                :  100% ( 11/ 11) -UI设计器支持
     + RegEventC                         :  100% (  7/  7) -注册事件C - 在window和Element中已定义
     -----------------------------------------------------------------------------------------
 
-    Total progress                      :  100% (1313/1313)
+    Total progress                      :  100% (1314/1314)

@@ -37,6 +37,7 @@ var (
 	xC_GetObjectType         *syscall.Proc
 	xC_GetObjectByID         *syscall.Proc
 	xC_GetResIDValue         *syscall.Proc
+	xC_SetPaintFrequency     *syscall.Proc
 	xC_RectInRect            *syscall.Proc
 	xC_CombineRect           *syscall.Proc
 	xC_ShowLayoutFrame       *syscall.Proc
@@ -103,6 +104,7 @@ func init() {
 	xC_GetObjectType = xcDLL.MustFindProc("XC_GetObjectType")
 	xC_GetObjectByID = xcDLL.MustFindProc("XC_GetObjectByID")
 	xC_GetResIDValue = xcDLL.MustFindProc("XC_GetResIDValue")
+	xC_SetPaintFrequency = xcDLL.MustFindProc("XC_SetPaintFrequency")
 	xC_RectInRect = xcDLL.MustFindProc("XC_RectInRect")
 	xC_CombineRect = xcDLL.MustFindProc("XC_CombineRect")
 	xC_ShowLayoutFrame = xcDLL.MustFindProc("XC_ShowLayoutFrame")
@@ -329,6 +331,16 @@ func XCGetResIDValue(pName *uint16) int {
 	ret, _, _ := xC_GetResIDValue.Call(uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
+}
+
+/*
+设置UI的最小重绘频率.
+
+参数:
+	nMilliseconds 重绘最小时间间隔,单位毫秒.
+*/
+func XCSetPaintFrequency(nMilliseconds int) {
+	xC_SetPaintFrequency.Call(uintptr(nMilliseconds))
 }
 
 /*

@@ -3,6 +3,8 @@ doc/*
 !doc/*.dll
 !doc/*.chm
 !doc/cToGo.go
+XCGUI.dll
+!examples/lib/XCGUI.dll
 *.exe
 *.txt
 *.chw

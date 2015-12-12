@@ -79,7 +79,15 @@ func init() {
 	} else if FileExist("../lib/" + xcDll) {
 		xcDLL = syscall.MustLoadDLL("../lib/" + xcDll)
 	} else {
-		panic("xcgui library not found,XCGUI.dll or ./lib/XCGUI.dll or ../lib/XCGUI.dll.")
+		// 下载XCGUI.dll
+		downLoadXCGUIDll()
+
+		if FileExist(xcDll) {
+			xcDLL = syscall.MustLoadDLL(xcDll)
+		} else {
+			panic("xcgui library not found,XCGUI.dll or ./lib/XCGUI.dll or ../lib/XCGUI.dll.")
+		}
+
 	}
 
 	// Functions

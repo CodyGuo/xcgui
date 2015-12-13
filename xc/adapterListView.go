@@ -18,6 +18,8 @@ var (
 	xAdapterListView_Group_SetImage       *syscall.Proc
 	xAdapterListView_Group_SetImageEx     *syscall.Proc
 	xAdapterListView_Item_AddColumn       *syscall.Proc
+	xAdapterListView_Group_GetCount       *syscall.Proc
+	xAdapterListView_Item_GetCount        *syscall.Proc
 	xAdapterListView_Item_AddItemText     *syscall.Proc
 	xAdapterListView_Item_AddItemTextEx   *syscall.Proc
 	xAdapterListView_Item_AddItemImage    *syscall.Proc
@@ -46,6 +48,8 @@ func init() {
 	xAdapterListView_Group_SetImage = xcDLL.MustFindProc("XAdapterListView_Group_SetImage")
 	xAdapterListView_Group_SetImageEx = xcDLL.MustFindProc("XAdapterListView_Group_SetImageEx")
 	xAdapterListView_Item_AddColumn = xcDLL.MustFindProc("XAdapterListView_Item_AddColumn")
+	xAdapterListView_Group_GetCount = xcDLL.MustFindProc("XAdapterListView_Group_GetCount")
+	xAdapterListView_Item_GetCount = xcDLL.MustFindProc("XAdapterListView_Item_GetCount")
 	xAdapterListView_Item_AddItemText = xcDLL.MustFindProc("XAdapterListView_Item_AddItemText")
 	xAdapterListView_Item_AddItemTextEx = xcDLL.MustFindProc("XAdapterListView_Item_AddItemTextEx")
 	xAdapterListView_Item_AddItemImage = xcDLL.MustFindProc("XAdapterListView_Item_AddItemImage")
@@ -269,6 +273,37 @@ func XAdapterListViewItemAddColumn(hAdapter HXCGUI, pName string) int {
 		uintptr(hAdapter),
 		StringToUintPtr(pName))
 	// uintptr(unsafe.Pointer(pName)))
+
+	return int(ret)
+}
+
+/*
+组操作,获取组数量.
+
+参数:
+	hAdapter 数据适配器句柄.
+返回:
+	返回组数量.
+*/
+func XAdapterListViewGroupGetCount(hAdapter HXCGUI) int {
+	ret, _, _ := xAdapterListView_Group_GetCount.Call(uintptr(hAdapter))
+
+	return int(ret)
+}
+
+/*
+项操作,获取指定组中项数量.
+
+参数:
+	hAdapter 数据适配器句柄.
+	iGroup 组索引.
+返回:
+	成功返回项数量,否则返回 XC_ID_ERROR.
+*/
+func XAdapterListViewItemGetCount(hAdapter HXCGUI, iGroup int) int {
+	ret, _, _ := xAdapterListView_Item_GetCount.Call(
+		uintptr(hAdapter),
+		uintptr(iGroup))
 
 	return int(ret)
 }

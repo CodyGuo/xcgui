@@ -11,9 +11,11 @@ var (
 	xList_AddColumn                    *syscall.Proc
 	xList_InsertColumn                 *syscall.Proc
 	xList_EnableMultiSel               *syscall.Proc
+	xList_EnableDragChangeColumnWidth  *syscall.Proc
 	xList_SetDrawItemBkFlags           *syscall.Proc
 	xList_SetColumnWidth               *syscall.Proc
 	xList_SetColumnMinWidth            *syscall.Proc
+	xList_SetColumnWidthFixed          *syscall.Proc
 	xList_SetItemData                  *syscall.Proc
 	xList_GetItemData                  *syscall.Proc
 	xList_SetSelectItem                *syscall.Proc
@@ -30,6 +32,8 @@ var (
 	xList_SetItemTemplateXMLFromString *syscall.Proc
 	xList_GetTemplateObject            *syscall.Proc
 	xList_GetItemIndexFromHXCGUI       *syscall.Proc
+	xList_GetHeaderTemplateObject      *syscall.Proc
+	xList_GetHeaderItemIndexFromHXCGUI *syscall.Proc
 	xList_SetHeaderHeight              *syscall.Proc
 	xList_GetHeaderHeight              *syscall.Proc
 	xList_AddItemBkBorder              *syscall.Proc
@@ -51,9 +55,11 @@ func init() {
 	xList_AddColumn = xcDLL.MustFindProc("XList_AddColumn")
 	xList_InsertColumn = xcDLL.MustFindProc("XList_InsertColumn")
 	xList_EnableMultiSel = xcDLL.MustFindProc("XList_EnableMultiSel")
+	xList_EnableDragChangeColumnWidth = xcDLL.MustFindProc("XList_EnableDragChangeColumnWidth")
 	xList_SetDrawItemBkFlags = xcDLL.MustFindProc("XList_SetDrawItemBkFlags")
 	xList_SetColumnWidth = xcDLL.MustFindProc("XList_SetColumnWidth")
 	xList_SetColumnMinWidth = xcDLL.MustFindProc("XList_SetColumnMinWidth")
+	xList_SetColumnWidthFixed = xcDLL.MustFindProc("XList_SetColumnWidthFixed")
 	xList_SetItemData = xcDLL.MustFindProc("XList_SetItemData")
 	xList_GetItemData = xcDLL.MustFindProc("XList_GetItemData")
 	xList_SetSelectItem = xcDLL.MustFindProc("XList_SetSelectItem")
@@ -70,6 +76,8 @@ func init() {
 	xList_SetItemTemplateXMLFromString = xcDLL.MustFindProc("XList_SetItemTemplateXMLFromString")
 	xList_GetTemplateObject = xcDLL.MustFindProc("XList_GetTemplateObject")
 	xList_GetItemIndexFromHXCGUI = xcDLL.MustFindProc("XList_GetItemIndexFromHXCGUI")
+	xList_GetHeaderTemplateObject = xcDLL.MustFindProc("XList_GetHeaderTemplateObject")
+	xList_GetHeaderItemIndexFromHXCGUI = xcDLL.MustFindProc("XList_GetHeaderItemIndexFromHXCGUI")
 	xList_SetHeaderHeight = xcDLL.MustFindProc("XList_SetHeaderHeight")
 	xList_GetHeaderHeight = xcDLL.MustFindProc("XList_GetHeaderHeight")
 	xList_AddItemBkBorder = xcDLL.MustFindProc("XList_AddItemBkBorder")
@@ -158,6 +166,19 @@ func XListEnableMultiSel(hEle HELE, bEnable bool) {
 }
 
 /*
+启用拖动改变列宽度.
+
+参数:
+	hEle 元素句柄.
+	bEnable 是否启用.
+*/
+func XListEnableDragChangeColumnWidth(hEle HELE, bEnable bool) {
+	xList_EnableDragChangeColumnWidth.Call(
+		uintptr(hEle),
+		uintptr(BoolToBOOL(bEnable)))
+}
+
+/*
 设置是否绘制指定状态下项的背景.
 
 参数:
@@ -198,6 +219,21 @@ func XListSetColumnMinWidth(hEle HELE, iItem, width int) {
 		uintptr(hEle),
 		uintptr(iItem),
 		uintptr(width))
+}
+
+/*
+设置指定列宽度固定.
+
+参数:
+	hEle 元素句柄.
+	iColumn 列索引.
+	bFixed 是否固定宽度.
+*/
+func XListSetColumnWidthFixed(hEle HELE, iColumn int, bFixed bool) {
+	xList_SetColumnWidthFixed.Call(
+		uintptr(hEle),
+		uintptr(iColumn),
+		uintptr(BoolToBOOL(bFixed)))
 }
 
 /*
@@ -442,6 +478,42 @@ func XListGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 */
 func XListGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xList_GetItemIndexFromHXCGUI.Call(
+		uintptr(hEle),
+		uintptr(hXCGUI))
+
+	return int(ret)
+}
+
+/*
+列表头,通过模板项ID,获取实例化模板项ID对应的对象句柄.
+
+参数:
+	hEle 元素句柄.
+	iItem 列表头项ID.
+	nTempItemID 模板项ID.
+返回:
+	成功返回对象句柄,否则返回NULL.
+*/
+func XListGetHeaderTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
+	ret, _, _ := xList_GetHeaderTemplateObject.Call(
+		uintptr(hEle),
+		uintptr(iItem),
+		uintptr(nTempItemID))
+
+	return HXCGUI(ret)
+}
+
+/*
+列表头,获取当前对象所在模板实例,属于列表头中哪一个项.
+
+参数:
+	hEle 元素句柄.
+	hXCGUI 对象句柄.
+返回:
+	成功返回项索引, 否则返回XC_ID_ERROR.
+*/
+func XListGetHeaderItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
+	ret, _, _ := xList_GetHeaderItemIndexFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI))
 

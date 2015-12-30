@@ -36,9 +36,9 @@ var (
 	xTree_AddItemBkImage                  *syscall.Proc
 	xTree_GetItemBkInfoCount              *syscall.Proc
 	xTree_ClearItemBkInfo                 *syscall.Proc
-	xTree_GetItemBkInfoManager            *syscall.Proc
-	xTree_GetTemplateObject               *syscall.Proc
-	xTree_GetItemIDFromHXCGUI             *syscall.Proc
+	// xTree_GetItemBkInfoManager            *syscall.Proc
+	xTree_GetTemplateObject   *syscall.Proc
+	xTree_GetItemIDFromHXCGUI *syscall.Proc
 )
 
 func init() {
@@ -72,7 +72,7 @@ func init() {
 	xTree_AddItemBkImage = xcDLL.MustFindProc("XTree_AddItemBkImage")
 	xTree_GetItemBkInfoCount = xcDLL.MustFindProc("XTree_GetItemBkInfoCount")
 	xTree_ClearItemBkInfo = xcDLL.MustFindProc("XTree_ClearItemBkInfo")
-	xTree_GetItemBkInfoManager = xcDLL.MustFindProc("XTree_GetItemBkInfoManager")
+	// xTree_GetItemBkInfoManager = xcDLL.MustFindProc("XTree_GetItemBkInfoManager")
 	xTree_GetTemplateObject = xcDLL.MustFindProc("XTree_GetTemplateObject")
 	xTree_GetItemIDFromHXCGUI = xcDLL.MustFindProc("XTree_GetItemIDFromHXCGUI")
 
@@ -576,7 +576,7 @@ func XTreeClearItemBkInfo(hEle HELE, nState Tree_item_state_) {
 }
 
 /*
-获取项背景内容管理器.
+获取项背景内容管理器. 1.8.9.6
 
 参数:
 	hEle 元素句柄.
@@ -584,13 +584,13 @@ func XTreeClearItemBkInfo(hEle HELE, nState Tree_item_state_) {
 返回:
 	项背景内容管理器.
 */
-func XTreeGetItemBkInfoManager(hEle HELE, nState Tree_item_state_) HBKINFOM {
-	ret, _, _ := xTree_GetItemBkInfoManager.Call(
-		uintptr(hEle),
-		uintptr(nState))
+// func XTreeGetItemBkInfoManager(hEle HELE, nState Tree_item_state_) HBKINFOM {
+// 	ret, _, _ := xTree_GetItemBkInfoManager.Call(
+// 		uintptr(hEle),
+// 		uintptr(nState))
 
-	return HBKINFOM(ret)
-}
+// 	return HBKINFOM(ret)
+// }
 
 /*
 通过模板项ID,获取实例化模板项ID对应的对象句柄.

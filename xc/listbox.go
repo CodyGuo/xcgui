@@ -7,16 +7,16 @@ import (
 
 var (
 	// Functions
-	xListBox_Create                       *syscall.Proc
-	xListBox_SetDrawItemBkFlags           *syscall.Proc
-	xListBox_SetItemData                  *syscall.Proc
-	xListBox_GetItemData                  *syscall.Proc
-	xListBox_AddItemBkBorder              *syscall.Proc
-	xListBox_AddItemBkFill                *syscall.Proc
-	xListBox_AddItemBkImage               *syscall.Proc
-	xListBox_GetItemBkInfoCount           *syscall.Proc
-	xListBox_ClearItemBkInfo              *syscall.Proc
-	xListBox_GetItemBkInfoManager         *syscall.Proc
+	xListBox_Create             *syscall.Proc
+	xListBox_SetDrawItemBkFlags *syscall.Proc
+	xListBox_SetItemData        *syscall.Proc
+	xListBox_GetItemData        *syscall.Proc
+	xListBox_AddItemBkBorder    *syscall.Proc
+	xListBox_AddItemBkFill      *syscall.Proc
+	xListBox_AddItemBkImage     *syscall.Proc
+	xListBox_GetItemBkInfoCount *syscall.Proc
+	xListBox_ClearItemBkInfo    *syscall.Proc
+	// xListBox_GetItemBkInfoManager         *syscall.Proc
 	xListBox_SetItemInfo                  *syscall.Proc
 	xListBox_GetItemInfo                  *syscall.Proc
 	xListBox_SetSelectItem                *syscall.Proc
@@ -51,7 +51,7 @@ func init() {
 	xListBox_AddItemBkImage = xcDLL.MustFindProc("XListBox_AddItemBkImage")
 	xListBox_GetItemBkInfoCount = xcDLL.MustFindProc("XListBox_GetItemBkInfoCount")
 	xListBox_ClearItemBkInfo = xcDLL.MustFindProc("XListBox_ClearItemBkInfo")
-	xListBox_GetItemBkInfoManager = xcDLL.MustFindProc("XListBox_GetItemBkInfoManager")
+	// xListBox_GetItemBkInfoManager = xcDLL.MustFindProc("XListBox_GetItemBkInfoManager")
 	xListBox_SetItemInfo = xcDLL.MustFindProc("XListBox_SetItemInfo")
 	xListBox_GetItemInfo = xcDLL.MustFindProc("XListBox_GetItemInfo")
 	xListBox_SetSelectItem = xcDLL.MustFindProc("XListBox_SetSelectItem")
@@ -229,7 +229,7 @@ func XListBoxClearItemBkInfo(hEle HELE, nState List_item_state_) {
 }
 
 /*
-获取项背景内容管理器.
+获取项背景内容管理器. 1.8.9.6
 
 参数:
 	hEle 元素句柄.
@@ -237,13 +237,13 @@ func XListBoxClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	项背景内容管理器.
 */
-func XListBoxGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
-	ret, _, _ := xListBox_GetItemBkInfoManager.Call(
-		uintptr(hEle),
-		uintptr(nState))
+// func XListBoxGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
+// 	ret, _, _ := xListBox_GetItemBkInfoManager.Call(
+// 		uintptr(hEle),
+// 		uintptr(nState))
 
-	return HBKINFOM(ret)
-}
+// 	return HBKINFOM(ret)
+// }
 
 /*
 设置项信息.

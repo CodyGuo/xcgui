@@ -25,6 +25,7 @@ var (
 	xWnd_GetHWND              *syscall.Proc
 	xWnd_EnableDragBorder     *syscall.Proc
 	xWnd_EnableDragWindow     *syscall.Proc
+	xWnd_EnableDragCaption    *syscall.Proc
 	xWnd_EnableDrawBk         *syscall.Proc
 	xWnd_EnableAutoFocus      *syscall.Proc
 	xWnd_EnableMaxWindow      *syscall.Proc
@@ -92,6 +93,7 @@ func init() {
 	xWnd_GetHWND = xcDLL.MustFindProc("XWnd_GetHWND")
 	xWnd_EnableDragBorder = xcDLL.MustFindProc("XWnd_EnableDragBorder")
 	xWnd_EnableDragWindow = xcDLL.MustFindProc("XWnd_EnableDragWindow")
+	xWnd_EnableDragCaption = xcDLL.MustFindProc("XWnd_EnableDragCaption")
 	xWnd_EnableDrawBk = xcDLL.MustFindProc("XWnd_EnableDrawBk")
 	xWnd_EnableAutoFocus = xcDLL.MustFindProc("XWnd_EnableAutoFocus")
 	xWnd_EnableMaxWindow = xcDLL.MustFindProc("XWnd_EnableMaxWindow")
@@ -154,7 +156,7 @@ func init() {
 返回:
 	GUI库窗口资源句柄.
 */
-func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
+func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle Xc_window_style_) HWINDOW {
 	ret, _, _ := xWnd_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -420,6 +422,19 @@ func XWndEnableDragBorder(hWindow HWINDOW, bEnable bool) {
 */
 func XWndEnableDragWindow(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableDragWindow.Call(
+		uintptr(hWindow),
+		uintptr(BoolToBOOL(bEnable)))
+}
+
+/*
+启用拖动窗口标题栏.
+
+参数:
+	hWindow 窗口句柄.
+	bEnable 是否启用.
+*/
+func XWndEnableDragCaption(hWindow HWINDOW, bEnable bool) {
+	xWnd_EnableDragCaption.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
 }

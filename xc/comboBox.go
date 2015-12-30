@@ -22,9 +22,9 @@ var (
 	xComboBox_AddBkImage                   *syscall.Proc
 	xCombobox_GetBkInfoCount               *syscall.Proc
 	xComboBox_ClearBkInfo                  *syscall.Proc
-	xComboBox_GetBkInfoManager             *syscall.Proc
-	xComboBox_GetSelItem                   *syscall.Proc
-	xComboBox_GetState                     *syscall.Proc
+	// xComboBox_GetBkInfoManager             *syscall.Proc
+	xComboBox_GetSelItem *syscall.Proc
+	xComboBox_GetState   *syscall.Proc
 )
 
 func init() {
@@ -42,7 +42,7 @@ func init() {
 	xComboBox_AddBkBorder = xcDLL.MustFindProc("XComboBox_AddBkBorder")
 	xComboBox_AddBkFill = xcDLL.MustFindProc("XComboBox_AddBkFill")
 	xComboBox_AddBkImage = xcDLL.MustFindProc("XComboBox_AddBkImage")
-	xComboBox_GetBkInfoManager = xcDLL.MustFindProc("XComboBox_GetBkInfoManager")
+	// xComboBox_GetBkInfoManager = xcDLL.MustFindProc("XComboBox_GetBkInfoManager")
 	xCombobox_GetBkInfoCount = xcDLL.MustFindProc("XComboboX_GetBkInfoCount")
 	xComboBox_Create = xcDLL.MustFindProc("XComboBox_Create")
 	xComboBox_GetSelItem = xcDLL.MustFindProc("XComboBox_GetSelItem")
@@ -291,7 +291,7 @@ func XComboBoxClearBkInfo(hEle HELE, nState ComboBox_state_) {
 }
 
 /*
-获取背景内容管理器.
+获取背景内容管理器. 1.8.9.6
 
 参数:
 	hEle 元素句柄.
@@ -299,13 +299,13 @@ func XComboBoxClearBkInfo(hEle HELE, nState ComboBox_state_) {
 返回:
 	背景内容管理器.
 */
-func XComboBoxGetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
-	ret, _, _ := xComboBox_GetBkInfoManager.Call(
-		uintptr(hEle),
-		uintptr(nState))
+// func XComboBoxGetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
+// 	ret, _, _ := xComboBox_GetBkInfoManager.Call(
+// 		uintptr(hEle),
+// 		uintptr(nState))
 
-	return HBKINFOM(ret)
-}
+// 	return HBKINFOM(ret)
+// }
 
 /*
 获取组合框下拉列表中选择项索引.

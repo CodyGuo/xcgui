@@ -41,12 +41,12 @@ var (
 	xList_AddItemBkImage               *syscall.Proc
 	xList_GetItemBkInfoCount           *syscall.Proc
 	xList_ClearItemBkInfo              *syscall.Proc
-	xList_GetItemBkInfoManager         *syscall.Proc
-	xList_SetItemHeightDefault         *syscall.Proc
-	xList_GetItemHeightDefault         *syscall.Proc
-	xList_HitTest                      *syscall.Proc
-	xList_HitTestOffset                *syscall.Proc
-	xList_RefreshData                  *syscall.Proc
+	// xList_GetItemBkInfoManager         *syscall.Proc
+	xList_SetItemHeightDefault *syscall.Proc
+	xList_GetItemHeightDefault *syscall.Proc
+	xList_HitTest              *syscall.Proc
+	xList_HitTestOffset        *syscall.Proc
+	xList_RefreshData          *syscall.Proc
 )
 
 func init() {
@@ -85,7 +85,7 @@ func init() {
 	xList_AddItemBkImage = xcDLL.MustFindProc("XList_AddItemBkImage")
 	xList_GetItemBkInfoCount = xcDLL.MustFindProc("XList_GetItemBkInfoCount")
 	xList_ClearItemBkInfo = xcDLL.MustFindProc("XList_ClearItemBkInfo")
-	xList_GetItemBkInfoManager = xcDLL.MustFindProc("XList_GetItemBkInfoManager")
+	// xList_GetItemBkInfoManager = xcDLL.MustFindProc("XList_GetItemBkInfoManager")
 	xList_SetItemHeightDefault = xcDLL.MustFindProc("XList_SetItemHeightDefault")
 	xList_GetItemHeightDefault = xcDLL.MustFindProc("XList_GetItemHeightDefault")
 	xList_HitTest = xcDLL.MustFindProc("XList_HitTest")
@@ -631,7 +631,7 @@ func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 }
 
 /*
-获取项背景内容管理器.
+获取项背景内容管理器. 1.8.9.6
 
 参数:
 	hEle 元素句柄.
@@ -639,13 +639,13 @@ func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	项背景内容管理器.
 */
-func XListGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
-	ret, _, _ := xList_GetItemBkInfoManager.Call(
-		uintptr(hEle),
-		uintptr(nState))
+// func XListGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
+// 	ret, _, _ := xList_GetItemBkInfoManager.Call(
+// 		uintptr(hEle),
+// 		uintptr(nState))
 
-	return HBKINFOM(ret)
-}
+// 	return HBKINFOM(ret)
+// }
 
 /*
 设置项默认高度.

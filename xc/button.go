@@ -38,7 +38,7 @@ var (
 	xBtn_AddBkImage        *syscall.Proc
 	xBtn_GetBkInfoCount    *syscall.Proc
 	xBtn_ClearBkInfo       *syscall.Proc
-	xBtn_GetBkInfoManager  *syscall.Proc
+	// xBtn_GetBkInfoManager  *syscall.Proc
 )
 
 func init() {
@@ -73,7 +73,7 @@ func init() {
 	xBtn_AddBkImage = xcDLL.MustFindProc("XBtn_AddBkImage")
 	xBtn_GetBkInfoCount = xcDLL.MustFindProc("XBtn_GetBkInfoCount")
 	xBtn_ClearBkInfo = xcDLL.MustFindProc("XBtn_ClearBkInfo")
-	xBtn_GetBkInfoManager = xcDLL.MustFindProc("XBtn_GetBkInfoManager")
+	// xBtn_GetBkInfoManager = xcDLL.MustFindProc("XBtn_GetBkInfoManager")
 
 }
 
@@ -544,7 +544,7 @@ func XBtnClearBkInfo(hEle HELE, nState Button_state_) {
 }
 
 /*
-获取背景内容管理器.
+获取背景内容管理器. 1.8.9.6
 
 参数:
 	hEle 元素句柄.
@@ -552,10 +552,10 @@ func XBtnClearBkInfo(hEle HELE, nState Button_state_) {
 返回:
 	背景内容管理器.
 */
-func XBtnGetBkInfoManager(hEle HELE, nState Button_state_) HBKINFOM {
-	ret, _, _ := xBtn_GetBkInfoManager.Call(
-		uintptr(hEle),
-		uintptr(nState))
+// func XBtnGetBkInfoManager(hEle HELE, nState Button_state_) HBKINFOM {
+// 	ret, _, _ := xBtn_GetBkInfoManager.Call(
+// 		uintptr(hEle),
+// 		uintptr(nState))
 
-	return HBKINFOM(ret)
-}
+// 	return HBKINFOM(ret)
+// }

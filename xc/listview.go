@@ -38,8 +38,8 @@ var (
 	xListView_AddItemBkImage               *syscall.Proc
 	xListView_GetItemBkInfoCount           *syscall.Proc
 	xListView_ClearItemBkInfo              *syscall.Proc
-	xListView_GetItemBkInfoManager         *syscall.Proc
-	xListView_ExpandGroup                  *syscall.Proc
+	// xListView_GetItemBkInfoManager         *syscall.Proc
+	xListView_ExpandGroup *syscall.Proc
 )
 
 func init() {
@@ -75,7 +75,7 @@ func init() {
 	xListView_AddItemBkImage = xcDLL.MustFindProc("XListView_AddItemBkImage")
 	xListView_GetItemBkInfoCount = xcDLL.MustFindProc("XListView_GetItemBkInfoCount")
 	xListView_ClearItemBkInfo = xcDLL.MustFindProc("XListView_ClearItemBkInfo")
-	xListView_GetItemBkInfoManager = xcDLL.MustFindProc("XListView_GetItemBkInfoManager")
+	// xListView_GetItemBkInfoManager = xcDLL.MustFindProc("XListView_GetItemBkInfoManager")
 	xListView_ExpandGroup = xcDLL.MustFindProc("XListView_ExpandGroup")
 }
 
@@ -576,7 +576,7 @@ func XListViewClearItemBkInfo(hEle HELE, nState List_item_state_) {
 }
 
 /*
-获取项背景内容管理器.
+获取项背景内容管理器. 1.8.9.6
 
 参数:
 	hEle 元素句柄.
@@ -584,13 +584,13 @@ func XListViewClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	项背景内容管理器.
 */
-func XListViewGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
-	ret, _, _ := xListView_GetItemBkInfoManager.Call(
-		uintptr(hEle),
-		uintptr(nState))
+// func XListViewGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
+// 	ret, _, _ := xListView_GetItemBkInfoManager.Call(
+// 		uintptr(hEle),
+// 		uintptr(nState))
 
-	return HBKINFOM(ret)
-}
+// 	return HBKINFOM(ret)
+// }
 
 /*
 展开组.

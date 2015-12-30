@@ -22,7 +22,7 @@ func downLoadXCGUIDll() {
 		os.Exit(1)
 	}
 
-	resp, err := http.Get("http://git.oschina.net/CodyGuo/xcgui/raw/master/examples/lib/XCGUI.dll")
+	resp, err := http.Get("http://git.oschina.net/CodyGuo/xcgui/raw/master/lib/XCGUI.dll")
 	if err != nil {
 		log.Println("[ERROR] 下载失败，请检查网络.")
 		walk.MsgBox(mw, "错误信息", "XCGUI.dll 下载失败，请检查网络.", walk.MsgBoxIconError)

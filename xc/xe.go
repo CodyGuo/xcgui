@@ -205,17 +205,3 @@ const (
 	XE_DATETIME_POPUP_MONTHCAL = 242
 	XE_DATETIME_EXIT_MONTHCAL  = 243
 )
-
-/*
-Z序位置 zorder_
-	zorder_top    ///<最上面
-	zorder_bottom ///<最下面
-	zorder_before ///<指定目标下面
-	zorder_after  ///<指定目标上面
-*/
-const (
-	ZORDER_TOP = iota
-	ZORDER_BOTTOM
-	ZORDER_BEFORE
-	ZORDER_AFTER
-)

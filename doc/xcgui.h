@@ -7,7 +7,7 @@
 \**************************************************************************/
 #pragma once
 
-//v1.8.9.6
+//v1.9.1
 ////////////输入输出///////////////////
 #define in_
 #define out_
@@ -396,7 +396,6 @@ enum  tree_item_state_
 	tree_item_state_select=1,  ///<项选择状态
 };
 
-
 ///@}
 
 
@@ -455,7 +454,8 @@ enum  messageBox_flags_
 
 ///@}
 
-///@name 项类型
+///@defgroup GroupPropertyGrid_item_type    属性网格项类型
+///@ingroup  macroDefine
 ///@{
 enum  propertyGrid_item_type_
 {
@@ -470,7 +470,8 @@ enum  propertyGrid_item_type_
 
 ///@}
 
-///@name Z序位置
+///@defgroup  GroupZOrder    Z序位置
+///@ingroup  macroDefine
 ///@{
 enum zorder_
 {
@@ -673,6 +674,127 @@ enum  bkInfo_type_
 	bkInfo_type_gradient,        ///<渐变
 };
 
+
+/// @defgroup group_combo_StateFlags 组合状态
+/// @ingroup macroDefine
+/// @{
+enum  window_state_flag_
+{
+	window_state_flag_nothing  =0x0000,  ///<无
+	window_state_whole_leave   =0x0001,  ///<整个窗口
+	window_state_body_leave    =0x0002,  ///<窗口-body
+	window_state_top_leave     =0x0004,  ///<窗口-top
+	window_state_bottom_leave  =0x0008,  ///<窗口-bottom
+	window_state_left_leave    =0x0010,  ///<窗口-left
+	window_state_right_leave   =0x0020,  ///<窗口-right
+};
+
+enum  element_state_flag_  //组合状态
+{
+	element_state_flag_nothing   =window_state_flag_nothing,  ///<无
+	element_state_flag_enable    =0x0001,  ///<启用
+	element_state_flag_disable   =0x0002,  ///<禁用
+	element_state_flag_focus     =0x0004,  ///<焦点
+	element_state_flag_focus_no  =0x0008,  ///<无焦点
+
+	element_state_flag_leave     =0x0010,  ///<鼠标离开
+	element_state_flag_stay      =0x0020,  ///<为扩展模块保留
+	element_state_flag_down      =0x0040,  ///<为扩展模块保留
+};
+
+enum  button_state_flag_  //组合状态
+{
+	button_state_flag_leave     =element_state_flag_leave,  ///<鼠标离开
+	button_state_flag_stay      =element_state_flag_stay,   ///<鼠标停留
+	button_state_flag_down      =element_state_flag_down,   ///<鼠标按下
+
+	button_state_flag_check     =0x0080, ///<选中
+	button_state_flag_check_no  =0x0100, ///<未选中
+
+	button_state_flag_WindowRestore  =0x0200, //窗口还原
+	button_state_flag_WindowMaximize =0x0400, //窗口最大化
+};
+
+enum comboBox_state_flag_
+{
+	comboBox_state_flag_leave   =element_state_flag_leave, ///<鼠标离开
+	comboBox_state_flag_stay    =element_state_flag_stay,  ///<鼠标停留
+	comboBox_state_flag_down    =element_state_flag_down,  ///<鼠标按下
+};
+
+enum listBox_state_flag_
+{
+	listBox_state_flag_item_leave  =0x0080, ///<项鼠标离开
+	listBox_state_flag_item_stay   =0x0100, ///<项鼠标停留
+	listBox_state_flag_item_select =0x0200, ///<项选择
+};
+
+enum list_state_flag_
+{
+	list_state_flag_item_leave  =0x0080, ///<项鼠标离开
+	list_state_flag_item_stay   =0x0100, ///<项鼠标停留
+	list_state_flag_item_select =0x0200, ///<项选择
+};
+
+enum listView_state_flag_
+{
+	listView_state_flag_item_leave  =0x0080, ///<项鼠标离开
+	listView_state_flag_item_stay   =0x0100, ///<项鼠标停留
+	listView_state_flag_item_select =0x0200, ///<项选择
+};
+
+enum tree_state_flag_
+{
+	tree_state_flag_item_leave  =0x0080, ///<项鼠标离开
+	tree_state_flag_item_select =0x0100, ///<项选择
+};
+
+enum monthCal_state_flag_     
+{
+	monthCal_state_flag_leave = element_state_flag_leave,  ///<离开状态
+
+	monthCal_state_flag_item_leave  = 0x0080,     ///< 项-离开
+	monthCal_state_flag_item_stay   = 0x0100,     ///< 项-停留
+	monthCal_state_flag_item_down   = 0x0200,     ///< 项-按下
+
+	monthCal_state_flag_item_select = 0x0400,     ///< 项-选择
+	monthCal_state_flag_item_today  = 0x0800,     ///< 项-今天
+	monthCal_state_flag_item_other  = 0x1000,     ///< 项-上月及下月
+	monthCal_state_flag_item_last_month = 0x2000,   ///< 项-上月
+	monthCal_state_flag_item_cur_month  = 0x4000,   ///< 项-当月
+	monthCal_state_flag_item_next_month = 0x8000,   ///< 项-下月
+};
+
+///@}
+
+/// @defgroup group_monthCal_button_type_    月历元素上的按钮类型
+/// @ingroup macroDefine
+/// @{
+enum monthCal_button_type_
+{
+	monthCal_button_type_today = 0,  ///< 今天按钮
+	monthCal_button_type_last_year,  ///< 上一年
+	monthCal_button_type_next_year,  ///< 下一年
+	monthCal_button_type_last_month, ///< 上一月
+	monthCal_button_type_next_month, ///< 下一月
+};
+
+///@}
+
+///@defgroup  group_monthCal_item_i_    月历元素项数据
+///@ingroup   macroDefine
+///@{
+
+/// 月历元素项数据
+struct monthCal_item_i
+{
+	int  nDay;     ///< 日期
+	int  nType;    ///< 1上月,2当月,3下月
+	int  nState;   ///< 组合状态 monthCal_state_flag_
+	RECT rcItem;   ///< 项坐标
+};
+
+///@}
 
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -1305,7 +1427,7 @@ typedef int(CALLBACK *pFun_int_bPtr)(BOOL*);
 typedef int(CALLBACK *pFun_int_w_bPtr)(HWINDOW, BOOL*);
 typedef int(CALLBACK *pFun_int_e_bPtr)(HELE, BOOL*);
 typedef int(CALLBACK *pFun_int_e_e_bPtr)(HELE, HELE, BOOL*);
-typedef int(CALLBACK *pFun_int_e_e_e_bPtr)(HELE, HELE, BOOL*);
+typedef int(CALLBACK *pFun_int_e_e_e_bPtr)(HELE, HELE, HELE, BOOL*);
 
 typedef int(CALLBACK *pFun_int_w_e_bPtr)(HWINDOW, HELE, BOOL*);
 typedef int(CALLBACK *pFun_int_e_w_e_bPtr)(HELE, HWINDOW, HELE, BOOL*);
@@ -2192,6 +2314,23 @@ void XEle_RegEventCT(HELE hEle, int nEvent, T_Fun *pFun)
 //////////////////////////////////////////////////////////////////////
 
 
+XC_API HELE WINAPI XDateTime_Create(int x, int y, int cx, int cy, HXCGUI hParent);
+XC_API void WINAPI XDateTime_SetStyle(HELE hEle,int nStyle);
+XC_API int WINAPI XDateTime_GetStyle(HELE hEle);
+XC_API void WINAPI XDateTime_GetTime(HELE hEle, int* pnHour, int* pnMinute, int* pnSecond);
+XC_API void WINAPI XDateTime_SetTime(HELE hEle, int nHour, int nMinute, int nSecond);
+XC_API void WINAPI XDateTime_GetDate(HELE hEle, int* pnYear, int* pnMonth, int* pnDay);
+XC_API void WINAPI XDateTime_SetDate(HELE hEle, int nYear, int nMonth, int nDay);
+XC_API COLORREF WINAPI XDateTime_GetSelBkColor(HELE hEle);
+XC_API void WINAPI XDateTime_SetSelBkColor(HELE hEle, COLORREF crSelectBk, BYTE alpha = 255);
+XC_API HELE WINAPI XDateTime_GetButton(HELE hEle, int nType);
+XC_API HELE WINAPI XMonthCal_Create(int x, int y, int cx, int cy, HXCGUI hParent);
+XC_API void WINAPI XMonthCal_SetToday(HELE hEle, int nYear, int nMonth, int nDay);
+XC_API void WINAPI XMonthCal_GetToday(HELE hEle, int* pnYear, int* pnMonth, int* pnDay);
+XC_API void WINAPI XMonthCal_SeSelDate(HELE hEle, int nYear, int nMonth, int nDay);
+XC_API void WINAPI XMonthCal_GetSelDate(HELE hEle, int* pnYear, int* pnMonth, int* pnDay);
+XC_API HELE WINAPI XMonthCal_GetButton(HELE hEle, monthCal_button_type_ nType);
+
 XC_API int WINAPI XC_UnicodeToAnsi(const wchar_t *pIn, int inLen, char *pOut, int outLen);
 XC_API int WINAPI XC_AnsiToUnicode(const char *pIn, int inLen, wchar_t *pOut, int outLen);
 XC_API void WINAPI XC_DebugToFileInfo(const char *pInfo);//打印调试信息到文件 xcgui_debug.txt
@@ -2234,12 +2373,12 @@ XC_API void WINAPI XExitXCGUI();
 XC_API HBKINFOM WINAPI XBkInfoM_Create();   //创建背景内容管理器
 XC_API void WINAPI XBkInfoM_Destroy(HBKINFOM hBkInfoM);  //销毁背景内容管理器
 XC_API int  WINAPI XBkInfoM_SetBkInfo(HBKINFOM hBkInfoM, const wchar_t *pText);  //添加背景内容
-XC_API void WINAPI XBkInfoM_AddBorder(HBKINFOM hBkInfoM, COLORREF color,BYTE alpha, int width);  //添加背景内容 - 边框
-XC_API void WINAPI XBkInfoM_AddFill(HBKINFOM hBkInfoM, COLORREF color,BYTE alpha);  //添加背景内容 - 填充
-XC_API void WINAPI XBkInfoM_AddImage(HBKINFOM hBkInfoM, HIMAGE hImage); //添加背景内天 - 图片
+XC_API void WINAPI XBkInfoM_AddBorder(HBKINFOM hBkInfoM, int nState, COLORREF color,BYTE alpha, int width);  //添加背景内容 - 边框
+XC_API void WINAPI XBkInfoM_AddFill(HBKINFOM hBkInfoM, int nState, COLORREF color,BYTE alpha);  //添加背景内容 - 填充
+XC_API void WINAPI XBkInfoM_AddImage(HBKINFOM hBkInfoM, int nState, HIMAGE hImage); //添加背景内天 - 图片
 XC_API int  WINAPI XBkInfoM_GetCount(HBKINFOM hBkInfoM); //获取背景内容数量
 XC_API void WINAPI XBkInfoM_Clear(HBKINFOM hBkInfoM);  //清空背景内容
-XC_API BOOL WINAPI XBkInfoM_Draw(HBKINFOM hBkInfoM, HDRAW hDraw, RECT* pRect);  //绘制背景内容
+XC_API BOOL WINAPI XBkInfoM_Draw(HBKINFOM hBkInfoM, int nState, HDRAW hDraw, RECT* pRect);  //绘制背景内容
 XC_API HELE WINAPI XBtn_Create(int x, int y, int cx, int cy,const wchar_t *pName, HXCGUI hParent = NULL);
 XC_API BOOL WINAPI XBtn_IsCheck(HELE hEle); //按钮是否被选中
 XC_API BOOL WINAPI XBtn_SetCheck(HELE hEle, BOOL bCheck);
@@ -2269,9 +2408,8 @@ XC_API void WINAPI XBtn_EnableAnimation(HELE hEle,BOOL bEnable,BOOL bLoopPlay=FA
 XC_API void WINAPI XBtn_AddBkBorder(HELE hEle, button_state_ nState,COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XBtn_AddBkFill(HELE hEle, button_state_ nState,COLORREF color,BYTE alpha);
 XC_API void WINAPI XBtn_AddBkImage(HELE hEle, button_state_ nState,HIMAGE hImage);
-XC_API int  WINAPI XBtn_GetBkInfoCount(HELE hEle, button_state_ nState);
-XC_API void WINAPI XBtn_ClearBkInfo(HELE hEle, button_state_ nState);
-XC_API HBKINFOM WINAPI XBtn_GetBkInfoManager(HELE hEle,button_state_ nState);
+XC_API int  WINAPI XBtn_GetBkInfoCount(HELE hEle);
+XC_API void WINAPI XBtn_ClearBkInfo(HELE hEle);
 XC_API HELE WINAPI XComboBox_Create(int x, int y, int cx, int cy, HXCGUI hParent = NULL);
 XC_API BOOL  WINAPI XComboBox_SetSelItem(HELE hEle,int iIndex);
 XC_API void WINAPI XComboBox_GetButtonRect(HELE hEle,out_ RECT* pRect);
@@ -2286,9 +2424,8 @@ XC_API void WINAPI XComboBox_EnableEdit(HELE hEle,BOOL bEdit);  //启动编辑内容
 XC_API void WINAPI XComboBox_AddBkBorder(HELE hEle,comboBox_state_ nState,COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XComboBox_AddBkFill(HELE hEle,comboBox_state_ nState,COLORREF color,BYTE alpha);
 XC_API void WINAPI XComboBox_AddBkImage(HELE hEle,comboBox_state_ nState,HIMAGE hImage);
-XC_API int  WINAPI XComboboX_GetBkInfoCount(HELE hEle, comboBox_state_ nState);
-XC_API void WINAPI XComboBox_ClearBkInfo(HELE hEle,comboBox_state_ nState);
-XC_API HBKINFOM WINAPI XComboBox_GetBkInfoManager(HELE hEle, comboBox_state_ nState);
+XC_API int  WINAPI XComboboX_GetBkInfoCount(HELE hEle);
+XC_API void WINAPI XComboBox_ClearBkInfo(HELE hEle);
 XC_API int WINAPI XComboBox_GetSelItem(HELE hEle);
 XC_API comboBox_state_ WINAPI XComboBox_GetState(HELE hEle);
 XC_API void WINAPI XAdapter_Destroy(HXCGUI hAdapter);
@@ -2378,7 +2515,7 @@ XC_API void  WINAPI XDraw_SetOffset(HDRAW hDraw, int x, int y); //设置坐标偏移量
 XC_API void  WINAPI XDraw_GetOffset(HDRAW hDraw, out_ int *pX, out_ int *pY); //获取坐标偏移量
 XC_API void  WINAPI XDraw_RestoreGDIOBJ(HDRAW hDraw);  //还原状态,释放用户绑定的GDI对象
 XC_API HDC   WINAPI XDraw_GetHDC(HDRAW hDraw);
-XC_API void WINAPI XDraw_SetBrushColor(HDRAW hDraw, COLORREF color,BYTE alpha=254);
+XC_API void WINAPI XDraw_SetBrushColor(HDRAW hDraw, COLORREF color,BYTE alpha=255);
 XC_API void WINAPI XDraw_SetTextAlign(HDRAW hDraw, int nFlag);
 XC_API void WINAPI XDraw_SetTextVertical(HDRAW hDraw, BOOL bVertical);
 XC_API void WINAPI XDraw_SetFontX(HDRAW hDraw, HFONTX  hFontx);
@@ -2420,6 +2557,7 @@ XC_API BOOL WINAPI XDraw_BitBlt(HDRAW hDrawDest, int nXDest, int nYDest, int nWi
 XC_API BOOL WINAPI XDraw_BitBlt2(HDRAW hDrawDest, int nXDest, int nYDest, int nWidth, int nHeight, HDRAW hDrawSrc, int nXSrc, int nYSrc, DWORD dwRop);
 XC_API BOOL WINAPI XDraw_AlphaBlend(HDRAW hDraw, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, HDC hdcSrc, int nXOriginSrc,int nYOriginSrc, int nWidthSrc, int nHeightSrc, int alpha);
 XC_API void WINAPI XDraw_TriangularArrow(HDRAW hDraw, int align, int x, int y, int width, int height);
+XC_API void WINAPI XDraw_DrawPolygon(HDRAW hDraw,in_ POINT *points,int nCount);
 XC_API void WINAPI XDraw_Image(HDRAW hDraw, HIMAGE hImage, int x, int y);
 XC_API void WINAPI XDraw_Image2(HDRAW hDraw, HIMAGE hImage, int x, int y, int width, int height);
 XC_API void WINAPI XDraw_ImageStretch(HDRAW hDraw, HIMAGE hImage, int x, int y, int width, int height);
@@ -2428,7 +2566,7 @@ XC_API void WINAPI XDraw_ImageExTile(HDRAW hDraw, HIMAGE hImage, RECT *pRect, in
 XC_API void WINAPI XDraw_ImageSuper(HDRAW hDraw, HIMAGE hImage, RECT *pRect,BOOL bClip=FALSE);
 XC_API void WINAPI XDraw_ImageSuper2(HDRAW hDraw, HIMAGE hImage, RECT *pRcDest, RECT *pSrcRect);
 XC_API void WINAPI XDraw_DrawText(HDRAW hDraw, const wchar_t * lpString, int nCount, RECT* lpRect);
-XC_API void WINAPI XDraw_DrawTextUnderline(HDRAW hDraw, const wchar_t * lpString, int nCount, RECT* lpRect,COLORREF colorLine,BYTE alphaLine=254);
+XC_API void WINAPI XDraw_DrawTextUnderline(HDRAW hDraw, const wchar_t * lpString, int nCount, RECT* lpRect,COLORREF colorLine,BYTE alphaLine=255);
 XC_API void WINAPI XDraw_TextOut(HDRAW hDraw, int nXStart, int nYStart, const wchar_t * lpString, int cbString);
 XC_API void WINAPI XDraw_TextOutA(HDRAW hDraw, int nXStart, int nYStart, const char * lpString);
 XC_API void WINAPI XDraw_SetAlpha(HDRAW hDraw,BYTE alpha);  //设置透明通道度
@@ -2489,7 +2627,7 @@ XC_API void WINAPI XEle_SetID(HELE hEle, int id);
 XC_API int  WINAPI XEle_GetID(HELE hEle);
 XC_API HELE WINAPI XEle_GetParentEle(HELE hEle);
 XC_API HXCGUI WINAPI XEle_GetParent(HELE hEle);
-XC_API void WINAPI XEle_SetTextColor(HELE hEle, COLORREF color,BYTE alpha=254);
+XC_API void WINAPI XEle_SetTextColor(HELE hEle, COLORREF color,BYTE alpha=255);
 XC_API COLORREF WINAPI XEle_GetTextColor(HELE hEle);
 XC_API void WINAPI XEle_SetFocusBorderColor(HELE hEle, COLORREF color,BYTE alpha=255);
 XC_API COLORREF WINAPI XEle_GetFocusBorderColor(HELE hEle);
@@ -2522,6 +2660,7 @@ XC_API void WINAPI XEle_AddBkImage(HELE hEle,HIMAGE hImage);
 XC_API int  WINAPI XEle_GetBkInfoCount(HELE hEle);
 XC_API void WINAPI XEle_ClearBkInfo(HELE hEle);
 XC_API HBKINFOM WINAPI XEle_GetBkInfoManager(HELE hEle);
+XC_API int  WINAPI XEle_GetStateFlags(HELE hEle); //获取组合状态
 XC_API BOOL WINAPI XEle_DrawFocus(HELE hEle,HDRAW hDraw,RECT* pRect);
 XC_API void WINAPI XEle_EnableTransparentChannel(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XEle_SetToolTip(HELE hEle, const wchar_t* pText);
@@ -2622,9 +2761,8 @@ XC_API BOOL WINAPI XListBox_GetItemInfo(HELE hEle,int iItem,out_ listBox_item_In
 XC_API void WINAPI XListBox_AddItemBkBorder(HELE hEle,list_item_state_ nState, COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XListBox_AddItemBkFill(HELE hEle,list_item_state_ nState, COLORREF color,BYTE alpha);
 XC_API void WINAPI XListBox_AddItemBkImage(HELE hEle,list_item_state_ nState, HIMAGE hImage);
-XC_API int  WINAPI XListBox_GetItemBkInfoCount(HELE hEle, list_item_state_ nState);
-XC_API void WINAPI XListBox_ClearItemBkInfo(HELE hEle,list_item_state_ nState);
-XC_API HBKINFOM WINAPI XListBox_GetItemBkInfoManager(HELE hEle,list_item_state_ nState);
+XC_API int  WINAPI XListBox_GetItemBkInfoCount(HELE hEle);
+XC_API void WINAPI XListBox_ClearItemBkInfo(HELE hEle);
 XC_API BOOL WINAPI XListBox_SetSelectItem(HELE hEle,int iItem);
 XC_API int  WINAPI XListBox_GetSelectItem(HELE hEle);
 XC_API BOOL WINAPI XListBox_CancelSelectItem(HELE hEle,int iItem);
@@ -2653,6 +2791,8 @@ XC_API void WINAPI XList_SetDrawItemBkFlags(HELE hEle,int style);
 XC_API void WINAPI XList_SetColumnWidth(HELE hEle,int iItem,int width);
 XC_API void WINAPI XList_SetColumnMinWidth(HELE hEle,int iItem,int width);
 XC_API void WINAPI XList_SetColumnWidthFixed(HELE hEle, int iColumn, BOOL bFixed);
+XC_API int  WINAPI XList_GetColumnWidth(HELE hEle, int iColumn);  //获取列宽
+XC_API int  WINAPI XList_GetColumnCount(HELE hEle);  //获取列数量
 XC_API BOOL WINAPI XList_DeleteColumn(HELE hEle,int iItem);
 XC_API void WINAPI XList_DeleteColumnAll(HELE hEle);
 XC_API BOOL WINAPI XList_SetItemData(HELE hEle,int iItem,int iSubItem,int data);
@@ -2677,9 +2817,8 @@ XC_API int  WINAPI XList_GetHeaderHeight(HELE hEle);
 XC_API void WINAPI XList_AddItemBkBorder(HELE hEle, list_item_state_ nState, COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XList_AddItemBkFill(HELE hEle, list_item_state_ nState, COLORREF color,BYTE alpha);
 XC_API void WINAPI XList_AddItemBkImage(HELE hEle, list_item_state_ nState, HIMAGE hImage);
-XC_API int  WINAPI XList_GetItemBkInfoCount(HELE hEle, list_item_state_ nState);
-XC_API void WINAPI XList_ClearItemBkInfo(HELE hEle, list_item_state_ nState);
-XC_API HBKINFOM WINAPI XList_GetItemBkInfoManager(HELE hEle, list_item_state_ nState);
+XC_API int  WINAPI XList_GetItemBkInfoCount(HELE hEle);
+XC_API void WINAPI XList_ClearItemBkInfo(HELE hEle);
 XC_API void WINAPI XList_SetItemHeightDefault(HELE hEle,int nHeight,int nSelHeight);
 XC_API void WINAPI XList_GetItemHeightDefault(HELE hEle,out_ int *pHeight,out_ int *pSelHeight);
 XC_API BOOL WINAPI XList_HitTest(HELE hEle,POINT *pPt,out_ int *piItem,out_ int *piSubItem);
@@ -2714,9 +2853,8 @@ XC_API int  WINAPI XListView_GetGroupHeight(HELE hEle);
 XC_API void WINAPI XListView_AddItemBkBorder(HELE hEle,list_item_state_ nState, COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XListView_AddItemBkFill(HELE hEle,list_item_state_ nState, COLORREF color,BYTE alpha);
 XC_API void WINAPI XListView_AddItemBkImage(HELE hEle,list_item_state_ nState, HIMAGE hImage);
-XC_API int  WINAPI XListView_GetItemBkInfoCount(HELE hEle, list_item_state_ nState);
-XC_API void WINAPI XListView_ClearItemBkInfo(HELE hEle,list_item_state_ nState);
-XC_API HBKINFOM WINAPI XListView_GetItemBkInfoManager(HELE hEle,list_item_state_ nState);
+XC_API int  WINAPI XListView_GetItemBkInfoCount(HELE hEle);
+XC_API void WINAPI XListView_ClearItemBkInfo(HELE hEle);
 XC_API BOOL WINAPI XListView_ExpandGroup(HELE hEle,int iGroup,BOOL bExpand);
 XC_API HELE WINAPI XMenuBar_Create(int x, int y, int cx, int cy, HXCGUI hParent = NULL);
 XC_API int  WINAPI XMenuBar_AddButton(HELE hEle, wchar_t *pText);     //增加弹出菜单按钮
@@ -2852,7 +2990,7 @@ XC_API HELE WINAPI XSBar_GetButtonSlider(HELE hEle);
 XC_API HELE WINAPI XSView_Create(int x, int y, int cx, int cy, HXCGUI hParent = NULL);
 XC_API BOOL WINAPI XSView_SetTotalSize(HELE hEle, int cx, int cy); //设置视图内容总大小(不包含边框间隔)
 XC_API void WINAPI XSView_GetTotalSize(HELE hEle, SIZE *pSize);  //获取设置的内容大小
-XC_API BOOL WINAPI XSView_SetLineSize(HELE hEle,int nHeight,int nWidth);
+XC_API BOOL WINAPI XSView_SetLineSize(HELE hEle,int nWidth,int nHeight);
 XC_API void WINAPI XSView_GetLineSize(HELE hEle,out_ SIZE *pSize);
 XC_API int  WINAPI XSView_GetViewPosH(HELE hEle);   //获取视口原点X坐标
 XC_API int  WINAPI XSView_GetViewPosV(HELE hEle);   //获取视口原点Y坐标
@@ -2933,7 +3071,7 @@ XC_API void WINAPI XShapeEllipse_EnableBorder(HXCGUI hShape,BOOL bEnable);
 XC_API void WINAPI XShapeEllipse_EnableFill(HXCGUI hShape,BOOL bEnable);
 XC_API HXCGUI WINAPI XShapeGroupBox_Create(int x,int y,int cx,int cy,const wchar_t* pName,HXCGUI hParent=NULL);
 XC_API void WINAPI XShapeGroupBox_SetBorderColor(HXCGUI hShape,COLORREF color,BYTE alpha=255);
-XC_API void WINAPI XShapeGroupBox_SetTextColor(HXCGUI hShape,COLORREF color,BYTE alpha=254);
+XC_API void WINAPI XShapeGroupBox_SetTextColor(HXCGUI hShape,COLORREF color,BYTE alpha=255);
 XC_API void WINAPI XShapeGroupBox_SetFontX(HXCGUI hShape,HFONTX hFontX);
 XC_API void WINAPI XShapeGroupBox_SetTextOffset(HXCGUI hShape,int offsetX,int offsetY);
 XC_API void WINAPI XShapeGroupBox_SetRoundAngle(HXCGUI hShape,int nWidth, int nHeight);
@@ -3019,7 +3157,6 @@ XC_API void WINAPI XTree_AddItemBkFill(HELE hEle,tree_item_state_ nState, COLORR
 XC_API void WINAPI XTree_AddItemBkImage(HELE hEle,tree_item_state_ nState, HIMAGE hImage);
 XC_API int  WINAPI XTree_GetItemBkInfoCount(HELE hEle,tree_item_state_ nState);
 XC_API void WINAPI XTree_ClearItemBkInfo(HELE hEle,tree_item_state_ nState);
-XC_API HBKINFOM WINAPI XTree_GetItemBkInfoManager(HELE hEle, tree_item_state_ nState);
 XC_API void WINAPI XTree_SetItemHeightDefault(HELE hEle,int nHeight,int nSelHeight);
 XC_API void WINAPI XTree_GetItemHeightDefault(HELE hEle,out_ int *pHeight,out_ int *pSelHeight);
 XC_API HXCGUI WINAPI XTree_GetTemplateObject(HELE hEle,int nID,int nTempItemID); //通过模板项ID,获取实例化模板项ID对应的对象.
@@ -3039,6 +3176,7 @@ XC_API BOOL WINAPI XWnd_AddShape(HWINDOW hWindow, HXCGUI hShape);
 XC_API HWND WINAPI XWnd_GetHWND(HWINDOW hWindow);
 XC_API void WINAPI XWnd_EnableDragBorder(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableDragWindow(HWINDOW hWindow, BOOL bEnable);
+XC_API void WINAPI XWnd_EnableDragCaption(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableDrawBk(HWINDOW hWindow, BOOL bEnable);
 XC_API void WINAPI XWnd_EnableAutoFocus(HWINDOW hWindow, BOOL bEnable); //当鼠标左键按下是否获得焦点
 XC_API void WINAPI XWnd_EnableMaxWindow(HWINDOW hWindow, BOOL bEnable);
@@ -3087,7 +3225,7 @@ XC_API BOOL WINAPI XWnd_GetClientRect(HWINDOW hWindow, out_ RECT *pRect); //获取
 XC_API void WINAPI XWnd_GetBodyRect(HWINDOW hWindow, out_ RECT *pRect);  //获取窗口body坐标
 XC_API UINT WINAPI XWnd_SetTimer(HWINDOW hWindow, UINT nIDEvent, UINT uElapse); //设置定时器
 XC_API BOOL WINAPI XWnd_KillTimer(HWINDOW hWindow, UINT nIDEvent);
-XC_API HBKINFOM WINAPI XWnd_GetBkInfoManager(HWINDOW hWindow, window_position_ nPosition);
+XC_API HBKINFOM WINAPI XWnd_GetBkInfoManager(HWINDOW hWindow);
 XC_API void WINAPI XWnd_SetTransparentType(HWINDOW hWindow,window_transparent_ nType);  //设置透明窗口
 XC_API void WINAPI XWnd_SetTransparentAlpha(HWINDOW hWindow,BYTE alpha); //设置窗口透明度
 XC_API void WINAPI XWnd_SetTransparentColor(HWINDOW hWindow,COLORREF color); //设置窗口透明色

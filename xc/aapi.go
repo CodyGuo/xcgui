@@ -71,6 +71,7 @@ type (
 
 // 1.初始化UI库
 func init() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
 	runtime.LockOSThread()
 
 	if FileExist(xcDll) {
@@ -79,6 +80,8 @@ func init() {
 		xcDLL = syscall.MustLoadDLL("lib/" + xcDll)
 	} else if FileExist("../lib/" + xcDll) {
 		xcDLL = syscall.MustLoadDLL("../lib/" + xcDll)
+	} else if FileExist("../../lib/" + xcDll) {
+		xcDLL = syscall.MustLoadDLL("../../lib/" + xcDll)
 	} else {
 		// 下载XCGUI.dll
 		downLoadXCGUIDll()

@@ -83,6 +83,7 @@ var (
 	xEle_GetBkInfoCount             *syscall.Proc
 	xEle_ClearBkInfo                *syscall.Proc
 	xEle_GetBkInfoManager           *syscall.Proc
+	xEle_GetStateFlags              *syscall.Proc
 	xEle_DrawFocus                  *syscall.Proc
 	xEle_BindLayoutObject           *syscall.Proc
 	xEle_GetLayoutObject            *syscall.Proc
@@ -181,6 +182,7 @@ func init() {
 	xEle_GetBkInfoCount = xcDLL.MustFindProc("XEle_GetBkInfoCount")
 	xEle_ClearBkInfo = xcDLL.MustFindProc("XEle_ClearBkInfo")
 	xEle_GetBkInfoManager = xcDLL.MustFindProc("XEle_GetBkInfoManager")
+	xEle_GetStateFlags = xcDLL.MustFindProc("XEle_GetStateFlags")
 	xEle_DrawFocus = xcDLL.MustFindProc("XEle_DrawFocus")
 	xEle_BindLayoutObject = xcDLL.MustFindProc("XEle_BindLayoutObject")
 	xEle_GetLayoutObject = xcDLL.MustFindProc("XEle_GetLayoutObject")
@@ -1305,6 +1307,20 @@ func XEleGetBkInfoManager(hEle HELE) HBKINFOM {
 	ret, _, _ := xEle_GetBkInfoManager.Call(uintptr(hEle))
 
 	return HBKINFOM(ret)
+}
+
+/*
+获取组合状态.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回组合状态.
+*/
+func XEleGetStateFlags(hEle HELE) int {
+	ret, _, _ := xEle_GetStateFlags.Call(uintptr(hEle))
+
+	return int(ret)
 }
 
 /*

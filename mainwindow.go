@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	winStyle uint32 = xc.XC_WINDOW_STYLE_DEFAULT
+	winStyle xc.Xc_window_style_ = xc.XC_WINDOW_STYLE_DEFAULT
 )
 
 type MainWindow struct {

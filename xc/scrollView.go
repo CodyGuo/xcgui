@@ -132,16 +132,16 @@ func XSViewGetTotalSize(hEle HELE, pSize *SIZE) {
 
 参数:
 	hEle 元素句柄.
-	nHeight 宽度.
-	nWidth 高度.
+	nWidth 宽度.
+	nHeight 高度.
 返回:
 	如果内容改变返回TRUE否则返回FALSE.
 */
-func XSViewSetLineSize(hEle HELE, nHeight, nWidth int) bool {
+func XSViewSetLineSize(hEle HELE, nWidth, nHeight int) bool {
 	ret, _, _ := xSView_SetLineSize.Call(
 		uintptr(hEle),
-		uintptr(nHeight),
-		uintptr(nWidth))
+		uintptr(nWidth),
+		uintptr(nHeight))
 
 	return ret == TRUE
 }

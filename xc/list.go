@@ -16,6 +16,8 @@ var (
 	xList_SetColumnWidth               *syscall.Proc
 	xList_SetColumnMinWidth            *syscall.Proc
 	xList_SetColumnWidthFixed          *syscall.Proc
+	xList_GetColumnWidth               *syscall.Proc
+	xList_GetColumnCount               *syscall.Proc
 	xList_SetItemData                  *syscall.Proc
 	xList_GetItemData                  *syscall.Proc
 	xList_SetSelectItem                *syscall.Proc
@@ -60,6 +62,8 @@ func init() {
 	xList_SetColumnWidth = xcDLL.MustFindProc("XList_SetColumnWidth")
 	xList_SetColumnMinWidth = xcDLL.MustFindProc("XList_SetColumnMinWidth")
 	xList_SetColumnWidthFixed = xcDLL.MustFindProc("XList_SetColumnWidthFixed")
+	xList_GetColumnWidth = xcDLL.MustFindProc("XList_GetColumnWidth")
+	xList_GetColumnCount = xcDLL.MustFindProc("XList_GetColumnCount")
 	xList_SetItemData = xcDLL.MustFindProc("XList_SetItemData")
 	xList_GetItemData = xcDLL.MustFindProc("XList_GetItemData")
 	xList_SetSelectItem = xcDLL.MustFindProc("XList_SetSelectItem")
@@ -234,6 +238,37 @@ func XListSetColumnWidthFixed(hEle HELE, iColumn int, bFixed bool) {
 		uintptr(hEle),
 		uintptr(iColumn),
 		uintptr(BoolToBOOL(bFixed)))
+}
+
+/*
+获取指定列宽度.
+
+参数:
+	hEle 元素句柄.
+	iColumn 列索引.
+返回:
+	返回指定列宽度.
+*/
+func XListGetColumnWidth(hEle HELE, iColumn int) int {
+	ret, _, _ := xList_GetColumnWidth.Call(
+		uintptr(hEle),
+		uintptr(iColumn))
+
+	return int(ret)
+}
+
+/*
+获取列数量.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回列数量.
+*/
+func XListGetColumnCount(hEle HELE) int {
+	ret, _, _ := xList_GetColumnCount.Call(uintptr(hEle))
+
+	return int(ret)
 }
 
 /*

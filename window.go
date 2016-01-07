@@ -35,7 +35,7 @@ func (wb *WindowBase) AsWindowBase() *WindowBase {
 	return wb
 }
 
-func InitWindow(window, parent Window, width, height int, title string, style uint32) error {
+func InitWindow(window, parent Window, width, height int, title string, style xc.Xc_window_style_) error {
 	wb := window.AsWindowBase()
 	wb.window = window
 
@@ -56,7 +56,7 @@ func InitWindow(window, parent Window, width, height int, title string, style ui
 		title,
 		// xc.StringToUTF16Ptr(title),
 		hwndParent,
-		int(style))
+		xc.Xc_window_style_(style))
 
 	xc.CloseBtn(wb.hWindow)
 

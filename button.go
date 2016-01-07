@@ -215,9 +215,9 @@ func (b *Button) ClearBkInfo(nState xc.Button_state_) {
 	xc.XBtnClearBkInfo(b.hEle, nState)
 }
 
-func (b *Button) GetBkInfoManager(nState xc.Button_state_) int {
-	return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
-}
+// func (b *Button) GetBkInfoManager(nState xc.Button_state_) int {
+// 	return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
+// }
 
 func (b *Button) OnBtnClick(pFunc func()) {
 	var (

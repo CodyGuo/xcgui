@@ -775,13 +775,17 @@ type Button_state_flag_ uint32
 	button_state_flag_down 鼠标按下
 	button_state_flag_check 选中
 	button_state_flag_check_no 未选中
+	button_state_flag_WindowRestore   窗口还原
+	button_state_flag_WindowMaximize  窗口最大化
 */
 const (
-	BUTTON_STATE_FLAG_LEAVE    Button_state_flag_ = Button_state_flag_(ELEMENT_STATE_FLAG_LEAVE)
-	BUTTON_STATE_FLAG_STAY     Button_state_flag_ = Button_state_flag_(ELEMENT_STATE_FLAG_STAY)
-	BUTTON_STATE_FLAG_DOWN     Button_state_flag_ = Button_state_flag_(ELEMENT_STATE_FLAG_DOWN)
-	BUTTON_STATE_FLAG_CHECK    Button_state_flag_ = 0x0080
-	BUTTON_STATE_FLAG_CHECK_NO Button_state_flag_ = 0x0100
+	BUTTON_STATE_FLAG_LEAVE          Button_state_flag_ = Button_state_flag_(ELEMENT_STATE_FLAG_LEAVE)
+	BUTTON_STATE_FLAG_STAY           Button_state_flag_ = Button_state_flag_(ELEMENT_STATE_FLAG_STAY)
+	BUTTON_STATE_FLAG_DOWN           Button_state_flag_ = Button_state_flag_(ELEMENT_STATE_FLAG_DOWN)
+	BUTTON_STATE_FLAG_CHECK          Button_state_flag_ = 0x0080
+	BUTTON_STATE_FLAG_CHECK_NO       Button_state_flag_ = 0x0100
+	BUTTON_STATE_FLAG_WINDOWRESTORE  Button_state_flag_ = 0x0200
+	BUTTON_STATE_FLAG_WINDOWMAXIMIZE Button_state_flag_ = 0x0400
 )
 
 type ComboBox_state_flag_ uint32

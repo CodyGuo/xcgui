@@ -444,7 +444,6 @@ func FileExist(path string) bool {
 	} else {
 		return true
 	}
-
 }
 
 func BoolToBOOL(value bool) BOOL {

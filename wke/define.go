@@ -1,0 +1,12 @@
+package wke
+
+type WkeProxyType uint32
+
+const (
+	WKE_PROXY_NONE WkeProxyType = iota
+	WKE_PROXY_HTTP
+	WKE_PROXY_SOCKS4
+	WKE_PROXY_SOCKS4A
+	WKE_PROXY_SOCKS5
+	WKE_PROXY_SOCKS5HOSTNAME
+)

@@ -282,13 +282,29 @@ func XRichEditSetTextInt(hEle HELE, nVaule int) {
 返回:
 	返回内容长度,不包含空终止符.
 */
-func XRichEditGetText(hEle HELE, pOut *uint16, len int) int {
+func XRichEditGetText(hEle HELE, pOut *uint16, lenText int) int {
 	ret, _, _ := xRichEdit_GetText.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
-		uintptr(len))
+		uintptr(lenText))
 
 	return int(ret)
+}
+
+func XRichEditGetTextGo(hEle HELE) (str string, lenText int) {
+	lenText = 256
+	buf := make([]byte, lenText)
+	ret, _, _ := xRichEdit_GetText.Call(
+		uintptr(hEle),
+		uintptr(unsafe.Pointer(&buf[0])),
+		uintptr(lenText))
+
+	lenText = int(ret)
+	for i := 0; i < lenText*2; i += 2 {
+		str += string(buf[i])
+	}
+
+	return
 }
 
 /*

@@ -7,7 +7,7 @@
 \**************************************************************************/
 #pragma once
 
-//v1.9.1
+//v1.9.2
 ////////////输入输出///////////////////
 #define in_
 #define out_
@@ -427,7 +427,7 @@ enum  layout_size_type_
 
 ///@}
 
-/// @defgroup  groupListDrawItemBkFlags  List,ListBox,Tree,项背景绘制标志位
+/// @defgroup  groupListDrawItemBkFlags  List,ListBox,ListView,Tree,项背景绘制标志位
 /// @ingroup macroDefine
 /// @{
 enum  list_drawItemBk_flags_
@@ -436,7 +436,9 @@ enum  list_drawItemBk_flags_
 	list_drawItemBk_flags_leave=   0x001,    ///<绘制鼠标离开状态项背景
 	list_drawItemBk_flags_stay=    0x002,    ///<绘制鼠标选择状态项背景
 	list_drawItemBk_flags_select=  0x004,    ///<绘制鼠标停留状态项项背景
-	list_drawItemBk_flags_group_stay= 0x008  ///<绘制鼠标停留状态项背景,当项为组时
+	list_drawItemBk_flags_group_leave=0x008, ///<绘制鼠标离开状态组背景,当项为组时
+	list_drawItemBk_flags_group_stay= 0x010  ///<绘制鼠标停留状态组背景,当项为组时
+
 };
 
 /// @}
@@ -724,45 +726,68 @@ enum comboBox_state_flag_
 
 enum listBox_state_flag_
 {
-	listBox_state_flag_item_leave  =0x0080, ///<项鼠标离开
-	listBox_state_flag_item_stay   =0x0100, ///<项鼠标停留
-	listBox_state_flag_item_select =0x0200, ///<项选择
+	listBox_state_flag_item_leave     =0x0080, ///<项鼠标离开
+	listBox_state_flag_item_stay      =0x0100, ///<项鼠标停留
+
+	listBox_state_flag_item_select    =0x0200, ///<项选择
+	listBox_state_flag_item_select_no =0x0400, ///<项未选择
 };
 
 enum list_state_flag_
 {
-	list_state_flag_item_leave  =0x0080, ///<项鼠标离开
-	list_state_flag_item_stay   =0x0100, ///<项鼠标停留
-	list_state_flag_item_select =0x0200, ///<项选择
+	list_state_flag_item_leave      =0x0080, ///<项鼠标离开
+	list_state_flag_item_stay       =0x0100, ///<项鼠标停留
+
+	list_state_flag_item_select     =0x0200, ///<项选择
+	list_state_flag_item_select_no  =0x0400, ///<项未选择
 };
 
 enum listView_state_flag_
 {
-	listView_state_flag_item_leave  =0x0080, ///<项鼠标离开
-	listView_state_flag_item_stay   =0x0100, ///<项鼠标停留
-	listView_state_flag_item_select =0x0200, ///<项选择
+	listView_state_flag_item_leave     =0x0080, ///<项鼠标离开
+	listView_state_flag_item_stay      =0x0100, ///<项鼠标停留
+
+	listView_state_flag_item_select    =0x0200, ///<项选择
+	listView_state_flag_item_select_no =0x0400, ///<项未选择
+
+	listView_state_flag_group_leave    =0x0800, ///<组鼠标离开
+	listView_state_flag_group_stay     =0x1000, ///<组鼠标停留
 };
 
 enum tree_state_flag_
 {
-	tree_state_flag_item_leave  =0x0080, ///<项鼠标离开
-	tree_state_flag_item_select =0x0100, ///<项选择
+	tree_state_flag_item_leave      =0x0080, ///<项鼠标离开
+	tree_state_flag_item_stay       =0x0100, ///<项鼠标停留,保留值, 暂未使用
+
+	tree_state_flag_item_select     =0x0200, ///<项选择
+	tree_state_flag_item_select_no  =0x0400, ///<项未选择
 };
 
 enum monthCal_state_flag_     
 {
 	monthCal_state_flag_leave = element_state_flag_leave,  ///<离开状态
 
-	monthCal_state_flag_item_leave  = 0x0080,     ///< 项-离开
-	monthCal_state_flag_item_stay   = 0x0100,     ///< 项-停留
-	monthCal_state_flag_item_down   = 0x0200,     ///< 项-按下
+	monthCal_state_flag_item_leave      = 0x0080,     ///< 项-离开
+	monthCal_state_flag_item_stay       = 0x0100,     ///< 项-停留
+	monthCal_state_flag_item_down       = 0x0200,     ///< 项-按下
 
-	monthCal_state_flag_item_select = 0x0400,     ///< 项-选择
-	monthCal_state_flag_item_today  = 0x0800,     ///< 项-今天
-	monthCal_state_flag_item_other  = 0x1000,     ///< 项-上月及下月
-	monthCal_state_flag_item_last_month = 0x2000,   ///< 项-上月
-	monthCal_state_flag_item_cur_month  = 0x4000,   ///< 项-当月
-	monthCal_state_flag_item_next_month = 0x8000,   ///< 项-下月
+	monthCal_state_flag_item_select     = 0x0400,     ///< 项-选择
+	monthCal_state_flag_item_select_no  = 0x0800,     ///< 项-未选择
+
+	monthCal_state_flag_item_today      = 0x1000,     ///< 项-今天
+	monthCal_state_flag_item_other      = 0x2000,     ///< 项-上月及下月
+	monthCal_state_flag_item_last_month = 0x4000,     ///< 项-上月
+	monthCal_state_flag_item_cur_month  = 0x8000,     ///< 项-当月
+	monthCal_state_flag_item_next_month = 0x10000,    ///< 项-下月
+};
+
+enum propertyGrid_state_flag_     
+{
+	propertyGrid_state_flag_item_leave     = 0x0080,
+	propertyGrid_state_flag_item_stay      = 0x0100,
+
+	propertyGrid_state_flag_item_select    = 0x0200,
+	propertyGrid_state_flag_item_select_no = 0x0400,
 };
 
 ///@}
@@ -1327,18 +1352,23 @@ struct monthCal_item_i
 /// @brief 属性网格元素 项值改变事件
 /// @code   int CALLBACK OnPGridValueChange(int nItemID,BOOL *pbHandled); @endcode
 /// @param  nItemID  项ID.
-#define  XE_PGRID_VALUE_CHANGE     161
+#define  XE_PGRID_VALUE_CHANGE     151
+
+//int CALLBACK OnPGridItemSet(int nItemID, BOOL *pbHandled);
+#define XE_PGRID_ITEM_SET          152
+
+//int CALLBACK OnPGridItemSelect(int nItemID, BOOL *pbHandled);
+#define XE_PGRID_ITEM_SELECT         153  //项选择
+
 
 /// @brief 富文本元素 用户修改内容事件,只有当用户操作时才会触发,需要开启后有效, XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE()；
 /// XRichEdit_SetText()、XRichEdit_InsertString()不会触发此事件
 /// @code   int CALLBACK OnRichEditChange(BOOL *pbHandled); @endcode
-#define  XE_RICHEDIT_CHANGE        162
+#define  XE_RICHEDIT_CHANGE       161
 
 //int CALLBACK OnRichEditSet(BOOL *pbHandled);
-#define XE_RICHEDIT_SET     201
+#define XE_RICHEDIT_SET           162
 
-//int CALLBACK OnPGridItemSet(int nItemID, BOOL *pbHandled);
-#define XE_PGRID_ITEM_SET   202
 
 /// @brief  TabBar标签按钮选择改变事件
 /// @code   int CALLBACK OnTabBarSelect(int iItem, BOOL *pbHandled); @endcode
@@ -1573,6 +1603,7 @@ public:
 	typedef int(T_ClassName::*pFun_int_w_uint_uint_bPtr)(HWINDOW, WPARAM, LPARAM, BOOL*);
 
 	typedef int(T_ClassName::*pFun_int_uint_sizePtr_bPtr)(UINT,SIZE*,BOOL*);
+	typedef int(T_ClassName::*pFun_int_w_uint_sizePtr_bPtr)(HWINDOW,UINT,SIZE*,BOOL*);
 
 	typedef int(T_ClassName::*pFun_int_pListBoxItem_bPtr)(listBox_item_i*, BOOL*);
 	typedef int(T_ClassName::*pFun_int_e_pListBoxItem_bPtr)(HELE, listBox_item_i*, BOOL*);
@@ -1631,6 +1662,9 @@ public:
 	}
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_uint_sizePtr_bPtr pMember){
 		return (pThis->*pMember)(wParam,(SIZE*)lParam, pbHandled);
+	}
+	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_w_uint_sizePtr_bPtr pMember){
+		return (pThis->*pMember)(hWindow,wParam,(SIZE*)lParam, pbHandled);
 	}
 	BOOL  Handle(HWINDOW hWindow, WPARAM wParam, LPARAM lParam, BOOL *pbHandled, UINT message, T_ClassName* pThis, pFun_int_uint_uint_bPtr pMember){
 		return (pThis->*pMember)(wParam, lParam, pbHandled);
@@ -1904,6 +1938,10 @@ public:
 	void Test(UINT nEvent,pFun_int_w_hMenu_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_HMENUX;
 	}
+	void Test(UINT nEvent,pFun_int_w_uint_sizePtr_bPtr,BYTE* pArray){
+		pArray[0]=XC_PARAM_uint;
+		pArray[1]=XC_PARAM_P_SIZE;
+	}
 };
 
 //省略2参数验证
@@ -2016,7 +2054,6 @@ public:
 	}
 	void  Test(UINT nEvent, pFun_int_e_e_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_HELE;
-		pArray[1]=XC_PARAM_HELE;
 	}
 	void  Test(UINT nEvent, pFun_int_e_w_e_bPtr,BYTE* pArray){
 		pArray[0]=XC_PARAM_HWINDOW;
@@ -2330,7 +2367,6 @@ XC_API void WINAPI XMonthCal_GetToday(HELE hEle, int* pnYear, int* pnMonth, int*
 XC_API void WINAPI XMonthCal_SeSelDate(HELE hEle, int nYear, int nMonth, int nDay);
 XC_API void WINAPI XMonthCal_GetSelDate(HELE hEle, int* pnYear, int* pnMonth, int* pnDay);
 XC_API HELE WINAPI XMonthCal_GetButton(HELE hEle, monthCal_button_type_ nType);
-
 XC_API int WINAPI XC_UnicodeToAnsi(const wchar_t *pIn, int inLen, char *pOut, int outLen);
 XC_API int WINAPI XC_AnsiToUnicode(const char *pIn, int inLen, wchar_t *pOut, int outLen);
 XC_API void WINAPI XC_DebugToFileInfo(const char *pInfo);//打印调试信息到文件 xcgui_debug.txt
@@ -2360,6 +2396,7 @@ XC_API template_info_i* WINAPI XC_LoadTemplateFromString(XC_OBJECT_TYPE nType,co
 XC_API void WINAPI XC_TemplateDestroy(template_info_i* pInfo);
 XC_API void WINAPI XC_GetTextSize(const wchar_t* pString,int length,HFONTX hFontX,out_ SIZE* pOutSize);
 XC_API HFONTX WINAPI XC_GetDefaultFont(); //获取默认字体
+XC_API void   WINAPI XC_SetDefaultFont(HFONTX hFontX); //设置默认字体
 XC_API void  WINAPI XC_InitFont(LOGFONTW *pFont,wchar_t *pName,int size,BOOL bBold=FALSE,BOOL bItalic=FALSE,BOOL bUnderline=FALSE,BOOL bStrikeOut=FALSE);
 XC_API  void* WINAPI XC_Malloc(int size);
 XC_API  void  WINAPI XC_Free(void *p);
@@ -2379,6 +2416,7 @@ XC_API void WINAPI XBkInfoM_AddImage(HBKINFOM hBkInfoM, int nState, HIMAGE hImag
 XC_API int  WINAPI XBkInfoM_GetCount(HBKINFOM hBkInfoM); //获取背景内容数量
 XC_API void WINAPI XBkInfoM_Clear(HBKINFOM hBkInfoM);  //清空背景内容
 XC_API BOOL WINAPI XBkInfoM_Draw(HBKINFOM hBkInfoM, int nState, HDRAW hDraw, RECT* pRect);  //绘制背景内容
+XC_API BOOL WINAPI XBkInfoM_DrawEx(HBKINFOM hBkInfoM, int nState, HDRAW hDraw, RECT* pRect, int nStateFilter);  //绘制背景内容
 XC_API HELE WINAPI XBtn_Create(int x, int y, int cx, int cy,const wchar_t *pName, HXCGUI hParent = NULL);
 XC_API BOOL WINAPI XBtn_IsCheck(HELE hEle); //按钮是否被选中
 XC_API BOOL WINAPI XBtn_SetCheck(HELE hEle, BOOL bCheck);
@@ -2782,6 +2820,7 @@ XC_API HXCGUI WINAPI XListBox_GetTemplateObject(HELE hEle,int iItem,int nTempIte
 XC_API void WINAPI XListBox_EnableMultiSel(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XListBox_BindAdapter(HELE hEle,HXCGUI hAdapter);
 XC_API HXCGUI WINAPI XListBox_GetAdapter(HELE hEle);
+XC_API void WINAPI XListBox_RefreshData(HELE hEle);
 XC_API HELE WINAPI XList_Create(int x,int y,int cx,int cy,HXCGUI hParent=NULL);
 XC_API int WINAPI XList_AddColumn(HELE hEle,int width); //增加列
 XC_API int WINAPI XList_InsertColumn(HELE hEle,int width,int iItem);
@@ -2800,8 +2839,10 @@ XC_API int  WINAPI XList_GetItemData(HELE hEle,int iItem,int iSubItem);
 XC_API BOOL WINAPI XList_SetSelectItem(HELE hEle,int iItem,BOOL bSelect);
 XC_API int  WINAPI XList_GetSelectItem(HELE hEle);
 XC_API int  WINAPI XList_GetSelectItemCount(HELE hEle);
-XC_API void WINAPI XList_SelectAll(HELE hEle);
+XC_API void WINAPI XList_SetSelectAll(HELE hEle);
 XC_API int  WINAPI XList_GetSelectAll(HELE hEle,out_ int *pArray,int nArraySize);
+XC_API BOOL WINAPI XList_CancelSelectItem(HELE hEle, int iItem);
+XC_API void WINAPI XList_CancelSelectAll(HELE hEle);
 XC_API HELE WINAPI XList_GetHeaderHELE(HELE hEle);
 XC_API void WINAPI XList_BindAdapter(HELE hEle,HXCGUI hAdapter);
 XC_API void WINAPI XList_BindAdapterHeader(HELE hEle,HXCGUI hAdapter);
@@ -2850,11 +2891,16 @@ XC_API void WINAPI XListView_SetItemSize(HELE hEle,int width,int height);
 XC_API void WINAPI XListView_GetItemSize(HELE hEle,SIZE* pSize);
 XC_API void WINAPI XListView_SetGroupHeight(HELE hEle,int height);
 XC_API int  WINAPI XListView_GetGroupHeight(HELE hEle);
+XC_API void WINAPI XListView_SetGroupUserData(HELE hEle,int iGroup, int nData);
+XC_API void WINAPI XListView_SetItemUserData(HELE hEle,int iGroup, int iItem, int nData);
+XC_API int WINAPI XListView_GetGroupUserData(HELE hEle,int iGroup);
+XC_API int WINAPI XListView_GetItemUserData(HELE hEle,int iGroup, int iItem);
 XC_API void WINAPI XListView_AddItemBkBorder(HELE hEle,list_item_state_ nState, COLORREF color,BYTE alpha, int width);
 XC_API void WINAPI XListView_AddItemBkFill(HELE hEle,list_item_state_ nState, COLORREF color,BYTE alpha);
 XC_API void WINAPI XListView_AddItemBkImage(HELE hEle,list_item_state_ nState, HIMAGE hImage);
 XC_API int  WINAPI XListView_GetItemBkInfoCount(HELE hEle);
 XC_API void WINAPI XListView_ClearItemBkInfo(HELE hEle);
+XC_API void WINAPI XListView_RefreshData(HELE hEle);
 XC_API BOOL WINAPI XListView_ExpandGroup(HELE hEle,int iGroup,BOOL bExpand);
 XC_API HELE WINAPI XMenuBar_Create(int x, int y, int cx, int cy, HXCGUI hParent = NULL);
 XC_API int  WINAPI XMenuBar_AddButton(HELE hEle, wchar_t *pText);     //增加弹出菜单按钮
@@ -2920,6 +2966,8 @@ XC_API const wchar_t* WINAPI XPGrid_GetItemValue(HELE hEle,int nItemID);
 XC_API int  WINAPI XPGrid_HitTest(HELE hEle,POINT *pPt,BOOL *pbExpandButton);
 XC_API int  WINAPI XPGrid_HitTestOffset(HELE hEle,POINT *pPt,BOOL *pbExpandButton);
 XC_API BOOL WINAPI XPGrid_ExpandItem(HELE hEle,int nItemID,BOOL bExpand);//展开项
+XC_API int  WINAPI XPGrid_GetSelItem(HELE hEle);
+XC_API BOOL WINAPI XPGrid_SetSelItem(HELE hEle, int nItemID);
 XC_API HELE WINAPI XRichEditColor_Create(int x, int y, int cx, int cy, HXCGUI hParent);
 XC_API void WINAPI XRichEditColor_SetColor(HELE hEle,COLORREF color);//设置颜色
 XC_API COLORREF WINAPI XRichEditColor_GetColor(HELE hEle); //获取颜色RGB值
@@ -3163,6 +3211,7 @@ XC_API HXCGUI WINAPI XTree_GetTemplateObject(HELE hEle,int nID,int nTempItemID);
 XC_API int    WINAPI XTree_GetItemIDFromHXCGUI(HELE hEle, HXCGUI hXCGUI);
 XC_API void WINAPI XTree_BindAdapter(HELE hEle,HXCGUI hAdapter);
 XC_API HXCGUI WINAPI XTree_GetAdapter(HELE hEle);
+XC_API void WINAPI XTree_RefreshData(HELE hEle);
 XC_API void WINAPI XWnd_RegEventEx(HWINDOW hWindow, CEventBase* pEvent);
 XC_API BOOL WINAPI XWnd_RemoveEventEx(HWINDOW hWindow,CEventBase *pEvent);
 XC_API void WINAPI XWnd_RegEventC(HWINDOW hWindow, int nEvent, void *pFun);
@@ -3184,6 +3233,7 @@ XC_API void WINAPI XWnd_RedrawWnd(HWINDOW hWindow,BOOL bImmediate=FALSE);
 XC_API void WINAPI XWnd_RedrawWndRect(HWINDOW hWindow, RECT *pRect, BOOL bImmediate = FALSE); //重绘窗口指定区域
 XC_API void WINAPI XWnd_SetFocusEle(HWINDOW hWindow, HELE hFocusEle);
 XC_API HELE WINAPI XWnd_GetFocusEle(HWINDOW hWindow);
+XC_API HELE WINAPI XWnd_GetStayHELE(HWINDOW hWindow);  //获取当前鼠标所停留元素
 XC_API void WINAPI XWnd_SetCursor(HWINDOW hWindow,HCURSOR hCursor);
 XC_API HCURSOR WINAPI XWnd_GetCursor(HWINDOW hWindow);
 XC_API HCURSOR WINAPI XWnd_SetCursorSys(HWINDOW hWindow,HCURSOR hCursor);

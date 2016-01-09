@@ -7,23 +7,23 @@ import (
 
 var (
 	// Functions
-	xList_Create                       *syscall.Proc
-	xList_AddColumn                    *syscall.Proc
-	xList_InsertColumn                 *syscall.Proc
-	xList_EnableMultiSel               *syscall.Proc
-	xList_EnableDragChangeColumnWidth  *syscall.Proc
-	xList_SetDrawItemBkFlags           *syscall.Proc
-	xList_SetColumnWidth               *syscall.Proc
-	xList_SetColumnMinWidth            *syscall.Proc
-	xList_SetColumnWidthFixed          *syscall.Proc
-	xList_GetColumnWidth               *syscall.Proc
-	xList_GetColumnCount               *syscall.Proc
-	xList_SetItemData                  *syscall.Proc
-	xList_GetItemData                  *syscall.Proc
-	xList_SetSelectItem                *syscall.Proc
-	xList_GetSelectItem                *syscall.Proc
-	xList_GetSelectItemCount           *syscall.Proc
-	xList_SelectAll                    *syscall.Proc
+	xList_Create                      *syscall.Proc
+	xList_AddColumn                   *syscall.Proc
+	xList_InsertColumn                *syscall.Proc
+	xList_EnableMultiSel              *syscall.Proc
+	xList_EnableDragChangeColumnWidth *syscall.Proc
+	xList_SetDrawItemBkFlags          *syscall.Proc
+	xList_SetColumnWidth              *syscall.Proc
+	xList_SetColumnMinWidth           *syscall.Proc
+	xList_SetColumnWidthFixed         *syscall.Proc
+	xList_GetColumnWidth              *syscall.Proc
+	xList_GetColumnCount              *syscall.Proc
+	xList_SetItemData                 *syscall.Proc
+	xList_GetItemData                 *syscall.Proc
+	xList_SetSelectItem               *syscall.Proc
+	xList_GetSelectItem               *syscall.Proc
+	xList_GetSelectItemCount          *syscall.Proc
+	// xList_SelectAll                    *syscall.Proc
 	xList_GetHeaderHELE                *syscall.Proc
 	xList_DeleteColumn                 *syscall.Proc
 	xList_DeleteColumnAll              *syscall.Proc
@@ -69,7 +69,7 @@ func init() {
 	xList_SetSelectItem = xcDLL.MustFindProc("XList_SetSelectItem")
 	xList_GetSelectItem = xcDLL.MustFindProc("XList_GetSelectItem")
 	xList_GetSelectItemCount = xcDLL.MustFindProc("XList_GetSelectItemCount")
-	xList_SelectAll = xcDLL.MustFindProc("XList_SelectAll")
+	// xList_SelectAll = xcDLL.MustFindProc("XList_SelectAll")
 	xList_GetHeaderHELE = xcDLL.MustFindProc("XList_GetHeaderHELE")
 	xList_DeleteColumn = xcDLL.MustFindProc("XList_DeleteColumn")
 	xList_DeleteColumnAll = xcDLL.MustFindProc("XList_DeleteColumnAll")
@@ -358,15 +358,15 @@ func XListGetSelectItemCount(hEle HELE) int {
 	return int(ret)
 }
 
-/*
-选择全部行.
+// /*
+// 选择全部行.
 
-参数:
-	hEle 元素句柄.
-*/
-func XListSelectAll(hEle HELE) {
-	xList_SelectAll.Call(uintptr(hEle))
-}
+// 参数:
+// 	hEle 元素句柄.
+// */
+// func XListSelectAll(hEle HELE) {
+// 	xList_SelectAll.Call(uintptr(hEle))
+// }
 
 /*
 获取列表头元素.

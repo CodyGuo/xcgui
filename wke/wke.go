@@ -208,7 +208,7 @@ func XWebGetStringA(stringA uintptr) string {
 func XWebGetStringW(stringW uintptr) string {
 	ret, _, _ := xWeb_GetStringW.Call(stringW)
 
-	return string(ret)
+	return xc.UINTptrToString(ret)
 }
 
 /*
@@ -231,7 +231,7 @@ func XWebSetStringW(stringW uintptr, str string, lenW int) {
 func XWebGetCookie(hWeb xc.HELE) string {
 	ret, _, _ := xWeb_GetCookie.Call(uintptr(hWeb))
 
-	return string(ret)
+	return xc.UINTptrToString(ret)
 }
 
 func XWebSetCookieEnabled(hWeb xc.HELE, enable bool) {
@@ -254,38 +254,204 @@ func XWebGoForward(hWeb xc.HELE) {
 	xWeb_GoForward.Call(uintptr(hWeb))
 }
 
-//
-//
-// XWeb_EditorSelectAll
-// XWeb_EditorCopy
-// XWeb_EditorCut
-// XWeb_EditorPaste
-// XWeb_EditorDelete
-// XWeb_CanGoForward
-// XWeb_CanGoBack
-// XWeb_OnTitleChanged
-// XWeb_OnURLChanged
-// XWeb_OnNavigation
-// XWeb_IsLoadingSucceeded
-// XWeb_IsLoadingFailed
-// XWeb_IsLoadingCompleted
-// XWeb_IsDocumentReady
-// XWeb_StopLoading
-// XWeb_Reload
-// XWeb_JsBindFuction
-// XWeb_JsBindGetter
-// XWeb_JsBindSetter
-// XWeb_JsToInt
-// XWeb_jsToFloat
-// XWeb_jsToDouble
-// XWeb_jsToBoolean
-// XWeb_JsToTempStringW
-// XWeb_JsToTempStringA
-// XWeb_JsArg
-// XWeb_JsInt
-// XWeb_JsDouble
-// XWeb_JsBoolean
-// XWeb_JsUndefined
-// XWeb_JsNull
-// XWeb_JsTrue
-// XWeb_JsFalse
+func XWebEditorSelectAll(hWeb xc.HELE) {
+	xWeb_EditorSelectAll.Call(uintptr(hWeb))
+}
+
+func XWebEditorCopy(hWeb xc.HELE) {
+	xWeb_EditorCopy.Call(uintptr(hWeb))
+}
+
+func XWebEditorCut(hWeb xc.HELE) {
+	xWeb_EditorCut.Call(uintptr(hWeb))
+}
+
+func XWebEditorPaste(hWeb xc.HELE) {
+	xWeb_EditorPaste.Call(uintptr(hWeb))
+}
+
+func XWebEditorDelete(hWeb xc.HELE) {
+	xWeb_EditorDelete.Call(uintptr(hWeb))
+}
+
+func XWebCanGoForward(hWeb xc.HELE) bool {
+	ret, _, _ := xWeb_CanGoForward.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebCanGoBack(hWeb xc.HELE) bool {
+	ret, _, _ := xWeb_CanGoBack.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebOnTitleChanged(hWeb xc.HELE, pFunc, param uintptr) {
+	xWeb_OnTitleChanged.Call(
+		uintptr(hWeb),
+		pFunc,
+		param)
+}
+
+func XWebOnURLChanged(hWeb xc.HELE, pFunc, param uintptr) {
+	xWeb_OnURLChanged.Call(
+		uintptr(hWeb),
+		pFunc,
+		param)
+}
+
+func XWebOnNavigation(hWeb xc.HELE, pFunc, param uintptr) {
+	xWeb_OnNavigation.Call(
+		uintptr(hWeb),
+		pFunc,
+		param)
+}
+
+func XWebIsLoadingSucceeded(hWeb xc.HELE) bool {
+	ret, _, _ := xWeb_IsLoadingSucceeded.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebIsLoadingFailed(hWeb xc.HELE) bool {
+	ret, _, _ := xWeb_IsLoadingFailed.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebIsLoadingCompleted(hWeb xc.HELE) bool {
+	ret, _, _ := xWeb_IsLoadingCompleted.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebIsDocumentReady(hWeb xc.HELE) bool {
+	ret, _, _ := xWeb_IsDocumentReady.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebStopLoading(hWeb xc.HELE) {
+	xWeb_StopLoading.Call(uintptr(hWeb))
+}
+
+func XWebReload(hWeb xc.HELE) {
+	xWeb_Reload.Call(uintptr(hWeb))
+}
+
+func XWebJsBindFuction(funcName string, pFunc uintptr, argCount uint32) {
+	xWeb_JsBindFuction.Call(
+		xc.StringToUintPtr(funcName),
+		pFunc,
+		uintptr(argCount))
+}
+
+func XWebJsBindGetter(funcName string, pFunc uintptr) {
+	xWeb_JsBindGetter.Call(
+		xc.StringToUintPtr(funcName),
+		pFunc)
+}
+
+func XWebJsBindSetter(funcName string, pFunc uintptr) {
+	xWeb_JsBindSetter.Call(
+		xc.StringToUintPtr(funcName),
+		pFunc)
+}
+
+func XWebJsToInt(es uintptr, value int64) int {
+	ret, _, _ := xWeb_JsToInt.Call(
+		es,
+		uintptr(value))
+
+	return int(ret)
+}
+
+func XWebjsToFloat(es uintptr, value int64) float32 {
+	ret, _, _ := xWeb_jsToFloat.Call(
+		es,
+		uintptr(value))
+
+	return float32(ret)
+}
+
+func XWebjsToDouble(es uintptr, value int64) float64 {
+	ret, _, _ := xWeb_jsToDouble.Call(
+		es,
+		uintptr(value))
+
+	return float64(ret)
+}
+
+func XWebjsToBoolean(es uintptr, value int64) bool {
+	ret, _, _ := xWeb_jsToBoolean.Call(
+		es,
+		uintptr(value))
+
+	return ret == xc.TRUE
+}
+
+func XWebJsToTempStringW(es uintptr, value int64) string {
+	ret, _, _ := xWeb_JsToTempStringW.Call(
+		es,
+		uintptr(value))
+
+	return xc.UINTptrToString(ret)
+}
+
+func XWebJsToTempStringA(es uintptr, value int64) string {
+	ret, _, _ := xWeb_JsToTempStringA.Call(
+		es,
+		uintptr(value))
+
+	return xc.UINTptrToString(ret)
+}
+
+func XWebJsArg(es uintptr, argIdx int) int64 {
+	ret, _, _ := xWeb_JsArg.Call(
+		es,
+		uintptr(argIdx))
+
+	return int64(ret)
+}
+
+func XWebJsInt(n int) int64 {
+	ret, _, _ := xWeb_JsInt.Call(uintptr(n))
+
+	return int64(ret)
+}
+
+func XWebJsDouble(d float32) int64 {
+	ret, _, _ := xWeb_JsDouble.Call(uintptr(d))
+
+	return int64(ret)
+}
+
+func XWebJsBoolean(b bool) int64 {
+	ret, _, _ := xWeb_JsBoolean.Call(uintptr(xc.BoolToBOOL(b)))
+
+	return int64(ret)
+}
+
+func XWebJsUndefined() int64 {
+	ret, _, _ := xWeb_JsUndefined.Call()
+
+	return int64(ret)
+}
+
+func XWebJsNull() int64 {
+	ret, _, _ := xWeb_JsNull.Call()
+
+	return int64(ret)
+}
+
+func XWebJsTrue() int64 {
+	ret, _, _ := xWeb_JsTrue.Call()
+
+	return int64(ret)
+}
+
+func XWebJsFalse() int64 {
+	ret, _, _ := xWeb_JsFalse.Call()
+
+	return int64(ret)
+}

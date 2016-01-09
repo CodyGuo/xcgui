@@ -1,0 +1,46 @@
+
+v1.9.2
+*************升级前必读内容****************************
+升级前必读内容,避免带来不必须的麻烦.
+
+升级前做好文件备份,避免遇到错误时不可恢复.
+
+*************v1.9.1 之前版本升级需要转换***************
+UI设计器支持将旧版布局文件转换为新版格式;转换前请做好备份,防止转换不成功或不彻底.
+转换方法: 打开布局文件,选择 [开始]按钮 -> [强制保存文件].
+
+************v1.9.2*********************************************
+增加组合状态:
+list_drawItemBk_flags_group_leave 
+listView_state_flag_group_leave
+listView_state_flag_group_stay
+xxx_state_flag_select_no  背景状态增加项未选中状态;
+menu_state_flags_ 改名为 menu_item_flags_
+XList_SelectAll()改名为 XList_SetSelectAll()
+XList_SelectAll()改名为 XList_SetSelectAll()
+
+UI设计器 -> 功能提示
+UI设计器 -> 鼠标右键按下,可以取消当前从工具箱中选中的对象
+UI设计器 -> 设计视图,放置对象时不自动取消工具箱选中的对象,以便连续放置多个对象.
+UI设计器 -> 创建项目默认保存到MyProject文件夹
+
+*****************增加函数*********************************
+XC_API void WINAPI XListView_SetGroupUserData(HELE hEle,int iGroup, int nData);
+XC_API void WINAPI XListView_SetItemUserData(HELE hEle,int iGroup, int iItem, int nData);
+XC_API int WINAPI XListView_GetGroupUserData(HELE hEle,int iGroup);
+XC_API int WINAPI XListView_GetItemUserData(HELE hEle,int iGroup, int iItem);
+
+XC_API BOOL WINAPI XList_CancelSelectItem(HELE hEle, int iItem);
+XC_API void WINAPI XList_CancelSelectAll(HELE hEle);
+XC_API void WINAPI XListView_RefreshData(HELE hEle);
+XC_API void WINAPI XListBox_RefreshData(HELE hEle);
+XC_API void WINAPI XTree_RefreshData(HELE hEle);
+XC_API HELE WINAPI XWnd_GetStayHELE(HWINDOW hWindow);  //获取当前鼠标所停留元素
+XC_API BOOL WINAPI XBkInfoM_DrawEx(HBKINFOM hBkInfoM, int nState, HDRAW hDraw, RECT* pRect, int nStateFilter);  //绘制背景内容
+XC_API void WINAPI XC_SetDefaultFont(HFONTX hFontX); //设置默认字体
+
+***********************************************************
+
+
+
+

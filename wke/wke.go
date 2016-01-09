@@ -17,6 +17,7 @@ var (
 	xWeb_PostUrl            *syscall.Proc
 	xWeb_LoadHtmlFromText   *syscall.Proc
 	xWeb_RunJs              *syscall.Proc
+	xWeb_GlobalExec         *syscall.Proc
 	xWeb_Zoom               *syscall.Proc
 	xWeb_GetZoom            *syscall.Proc
 	xWeb_ZoomReset          *syscall.Proc
@@ -63,6 +64,11 @@ var (
 	xWeb_JsNull             *syscall.Proc
 	xWeb_JsTrue             *syscall.Proc
 	xWeb_JsFalse            *syscall.Proc
+	xWeb_JsGlobalObject     *syscall.Proc
+	xWeb_JsGet              *syscall.Proc
+	xWeb_JsSet              *syscall.Proc
+	xWeb_JsGetAt            *syscall.Proc
+	xWeb_JsSetAt            *syscall.Proc
 )
 
 func init() {
@@ -74,6 +80,7 @@ func init() {
 	xWeb_PostUrl = wkeWebDLL.MustFindProc("XWeb_PostUrl")
 	xWeb_LoadHtmlFromText = wkeWebDLL.MustFindProc("XWeb_LoadHtmlFromText")
 	xWeb_RunJs = wkeWebDLL.MustFindProc("XWeb_RunJs")
+	xWeb_GlobalExec = wkeWebDLL.MustFindProc("XWeb_GlobalExec")
 	xWeb_Zoom = wkeWebDLL.MustFindProc("XWeb_Zoom")
 	xWeb_GetZoom = wkeWebDLL.MustFindProc("XWeb_GetZoom")
 	xWeb_ZoomReset = wkeWebDLL.MustFindProc("XWeb_ZoomReset")
@@ -120,6 +127,11 @@ func init() {
 	xWeb_JsNull = wkeWebDLL.MustFindProc("XWeb_JsNull")
 	xWeb_JsTrue = wkeWebDLL.MustFindProc("XWeb_JsTrue")
 	xWeb_JsFalse = wkeWebDLL.MustFindProc("XWeb_JsFalse")
+	xWeb_JsGlobalObject = wkeWebDLL.MustFindProc("XWeb_JsGlobalObject")
+	xWeb_JsGet = wkeWebDLL.MustFindProc("XWeb_JsGet")
+	xWeb_JsSet = wkeWebDLL.MustFindProc("XWeb_JsSet")
+	xWeb_JsGetAt = wkeWebDLL.MustFindProc("XWeb_JsGetAt")
+	xWeb_JsSetAt = wkeWebDLL.MustFindProc("XWeb_JsSetAt")
 }
 
 func XWebCreate(x, y, cx, cy int, hParent xc.HWND) xc.HELE {
@@ -175,6 +187,12 @@ func XWebRunJs(hWeb xc.HELE, jsText string) {
 	xWeb_RunJs.Call(
 		uintptr(hWeb),
 		xc.StringToUintPtr(jsText))
+}
+
+func XWebGlobalExec(hWeb xc.HELE) uintptr {
+	ret, _, _ := xWeb_GlobalExec.Call(uintptr(hWeb))
+
+	return ret
 }
 
 func XWebZoom(hWeb xc.HELE, f float32) {
@@ -455,3 +473,45 @@ func XWebJsFalse() int64 {
 
 	return int64(ret)
 }
+
+func XWebJsGlobalObject(es uintptr) int64 {
+	ret, _, _ := xWeb_JsGlobalObject.Call(es)
+
+	return int64(ret)
+}
+
+func XWebJsGet(es uintptr, object int64, prop string) int64 {
+	ret, _, _ := xWeb_JsGet.Call(
+		es,
+		uintptr(object),
+		xc.StringToUintPtr(prop))
+
+	return int64(ret)
+}
+
+func XWebJsSet(es uintptr, object int64, prop string, value int64) {
+	xWeb_JsSet.Call(
+		es,
+		uintptr(object),
+		xc.StringToUintPtr(prop),
+		uintptr(value))
+}
+
+func XWebJsGetAt(es uintptr, object int64, index int) int64 {
+	ret, _, _ := xWeb_JsGetAt.Call(
+		es,
+		uintptr(object),
+		uintptr(index))
+
+	return int64(ret)
+}
+
+func XWebJsSetAt(es uintptr, object int64, index int, value int64) {
+	xWeb_JsSetAt.Call(
+		es,
+		uintptr(object),
+		uintptr(index),
+		uintptr(value))
+}
+
+//

@@ -21,7 +21,8 @@ XC_API void WINAPI XWeb_SetProxy(void* hWeb,int proxyType = WKE_PROXY_SOCKS5,con
 XC_API void WINAPI XWeb_LoadUrl(void* hWeb,const wchar_t* url);	
 XC_API void WINAPI XWeb_PostUrl(void* hWeb,const wchar_t* url, const char* postData,int postLen);	
 XC_API void WINAPI XWeb_LoadHtmlFromText(void* hWeb,const wchar_t* htmlData);	
-XC_API void WINAPI XWeb_RunJs(void* hWeb,const wchar_t* jsText);	
+XC_API __int64 WINAPI XWeb_RunJs(void* hWeb,const wchar_t* jsText);	
+XC_API void* WINAPI XWeb_GlobalExec(void* hWeb);	
 XC_API void WINAPI XWeb_Zoom(void* hWeb,float f);	
 XC_API float WINAPI XWeb_GetZoom(void* hWeb);	
 XC_API void WINAPI XWeb_ZoomReset(void* hWeb);	
@@ -64,10 +65,16 @@ XC_API __int64 WINAPI XWeb_JsArg(void* es,int argIdx);
 XC_API __int64 WINAPI XWeb_JsInt(int n);	
 XC_API __int64 WINAPI XWeb_JsDouble(double d);	
 XC_API __int64 WINAPI XWeb_JsBoolean(bool b);	
-XC_API __int64 WINAPI XWeb_JsUndefined();	
+XC_API __int64 WINAPI XWeb_JsUndefined();
 XC_API __int64 WINAPI XWeb_JsNull();
 XC_API __int64 WINAPI XWeb_JsTrue();
 XC_API __int64 WINAPI XWeb_JsFalse();	
+XC_API __int64 WINAPI XWeb_JsGlobalObject(void* es);	
+XC_API __int64 WINAPI XWeb_JsGet(void* es,__int64 object,const char* prop);	
+XC_API void WINAPI XWeb_JsSet(void* es,__int64 object,const char* prop,__int64 v);	
+XC_API __int64 WINAPI XWeb_JsGetAt(void* es,__int64 object,int index);	
+XC_API void WINAPI XWeb_JsSetAt(void* es,__int64 object,int index,__int64 v);	
+
 
 
 

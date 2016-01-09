@@ -13,3 +13,6 @@ XCGUI.dll
 !doc/*.txt
 !doc/update/*.txt
 *.chw
+
+# wke
+*localStorage/

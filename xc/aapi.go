@@ -419,19 +419,6 @@ func XExitXCGUI() {
 	xcDLL.Release()
 }
 
-func StringToUintPtr(str string) uintptr {
-	// fmt.Println("正在转换..", str)
-	return uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(str)))
-}
-
-func StringToUTF16Ptr(str string) *uint16 {
-	return syscall.StringToUTF16Ptr(str)
-}
-
-func StringBytePtr(str string) *byte {
-	return syscall.StringBytePtr(str)
-}
-
 func FullPath(path string) (p string) {
 	p, _ = filepath.Abs(path)
 	return
@@ -446,6 +433,21 @@ func FileExist(path string) bool {
 	}
 }
 
+func CallBack(pFun interface{}) uintptr {
+	return syscall.NewCallback(pFun)
+}
+
+func CallBackGo(pFunc func()) uintptr {
+	var pfunc = func() int {
+		pFunc()
+
+		return 0
+	}
+
+	return syscall.NewCallback(pfunc)
+}
+
+// BOOL值转换
 func BoolToBOOL(value bool) BOOL {
 	if value {
 		return 1
@@ -454,17 +456,7 @@ func BoolToBOOL(value bool) BOOL {
 	return 0
 }
 
-func UTF16PtrToString(s *uint16) string {
-	if s == nil {
-		return ""
-	}
-	return syscall.UTF16ToString((*[1 << 29]uint16)(unsafe.Pointer(s))[0:])
-}
-
-func CallBack(pFun interface{}) uintptr {
-	return syscall.NewCallback(pFun)
-}
-
+// void * (uintptr)转换为字符串
 func UINTptrToString(uintPtr uintptr) string {
 	if uintPtr == 0 {
 		return ""
@@ -481,7 +473,7 @@ func UTF8PtrToSting(uintPtr uintptr) string {
 	tmpByte := (*[1 << 16]byte)(unsafe.Pointer(uintPtr))[0:]
 	for i, v := range tmpByte {
 		if v == 0 {
-			tmpByte = tmpByte[0:i]
+			tmpByte = tmpByte[0 : i-1]
 			break
 		}
 	}
@@ -497,4 +489,26 @@ func UTF8Decode(b []byte) (str string) {
 	}
 
 	return
+}
+
+func UTF16PtrToString(s *uint16) string {
+	if s == nil {
+		return ""
+	}
+
+	return syscall.UTF16ToString((*[1 << 29]uint16)(unsafe.Pointer(s))[0:])
+}
+
+// 字符串转换
+func StringToUintPtr(str string) uintptr {
+	// fmt.Println("正在转换..", str)
+	return uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(str)))
+}
+
+func StringToUTF16Ptr(str string) *uint16 {
+	return syscall.StringToUTF16Ptr(str)
+}
+
+func StringToBytePtr(str string) *byte {
+	return syscall.StringBytePtr(str)
 }

@@ -220,15 +220,13 @@ func (b *Button) ClearBkInfo(nState xc.Button_state_) {
 // }
 
 func (b *Button) OnBtnClick(pFunc func()) {
-	var (
-		OnBtnClick = func(pbHandled *bool) int {
-			// pbHandled = true 取消, false 继续
-			// *pbHandled = true
-			pFunc()
+	var OnBtnClick = func(pbHandled *bool) int {
+		// pbHandled = true 取消, false 继续
+		// *pbHandled = true
+		pFunc()
 
-			return 0
-		}
-	)
+		return 0
+	}
 
 	xc.XEleRegEventC(
 		b.hEle,

@@ -36,7 +36,13 @@ func main() {
 
 	// 后退
 	hGoBack = xcgui.XCGetObjectByID(130)
-	xcgui.XEleRegEventC1(xcgui.HELE(hGoBack), xcgui.XE_BNCLICK, xcgui.CallBack(onBtnClick))
+	// xcgui.XEleRegEventC1(xcgui.HELE(hGoBack), xcgui.XE_BNCLICK, xcgui.CallBack(onBtnClick))
+	xcgui.XEleRegEventC1(xcgui.HELE(hGoBack),
+		xcgui.XE_BNCLICK,
+		xcgui.CallBackGo(func() {
+			fmt.Println("后退中...")
+			web.XWebGoBack(hWeb)
+		}))
 
 	// url地址栏
 	hEditUrl = xcgui.XCGetObjectByID(131)

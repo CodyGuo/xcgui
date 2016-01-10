@@ -256,7 +256,7 @@ func XWebGetStringW(stringW uintptr) string {
 http://baike.baidu.com/link?url=gFiwJdUF0mAgY-pLBvflyvwAdr5mXESqBBj7S_pTg2UDaB_w6Ees6O8fQJ3pUQwktt4ADu80z5eW9G4t5eHV4_
 */
 func XWebSetStringA(stringA uintptr, str string, lenA int) {
-	strA := xc.StringBytePtr(str)
+	strA := xc.StringToBytePtr(str)
 	xWeb_SetStringA.Call(
 		stringA,
 		uintptr(unsafe.Pointer(strA)),
@@ -550,7 +550,7 @@ func XWebJsFalse() int64 {
 }
 
 func XWebJsStringA(es uintptr, str string) int64 {
-	strA := xc.StringBytePtr(str)
+	strA := xc.StringToBytePtr(str)
 	ret, _, _ := xWeb_JsStringA.Call(
 		es,
 		uintptr(unsafe.Pointer(strA)))

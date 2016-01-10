@@ -74,6 +74,8 @@ var (
 	xWeb_JsNull             *syscall.Proc
 	xWeb_JsTrue             *syscall.Proc
 	xWeb_JsFalse            *syscall.Proc
+	xWeb_JsStringA          *syscall.Proc
+	xWeb_jsStringW          *syscall.Proc
 	xWeb_JsGlobalObject     *syscall.Proc
 	xWeb_JsGet              *syscall.Proc
 	xWeb_JsSet              *syscall.Proc
@@ -146,6 +148,8 @@ func init() {
 	xWeb_JsNull = wkeWebDLL.MustFindProc("XWeb_JsNull")
 	xWeb_JsTrue = wkeWebDLL.MustFindProc("XWeb_JsTrue")
 	xWeb_JsFalse = wkeWebDLL.MustFindProc("XWeb_JsFalse")
+	xWeb_JsStringA = wkeWebDLL.MustFindProc("XWeb_JsStringA")
+	xWeb_jsStringW = wkeWebDLL.MustFindProc("XWeb_jsStringW")
 	xWeb_JsGlobalObject = wkeWebDLL.MustFindProc("XWeb_JsGlobalObject")
 	xWeb_JsGet = wkeWebDLL.MustFindProc("XWeb_JsGet")
 	xWeb_JsSet = wkeWebDLL.MustFindProc("XWeb_JsSet")
@@ -541,6 +545,23 @@ func XWebJsTrue() int64 {
 
 func XWebJsFalse() int64 {
 	ret, _, _ := xWeb_JsFalse.Call()
+
+	return int64(ret)
+}
+
+func XWebJsStringA(es uintptr, str string) int64 {
+	strA := xc.StringBytePtr(str)
+	ret, _, _ := xWeb_JsStringA.Call(
+		es,
+		uintptr(unsafe.Pointer(strA)))
+
+	return int64(ret)
+}
+
+func XWebjsStringW(es uintptr, str string) int64 {
+	ret, _, _ := xWeb_jsStringW.Call(
+		es,
+		xc.StringToUintPtr(str))
 
 	return int64(ret)
 }

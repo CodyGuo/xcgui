@@ -73,8 +73,23 @@ func main() {
 	if hMenu != 0 {
 		xcgui.XMenuAddItem(hMenu, 1330, "主页", 0, 0)
 		xcgui.XMenuAddItem(hMenu, 1331, "重新载入", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1332, "停止载入", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1333, "代理加载谷歌", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1334, "放大", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1335, "缩小", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1336, "恢复缩放", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1337, "获取Cookie", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1338, "js调用vs函数", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1340, "设置网页可编辑", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1341, "设置网页不可编辑", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1351, "执行js脚本", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1352, "取浏览器状态", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1353, "js模拟填写", 0, 0)
+		xcgui.XMenuAddItem(hMenu, 1360, "关于", 0, 0)
 
 	}
+	// 菜单选择
+	xcgui.XEleRegEventC(xcgui.HELE(hMenuBar), xcgui.XE_MENU_SELECT, xcgui.CallBack(onWndMenuSelect))
 
 	// 默认打开百度
 	web.XWebLoadUrl(hWeb, "http://www.baidu.com")
@@ -148,4 +163,60 @@ func onLButtonDown(nFlags uint32, pPt *xcgui.POINT, pbHandled *bool) int {
 	win.SetFocus(win.HWND(xcgui.XWndGetHWND(hWindow)))
 
 	return 0
+}
+
+func onWndMenuSelect(nID int, pbHandled *bool) int {
+	switch nID {
+	case 1330:
+		web.XWebLoadUrl(hWeb, "http://www.hupu.cn")
+	case 1331:
+		web.XWebReload(hWeb)
+	case 1332:
+		web.XWebStopLoading(hWeb)
+	case 1333:
+		// web.XWebSetProxy(hWeb, proxyType, hostName, port, username, pwd)
+		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "代理", "请在源码中设置代理服务器.", xcgui.MB_ICONWARNING)
+	case 1334:
+		zom := web.XWebGetZoom(hWeb)
+		zom += 0.3
+		web.XWebZoom(hWeb, zom)
+	case 1335:
+		zom := web.XWebGetZoom(hWeb)
+		zom -= 0.3
+		web.XWebZoom(hWeb, zom)
+	case 1336:
+		web.XWebZoomReset(hWeb)
+	case 1337:
+		pCookie := web.XWebGetCookie(hWeb)
+		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow),
+			"Cookie", pCookie, xcgui.MB_ICONINFORMATION)
+	case 1338:
+		web.XWebLoadUrl(hWeb, "file://./jsCallFunction.html")
+	case 1340:
+		web.XWebSetEditable(hWeb, true)
+	case 1341:
+		web.XWebSetEditable(hWeb, false)
+	case 1351:
+		web.XWebRunJs(hWeb, "javascript: alert('JS: \n    炫彩界面库-golang.')")
+	case 1352:
+		if web.XWebIsDocumentReady(hWeb) {
+			SetStat("网页加载完毕!")
+		} else if web.XWebIsLoadingCompleted(hWeb) {
+			SetStat("网页加载完成!")
+		} else if web.XWebIsLoadingFailed(hWeb) {
+			SetStat("网页加载失败!")
+		}
+	case 1353:
+		fmt.Println("js模拟填写,还未完成.")
+	case 1360:
+		version := web.XWebGetVersionString()
+		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "版本", version, xcgui.MB_ICONINFORMATION)
+	}
+
+	return 0
+}
+
+func SetStat(str string) {
+	xcgui.XShapeTextSetText(hState, str)
+	xcgui.XWndRedrawWnd(hWindow)
 }

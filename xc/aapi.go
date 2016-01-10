@@ -473,7 +473,7 @@ func UTF8PtrToSting(uintPtr uintptr) string {
 	tmpByte := (*[1 << 16]byte)(unsafe.Pointer(uintPtr))[0:]
 	for i, v := range tmpByte {
 		if v == 0 {
-			tmpByte = tmpByte[0 : i-1]
+			tmpByte = tmpByte[0:i]
 			break
 		}
 	}

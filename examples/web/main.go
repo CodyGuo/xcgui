@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	hWeb xcgui.HELE
+	hWeb xcgui.HWINDOW
 )
 
 func main() {
@@ -20,6 +20,14 @@ func main() {
 
 	hWeb = web.XWebCreate(20, 100, 750, 550, xcgui.XWndGetHWND(hWindow))
 	web.XWebSetCookieEnabled(hWeb, true)
+
+	version := web.XWebGetVersionString()
+	fmt.Println(version)
+
+	web.XWebSetUserAgentA(hWeb, "Mozilla/5.0 (Windows NT 12.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Codyguo/45.0.2454.101 Safari/537.36")
+
+	version2 := web.XWebGetVersion()
+	fmt.Println(version2)
 
 	web.XWebLoadUrl(hWeb, "http://www.xcgui.com/bbs/forum.php")
 
@@ -35,7 +43,7 @@ func RunJS() int {
 	fmt.Println(str, ok)
 
 	web.XWebGoBack(hWeb)
-	js := `alert('golang wke Run JS.` + str + `');`
+	js := `alert(navigator.userAgent +'\n golang wke Run JS. \n` + str + `');`
 	web.XWebRunJs(hWeb, "javascript: "+js)
 
 	return 0

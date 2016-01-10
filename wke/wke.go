@@ -2,6 +2,7 @@ package wke
 
 import (
 	"syscall"
+	"unsafe"
 )
 
 import (
@@ -31,6 +32,15 @@ var (
 	xWeb_IsCookieEnabled    *syscall.Proc
 	xWeb_GoBack             *syscall.Proc
 	xWeb_GoForward          *syscall.Proc
+	xWeb_GetVersion         *syscall.Proc
+	xWeb_GetVersionString   *syscall.Proc
+	xWeb_SetMediaVolume     *syscall.Proc
+	xWeb_GetMediaVolume     *syscall.Proc
+	xWeb_SetUserAgentA      *syscall.Proc
+	xWeb_SetUserAgentW      *syscall.Proc
+	xWeb_Sleep              *syscall.Proc
+	xWeb_Wake               *syscall.Proc
+	xWeb_IsAwake            *syscall.Proc
 	xWeb_EditorSelectAll    *syscall.Proc
 	xWeb_EditorCopy         *syscall.Proc
 	xWeb_EditorCut          *syscall.Proc
@@ -94,6 +104,15 @@ func init() {
 	xWeb_IsCookieEnabled = wkeWebDLL.MustFindProc("XWeb_IsCookieEnabled")
 	xWeb_GoBack = wkeWebDLL.MustFindProc("XWeb_GoBack")
 	xWeb_GoForward = wkeWebDLL.MustFindProc("XWeb_GoForward")
+	xWeb_GetVersion = wkeWebDLL.MustFindProc("XWeb_GetVersion")
+	xWeb_GetVersionString = wkeWebDLL.MustFindProc("XWeb_GetVersionString")
+	xWeb_SetMediaVolume = wkeWebDLL.MustFindProc("XWeb_SetMediaVolume")
+	xWeb_GetMediaVolume = wkeWebDLL.MustFindProc("XWeb_GetMediaVolume")
+	xWeb_SetUserAgentA = wkeWebDLL.MustFindProc("XWeb_SetUserAgentA")
+	xWeb_SetUserAgentW = wkeWebDLL.MustFindProc("XWeb_SetUserAgentW")
+	xWeb_Sleep = wkeWebDLL.MustFindProc("XWeb_Sleep")
+	xWeb_Wake = wkeWebDLL.MustFindProc("XWeb_Wake")
+	xWeb_IsAwake = wkeWebDLL.MustFindProc("XWeb_IsAwake")
 	xWeb_EditorSelectAll = wkeWebDLL.MustFindProc("XWeb_EditorSelectAll")
 	xWeb_EditorCopy = wkeWebDLL.MustFindProc("XWeb_EditorCopy")
 	xWeb_EditorCut = wkeWebDLL.MustFindProc("XWeb_EditorCut")
@@ -134,7 +153,7 @@ func init() {
 	xWeb_JsSetAt = wkeWebDLL.MustFindProc("XWeb_JsSetAt")
 }
 
-func XWebCreate(x, y, cx, cy int, hParent xc.HWND) xc.HELE {
+func XWebCreate(x, y, cx, cy int, hParent xc.HWND) xc.HWINDOW {
 	ret, _, _ := xWeb_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -142,10 +161,10 @@ func XWebCreate(x, y, cx, cy int, hParent xc.HWND) xc.HELE {
 		uintptr(cy),
 		uintptr(hParent))
 
-	return xc.HELE(ret)
+	return xc.HWINDOW(ret)
 }
 
-func XWebMoveWindow(hWeb xc.HELE, x, y, cx, cy int) {
+func XWebMoveWindow(hWeb xc.HWINDOW, x, y, cx, cy int) {
 	xWeb_MoveWindow.Call(
 		uintptr(hWeb),
 		uintptr(x),
@@ -154,7 +173,7 @@ func XWebMoveWindow(hWeb xc.HELE, x, y, cx, cy int) {
 		uintptr(cy))
 }
 
-func XWebSetProxy(hWeb xc.HELE, proxyType WkeProxyType, hostName string, port uint32, username, pwd string) {
+func XWebSetProxy(hWeb xc.HWINDOW, proxyType WkeProxyType, hostName string, port uint32, username, pwd string) {
 	xWeb_SetProxy.Call(
 		uintptr(hWeb),
 		uintptr(proxyType),
@@ -164,54 +183,54 @@ func XWebSetProxy(hWeb xc.HELE, proxyType WkeProxyType, hostName string, port ui
 		xc.StringToUintPtr(pwd))
 }
 
-func XWebLoadUrl(hWeb xc.HELE, url string) {
+func XWebLoadUrl(hWeb xc.HWINDOW, url string) {
 	xWeb_LoadUrl.Call(
 		uintptr(hWeb),
 		xc.StringToUintPtr(url))
 }
 
-func XWebPostUrl(hWeb xc.HELE, url, postData string, postLen int) {
+func XWebPostUrl(hWeb xc.HWINDOW, url, postData string, postLen int) {
 	xWeb_PostUrl.Call(
 		uintptr(hWeb),
 		xc.StringToUintPtr(url),
 		uintptr(postLen))
 }
 
-func XWebLoadHtmlFromText(hWeb xc.HELE, htmlData string) {
+func XWebLoadHtmlFromText(hWeb xc.HWINDOW, htmlData string) {
 	xWeb_LoadHtmlFromText.Call(
 		uintptr(hWeb),
 		xc.StringToUintPtr(htmlData))
 }
 
-func XWebRunJs(hWeb xc.HELE, jsText string) {
+func XWebRunJs(hWeb xc.HWINDOW, jsText string) {
 	xWeb_RunJs.Call(
 		uintptr(hWeb),
 		xc.StringToUintPtr(jsText))
 }
 
-func XWebGlobalExec(hWeb xc.HELE) uintptr {
+func XWebGlobalExec(hWeb xc.HWINDOW) uintptr {
 	ret, _, _ := xWeb_GlobalExec.Call(uintptr(hWeb))
 
 	return ret
 }
 
-func XWebZoom(hWeb xc.HELE, f float32) {
+func XWebZoom(hWeb xc.HWINDOW, f float32) {
 	xWeb_Zoom.Call(
 		uintptr(hWeb),
 		uintptr(f))
 }
 
-func XWebGetZoom(hWeb xc.HELE) float32 {
+func XWebGetZoom(hWeb xc.HWINDOW) float32 {
 	ret, _, _ := xWeb_GetZoom.Call(uintptr(hWeb))
 
 	return float32(ret)
 }
 
-func XWebZoomReset(hWeb xc.HELE) {
+func XWebZoomReset(hWeb xc.HWINDOW) {
 	xWeb_ZoomReset.Call(uintptr(hWeb))
 }
 
-func XWebSetEditable(hWeb xc.HELE, editable bool) {
+func XWebSetEditable(hWeb xc.HWINDOW, editable bool) {
 	xWeb_SetEditable.Call(
 		uintptr(hWeb),
 		uintptr(xc.BoolToBOOL(editable)))
@@ -220,7 +239,7 @@ func XWebSetEditable(hWeb xc.HELE, editable bool) {
 func XWebGetStringA(stringA uintptr) string {
 	ret, _, _ := xWeb_GetStringA.Call(stringA)
 
-	return string(ret)
+	return xc.UTF8PtrToSting(ret)
 }
 
 func XWebGetStringW(stringW uintptr) string {
@@ -233,9 +252,10 @@ func XWebGetStringW(stringW uintptr) string {
 http://baike.baidu.com/link?url=gFiwJdUF0mAgY-pLBvflyvwAdr5mXESqBBj7S_pTg2UDaB_w6Ees6O8fQJ3pUQwktt4ADu80z5eW9G4t5eHV4_
 */
 func XWebSetStringA(stringA uintptr, str string, lenA int) {
+	strA := xc.StringBytePtr(str)
 	xWeb_SetStringA.Call(
 		stringA,
-		xc.StringToUintPtr(str),
+		uintptr(unsafe.Pointer(strA)),
 		uintptr(lenA))
 }
 
@@ -246,114 +266,165 @@ func XWebSetStringW(stringW uintptr, str string, lenW int) {
 		uintptr(lenW))
 }
 
-func XWebGetCookie(hWeb xc.HELE) string {
+func XWebGetCookie(hWeb xc.HWINDOW) string {
 	ret, _, _ := xWeb_GetCookie.Call(uintptr(hWeb))
 
 	return xc.UINTptrToString(ret)
 }
 
-func XWebSetCookieEnabled(hWeb xc.HELE, enable bool) {
+func XWebSetCookieEnabled(hWeb xc.HWINDOW, enable bool) {
 	xWeb_SetCookieEnabled.Call(
 		uintptr(hWeb),
 		uintptr(xc.BoolToBOOL(enable)))
 }
 
-func XWebIsCookieEnabled(hWeb xc.HELE) bool {
+func XWebIsCookieEnabled(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_IsCookieEnabled.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebGoBack(hWeb xc.HELE) {
+func XWebGoBack(hWeb xc.HWINDOW) {
 	xWeb_GoBack.Call(uintptr(hWeb))
 }
 
-func XWebGoForward(hWeb xc.HELE) {
+func XWebGoForward(hWeb xc.HWINDOW) {
 	xWeb_GoForward.Call(uintptr(hWeb))
 }
 
-func XWebEditorSelectAll(hWeb xc.HELE) {
+func XWebGetVersion() uint32 {
+	ret, _, _ := xWeb_GetVersion.Call()
+
+	return uint32(ret)
+}
+
+func XWebGetVersionString() string {
+	ret, _, _ := xWeb_GetVersionString.Call()
+
+	return xc.UTF8PtrToSting(ret)
+}
+
+func XWebSetMediaVolume(hWeb xc.HWINDOW, volume float32) {
+	xWeb_SetMediaVolume.Call(
+		uintptr(hWeb),
+		uintptr(volume))
+}
+
+func XWebGetMediaVolume(hWeb xc.HWINDOW) float32 {
+	ret, _, _ := xWeb_GetMediaVolume.Call(uintptr(hWeb))
+
+	return float32(ret)
+}
+
+func XWebSetUserAgentA(hWeb xc.HWINDOW, userAgentStr string) {
+	userAgent := syscall.StringBytePtr(userAgentStr)
+	xWeb_SetUserAgentA.Call(
+		uintptr(hWeb),
+		uintptr(unsafe.Pointer(userAgent)))
+}
+
+func XWebSetUserAgentW(hWeb xc.HWINDOW, userAgent string) {
+	xWeb_SetUserAgentW.Call(
+		uintptr(hWeb),
+		xc.StringToUintPtr(userAgent))
+}
+
+func XWebSleep(hWeb xc.HWINDOW) {
+	xWeb_Sleep.Call(uintptr(hWeb))
+}
+
+func XWebWake(hWeb xc.HWINDOW) {
+	xWeb_Wake.Call(uintptr(hWeb))
+}
+
+func XWebIsAwake(hWeb xc.HWINDOW) bool {
+	ret, _, _ := xWeb_IsAwake.Call(uintptr(hWeb))
+
+	return ret == xc.TRUE
+}
+
+func XWebEditorSelectAll(hWeb xc.HWINDOW) {
 	xWeb_EditorSelectAll.Call(uintptr(hWeb))
 }
 
-func XWebEditorCopy(hWeb xc.HELE) {
+func XWebEditorCopy(hWeb xc.HWINDOW) {
 	xWeb_EditorCopy.Call(uintptr(hWeb))
 }
 
-func XWebEditorCut(hWeb xc.HELE) {
+func XWebEditorCut(hWeb xc.HWINDOW) {
 	xWeb_EditorCut.Call(uintptr(hWeb))
 }
 
-func XWebEditorPaste(hWeb xc.HELE) {
+func XWebEditorPaste(hWeb xc.HWINDOW) {
 	xWeb_EditorPaste.Call(uintptr(hWeb))
 }
 
-func XWebEditorDelete(hWeb xc.HELE) {
+func XWebEditorDelete(hWeb xc.HWINDOW) {
 	xWeb_EditorDelete.Call(uintptr(hWeb))
 }
 
-func XWebCanGoForward(hWeb xc.HELE) bool {
+func XWebCanGoForward(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_CanGoForward.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebCanGoBack(hWeb xc.HELE) bool {
+func XWebCanGoBack(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_CanGoBack.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebOnTitleChanged(hWeb xc.HELE, pFunc, param uintptr) {
+func XWebOnTitleChanged(hWeb xc.HWINDOW, pFunc, param uintptr) {
 	xWeb_OnTitleChanged.Call(
 		uintptr(hWeb),
 		pFunc,
 		param)
 }
 
-func XWebOnURLChanged(hWeb xc.HELE, pFunc, param uintptr) {
+func XWebOnURLChanged(hWeb xc.HWINDOW, pFunc, param uintptr) {
 	xWeb_OnURLChanged.Call(
 		uintptr(hWeb),
 		pFunc,
 		param)
 }
 
-func XWebOnNavigation(hWeb xc.HELE, pFunc, param uintptr) {
+func XWebOnNavigation(hWeb xc.HWINDOW, pFunc, param uintptr) {
 	xWeb_OnNavigation.Call(
 		uintptr(hWeb),
 		pFunc,
 		param)
 }
 
-func XWebIsLoadingSucceeded(hWeb xc.HELE) bool {
+func XWebIsLoadingSucceeded(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_IsLoadingSucceeded.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebIsLoadingFailed(hWeb xc.HELE) bool {
+func XWebIsLoadingFailed(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_IsLoadingFailed.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebIsLoadingCompleted(hWeb xc.HELE) bool {
+func XWebIsLoadingCompleted(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_IsLoadingCompleted.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebIsDocumentReady(hWeb xc.HELE) bool {
+func XWebIsDocumentReady(hWeb xc.HWINDOW) bool {
 	ret, _, _ := xWeb_IsDocumentReady.Call(uintptr(hWeb))
 
 	return ret == xc.TRUE
 }
 
-func XWebStopLoading(hWeb xc.HELE) {
+func XWebStopLoading(hWeb xc.HWINDOW) {
 	xWeb_StopLoading.Call(uintptr(hWeb))
 }
 
-func XWebReload(hWeb xc.HELE) {
+func XWebReload(hWeb xc.HWINDOW) {
 	xWeb_Reload.Call(uintptr(hWeb))
 }
 
@@ -421,7 +492,7 @@ func XWebJsToTempStringA(es uintptr, value int64) string {
 		es,
 		uintptr(value))
 
-	return xc.UINTptrToString(ret)
+	return xc.UTF8PtrToSting(ret)
 }
 
 func XWebJsArg(es uintptr, argIdx int) int64 {

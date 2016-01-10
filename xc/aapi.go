@@ -1,11 +1,11 @@
 package xc
 
 import (
-	// "fmt"
 	"os"
 	"path/filepath"
 	"runtime"
 	"syscall"
+	"unicode/utf8"
 	"unsafe"
 )
 
@@ -471,4 +471,30 @@ func UINTptrToString(uintPtr uintptr) string {
 	}
 
 	return syscall.UTF16ToString((*[1 << 16]uint16)(unsafe.Pointer(uintPtr))[0:])
+}
+
+func UTF8PtrToSting(uintPtr uintptr) string {
+	if uintPtr == 0 {
+		return ""
+	}
+
+	tmpByte := (*[1 << 16]byte)(unsafe.Pointer(uintPtr))[0:]
+	for i, v := range tmpByte {
+		if v == 0 {
+			tmpByte = tmpByte[0:i]
+			break
+		}
+	}
+
+	return UTF8Decode(tmpByte)
+}
+
+func UTF8Decode(b []byte) (str string) {
+	for len(b) > 0 {
+		s, size := utf8.DecodeRune(b)
+		str += string(s)
+		b = b[size:]
+	}
+
+	return
 }

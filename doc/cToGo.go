@@ -16,8 +16,8 @@ Win32 C/C++ golang 字符对照表
 	ULONG			unsigned long		uint32
 	CHAR			char				byte
 	WCHAR			wchar_t				uint16
-	LPSTR			char *				*byte
-	LPCSTR			const char *		*byte, syscall.StringBytePtr()
+	LPSTR			utf8/char *			*byte
+	LPCSTR			const utf8/char *	*byte, syscall.StringBytePtr(), xc.UTF8PtrToSting()
 	LPWSTR			wchar_t *			*uint16
 	LPCWSTR			const wchar_t *		*uint16, syscall.StringToUTF16Ptr()
 	FLOAT			float				float32

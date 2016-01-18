@@ -38,6 +38,7 @@ var (
 	xListBox_EnableMultiSel               *syscall.Proc
 	xListBox_BindAdapter                  *syscall.Proc
 	xListBox_GetAdapter                   *syscall.Proc
+	xListBox_RefreshData                  *syscall.Proc
 )
 
 func init() {
@@ -73,6 +74,7 @@ func init() {
 	xListBox_EnableMultiSel = xcDLL.MustFindProc("XListBox_EnableMultiSel")
 	xListBox_BindAdapter = xcDLL.MustFindProc("XListBox_BindAdapter")
 	xListBox_GetAdapter = xcDLL.MustFindProc("XListBox_GetAdapter")
+	xListBox_RefreshData = xcDLL.MustFindProc("XListBox_RefreshData")
 }
 
 /*
@@ -580,4 +582,14 @@ func XListBox_GetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xListBox_GetAdapter.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
+}
+
+/*
+刷新数据.
+
+参数:
+	hEle 元素句柄.
+*/
+func XListBox_RefreshData(hEle HELE) {
+	xListBox_RefreshData.Call(uintptr(hEle))
 }

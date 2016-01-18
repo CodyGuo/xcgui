@@ -25,6 +25,7 @@ var (
 	xTree_GetParentItem                   *syscall.Proc
 	xTree_BindAdapter                     *syscall.Proc
 	xTree_GetAdapter                      *syscall.Proc
+	xTree_RefreshData                     *syscall.Proc
 	xTree_SetIndentation                  *syscall.Proc
 	xTree_GetIndentation                  *syscall.Proc
 	xTree_SetItemHeightDefault            *syscall.Proc
@@ -61,6 +62,7 @@ func init() {
 	xTree_GetParentItem = xcDLL.MustFindProc("XTree_GetParentItem")
 	xTree_BindAdapter = xcDLL.MustFindProc("XTree_BindAdapter")
 	xTree_GetAdapter = xcDLL.MustFindProc("XTree_GetAdapter")
+	xTree_RefreshData = xcDLL.MustFindProc("XTree_RefreshData")
 	xTree_SetIndentation = xcDLL.MustFindProc("XTree_SetIndentation")
 	xTree_GetIndentation = xcDLL.MustFindProc("XTree_GetIndentation")
 	xTree_SetItemHeightDefault = xcDLL.MustFindProc("XTree_SetItemHeightDefault")
@@ -400,6 +402,16 @@ func XTree_GetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xTree_GetAdapter.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
+}
+
+/*
+刷新数据.
+
+参数:
+	hEle 元素句柄.
+*/
+func XTree_RefreshData(hEle HELE) {
+	xTree_RefreshData.Call(uintptr(hEle))
 }
 
 /*

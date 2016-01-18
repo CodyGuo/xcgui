@@ -84,9 +84,9 @@ func XMenu_Create() HMENUX {
 	nID 项ID.
 	pText 文本内容.*uint16
 	nParentID 父项ID.
-	nFlags 标识参见宏定义 menu_state_flags_.
+	nFlags 标识参见宏定义 menu_item_flags_.
 */
-func XMenu_AddItem(hMenu HMENUX, nID int, pText string, nParentID int, nFlags Menu_state_flags_) {
+func XMenu_AddItem(hMenu HMENUX, nID int, pText string, nParentID int, nFlags Menu_item_flags_) {
 	xMenu_AddItem.Call(
 		uintptr(hMenu),
 		uintptr(nID),
@@ -105,9 +105,9 @@ func XMenu_AddItem(hMenu HMENUX, nID int, pText string, nParentID int, nFlags Me
 	pText 文本内容.*uint16
 	nParentID 父项ID.
 	hIcon 菜单项图标句柄.
-	nFlags 标识参见宏定义 menu_state_flags_.
+	nFlags 标识参见宏定义 menu_item_flags_.
 */
-func XMenu_AddItemIcon(hMenu HMENUX, nID int, pText string, nParentID int, hIcon HIMAGE, nFlags Menu_state_flags_) {
+func XMenu_AddItemIcon(hMenu HMENUX, nID int, pText string, nParentID int, hIcon HIMAGE, nFlags Menu_item_flags_) {
 	xMenu_AddItemIcon.Call(
 		uintptr(hMenu),
 		uintptr(nID),
@@ -125,10 +125,10 @@ func XMenu_AddItemIcon(hMenu HMENUX, nID int, pText string, nParentID int, hIcon
 	hMenu 菜单句柄.
 	nID 项ID.
 	pText 文本内容.*uint16
-	nFlags 标识参见宏定义 menu_state_flags_.
+	nFlags 标识参见宏定义 menu_item_flags_.
 	insertID 插入位置ID.
 */
-func XMenu_InsertItem(hMenu HMENUX, nID int, pText string, nFlags Menu_state_flags_, insertID int) {
+func XMenu_InsertItem(hMenu HMENUX, nID int, pText string, nFlags Menu_item_flags_, insertID int) {
 	xMenu_InsertItem.Call(
 		uintptr(hMenu),
 		uintptr(nID),
@@ -146,10 +146,10 @@ func XMenu_InsertItem(hMenu HMENUX, nID int, pText string, nFlags Menu_state_fla
 	nID 项ID.
 	pText 文本内容. *uint16
 	hIcon 菜单项图标句柄.
-	nFlags 标识参见宏定义 menu_state_flags_.
+	nFlags 标识参见宏定义 menu_item_flags_.
 	insertID 插入位置ID.
 */
-func XMenu_InsertItemIcon(hMenu HMENUX, nID int, pText string, hIcon HIMAGE, nFlags Menu_state_flags_, insertID int) {
+func XMenu_InsertItemIcon(hMenu HMENUX, nID int, pText string, hIcon HIMAGE, nFlags Menu_item_flags_, insertID int) {
 	xMenu_InsertItemIcon.Call(
 		uintptr(hMenu),
 		uintptr(nID),
@@ -341,11 +341,11 @@ func XMenu_SetItemIcon(hMenu HMENUX, nID int, hIcon HIMAGE) bool {
 参数:
 	hMenu 菜单句柄.
 	nID 项ID.
-	uFlags 标识参见宏定义 menu_state_flags_.
+	uFlags 标识参见宏定义 menu_item_flags_.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XMenu_SetItemFlags(hMenu HMENUX, nID int, uFlags Menu_state_flags_) bool {
+func XMenu_SetItemFlags(hMenu HMENUX, nID int, uFlags Menu_item_flags_) bool {
 	ret, _, _ := xMenu_SetItemFlags.Call(
 		uintptr(hMenu),
 		uintptr(nID),

@@ -16,6 +16,7 @@ var (
 	xBkInfoM_GetCount  *syscall.Proc
 	xBkInfoM_Clear     *syscall.Proc
 	xBkInfoM_Draw      *syscall.Proc
+	xBkInfoM_DrawEx    *syscall.Proc
 )
 
 func init() {
@@ -155,6 +156,30 @@ func XBkInfoM_Draw(hBkInfoM HBKINFOM, hDraw HDRAW, pRect *RECT) bool {
 		uintptr(hBkInfoM),
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)))
+
+	return ret == TRUE
+}
+
+/*
+绘制背景内容, 设置条件.
+
+参数:
+	hBkInfoM 背景内容管理器句柄.
+	nState 组合状态.
+	hDraw 图形绘制句柄.
+	pRect 区域坐标.
+	nStateFilter 当状态组合大于或等于该值时有效.
+返回:
+	成功返回TRUE否则返回FALSE. 注解:组合状态大于或等于nStateFilter时才有效 ,
+	例如用来绘制列表项,过滤掉元素的背景绘制,避免列表项与元素背景叠加.
+*/
+func XBkInfoM_DrawEx(hBkInfoM HBKINFOM, nState int, hDraw HDRAW, pRect *RECT, nStateFilter int) bool {
+	ret, _, _ := xBkInfoM_DrawEx.Call(
+		uintptr(hBkInfoM),
+		uintptr(nState),
+		uintptr(hDraw),
+		uintptr(unsafe.Pointer(pRect)),
+		uintptr(nStateFilter))
 
 	return ret == TRUE
 }

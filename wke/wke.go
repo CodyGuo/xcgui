@@ -1,6 +1,7 @@
 package wke
 
 import (
+	"math"
 	"syscall"
 	"unsafe"
 )
@@ -219,9 +220,10 @@ func XWeb_GlobalExec(hWeb xc.HWINDOW) uintptr {
 }
 
 func XWeb_Zoom(hWeb xc.HWINDOW, f float32) {
+	zoom := math.Float32bits(f)
 	xWeb_Zoom.Call(
 		uintptr(hWeb),
-		uintptr(f))
+		uintptr(zoom))
 }
 
 func XWeb_GetZoom(hWeb xc.HWINDOW) float32 {

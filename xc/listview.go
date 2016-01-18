@@ -33,11 +33,16 @@ var (
 	xListView_GetItemSize                  *syscall.Proc
 	xListView_SetGroupHeight               *syscall.Proc
 	xListView_GetGroupHeight               *syscall.Proc
+	xListView_SetGroupUserData             *syscall.Proc
+	xListView_SetItemUserData              *syscall.Proc
+	xListView_GetGroupUserData             *syscall.Proc
+	xListView_GetItemUserData              *syscall.Proc
 	xListView_AddItemBkBorder              *syscall.Proc
 	xListView_AddItemBkFill                *syscall.Proc
 	xListView_AddItemBkImage               *syscall.Proc
 	xListView_GetItemBkInfoCount           *syscall.Proc
 	xListView_ClearItemBkInfo              *syscall.Proc
+	xListView_RefreshData                  *syscall.Proc
 	// xListView_GetItemBkInfoManager         *syscall.Proc
 	xListView_ExpandGroup *syscall.Proc
 )
@@ -70,11 +75,16 @@ func init() {
 	xListView_GetItemSize = xcDLL.MustFindProc("XListView_GetItemSize")
 	xListView_SetGroupHeight = xcDLL.MustFindProc("XListView_SetGroupHeight")
 	xListView_GetGroupHeight = xcDLL.MustFindProc("XListView_GetGroupHeight")
+	xListView_SetGroupUserData = xcDLL.MustFindProc("XListView_SetGroupUserData")
+	xListView_SetItemUserData = xcDLL.MustFindProc("XListView_SetItemUserData")
+	xListView_GetGroupUserData = xcDLL.MustFindProc("XListView_GetGroupUserData")
+	xListView_GetItemUserData = xcDLL.MustFindProc("XListView_GetItemUserData")
 	xListView_AddItemBkBorder = xcDLL.MustFindProc("XListView_AddItemBkBorder")
 	xListView_AddItemBkFill = xcDLL.MustFindProc("XListView_AddItemBkFill")
 	xListView_AddItemBkImage = xcDLL.MustFindProc("XListView_AddItemBkImage")
 	xListView_GetItemBkInfoCount = xcDLL.MustFindProc("XListView_GetItemBkInfoCount")
 	xListView_ClearItemBkInfo = xcDLL.MustFindProc("XListView_ClearItemBkInfo")
+	xListView_RefreshData = xcDLL.MustFindProc("XListView_RefreshData")
 	// xListView_GetItemBkInfoManager = xcDLL.MustFindProc("XListView_GetItemBkInfoManager")
 	xListView_ExpandGroup = xcDLL.MustFindProc("XListView_ExpandGroup")
 }
@@ -495,6 +505,74 @@ func XListView_GetGroupHeight(hEle HELE) int {
 }
 
 /*
+设置组用户数据.
+
+参数:
+	hEle 元素句柄.
+	iGroup 组索引.
+	nData 数据.
+*/
+func XListView_SetGroupUserData(hEle HELE, iGroup, nData int) {
+	xListView_SetGroupUserData.Call(
+		uintptr(hEle),
+		uintptr(iGroup),
+		uintptr(nData))
+}
+
+/*
+设置项用户数据.
+
+参数:
+	hEle 元素句柄.
+	iGroup 组索引.
+	iItem 项索引.
+	nData 数据.
+*/
+func XListView_SetItemUserData(hEle HELE, iGroup, iItem, nData int) {
+	xListView_SetItemUserData.Call(
+		uintptr(hEle),
+		uintptr(iGroup),
+		uintptr(iItem),
+		uintptr(nData))
+}
+
+/*
+获取组用户数据.
+
+参数:
+	hEle 元素句柄.
+	iGroup 组索引.
+返回:
+	返回用户数据.
+*/
+func XListView_GetGroupUserData(hEle HELE, iGroup int) int {
+	ret, _, _ := xListView_GetGroupUserData.Call(
+		uintptr(hEle),
+		uintptr(iGroup))
+
+	return int(ret)
+}
+
+/*
+获取项用户数据.
+
+参数:
+	hEle 元素句柄.
+	iGroup 组索引.
+	iItem 项索引.
+返回:
+	返回用户数据.
+*/
+func XListView_GetItemUserData(hEle HELE, iGroup, iItem int) int {
+	ret, _, _ := xListView_GetItemUserData.Call(
+		uintptr(hEle),
+		uintptr(iGroup),
+		uintptr(iItem))
+
+	return int(ret)
+}
+
+/*
 添加项背景内容边框.
 
 参数:
@@ -573,6 +651,16 @@ func XListView_ClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xListView_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
+}
+
+/*
+刷新数据.
+
+参数:
+	hEle 元素句柄.
+*/
+func XListView_RefreshData(hEle HELE) {
+	xListView_RefreshData.Call(uintptr(hEle))
 }
 
 /*

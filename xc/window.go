@@ -20,6 +20,7 @@ var (
 	xWnd_RedrawWndRect        *syscall.Proc
 	xWnd_SetFocusEle          *syscall.Proc
 	xWnd_GetFocusEle          *syscall.Proc
+	xWnd_GetStayHELE          *syscall.Proc
 	xWnd_SetCursor            *syscall.Proc
 	xWnd_GetCursor            *syscall.Proc
 	xWnd_GetHWND              *syscall.Proc
@@ -88,6 +89,7 @@ func init() {
 	xWnd_RedrawWndRect = xcDLL.MustFindProc("XWnd_RedrawWndRect")
 	xWnd_SetFocusEle = xcDLL.MustFindProc("XWnd_SetFocusEle")
 	xWnd_GetFocusEle = xcDLL.MustFindProc("XWnd_GetFocusEle")
+	xWnd_GetStayHELE = xcDLL.MustFindProc("XWnd_GetStayHELE")
 	xWnd_SetCursor = xcDLL.MustFindProc("XWnd_SetCursor")
 	xWnd_GetCursor = xcDLL.MustFindProc("XWnd_GetCursor")
 	xWnd_GetHWND = xcDLL.MustFindProc("XWnd_GetHWND")
@@ -355,6 +357,20 @@ func XWnd_SetFocusEle(hWindow HWINDOW, hFocusEle HELE) {
 */
 func XWnd_GetFocusEle(hWindow HWINDOW) HELE {
 	ret, _, _ := xWnd_GetFocusEle.Call(uintptr(hWindow))
+
+	return HELE(ret)
+}
+
+/*
+获取当前鼠标所停留元素.
+
+参数:
+	hWindow 窗口资源句柄.
+返回:
+	返回鼠标停留元素句柄.
+*/
+func XWnd_GetStayHELE(hWindow HWINDOW) HELE {
+	ret, _, _ := xWnd_GetStayHELE.Call(uintptr(hWindow))
 
 	return HELE(ret)
 }

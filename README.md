@@ -1,18 +1,23 @@
 # xcgui
 炫彩界面库，用的免费版dll。<br>
-xc目录下为原API可以直接使用，进度中为原API的记录。<br>
+xc目录下为原API可以直接使用，进度为原API的。<br>
 有钱的朋友可以去官方网站购买正式版，支持正版将有更多功能。<br>
-需要设计器的朋友请加群：2283362 <br>
+设计器可以加速您的开发速度，需要设计器的朋友请加群：2283362 。<br>
 官方网站：[www.xcgui.com](http://www.xcgui.com "xcgui 官方网站")<br>
 
 # DOC
 帮助文档在doc目录下，或者访问：[godoc.org](https://godoc.org/github.com/CodyGuo/xcgui/xc "xcgui api")<br>
-友情提醒：64位编译环境下需要设置 set GOARCH=386 ，可写入bat编译。<br>
-支持与walk混写，参考[托盘](https://github.com/CodyGuo/xcgui/tree/master/examples/notifyicon) [浏览图片](https://github.com/CodyGuo/xcgui/tree/master/examples/imageviewer)例子。
 
-# GOAL
+使用步骤：<br>
+    go get github.com/lxn/walk <br>
+    go get github.com/codyguo/xcgui <br>
 
-  Hopefully support following widgets and methods enough to run general application.
+友情提醒：64位编译环境下需要设置 set GOARCH=386。<br>
+支持与walk混写，参考例子<br>
+    [托盘](https://github.com/CodyGuo/xcgui/tree/master/examples/notifyicon) <br>
+    [浏览图片](https://github.com/CodyGuo/xcgui/tree/master/examples/imageviewer) <br>
+
+# 进度
 
 (炫彩界面库模块)
 
@@ -20,15 +25,15 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
         - FrameWindow                   : 100% (  7/  7) -框架窗口
         - Menu                          : 100% ( 25/ 25) -弹出菜单
         - modalWinow                    : 100% (  5/  5) -模态窗口
-        - window                        : 100% ( 64/ 64) -基础窗口
+        - window                        : 100% ( 65/ 65) -基础窗口
 
     + UI元素模块列表
         - Button                        : 100% ( 31/ 31) -按钮
         - ComboBox                      : 100% ( 18/ 18) -下拉组合框
         - Element                       : 100% ( 95/ 95) -基础元素
-        - ListBox                       : 100% ( 30/ 30) -列表框
-        - list                          : 100% ( 41/ 41) -列表
-        - ListView                      : 100% ( 32/ 32) -列表视图
+        - ListBox                       : 100% ( 31/ 31) -列表框
+        - list                          : 100% ( 44/ 44) -列表
+        - ListView                      : 100% ( 37/ 37) -列表视图
         - MenuBar                       : 100% (  5/  5) -菜单条
         - pane                          : 100% (  9/  9) -Pane元素
         - ProgressBar                   : 100% (  8/  8) -进度条
@@ -39,7 +44,7 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
         - tabBar                        : 100% ( 21/ 21) -TabBar元素
         - TextLink                      : 100% (  6/  6) -静态文本连接按钮
         - ToolBar                       : 100% ( 11/ 11) -工具条
-        - Tree                          : 100% ( 30/ 30) -列表树元素
+        - Tree                          : 100% ( 31/ 31) -列表树元素
           DateTime                      : 100% ( 10/ 10) -日期时间 
           MonthCal                      : 100% (  6/  6) -月历卡片 
 
@@ -60,7 +65,7 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
         - AdapterTree                   : 100% ( 18/ 18) -数据适配器-树元素
 
     + 其他模块
-        - BkInfoManager                 : 100% (  9/  9) -背景内容管理器
+        - BkInfoManager                 : 100% ( 10/ 10) -背景内容管理器
         - Draw                          : 100% ( 59/ 59) -图形绘制
         - FontX                         : 100% (  7/  7) -炫彩字体
         - Image                         : 100% ( 31/ 31) -图片操作
@@ -90,18 +95,18 @@ xc目录下为原API可以直接使用，进度中为原API的记录。<br>
         - tree_item_state_              :  100% (  2/  2) -Tree项状态
         - button_icon_align_            :  100% (  4/  4) -按钮图标对齐方式
         - layout_size_type_             :  100% (  5/  5) -布局大小类型
-        - list_drawItemBk_flags_        :  100% (  4/  4) -List,ListBox,Tree,项背景绘制标志位
+        - list_drawItemBk_flags_        :  100% (  6/  6) -List,ListBox,ListView,Tree,项背景绘制标志位
         - messageBox_flags_             :  100% (  3/  3) -弹出消息框
         - propertyGrid_item_type_       :  100% (  7/  7) -属性网格项类型
         - zorder_                       :  100% (  4/  4) -Z序位置
-        - ?_state_flag_                 :  100% ( 46/ 46) -组合状态
+        - ?_state_flag_                 :  100% ( 49/ 49) -组合状态
         - monthCal_button_type_         :  100% (  5/  5) -月历元素上的按钮类型
         - monthCal_item_i               :  100% (  1/  1) -月历元素项数据
 
     + API                               :  100% ( 22/ 22) -全局API
-    + UI                                :  100% ( 11/ 11) -UI设计器支持
+    + UI                                :  100% ( 12/ 12) -UI设计器支持
     + RegEventC                         :  100% (  7/  7) -注册事件C - 在window和Element中已定义
     + wke                               :  100% ( 70/ 70) -wke浏览器
     -----------------------------------------------------------------------------------------
 
-    Total progress                      :  100% (1478/1478)
+    Total progress                      :  100% (1496/1496)

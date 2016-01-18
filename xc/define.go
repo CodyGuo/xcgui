@@ -389,24 +389,24 @@ const (
 	XC_ID_LAST  = -3
 )
 
-type Menu_state_flags_ uint32
+type Menu_item_flags_ uint32
 
 /*
 弹出菜单项标识
-	menu_state_flags_normal 正常
-	menu_state_flags_select 选择
-	menu_state_flags_check 勾选
-	menu_state_flags_popup 弹出
-	menu_state_flags_separator 分隔栏 ID号任意,ID号被忽略
-	menu_state_flags_disable 禁用
+	menu_item_flags_normal 正常
+	menu_item_flags_select 选择
+	menu_item_flags_check 勾选
+	menu_item_flags_popup 弹出
+	menu_item_flags_separator 分隔栏 ID号任意,ID号被忽略
+	menu_item_flags_disable 禁用
 */
 const (
-	MENU_STATE_FLAGS_NORMAL    Menu_state_flags_ = 0x00
-	MENU_STATE_FLAGS_SELECT    Menu_state_flags_ = 0x01
-	MENU_STATE_FLAGS_CHECK     Menu_state_flags_ = 0x02
-	MENU_STATE_FLAGS_POPUP     Menu_state_flags_ = 0x04
-	MENU_STATE_FLAGS_SEPARATOR Menu_state_flags_ = 0x08
-	MENU_STATE_FLAGS_DISABLE   Menu_state_flags_ = 0x10
+	MENU_ITEM_FLAGS_NORMAL    Menu_item_flags_ = 0x00
+	MENU_ITEM_FLAGS_SELECT    Menu_item_flags_ = 0x01
+	MENU_ITEM_FLAGS_CHECK     Menu_item_flags_ = 0x02
+	MENU_ITEM_FLAGS_POPUP     Menu_item_flags_ = 0x04
+	MENU_ITEM_FLAGS_SEPARATOR Menu_item_flags_ = 0x08
+	MENU_ITEM_FLAGS_DISABLE   Menu_item_flags_ = 0x10
 )
 
 type Menu_popup_position_ uint32
@@ -646,12 +646,16 @@ List,ListBox,Tree,项背景绘制标志位
 	list_drawItemBk_flags_leave 绘制鼠标离开状态项背景
 	list_drawItemBk_flags_stay 绘制鼠标选择状态项背景
 	list_drawItemBk_flags_select 绘制鼠标停留状态项项背景
+	list_drawItemBk_flags_group_leave 绘制鼠标离开状态组背景,当项为组时
+	list_drawItemBk_flags_group_stay 绘制鼠标停留状态组背景,当项为组时
 */
 const (
-	LIST_DRAWITEMBK_FLAGS_NOTHING List_drawItemBk_flags_ = 0x000
-	LIST_DRAWITEMBK_FLAGS_LEAVE   List_drawItemBk_flags_ = 0x001
-	LIST_DRAWITEMBK_FLAGS_STAY    List_drawItemBk_flags_ = 0x002
-	LIST_DRAWITEMBK_FLAGS_SELECT  List_drawItemBk_flags_ = 0x004
+	LIST_DRAWITEMBK_FLAGS_NOTHING     List_drawItemBk_flags_ = 0x000
+	LIST_DRAWITEMBK_FLAGS_LEAVE       List_drawItemBk_flags_ = 0x001
+	LIST_DRAWITEMBK_FLAGS_STAY        List_drawItemBk_flags_ = 0x002
+	LIST_DRAWITEMBK_FLAGS_SELECT      List_drawItemBk_flags_ = 0x004
+	LIST_DRAWITEMBK_FLAGS_GROUP_LEAVE List_drawItemBk_flags_ = 0x008
+	LIST_DRAWITEMBK_FLAGS_GROUP_STAY  List_drawItemBk_flags_ = 0x010
 )
 
 type MessageBox_flags_ uint32
@@ -837,11 +841,17 @@ type ListView_state_flag_ uint32
 	listView_state_flag_item_leave  项鼠标离开
 	listView_state_flag_item_stay  项鼠标停留
 	listView_state_flag_item_select  项选择
+	listView_state_flag_item_select_no 项未选择
+	listView_state_flag_group_leave 组鼠标离开
+	listView_state_flag_group_stay 组鼠标停留
 */
 const (
-	LISTVIEW_STATE_FLAG_ITEM_LEAVE  ListView_state_flag_ = 0x0080
-	LISTVIEW_STATE_FLAG_ITEM_STAY   ListView_state_flag_ = 0x0100
-	LISTVIEW_STATE_FLAG_ITEM_SELECT ListView_state_flag_ = 0x0200
+	LISTVIEW_STATE_FLAG_ITEM_LEAVE     ListView_state_flag_ = 0x0080
+	LISTVIEW_STATE_FLAG_ITEM_STAY      ListView_state_flag_ = 0x0100
+	LISTVIEW_STATE_FLAG_ITEM_SELECT    ListView_state_flag_ = 0x0200
+	LISTVIEW_STATE_FLAG_ITEM_SELECT_NO ListView_state_flag_ = 0x0400
+	LISTVIEW_STATE_FLAG_GROUP_LEAVE    ListView_state_flag_ = 0x0800
+	LISTVIEW_STATE_FLAG_GROUP_STAY     ListView_state_flag_ = 0x1000
 )
 
 type Tree_state_flag_ uint32

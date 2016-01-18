@@ -1,0 +1,299 @@
+
+========================炫彩界面库======================================================
+
+   炫彩界面库不仅是界面库,是软件界面开发框架,让用户快速开发桌面软件变的简单高效;功能丰富, 
+小巧,高度DIY自定义满足不同软件UI需求,安全(所有界面元素无句柄),支持Windows平台所有编程语言,
+Unicode字符编码,提供千余个API接口,完善的帮助文档及技术支持服务;
+
+   提供快速开发工具-UI设计器,所见即所得,快速开发辅助工具,高度自定义系统(DIY),让软件UI开发变的简单高效.
+
+   采用C/C++语言开发,软件运行效率高,不需要第三方库的支持,不需要MFC,ATL,和WINDOWS标准控件.
+
+   采用DirectUI设计思想,在窗口内无子窗口,窗口相当于容器,界面元素都是逻辑上的区域,没有句柄.
+灵活易扩展,即支持C语言风格开发,同时也支持C++语言开发,用户可以对元素句柄进行包装扩展,支持
+用户自绘,支持各种格式图片.
+
+=========================================================================================
+
+支持:VC++6.0--VC++2015,C/C++,MFC,Delphi,C#,易语言,VB,以及支持动态链接库调用和回调函数的开发工具及语言.
+
+使用时请导入XCGUI.LIB文件,并包含XCGUI.h头文件.
+
+在使用中请参考炫彩界面库帮助文档.
+
+您的付费是炫彩升级的保障! 炫彩升级是您软件稳定与发展的保障!让我们在前进的道路上携手共进.
+
+
+当前版本为炫彩第三代重构版
+
+
+官方网站:www.xcgui.com
+邮箱:154460336@qq.com
+
+
+v1.9.3  2016-01-16
+UI设计器 -> 新增功能模板库
+新增接口:
+XDraw_TextOutEx()
+XComboBox_GetApapter();
+XEle_SetRectEx();
+
+v1.9.2   2016-01-03
+增加组合状态;
+menu_state_flags_改名为menu_item_flags_;
+增加接口:
+XListView_SetGroupUserData();
+XListView_SetItemUserData();
+XListView_GetGroupUserData();
+XListView_GetItemUserData();
+XList_CancelSelectItem();
+XList_CancelSelectAll();
+XListView_RefreshData();
+XListBox_RefreshData();
+XTree_RefreshData();
+XWnd_GetStayHELE();
+XBkInfoM_DrawEx();
+XC_SetDefaultFont();
+XList_SelectAll()改名为 XList_SetSelectAll()
+UI设计器 -> 功能提示
+UI设计器 -> 鼠标右键按下,可以取消当前从工具箱中选中的对象
+UI设计器 -> 设计视图,放置对象时不自动取消工具箱选中的对象,以便连续放置多个对象.
+UI设计器 -> 创建项目默认保存到MyProject文件夹
+
+v1.9.1   2015-12-28
+增加 -> 时间日期元素, 月历卡片元素;
+增加 -> 按钮最大化状态;
+增加接口:
+XEle_GetStateFlags(HELE hEle); //获取组合状态
+XList_GetColumnWidth(HELE hEle, int iColumn);  //获取列宽
+XList_GetColumnCount(HELE hEle);  //获取列数量
+XSView_SetLineSize(); 参数顺序调整,更符合正常使用顺序.
+UI设计器 -> 新版背景内容管理器,对项模板绑定数据的支持;
+UI设计器 -> 添加文件被修改标识;
+UI设计器 -> 保存全部;
+UI设计器 -> 强制保存当前文件;
+
+v1.9.0   2015-12-20
+增加接口:XWnd_EnableDragCaption
+升级背景内容管理器
+
+v1.8.9.6   2015-12-03
+重绘函数增加参数,支持立即重绘
+设置UI绘制频率
+设置元素Z序
+列表头项模板事件 
+添加列表头事件
+list设置指定列宽度固定
+
+v1.8.9.5   2015-11-22
+优化布局系统
+增加接口XWnd_AdjustLayoutObject()
+增加接口XEle_GetParentLayoutObject()
+
+v1.8.9.4   2015-11-22
+增加接口XAdapterTable_SetColumn()
+增加接口XBtn_GetStateEx()
+增加接口XListView_EnableMultiSel()
+XListView 功能加强
+加载布局文件支持指定父对象
+背景内容编辑器-生成字符串
+图形操作, 支持设置线宽
+默认模板保存在内存中,当没有模板时使用默认模板
+
+
+v1.8.9.3   2015-11-11
+增加接口获取子对象形状对象
+增加接口项模板从内存加载
+XEle_AdjustLayout();
+XC_TemplateLoad() 改名 XC_LoadTemplate()
+UI设计器->图片资源支持分类,支持拖动图片文件到资源.
+UI设计器->资源列表,支持双击设置属性.
+UI设计器->列表类型元素支持编辑列表项背景内容.
+图片绘制方式,增加固定长宽比,九宫格只绘制边框
+辅助工具资源监视器.
+
+
+v1.8.9.2   2015-10-30
+UI设计器增加背景内容编辑器;
+XEle_GetTemplateListItemID() 接口移除,有新接口替代;
+增加接口 XC_EnableErrorMessageBox();
+增加接口 XRichEdit_EnableAutoCancelSel();
+增加接口 XBkInfoM_SetBkInfo();
+
+v1.8.9.1   2015-10-23
+解决1.8.9中的BUG
+增加模块背景内容管理器
+
+v1.8.9     2015-10-18
+UI设计器更改默认主题为黑色风格.
+UI设计器增加付费功能对齐工具. 
+设置颜色与图片接口合并,提供更强大的接口,以满足不同用户的需求. 
+将宏定义全部更改为枚举类型,方便看文档及写代码时查找定义.
+
+v1.8.8.1    2015-09-20
+完善框架窗口;
+新增接口:
+XComboBox_GetSelectItem();
+XList_EnableMultiSel();
+XTree_GetParentItem();
+XRichEdit_EnableKeyTab();
+XRichEdit_SetSelect();
+XWnd_EnableAutoFocus();
+
+
+v1.8.8    2015-08-26
+元素与形状对象增加到布局中时,如果他们没有父,那么自动将他们增加到父UI中,也就是说自动调用XEle_AddEle()系列函数;
+更新弹出菜单及菜单条.
+XTextBlock 改名为 XShapeText
+xml文件中"textBlock"改为"shapeText"
+新增接口:
+XC_LoadResourceFromString() 从内存加载资源文件
+XC_LoadLayoutFromString() 从内存加载布局文件
+XC_hWindowFromHWnd() HWND转HWINDOW
+XEle_GetParent() 获取父UI对象
+
+v1.8.7.1   2015-08-17
+增加接口:
+XRichEdit_SetCurrentPos();
+XC_EnableDebugFile();
+
+v1.8.7   2015-08-14
+RichEdit 设置字体及颜色,插入图片及GIF
+
+v1.8.6.1 2015-07-09
+框架窗口功能加强,完成部分功能.
+XWnd_SetLayoutEle()修改为XWnd_BindLayoutEle()为了接口统一
+ListView项鼠标停留状态
+
+
+v1.8.6 2015-06-29
+新增形状对象GIF
+按钮支持动画
+UI设计器新增形状对象GIF
+
+v1.8.5 2015-06-25
+UI设计器:增加快速工具
+UI设计器:支持模态窗口
+UI设计器:支持指定类名
+增加接口:获取默认字体
+
+v1.8.4.1 2015-06-09
+增加接口:
+XShapeText_GetText()
+XWnd_RegEventC()
+XWnd_RegEventC1()
+
+v1.8.4 2015-06-08
+完善C语言方式注册接口;
+下拉组合框功能完善;
+设置焦点边框颜色;
+
+
+v1.8.3 2015-06-04
+增加工具提示
+
+v1.8.2  2015-06-02 
+TabBar 功能加强
+XML变动
+style="button"      替换为 buttonType="button"
+buttonStyle="true"  替换为 buttonStyle="button"
+
+
+v1.8.1 2015-05-31
+TAB键焦点切换
+方向键焦点切换
+增加接口XC_IsShape()
+增加接口XC_GetObjectByID()
+
+
+v1.8.0 测试版12 2015-05-29
+UI设计器支持实时预览
+
+
+v1.7.9 测试版11 2015-05-20
+新增TabBar元素
+新增连接文本按钮
+新增形状对象直线
+新增形状对象矩形
+新增形状对象圆 
+新增形状对象组框
+CDataAdapterListView接口完善
+CDataAdapterTree接口完善
+CDataAdapterMap接口完善
+
+
+v1.7.8 测试版10 2015-05-06
+UI设计器,资源ID删除
+UI设计器,对象视图,对象修改备注.
+UI设计器,图片资源预览缩略图.
+UI设计器,保存快捷键.
+UI设计器,布局文件重命名.
+设置颜色接口支持透明度.
+列表类元素增加样式接口,控制项背景的显示.
+
+
+v1.7.7 测试版9  2015-05-03
+文本块文字对齐方式
+按钮设置文本对齐方式
+按钮设置内容偏移
+按钮设置图标对齐方式
+按钮设置图标与文本间隔
+通过模板项ID获取对象
+UI设计器,增加布局面板
+UI设计器,控制对象显示与隐藏
+UI设计器,按钮绑定元素
+UI设计器,元素可设置布局宽度和高度
+
+v1.7.6 测试版8  2015-04-24
+绘图函数对透明通道支持
+解决透明窗口透明通道问题.
+按钮设置图标,及内容偏移,图标与文本间隔.
+窗口最大化还原.
+
+v1.7.5.1 测试版7  2015-04-6
+UI设计器,设置窗口透明.
+UI设计器,增加布局宽度类型权重.
+UI设计器,文件路径优化.
+
+v1.7.5 测试版6  2015-04-4
+UI设计器,支持对元素内置对象的属性设置.
+UI设计器,项模板编辑
+窗口透明
+
+v1.7.4 测试版5  2015-03-24
+设置文本颜色
+设置元素字体,形状对象设置字体
+列表元素自动隐藏滚动条.
+隐藏滚动条上下按钮.
+设置元素光标,改进.
+事件重复注册检查,事件取消注册.
+UI设计器,支持同时打开多个文件.
+UI设计器资源管理器(ID,图片,字体)资源.
+增加事件XE_BUTTON_CHECK按钮选中
+增加事件XE_RICHEDIT_CHANGE富文本框内容改变
+
+v1.7.3 测试版4  2015-03-09
+ListBox 增加多项功能
+List 增加多项功能
+XList 数据适配器将列表头与列表数据分开到两个适配器.
+XTree 支持设置两个模板文件,分别是项选中状态和未选中状态.
+XTree 支持动态替换模板.
+XAdapterXListBox与XAdapterList合并为XAdapterTable
+XAdapterMap 新增数据适配器.
+
+v1.7.2 测试版3  2015-03-04
+*增加形状对象图片
+*元素背景透明
+*删除不需要的窗口样式宏
+*几个API调整
+
+v1.7.1 测试版2  2015-03-02
+*完善项模板事件
+*完善元素事件
+*调整内部事件处理代码.
+*增加贴图接口.
+*增加接口句柄错误检查.
+*废弃picture元素,功能合并到基础元素中.
+*增加形状对象分支,文本块归类到形状对象.
+
+v1.7.0 炫彩第三代界面库 - 测试版1  2015-02-15

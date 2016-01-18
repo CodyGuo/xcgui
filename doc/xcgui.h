@@ -7,7 +7,7 @@
 \**************************************************************************/
 #pragma once
 
-//v1.9.2
+//v1.9.3
 ////////////输入输出///////////////////
 #define in_
 #define out_
@@ -235,14 +235,14 @@ enum  window_transparent_
 //弹出菜单项标识
 ///@name 弹出菜单项标识
 ///@{
-enum   menu_state_flags_
+enum   menu_item_flags_
 {
-	menu_state_flags_normal=   0x00,   ///<正常
-	menu_state_flags_select=   0x01,   ///<选择 
-	menu_state_flags_check=    0x02,   ///<勾选
-	menu_state_flags_popup=    0x04,   ///<弹出
-	menu_state_flags_separator=0x08,   ///<分隔栏 ID号任意,ID号被忽略
-	menu_state_flags_disable=  0x10,   ///<禁用
+	menu_item_flags_normal=   0x00,   ///<正常
+	menu_item_flags_select=   0x01,   ///<选择 
+	menu_item_flags_check=    0x02,   ///<勾选
+	menu_item_flags_popup=    0x04,   ///<弹出
+	menu_item_flags_separator=0x08,   ///<分隔栏 ID号任意,ID号被忽略
+	menu_item_flags_disable=  0x10,   ///<禁用
 };
 
 ///@}
@@ -287,7 +287,7 @@ enum  image_draw_type_
 	image_draw_type_stretch,    ///<拉伸
 	image_draw_type_adaptive,   ///<自适应,九宫格
 	image_draw_type_tile,       ///<平铺
-	image_draw_type_fixed_ratio,  ///<当图片超出显示范围时,按照原始比例压缩显示图片
+	image_draw_type_fixed_ratio,  ///<固定比例,当图片超出显示范围时,按照原始比例压缩显示图片
 	image_draw_type_adaptive_border,  ///<九宫格不绘制中间区域
 };
 
@@ -654,7 +654,7 @@ struct  menu_drawItem_i
 	HMENUX     hMenu;       ///<菜单句柄
 	HWINDOW    hWindow;     ///<当前弹出菜单项的窗口句柄
 	int        nID;         ///<ID
-	int        nState;	    ///<状态 @ref menu_state_flags_
+	int        nState;	    ///<状态 @ref menu_item_flags_
 	RECT       rcItem;      ///<坐标
 	HIMAGE     hIcon;       ///<菜单项图标
 	const wchar_t    *pText;   ///<文本
@@ -752,6 +752,9 @@ enum listView_state_flag_
 
 	listView_state_flag_group_leave    =0x0800, ///<组鼠标离开
 	listView_state_flag_group_stay     =0x1000, ///<组鼠标停留
+
+	listView_state_flag_group_select     =0x2000, ///<组选择
+	listView_state_flag_group_select_no  =0x4000, ///<组未选择
 };
 
 enum tree_state_flag_
@@ -2455,6 +2458,7 @@ XC_API void WINAPI XComboBox_SetButtonSize(HELE hEle,int size);
 XC_API void WINAPI XComboBox_SetDropHeight(HELE hEle,int height); //设置下拉列表高度
 XC_API int  WINAPI XComboBox_GetDropHeight(HELE hEle);
 XC_API void WINAPI XComboBox_BindApapter(HELE hEle,HXCGUI hAdapter);
+XC_API HXCGUI WINAPI XComboBox_GetApapter(HELE hEle);
 XC_API void WINAPI XComboBox_SetItemTemplateXML(HELE hEle,const wchar_t* pXmlFile);
 XC_API void WINAPI XComboBox_SetItemTemplateXMLFromString(HELE hEle,const char* pStringXML);
 XC_API void WINAPI XComboBox_EnableDrawButton(HELE hEle,BOOL bEnable);
@@ -2606,6 +2610,7 @@ XC_API void WINAPI XDraw_ImageSuper2(HDRAW hDraw, HIMAGE hImage, RECT *pRcDest, 
 XC_API void WINAPI XDraw_DrawText(HDRAW hDraw, const wchar_t * lpString, int nCount, RECT* lpRect);
 XC_API void WINAPI XDraw_DrawTextUnderline(HDRAW hDraw, const wchar_t * lpString, int nCount, RECT* lpRect,COLORREF colorLine,BYTE alphaLine=255);
 XC_API void WINAPI XDraw_TextOut(HDRAW hDraw, int nXStart, int nYStart, const wchar_t * lpString, int cbString);
+XC_API void WINAPI XDraw_TextOutEx(HDRAW hDraw, int nXStart, int nYStart, const wchar_t * lpString);
 XC_API void WINAPI XDraw_TextOutA(HDRAW hDraw, int nXStart, int nYStart, const char * lpString);
 XC_API void WINAPI XDraw_SetAlpha(HDRAW hDraw,BYTE alpha);  //设置透明通道度
 XC_API void WINAPI XDraw_SetAlphaEx(HDC hdc,BYTE alpha);  //设置透明通道度
@@ -2638,6 +2643,7 @@ XC_API void WINAPI XEle_EnableKeyTab(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XEle_EnableSwitchFocus(HELE hEle,BOOL bEnable);
 XC_API void WINAPI XEle_EnableEvent_XE_MOUSEWHEEL(HELE hEle,BOOL bEnable);
 XC_API BOOL WINAPI XEle_SetRect(HELE hEle, RECT *pRect,BOOL bRedraw=FALSE);
+XC_API BOOL WINAPI XEle_SetRectEx(HELE hEle, int x, int y, int cx, int cy, BOOL bRedraw=FALSE);
 XC_API BOOL WINAPI XEle_SetRectLogic(HELE hEle, RECT *pRect, BOOL bRedraw=FALSE); //逻辑模式坐标
 XC_API void WINAPI XEle_GetRect(HELE hEle, RECT *pRect);   //相对与父坐标,人眼观察模式
 XC_API void WINAPI XEle_GetRectLogic(HELE hEle, RECT *pRect); //相对与父坐标,逻辑模式
@@ -2939,8 +2945,9 @@ XC_API int  WINAPI XModalWnd_DoModal(HWINDOW hWindow);     //启动模态窗口
 XC_API void WINAPI XModalWnd_EndModal(HWINDOW hWindow,int nResult); //终止
 XC_API HELE WINAPI XPane_Create(const wchar_t *pName,int nWidth,int nHeight,HWINDOW hFrameWnd=NULL);
 XC_API void WINAPI XPane_SetView(HELE hEle, HELE hView);
-XC_API void WINAPI XPane_GetTitle(HELE hEle, out_ wchar_t* pOut,int nOutLen);
 XC_API BOOL WINAPI XPane_IsShowPane(HELE hEle); //判断窗格是否隐藏
+XC_API void WINAPI XPane_GetTitle(HELE hEle, out_ wchar_t* pOut,int nOutLen);
+XC_API int  WINAPI XPane_GetCaptionHeight(HELE hEle);
 XC_API void  WINAPI XPane_HidePane(HELE hEle);     //隐藏窗格
 XC_API void  WINAPI XPane_ShowPane(HELE hEle);     //隐藏-显示窗格
 XC_API void  WINAPI XPane_DockPane(HELE hEle);      //停靠窗格,自动隐藏
@@ -3280,3 +3287,4 @@ XC_API void WINAPI XWnd_SetTransparentType(HWINDOW hWindow,window_transparent_ n
 XC_API void WINAPI XWnd_SetTransparentAlpha(HWINDOW hWindow,BYTE alpha); //设置窗口透明度
 XC_API void WINAPI XWnd_SetTransparentColor(HWINDOW hWindow,COLORREF color); //设置窗口透明色
 XC_API BOOL WINAPI XWnd_RegEventTest(int nEvent,BYTE* pParamType);
+

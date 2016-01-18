@@ -91,6 +91,7 @@ var (
 	xDraw_BitBlt2                *syscall.Proc
 	xDraw_AlphaBlend             *syscall.Proc
 	xDraw_TriangularArrow        *syscall.Proc
+	xDraw_DrawPolygon            *syscall.Proc
 	xDraw_Image                  *syscall.Proc
 	xDraw_Image2                 *syscall.Proc
 	xDraw_ImageStretch           *syscall.Proc
@@ -101,6 +102,7 @@ var (
 	xDraw_DrawText               *syscall.Proc
 	xDraw_DrawTextUnderline      *syscall.Proc
 	xDraw_TextOut                *syscall.Proc
+	xDraw_TextOutEx              *syscall.Proc
 	xDraw_TextOutA               *syscall.Proc
 )
 
@@ -154,6 +156,7 @@ func init() {
 	xDraw_BitBlt2 = xcDLL.MustFindProc("XDraw_BitBlt2")
 	xDraw_AlphaBlend = xcDLL.MustFindProc("XDraw_AlphaBlend")
 	xDraw_TriangularArrow = xcDLL.MustFindProc("XDraw_TriangularArrow")
+	xDraw_DrawPolygon = xcDLL.MustFindProc("XDraw_DrawPolygon")
 	xDraw_Image = xcDLL.MustFindProc("XDraw_Image")
 	xDraw_Image2 = xcDLL.MustFindProc("XDraw_Image2")
 	xDraw_ImageStretch = xcDLL.MustFindProc("XDraw_ImageStretch")
@@ -164,6 +167,7 @@ func init() {
 	xDraw_DrawText = xcDLL.MustFindProc("XDraw_DrawText")
 	xDraw_DrawTextUnderline = xcDLL.MustFindProc("XDraw_DrawTextUnderline")
 	xDraw_TextOut = xcDLL.MustFindProc("XDraw_TextOut")
+	xDraw_TextOutEx = xcDLL.MustFindProc("XDraw_TextOutEx")
 	xDraw_TextOutA = xcDLL.MustFindProc("XDraw_TextOutA")
 }
 
@@ -1089,6 +1093,23 @@ func XDraw_TriangularArrow(hDraw HDRAW, align, x, y, width, height int) {
 }
 
 /*
+绘制多边形.
+
+参数:
+	hDraw 图形绘制句柄.
+	points 顶点坐标数组.
+	nCount 顶点数量.
+返回:
+	成功返回TRUE否则返回FALSE.
+*/
+func XDraw_DrawPolygon(hDraw HDRAW, points *POINT, nCount int) {
+	xDraw_DrawPolygon.Call(
+		uintptr(hDraw),
+		uintptr(unsafe.Pointer(points)),
+		uintptr(nCount))
+}
+
+/*
 绘制图片.
 
 参数:
@@ -1275,6 +1296,23 @@ func XDraw_TextOut(hDraw HDRAW, nXStart, nYStart int, lpString string, cbString 
 		StringToUintPtr(lpString),
 		// uintptr(unsafe.Pointer(lpString)),
 		uintptr(cbString))
+}
+
+/*
+TextOut() 参见MSDN.
+
+参数:
+	hDraw 图形绘制句柄.
+	nXStart XX.
+	nYStart XX.
+	lpString XX.
+*/
+func XDraw_TextOutEx(hDraw HDRAW, nXStart, nYStart int, lpString string) {
+	xDraw_TextOutEx.Call(
+		uintptr(hDraw),
+		uintptr(nXStart),
+		uintptr(nYStart),
+		StringToUintPtr(lpString))
 }
 
 /*

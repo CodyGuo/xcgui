@@ -9,6 +9,7 @@ var (
 	xComboBox_Create                       *syscall.Proc
 	xComboBox_SetSelItem                   *syscall.Proc
 	xComboBox_BindApapter                  *syscall.Proc
+	xComboBox_GetApapter                   *syscall.Proc
 	xComboBox_GetButtonRect                *syscall.Proc
 	xComboBox_SetButtonSize                *syscall.Proc
 	xComboBox_SetDropHeight                *syscall.Proc
@@ -31,6 +32,7 @@ func init() {
 	xComboBox_Create = xcDLL.MustFindProc("XComboBox_Create")
 	xComboBox_SetSelItem = xcDLL.MustFindProc("XComboBox_SetSelItem")
 	xComboBox_BindApapter = xcDLL.MustFindProc("XComboBox_BindApapter")
+	xComboBox_GetApapter = xcDLL.MustFindProc("XComboBox_GetApapter")
 	xComboBox_GetButtonRect = xcDLL.MustFindProc("XComboBox_GetButtonRect")
 	xComboBox_SetButtonSize = xcDLL.MustFindProc("XComboBox_SetButtonSize")
 	xComboBox_SetDropHeight = xcDLL.MustFindProc("XComboBox_SetDropHeight")
@@ -101,6 +103,20 @@ func XComboBox_BindApapter(hEle HELE, hAdapter HXCGUI) {
 	xComboBox_BindApapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
+}
+
+/*
+获取绑定的数据适配器.
+
+参数:
+	hEle 元素句柄.
+返回:
+	返回数据适配器.
+*/
+func XComboBox_GetApapter(hEle HELE) HXCGUI {
+	ret, _, _ := xComboBox_GetApapter.Call(uintptr(hEle))
+
+	return HXCGUI(ret)
 }
 
 /*

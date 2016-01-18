@@ -33,6 +33,7 @@ var (
 	xEle_InsertEle                  *syscall.Proc
 	xEle_ShowEle                    *syscall.Proc
 	xEle_SetRect                    *syscall.Proc
+	xEle_SetRectEx                  *syscall.Proc
 	xEle_SetRectLogic               *syscall.Proc
 	xEle_SetID                      *syscall.Proc
 	xEle_GetID                      *syscall.Proc
@@ -132,6 +133,7 @@ func init() {
 	xEle_InsertEle = xcDLL.MustFindProc("XEle_InsertEle")
 	xEle_ShowEle = xcDLL.MustFindProc("XEle_ShowEle")
 	xEle_SetRect = xcDLL.MustFindProc("XEle_SetRect")
+	xEle_SetRectEx = xcDLL.MustFindProc("XEle_SetRectEx")
 	xEle_SetRectLogic = xcDLL.MustFindProc("XEle_SetRectLogic")
 	xEle_SetID = xcDLL.MustFindProc("XEle_SetID")
 	xEle_GetID = xcDLL.MustFindProc("XEle_GetID")
@@ -603,6 +605,31 @@ func XEle_SetRect(hEle HELE, pRect *RECT, bRedraw bool) bool {
 		uintptr(BoolToBOOL(bRedraw)))
 
 	return ret == FALSE
+}
+
+/*
+设置元素坐标.
+
+参数:
+	hEle 元素句柄.
+	x X坐标.
+	y Y坐标.
+	cx 宽度.
+	cy 高度.
+	bRedraw 是否重绘.
+返回:
+	如果坐标未改变返回FALSE,否则相反.
+*/
+func XEle_SetRectEx(hEle HELE, x, y, cx, cy int, bRedraw bool) bool {
+	ret, _, _ := xEle_SetRectEx.Call(
+		uintptr(hEle),
+		uintptr(x),
+		uintptr(y),
+		uintptr(cx),
+		uintptr(cy),
+		uintptr(BoolToBOOL(bRedraw)))
+
+	return ret == TRUE
 }
 
 /*

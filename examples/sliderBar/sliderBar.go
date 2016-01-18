@@ -5,18 +5,18 @@ import (
 )
 
 func main() {
-	hWindow := xcgui.XWndCreate(0, 0, 300, 200, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hWindow := xcgui.XWnd_Create(0, 0, 300, 200, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(hWindow)
 
-	hSliderBar := xcgui.XSliderBarCreate(20, 40, 260, 60, xcgui.HXCGUI(hWindow))
-	xcgui.XSliderBarSetRange(hSliderBar, 10)
-	xcgui.XSliderBarSetButtonHeight(hSliderBar, 27)
-	xcgui.XSliderBarSetButtonWidth(hSliderBar, 27)
-	xcgui.XSliderBarSetSpaceTwo(hSliderBar, 10, 10)
+	hSliderBar := xcgui.XSliderBar_Create(20, 40, 260, 60, xcgui.HXCGUI(hWindow))
+	xcgui.XSliderBar_SetRange(hSliderBar, 10)
+	xcgui.XSliderBar_SetButtonHeight(hSliderBar, 27)
+	xcgui.XSliderBar_SetButtonWidth(hSliderBar, 27)
+	xcgui.XSliderBar_SetSpaceTwo(hSliderBar, 10, 10)
 
-	xcgui.XEleRegEventC(hSliderBar, xcgui.XE_SLIDERBAR_CHANGE, xcgui.CallBack(OnSliderBarChange))
+	xcgui.XEle_RegEventC(hSliderBar, xcgui.XE_SLIDERBAR_CHANGE, xcgui.CallBack(OnSliderBarChange))
 
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 

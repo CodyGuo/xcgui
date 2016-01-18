@@ -9,23 +9,23 @@ var (
 )
 
 func main() {
-	mw = xcgui.XFrameWndCreate(0, 0, 600, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
-	xcgui.XBtnSetType(xcgui.XBtnCreate(3, 3, 20, 20, "X", xcgui.HXCGUI(mw)), xcgui.BUTTON_TYPE_CLOSE)
+	mw = xcgui.XFrameWnd_Create(0, 0, 600, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	xcgui.XBtn_SetType(xcgui.XBtn_Create(3, 3, 20, 20, "X", xcgui.HXCGUI(mw)), xcgui.BUTTON_TYPE_CLOSE)
 
-	hPane1 := xcgui.XPaneCreate("111", 200, 200, mw)
-	hPane2 := xcgui.XPaneCreate("2222222222", 200, 200, mw)
-	hPane3 := xcgui.XPaneCreate("333", 200, 200, mw)
+	hPane1 := xcgui.XPane_Create("111", 200, 200, mw)
+	hPane2 := xcgui.XPane_Create("2222222222", 200, 200, mw)
+	hPane3 := xcgui.XPane_Create("333", 200, 200, mw)
 
-	xcgui.XFrameWndAddPane(mw, 0, hPane1, xcgui.Align_left)
+	xcgui.XFrameWnd_AddPane(mw, 0, hPane1, xcgui.Align_left)
 
-	xcgui.XFrameWndAddPane(mw, 0, hPane2, xcgui.Align_bottom)
+	xcgui.XFrameWnd_AddPane(mw, 0, hPane2, xcgui.Align_bottom)
 
-	xcgui.XFrameWndAddPane(mw, 0, hPane3, xcgui.Align_right)
+	xcgui.XFrameWnd_AddPane(mw, 0, hPane3, xcgui.Align_right)
 
-	xcgui.XWndRegEventC(mw, xcgui.WM_RBUTTONUP, xcgui.CallBack(OnWndButtonUp))
+	xcgui.XWnd_RegEventC(mw, xcgui.WM_RBUTTONUP, xcgui.CallBack(OnWndButtonUp))
 
-	xcgui.XWndAdjustLayout(mw)
-	xcgui.XWndShowWindow(mw, xcgui.SW_SHOW)
+	xcgui.XWnd_AdjustLayout(mw)
+	xcgui.XWnd_ShowWindow(mw, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 }
@@ -33,13 +33,13 @@ func main() {
 func OnWndButtonUp(nFlags uint32, pPt *xcgui.POINT, pbHandled *bool) int {
 	pt := *pPt
 
-	hMenu := xcgui.XMenuCreate()
-	xcgui.XMenuAddItem(hMenu, 201, "窗格1", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 202, "窗格2", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 203, "窗格3", 0, 0)
+	hMenu := xcgui.XMenu_Create()
+	xcgui.XMenu_AddItem(hMenu, 201, "窗格1", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 202, "窗格2", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 203, "窗格3", 0, 0)
 
-	xcgui.ClientToScreen(xcgui.XWndGetHWND(mw), &pt)
-	xcgui.XMenuPopup(hMenu, xcgui.XWndGetHWND(mw), pt.X, pt.Y, 0, 0)
+	xcgui.ClientToScreen(xcgui.XWnd_GetHWND(mw), &pt)
+	xcgui.XMenu_Popup(hMenu, xcgui.XWnd_GetHWND(mw), pt.X, pt.Y, 0, 0)
 
 	return 0
 }

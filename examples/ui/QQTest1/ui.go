@@ -5,12 +5,12 @@ import (
 )
 
 func main() {
-	xcgui.XCLoadResource("resource.xml", "")
+	xcgui.XC_LoadResource("resource.xml", "")
 
-	hxCGUI := xcgui.XCLoadLayout("layout.xml", 0)
+	hxCGUI := xcgui.XC_LoadLayout("layout.xml", 0)
 
-	xcgui.XWndAdjustLayout(xcgui.HWINDOW(hxCGUI))
-	xcgui.XWndShowWindow(xcgui.HWINDOW(hxCGUI), xcgui.SW_SHOW)
+	xcgui.XWnd_AdjustLayout(xcgui.HWINDOW(hxCGUI))
+	xcgui.XWnd_ShowWindow(xcgui.HWINDOW(hxCGUI), xcgui.SW_SHOW)
 
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()

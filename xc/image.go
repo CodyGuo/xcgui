@@ -82,7 +82,7 @@ func init() {
 返回:
 	图片句柄.
 */
-func XImageLoadFile(pImageName string, bStretch bool) HIMAGE {
+func XImage_LoadFile(pImageName string, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadFile.Call(
 		StringToUintPtr(pImageName),
 		// uintptr(unsafe.Pointer(pImageName)),
@@ -103,7 +103,7 @@ func XImageLoadFile(pImageName string, bStretch bool) HIMAGE {
 返回:
 	图片句柄.
 */
-func XImageLoadFileAdaptive(pImageName string, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
+func XImage_LoadFileAdaptive(pImageName string, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
 	ret, _, _ := xImage_LoadFileAdaptive.Call(
 		StringToUintPtr(pImageName),
 		// uintptr(unsafe.Pointer(pImageName)),
@@ -127,7 +127,7 @@ func XImageLoadFileAdaptive(pImageName string, leftSize, topSize, rightSize, bot
 返回:
 	图片句柄.
 */
-func XImageLoadFileRect(pImageName string, x, y, cx, cy int) HIMAGE {
+func XImage_LoadFileRect(pImageName string, x, y, cx, cy int) HIMAGE {
 	ret, _, _ := xImage_LoadFileRect.Call(
 		StringToUintPtr(pImageName),
 		// uintptr(unsafe.Pointer(pImageName)),
@@ -152,7 +152,7 @@ func XImageLoadFileRect(pImageName string, x, y, cx, cy int) HIMAGE {
 返回:
 	图片句柄.
 */
-func XImageLoadResAdaptive(id int, pType string, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
+func XImage_LoadResAdaptive(id int, pType string, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
 	ret, _, _ := xImage_LoadResAdaptive.Call(
 		uintptr(id),
 		StringToUintPtr(pType),
@@ -175,7 +175,7 @@ func XImageLoadResAdaptive(id int, pType string, leftSize, topSize, rightSize, b
 返回:
 	图片句柄.
 */
-func XImageLoadRes(id int, pType string, bStretch bool) HIMAGE {
+func XImage_LoadRes(id int, pType string, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadRes.Call(
 		uintptr(id),
 		StringToUintPtr(pType),
@@ -196,7 +196,7 @@ func XImageLoadRes(id int, pType string, bStretch bool) HIMAGE {
 返回:
 	图片句柄.
 */
-func XImageLoadZip(pZipFileName, pImageName, pPassword string, bStretch bool) HIMAGE {
+func XImage_LoadZip(pZipFileName, pImageName, pPassword string, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadZip.Call(
 		StringToUintPtr(pZipFileName),
 		StringToUintPtr(pImageName),
@@ -223,7 +223,7 @@ func XImageLoadZip(pZipFileName, pImageName, pPassword string, bStretch bool) HI
 返回:
 	图片句柄.
 */
-func XImageLoadZipAdaptive(pZipFileName, pImageName, pPassword string, x1, x2, y1, y2 int) HIMAGE {
+func XImage_LoadZipAdaptive(pZipFileName, pImageName, pPassword string, x1, x2, y1, y2 int) HIMAGE {
 	ret, _, _ := xImage_LoadZipAdaptive.Call(
 		StringToUintPtr(pZipFileName),
 		StringToUintPtr(pImageName),
@@ -253,7 +253,7 @@ func XImageLoadZipAdaptive(pZipFileName, pImageName, pPassword string, x1, x2, y
 返回:
 	图片句柄.
 */
-func XImageLoadZipRect(pZipFileName, pImageName, pPassword string, x, y, cx, cy int) HIMAGE {
+func XImage_LoadZipRect(pZipFileName, pImageName, pPassword string, x, y, cx, cy int) HIMAGE {
 	ret, _, _ := xImage_LoadZipRect.Call(
 		StringToUintPtr(pZipFileName),
 		StringToUintPtr(pImageName),
@@ -279,7 +279,7 @@ func XImageLoadZipRect(pZipFileName, pImageName, pPassword string, x, y, cx, cy 
 返回:
 	图片句柄.
 */
-func XImageLoadMemory(pBuffer uintptr, nSize int, bStretch bool) HIMAGE {
+func XImage_LoadMemory(pBuffer uintptr, nSize int, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadMemory.Call(
 		pBuffer,
 		uintptr(nSize),
@@ -302,7 +302,7 @@ func XImageLoadMemory(pBuffer uintptr, nSize int, bStretch bool) HIMAGE {
 返回:
 	图片句柄.
 */
-func XImageLoadMemoryRect(pBuffer uintptr, nSize int, x, y, cx, cy int, bStretch bool) HIMAGE {
+func XImage_LoadMemoryRect(pBuffer uintptr, nSize int, x, y, cx, cy int, bStretch bool) HIMAGE {
 	ret, _, _ := xImage_LoadMemoryRect.Call(
 		pBuffer,
 		uintptr(nSize),
@@ -328,7 +328,7 @@ func XImageLoadMemoryRect(pBuffer uintptr, nSize int, x, y, cx, cy int, bStretch
 返回:
 	图片句柄.
 */
-func XImageLoadMemoryAdaptive(pBuffer uintptr, nSize, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
+func XImage_LoadMemoryAdaptive(pBuffer uintptr, nSize, leftSize, topSize, rightSize, bottomSize int) HIMAGE {
 	ret, _, _ := xImage_LoadMemoryAdaptive.Call(
 		pBuffer,
 		uintptr(nSize),
@@ -348,7 +348,7 @@ func XImageLoadMemoryAdaptive(pBuffer uintptr, nSize, leftSize, topSize, rightSi
 返回:
 	成功返回炫彩图片句柄,失败返回FALSE.
 */
-func XImageLoadFromImage(pImage uintptr) HIMAGE {
+func XImage_LoadFromImage(pImage uintptr) HIMAGE {
 	ret, _, _ := xImage_LoadFromImage.Call(pImage)
 	if ret == FALSE {
 		return 0
@@ -365,7 +365,7 @@ func XImageLoadFromImage(pImage uintptr) HIMAGE {
 返回:
 	成功返回炫彩图片句柄,失败返回FALSE.
 */
-func XImageLoadFileFromExtractIcon(pImageName string) HIMAGE {
+func XImage_LoadFileFromExtractIcon(pImageName string) HIMAGE {
 	// ret, _, _ := xImage_LoadFileFromExtractIcon.Call(uintptr(unsafe.Pointer(pImageName)))
 	ret, _, _ := xImage_LoadFileFromExtractIcon.Call(StringToUintPtr(pImageName))
 	if ret == FALSE {
@@ -383,7 +383,7 @@ func XImageLoadFileFromExtractIcon(pImageName string) HIMAGE {
 返回:
 	成功返回炫彩图片句柄,失败返回FALSE.
 */
-func XImageLoadFileFromHICON(hIcon HICON) HIMAGE {
+func XImage_LoadFileFromHICON(hIcon HICON) HIMAGE {
 	ret, _, _ := xImage_LoadFileFromHICON.Call(uintptr(hIcon))
 	if ret == FALSE {
 		return 0
@@ -400,7 +400,7 @@ func XImageLoadFileFromHICON(hIcon HICON) HIMAGE {
 返回:
 	成功返回炫彩图片句柄,失败返回FALSE.
 */
-func XImageLoadFileFromHBITMAP(hBitmap HBITMAP) HIMAGE {
+func XImage_LoadFileFromHBITMAP(hBitmap HBITMAP) HIMAGE {
 	ret, _, _ := xImage_LoadFileFromHBITMAP.Call(uintptr(hBitmap))
 	if ret == FALSE {
 		return 0
@@ -417,7 +417,7 @@ func XImageLoadFileFromHBITMAP(hBitmap HBITMAP) HIMAGE {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XImageIsStretch(hImage HIMAGE) bool {
+func XImage_IsStretch(hImage HIMAGE) bool {
 	ret, _, _ := xImage_IsStretch.Call(uintptr(hImage))
 
 	return ret == TRUE
@@ -431,7 +431,7 @@ func XImageIsStretch(hImage HIMAGE) bool {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XImageIsAdaptive(hImage HIMAGE) bool {
+func XImage_IsAdaptive(hImage HIMAGE) bool {
 	ret, _, _ := xImage_IsAdaptive.Call(uintptr(hImage))
 
 	return ret == TRUE
@@ -445,7 +445,7 @@ func XImageIsAdaptive(hImage HIMAGE) bool {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XImageIsTile(hImage HIMAGE) bool {
+func XImage_IsTile(hImage HIMAGE) bool {
 	ret, _, _ := xImage_IsTile.Call(uintptr(hImage))
 
 	return ret == TRUE
@@ -460,7 +460,7 @@ func XImageIsTile(hImage HIMAGE) bool {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XImageSetDrawType(hImage HIMAGE, nType Image_draw_type_) bool {
+func XImage_SetDrawType(hImage HIMAGE, nType Image_draw_type_) bool {
 	ret, _, _ := xImage_SetDrawType.Call(
 		uintptr(hImage),
 		uintptr(nType))
@@ -480,7 +480,7 @@ func XImageSetDrawType(hImage HIMAGE, nType Image_draw_type_) bool {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XImageSetDrawTypeAdaptive(hImage HIMAGE, leftSize, topSize, rightSize, bottomSize int) bool {
+func XImage_SetDrawTypeAdaptive(hImage HIMAGE, leftSize, topSize, rightSize, bottomSize int) bool {
 	ret, _, _ := xImage_SetDrawTypeAdaptive.Call(
 		uintptr(hImage),
 		uintptr(leftSize),
@@ -498,7 +498,7 @@ func XImageSetDrawTypeAdaptive(hImage HIMAGE, leftSize, topSize, rightSize, bott
 	hImage 图片句柄.
 	color RGB颜色.
 */
-func XImageSetTranColor(hImage HIMAGE, color COLORREF) {
+func XImage_SetTranColor(hImage HIMAGE, color COLORREF) {
 	xImage_SetTranColor.Call(
 		uintptr(hImage),
 		uintptr(color))
@@ -512,7 +512,7 @@ func XImageSetTranColor(hImage HIMAGE, color COLORREF) {
 	color RGB颜色.
 	tranColor 透明色的透明度.
 */
-func XImageSetTranColorEx(hImage HIMAGE, color COLORREF, tranColor byte) {
+func XImage_SetTranColorEx(hImage HIMAGE, color COLORREF, tranColor byte) {
 	xImage_SetTranColorEx.Call(
 		uintptr(hImage),
 		uintptr(color),
@@ -526,7 +526,7 @@ func XImageSetTranColorEx(hImage HIMAGE, color COLORREF, tranColor byte) {
 	hImage 图片句柄.
 	bEnable 启用TRUE,关闭FALSE.
 */
-func XImageEnableTranColor(hImage HIMAGE, bEnable bool) {
+func XImage_EnableTranColor(hImage HIMAGE, bEnable bool) {
 	xImage_EnableTranColor.Call(
 		uintptr(hImage),
 		uintptr(BoolToBOOL(bEnable)))
@@ -539,7 +539,7 @@ func XImageEnableTranColor(hImage HIMAGE, bEnable bool) {
 	hImage 图片句柄.
 	bEnable 启用自动销毁TRUE,关闭自动销毁FALSE.
 */
-func XImageEnableAutoDestroy(hImage HIMAGE, bEnable bool) {
+func XImage_EnableAutoDestroy(hImage HIMAGE, bEnable bool) {
 	xImage_EnableAutoDestroy.Call(
 		uintptr(hImage),
 		uintptr(BoolToBOOL(bEnable)))
@@ -552,7 +552,7 @@ func XImageEnableAutoDestroy(hImage HIMAGE, bEnable bool) {
 	hImage 图片句柄.
 	bCenter 是否居中显示.
 */
-func XImageEnableCenter(hImage HIMAGE, bCenter bool) {
+func XImage_EnableCenter(hImage HIMAGE, bCenter bool) {
 	xImage_EnableCenter.Call(
 		uintptr(hImage),
 		uintptr(BoolToBOOL(bCenter)))
@@ -566,7 +566,7 @@ func XImageEnableCenter(hImage HIMAGE, bCenter bool) {
 返回:
 	如果居中显示返回TRUE，否则相反.
 */
-func XImageIsCenter(hImage HIMAGE) bool {
+func XImage_IsCenter(hImage HIMAGE) bool {
 	ret, _, _ := xImage_IsCenter.Call(uintptr(hImage))
 
 	return ret == TRUE
@@ -580,7 +580,7 @@ func XImageIsCenter(hImage HIMAGE) bool {
 返回:
 	图片绘制类型.
 */
-func XImageGetDrawType(hImage HIMAGE) Image_draw_type_ {
+func XImage_GetDrawType(hImage HIMAGE) Image_draw_type_ {
 	ret, _, _ := xImage_GetDrawType.Call(uintptr(hImage))
 
 	return Image_draw_type_(ret)
@@ -594,7 +594,7 @@ func XImageGetDrawType(hImage HIMAGE) Image_draw_type_ {
 返回:
 	图片宽度.
 */
-func XImageGetWidth(hImage HIMAGE) int {
+func XImage_GetWidth(hImage HIMAGE) int {
 	ret, _, _ := xImage_GetWidth.Call(uintptr(hImage))
 
 	return int(ret)
@@ -608,7 +608,7 @@ func XImageGetWidth(hImage HIMAGE) int {
 返回:
 	图片高度.
 */
-func XImageGetHeight(hImage HIMAGE) int {
+func XImage_GetHeight(hImage HIMAGE) int {
 	ret, _, _ := xImage_GetHeight.Call(uintptr(hImage))
 
 	return int(ret)
@@ -620,7 +620,7 @@ func XImageGetHeight(hImage HIMAGE) int {
 参数:
 	hImage 图片句柄.
 */
-func XImageRelease(hImage HIMAGE) {
+func XImage_Release(hImage HIMAGE) {
 	xImage_Release.Call(uintptr(hImage))
 }
 
@@ -630,6 +630,6 @@ func XImageRelease(hImage HIMAGE) {
 参数:
 	hImage 图片句柄.
 */
-func XImageDestroy(hImage HIMAGE) {
+func XImage_Destroy(hImage HIMAGE) {
 	xImage_Destroy.Call(uintptr(hImage))
 }

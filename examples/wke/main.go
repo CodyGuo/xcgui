@@ -29,82 +29,82 @@ var (
 )
 
 func main() {
-	xcgui.XCLoadResource("xml/resource.xml", "")
-	hxcgui := xcgui.XCLoadLayout("xml/layout.xml", 0)
+	xcgui.XC_LoadResource("xml/resource.xml", "")
+	hxcgui := xcgui.XC_LoadLayout("xml/layout.xml", 0)
 	hWindow = xcgui.HWINDOW(hxcgui)
-	xcgui.XWndAdjustLayout(hWindow)
+	xcgui.XWnd_AdjustLayout(hWindow)
 
 	// 后退
-	hGoBack = xcgui.XCGetObjectByID(130)
-	// xcgui.XEleRegEventC1(xcgui.HELE(hGoBack), xcgui.XE_BNCLICK, xcgui.CallBack(onBtnClick))
-	xcgui.XEleRegEventC1(xcgui.HELE(hGoBack),
+	hGoBack = xcgui.XC_GetObjectByID(130)
+	// xcgui.XEle_RegEventC1(xcgui.HELE(hGoBack), xcgui.XE_BNCLICK, xcgui.CallBack(onBtnClick))
+	xcgui.XEle_RegEventC1(xcgui.HELE(hGoBack),
 		xcgui.XE_BNCLICK,
 		xcgui.CallBackGo(func() {
 			fmt.Println("后退中...")
-			web.XWebGoBack(hWeb)
+			web.XWeb_GoBack(hWeb)
 		}))
 
 	// url地址栏
-	hEditUrl = xcgui.XCGetObjectByID(131)
-	xcgui.XEleEnableSwitchFocus(xcgui.HELE(hEditUrl), true)
-	xcgui.XEleRegEventC(xcgui.HELE(hEditUrl), xcgui.XE_CHAR, xcgui.CallBack(onEventChar))
+	hEditUrl = xcgui.XC_GetObjectByID(131)
+	xcgui.XEle_EnableSwitchFocus(xcgui.HELE(hEditUrl), true)
+	xcgui.XEle_RegEventC(xcgui.HELE(hEditUrl), xcgui.XE_CHAR, xcgui.CallBack(onEventChar))
 	// 解决焦点丢失问题
-	xcgui.XEleRegEventC(xcgui.HELE(hEditUrl), xcgui.XE_LBUTTONDOWN, xcgui.CallBack(onLButtonDown))
+	xcgui.XEle_RegEventC(xcgui.HELE(hEditUrl), xcgui.XE_LBUTTONDOWN, xcgui.CallBack(onLButtonDown))
 
 	// 前进
-	hGoForward = xcgui.XCGetObjectByID(132)
-	xcgui.XEleRegEventC1(xcgui.HELE(hGoForward), xcgui.XE_BNCLICK, xcgui.CallBack(onBtnClick))
+	hGoForward = xcgui.XC_GetObjectByID(132)
+	xcgui.XEle_RegEventC1(xcgui.HELE(hGoForward), xcgui.XE_BNCLICK, xcgui.CallBack(onBtnClick))
 
 	// 浏览器body区
-	xcgui.XWndGetBodyRect(hWindow, &rtBody)
+	xcgui.XWnd_GetBodyRect(hWindow, &rtBody)
 
-	hWeb = web.XWebCreate(
+	hWeb = web.XWeb_Create(
 		int(rtBody.Left),
 		int(rtBody.Top),
 		int(rtBody.Right-rtBody.Left),
 		int(rtBody.Bottom-rtBody.Top),
-		xcgui.XWndGetHWND(hWindow))
+		xcgui.XWnd_GetHWND(hWindow))
 
 	// 更多
-	hMenuBar = xcgui.XCGetObjectByID(133)
-	xcgui.XMenuBarAddButton(xcgui.HELE(hMenuBar), "更多")
-	hMenu = xcgui.XMenuBarGetMenu(xcgui.HELE(hMenuBar), 0)
+	hMenuBar = xcgui.XC_GetObjectByID(133)
+	xcgui.XMenuBar_AddButton(xcgui.HELE(hMenuBar), "更多")
+	hMenu = xcgui.XMenuBar_GetMenu(xcgui.HELE(hMenuBar), 0)
 
 	if hMenu != 0 {
-		xcgui.XMenuAddItem(hMenu, 1330, "主页", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1331, "重新载入", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1332, "停止载入", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1333, "代理加载谷歌", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1334, "放大", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1335, "缩小", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1336, "恢复缩放", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1337, "获取Cookie", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1338, "js调用vs函数", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1340, "设置网页可编辑", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1341, "设置网页不可编辑", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1351, "执行js脚本", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1352, "取浏览器状态", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1353, "js模拟填写", 0, 0)
-		xcgui.XMenuAddItem(hMenu, 1360, "关于", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1330, "主页", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1331, "重新载入", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1332, "停止载入", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1333, "代理加载谷歌", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1334, "放大", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1335, "缩小", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1336, "恢复缩放", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1337, "获取Cookie", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1338, "js调用vs函数", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1340, "设置网页可编辑", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1341, "设置网页不可编辑", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1351, "执行js脚本", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1352, "取浏览器状态", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1353, "js模拟填写", 0, 0)
+		xcgui.XMenu_AddItem(hMenu, 1360, "关于", 0, 0)
 
 	}
 	// 菜单选择
-	xcgui.XEleRegEventC(xcgui.HELE(hMenuBar), xcgui.XE_MENU_SELECT, xcgui.CallBack(onWndMenuSelect))
+	xcgui.XEle_RegEventC(xcgui.HELE(hMenuBar), xcgui.XE_MENU_SELECT, xcgui.CallBack(onWndMenuSelect))
 
 	// 默认打开百度
-	web.XWebLoadUrl(hWeb, "http://www.baidu.com")
+	web.XWeb_LoadUrl(hWeb, "http://www.baidu.com")
 
 	// URL变化
-	web.XWebOnURLChanged(hWeb, xcgui.CallBack(onURLChanged), 1)
+	web.XWeb_OnURLChanged(hWeb, xcgui.CallBack(onURLChanged), 1)
 
 	// Title 变化修改状态栏
-	hState = xcgui.XCGetObjectByID(311)
-	web.XWebOnTitleChanged(hWeb, xcgui.CallBack(onTitleChanged), 1)
+	hState = xcgui.XC_GetObjectByID(311)
+	web.XWeb_OnTitleChanged(hWeb, xcgui.CallBack(onTitleChanged), 1)
 
 	// 窗口变化web窗体自适应
-	xcgui.XWndRegEventC(hWindow, xcgui.WM_SIZE, xcgui.CallBack(OnWndSize))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.WM_SIZE, xcgui.CallBack(OnWndSize))
 
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 }
@@ -112,9 +112,9 @@ func main() {
 func onBtnClick(hEventEle xcgui.HELE, pbHandled *bool) int {
 	switch hEventEle {
 	case xcgui.HELE(hGoBack):
-		web.XWebGoBack(hWeb)
+		web.XWeb_GoBack(hWeb)
 	case xcgui.HELE(hGoForward):
-		web.XWebGoForward(hWeb)
+		web.XWeb_GoForward(hWeb)
 	}
 
 	return 0
@@ -123,18 +123,18 @@ func onBtnClick(hEventEle xcgui.HELE, pbHandled *bool) int {
 func onEventChar(wParam, lParam uintptr, pbHandled *bool) int {
 	// fmt.Println(string(wParam), lParam)
 	if wParam == VK_RETURN {
-		url, _ := xcgui.XRichEditGetTextGo(xcgui.HELE(hEditUrl))
+		url, _ := xcgui.XRichEdit_GetTextGo(xcgui.HELE(hEditUrl))
 		fmt.Println("----------------------------------------------")
 		fmt.Println("URL地址栏: ", url)
-		web.XWebLoadUrl(hWeb, url)
+		web.XWeb_LoadUrl(hWeb, url)
 	}
 
 	return 0
 }
 
 func OnWndSize(nFlags uint32, pSize *xcgui.SIZE, pbHandled *bool) int {
-	xcgui.XWndGetBodyRect(hWindow, &rtBody)
-	web.XWebMoveWindow(hWeb,
+	xcgui.XWnd_GetBodyRect(hWindow, &rtBody)
+	web.XWeb_MoveWindow(hWeb,
 		int(rtBody.Left),
 		int(rtBody.Top),
 		int(rtBody.Right-rtBody.Left),
@@ -144,23 +144,23 @@ func OnWndSize(nFlags uint32, pSize *xcgui.SIZE, pbHandled *bool) int {
 }
 
 func onURLChanged(webView, param, url uintptr) int {
-	openUrl := web.XWebGetStringW(url)
-	xcgui.XRichEditSetText(xcgui.HELE(hEditUrl), openUrl)
+	openUrl := web.XWeb_GetStringW(url)
+	xcgui.XRichEdit_SetText(xcgui.HELE(hEditUrl), openUrl)
 	fmt.Println("正在访问: ", openUrl)
 
 	return 0
 }
 
 func onTitleChanged(webView, param, title uintptr) int {
-	fmt.Println("浏览器标题: ", web.XWebGetStringA(title))
-	xcgui.XShapeTextSetText(hState, web.XWebGetStringA(title))
-	xcgui.XWndRedrawWnd(hWindow)
+	fmt.Println("浏览器标题: ", web.XWeb_GetStringA(title))
+	xcgui.XShapeText_SetText(hState, web.XWeb_GetStringA(title))
+	xcgui.XWnd_RedrawWnd(hWindow)
 
 	return 0
 }
 
 func onLButtonDown(nFlags uint32, pPt *xcgui.POINT, pbHandled *bool) int {
-	win.SetFocus(win.HWND(xcgui.XWndGetHWND(hWindow)))
+	win.SetFocus(win.HWND(xcgui.XWnd_GetHWND(hWindow)))
 
 	return 0
 }
@@ -168,55 +168,55 @@ func onLButtonDown(nFlags uint32, pPt *xcgui.POINT, pbHandled *bool) int {
 func onWndMenuSelect(nID int, pbHandled *bool) int {
 	switch nID {
 	case 1330:
-		web.XWebLoadUrl(hWeb, "http://www.hupu.cn")
+		web.XWeb_LoadUrl(hWeb, "http://www.hupu.cn")
 	case 1331:
-		web.XWebReload(hWeb)
+		web.XWeb_Reload(hWeb)
 	case 1332:
-		web.XWebStopLoading(hWeb)
+		web.XWeb_StopLoading(hWeb)
 	case 1333:
-		// web.XWebSetProxy(hWeb, proxyType, hostName, port, username, pwd)
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "代理", "请在源码中设置代理服务器.", xcgui.MB_ICONWARNING)
+		// web.XWeb_SetProxy(hWeb, proxyType, hostName, port, username, pwd)
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow), "代理", "请在源码中设置代理服务器.", xcgui.MB_ICONWARNING)
 	case 1334:
-		zom := web.XWebGetZoom(hWeb)
+		zom := web.XWeb_GetZoom(hWeb)
 		zom += 0.3
-		web.XWebZoom(hWeb, zom)
+		web.XWeb_Zoom(hWeb, zom)
 	case 1335:
-		zom := web.XWebGetZoom(hWeb)
+		zom := web.XWeb_GetZoom(hWeb)
 		zom -= 0.3
-		web.XWebZoom(hWeb, zom)
+		web.XWeb_Zoom(hWeb, zom)
 	case 1336:
-		web.XWebZoomReset(hWeb)
+		web.XWeb_ZoomReset(hWeb)
 	case 1337:
-		pCookie := web.XWebGetCookie(hWeb)
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow),
+		pCookie := web.XWeb_GetCookie(hWeb)
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow),
 			"Cookie", pCookie, xcgui.MB_ICONINFORMATION)
 	case 1338:
-		web.XWebLoadUrl(hWeb, "file://./jsCallFunction.html")
+		web.XWeb_LoadUrl(hWeb, "file://./jsCallFunction.html")
 	case 1340:
-		web.XWebSetEditable(hWeb, true)
+		web.XWeb_SetEditable(hWeb, true)
 	case 1341:
-		web.XWebSetEditable(hWeb, false)
+		web.XWeb_SetEditable(hWeb, false)
 	case 1351:
-		web.XWebRunJs(hWeb, "javascript: alert('JS: \n    炫彩界面库-golang.')")
+		web.XWeb_RunJs(hWeb, "javascript: alert('JS: \n    炫彩界面库-golang.')")
 	case 1352:
-		if web.XWebIsDocumentReady(hWeb) {
+		if web.XWeb_IsDocumentReady(hWeb) {
 			SetStat("网页加载完毕!")
-		} else if web.XWebIsLoadingCompleted(hWeb) {
+		} else if web.XWeb_IsLoadingCompleted(hWeb) {
 			SetStat("网页加载完成!")
-		} else if web.XWebIsLoadingFailed(hWeb) {
+		} else if web.XWeb_IsLoadingFailed(hWeb) {
 			SetStat("网页加载失败!")
 		}
 	case 1353:
 		fmt.Println("js模拟填写,还未完成.")
 	case 1360:
-		version := web.XWebGetVersionString()
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "版本", version, xcgui.MB_ICONINFORMATION)
+		version := web.XWeb_GetVersionString()
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow), "版本", version, xcgui.MB_ICONINFORMATION)
 	}
 
 	return 0
 }
 
 func SetStat(str string) {
-	xcgui.XShapeTextSetText(hState, str)
-	xcgui.XWndRedrawWnd(hWindow)
+	xcgui.XShapeText_SetText(hState, str)
+	xcgui.XWnd_RedrawWnd(hWindow)
 }

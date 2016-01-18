@@ -106,7 +106,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XRichEditCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XRichEdit_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xRichEdit_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -126,7 +126,7 @@ func XRichEditCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	pFont 字体.
 	color 颜色.
 */
-func XRichEditInsertString(hEle HELE, pString string, pFont *LOGFONTW, color COLORREF) {
+func XRichEdit_InsertString(hEle HELE, pString string, pFont *LOGFONTW, color COLORREF) {
 	xRichEdit_InsertString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pString),
@@ -145,7 +145,7 @@ func XRichEditInsertString(hEle HELE, pString string, pFont *LOGFONTW, color COL
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath string) bool {
+func XRichEdit_InsertImage(hEle HELE, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertImage.Call(
 		uintptr(hEle),
 		uintptr(hImage),
@@ -165,7 +165,7 @@ func XRichEditInsertImage(hEle HELE, hImage HIMAGE, pImagePath string) bool {
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath string) bool {
+func XRichEdit_InsertGif(hEle HELE, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertGif.Call(
 		uintptr(hEle),
 		uintptr(hImage),
@@ -186,7 +186,7 @@ func XRichEditInsertGif(hEle HELE, hImage HIMAGE, pImagePath string) bool {
 	pFont 字体.
 	color 颜色.
 */
-func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString string, pFont *LOGFONTW, color COLORREF) {
+func XRichEdit_InsertStringEx(hEle HELE, iRow, iColumn int, pString string, pFont *LOGFONTW, color COLORREF) {
 	xRichEdit_InsertStringEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
@@ -209,7 +209,7 @@ func XRichEditInsertStringEx(hEle HELE, iRow, iColumn int, pString string, pFont
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath string) bool {
+func XRichEdit_InsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertImageEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
@@ -233,7 +233,7 @@ func XRichEditInsertImageEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImageP
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath string) bool {
+func XRichEdit_InsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePath string) bool {
 	ret, _, _ := xRichEdit_InsertGifEx.Call(
 		uintptr(hEle),
 		uintptr(iRow),
@@ -252,7 +252,7 @@ func XRichEditInsertGifEx(hEle HELE, iRow, iColumn int, hImage HIMAGE, pImagePat
 	hEle 元素句柄.
 	pString 字符串指针.*uint16
 */
-func XRichEditSetText(hEle HELE, pString string) {
+func XRichEdit_SetText(hEle HELE, pString string) {
 	xRichEdit_SetText.Call(
 		uintptr(hEle),
 		StringToUintPtr(pString))
@@ -266,7 +266,7 @@ func XRichEditSetText(hEle HELE, pString string) {
 	hEle 元素句柄.
 	nVaule 整型值.
 */
-func XRichEditSetTextInt(hEle HELE, nVaule int) {
+func XRichEdit_SetTextInt(hEle HELE, nVaule int) {
 	xRichEdit_SetTextInt.Call(
 		uintptr(hEle),
 		uintptr(nVaule))
@@ -282,7 +282,7 @@ func XRichEditSetTextInt(hEle HELE, nVaule int) {
 返回:
 	返回内容长度,不包含空终止符.
 */
-func XRichEditGetText(hEle HELE, pOut *uint16, lenText int) int {
+func XRichEdit_GetText(hEle HELE, pOut *uint16, lenText int) int {
 	ret, _, _ := xRichEdit_GetText.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
@@ -291,7 +291,7 @@ func XRichEditGetText(hEle HELE, pOut *uint16, lenText int) int {
 	return int(ret)
 }
 
-func XRichEditGetTextGo(hEle HELE) (str string, lenText int) {
+func XRichEdit_GetTextGo(hEle HELE) (str string, lenText int) {
 	lenText = 256
 	buf := make([]byte, lenText)
 	ret, _, _ := xRichEdit_GetText.Call(
@@ -315,7 +315,7 @@ func XRichEditGetTextGo(hEle HELE) (str string, lenText int) {
 	pOut 接收内容缓冲区.
 	len 缓冲区长度,字符为单位
 */
-func XRichEditGetHTMLFormat(hEle HELE, pOut *uint16, len int) {
+func XRichEdit_GetHTMLFormat(hEle HELE, pOut *uint16, len int) {
 	xRichEdit_GetHTMLFormat.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
@@ -332,7 +332,7 @@ func XRichEditGetHTMLFormat(hEle HELE, pOut *uint16, len int) {
 返回:
 	返回数据内存指针,不用之后需要释放内容XC_Free().
 */
-func XRichEditGetData(hEle HELE, pDataSize *int) {
+func XRichEdit_GetData(hEle HELE, pDataSize *int) {
 	xRichEdit_GetData.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pDataSize)))
@@ -349,7 +349,7 @@ func XRichEditGetData(hEle HELE, pDataSize *int) {
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditInsertData(hEle HELE, pData uintptr, iRow, iColumn int) bool {
+func XRichEdit_InsertData(hEle HELE, pData uintptr, iRow, iColumn int) bool {
 	ret, _, _ := xRichEdit_InsertData.Call(
 		uintptr(hEle),
 		pData,
@@ -366,7 +366,7 @@ func XRichEditInsertData(hEle HELE, pData uintptr, iRow, iColumn int) bool {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnableReadOnly(hEle HELE, bEnable bool) {
+func XRichEdit_EnableReadOnly(hEle HELE, bEnable bool) {
 	xRichEdit_EnableReadOnly.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -379,7 +379,7 @@ func XRichEditEnableReadOnly(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnableMultiLine(hEle HELE, bEnable bool) {
+func XRichEdit_EnableMultiLine(hEle HELE, bEnable bool) {
 	xRichEdit_EnableMultiLine.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -392,7 +392,7 @@ func XRichEditEnableMultiLine(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnablePassword(hEle HELE, bEnable bool) {
+func XRichEdit_EnablePassword(hEle HELE, bEnable bool) {
 	xRichEdit_EnablePassword.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -405,7 +405,7 @@ func XRichEditEnablePassword(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnableEvent_XE_RICHEDIT_CHANGE(hEle HELE, bEnable bool) {
+func XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE(hEle HELE, bEnable bool) {
 	xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -418,7 +418,7 @@ func XRichEditEnableEvent_XE_RICHEDIT_CHANGE(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnableAutoWrap(hEle HELE, bEnable bool) {
+func XRichEdit_EnableAutoWrap(hEle HELE, bEnable bool) {
 	xRichEdit_EnableAutoWrap.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -431,7 +431,7 @@ func XRichEditEnableAutoWrap(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnableAutoCancelSel(hEle HELE, bEnable bool) {
+func XRichEdit_EnableAutoCancelSel(hEle HELE, bEnable bool) {
 	xRichEdit_EnableAutoCancelSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -444,7 +444,7 @@ func XRichEditEnableAutoCancelSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XRichEditEnableAutoSelAll(hEle HELE, bEnable bool) {
+func XRichEdit_EnableAutoSelAll(hEle HELE, bEnable bool) {
 	xRichEdit_EnableAutoSelAll.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -458,7 +458,7 @@ func XRichEditEnableAutoSelAll(hEle HELE, bEnable bool) {
 返回:
 	长度,不包含空终止符.
 */
-func XRichEditGetTextLength(hEle HELE) int {
+func XRichEdit_GetTextLength(hEle HELE) int {
 	ret, _, _ := xRichEdit_GetTextLength.Call(uintptr(hEle))
 
 	return int(ret)
@@ -471,7 +471,7 @@ func XRichEditGetTextLength(hEle HELE) int {
 	hEle 元素句柄.
 	nHeight 高度.
 */
-func XRichEditSetRowHeight(hEle HELE, nHeight uint) {
+func XRichEdit_SetRowHeight(hEle HELE, nHeight uint) {
 	xRichEdit_SetRowHeight.Call(
 		uintptr(hEle),
 		uintptr(nHeight))
@@ -485,7 +485,7 @@ func XRichEditSetRowHeight(hEle HELE, nHeight uint) {
 返回:
 	当前行索引.
 */
-func XRichEditGetCurrentRow(hEle HELE) int {
+func XRichEdit_GetCurrentRow(hEle HELE) int {
 	ret, _, _ := xRichEdit_GetCurrentRow.Call(uintptr(hEle))
 
 	return int(ret)
@@ -499,7 +499,7 @@ func XRichEditGetCurrentRow(hEle HELE) int {
 返回:
 	当前列索引.
 */
-func XRichEditGetCurrentColumn(hEle HELE) int {
+func XRichEdit_GetCurrentColumn(hEle HELE) int {
 	ret, _, _ := xRichEdit_GetCurrentColumn.Call(uintptr(hEle))
 
 	return int(ret)
@@ -513,7 +513,7 @@ func XRichEditGetCurrentColumn(hEle HELE) int {
 	iRow 行索引,-1代表末尾行.
 	iColumn 列索引,-1代表末尾列.
 */
-func XRichEditSetCurrentPos(hEle HELE, iColumn, iRow int) {
+func XRichEdit_SetCurrentPos(hEle HELE, iColumn, iRow int) {
 	xRichEdit_SetCurrentPos.Call(
 		uintptr(hEle),
 		uintptr(iColumn),
@@ -528,7 +528,7 @@ func XRichEditSetCurrentPos(hEle HELE, iColumn, iRow int) {
 返回:
 	行数量.
 */
-func XRichEditGetRowCount(hEle HELE) int {
+func XRichEdit_GetRowCount(hEle HELE) int {
 	ret, _, _ := xRichEdit_GetRowCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -543,7 +543,7 @@ func XRichEditGetRowCount(hEle HELE) int {
 返回:
 	行长度.
 */
-func XRichEditGetRowLength(hEle HELE, iRow int) int {
+func XRichEdit_GetRowLength(hEle HELE, iRow int) int {
 	ret, _, _ := xRichEdit_GetRowLength.Call(
 		uintptr(hEle),
 		uintptr(iRow))
@@ -561,7 +561,7 @@ func XRichEditGetRowLength(hEle HELE, iRow int) int {
 返回:
 	返回内容长度,字符为单位,不包含空终止符.
 */
-func XRichEditGetSelectText(hEle HELE, pOut *uint16, reLen int) int {
+func XRichEdit_GetSelectText(hEle HELE, pOut *uint16, reLen int) int {
 	ret, _, _ := xRichEdit_GetSelectText.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
@@ -580,7 +580,7 @@ func XRichEditGetSelectText(hEle HELE, pOut *uint16, reLen int) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditGetSelectPosition(hEle HELE, pBegin, pEnd *Position) bool {
+func XRichEdit_GetSelectPosition(hEle HELE, pBegin, pEnd *Position) bool {
 	ret, _, _ := xRichEdit_GetSelectPosition.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pBegin)),
@@ -601,7 +601,7 @@ func XRichEditGetSelectPosition(hEle HELE, pBegin, pEnd *Position) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditSetSelect(hEle HELE, iStartRow, iStartCol, iEndRow, iEndCol int) bool {
+func XRichEdit_SetSelect(hEle HELE, iStartRow, iStartCol, iEndRow, iEndCol int) bool {
 	ret, _, _ := xRichEdit_SetSelect.Call(
 		uintptr(hEle),
 		uintptr(iStartRow),
@@ -625,7 +625,7 @@ func XRichEditSetSelect(hEle HELE, iStartRow, iStartCol, iEndRow, iEndCol int) b
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditSetItemFontEx(hEle HELE, beginRow, beginColumn, endRow, endColumn int, pFont *LOGFONTW) bool {
+func XRichEdit_SetItemFontEx(hEle HELE, beginRow, beginColumn, endRow, endColumn int, pFont *LOGFONTW) bool {
 	ret, _, _ := xRichEdit_SetItemFontEx.Call(
 		uintptr(hEle),
 		uintptr(beginRow),
@@ -651,7 +651,7 @@ func XRichEditSetItemFontEx(hEle HELE, beginRow, beginColumn, endRow, endColumn 
 返回:
 	成功返回TRUE,否则相反.
 */
-func XRichEditSetItemColorEx(hEle HELE, beginRow, beginColumn, endRow, endColumn int, color COLORREF, alpha byte) bool {
+func XRichEdit_SetItemColorEx(hEle HELE, beginRow, beginColumn, endRow, endColumn int, color COLORREF, alpha byte) bool {
 	ret, _, _ := xRichEdit_SetItemColorEx.Call(
 		uintptr(hEle),
 		uintptr(beginRow),
@@ -670,7 +670,7 @@ func XRichEditSetItemColorEx(hEle HELE, beginRow, beginColumn, endRow, endColumn
 参数:
 	hEle 元素句柄.
 */
-func XRichEditCancelSelect(hEle HELE) {
+func XRichEdit_CancelSelect(hEle HELE) {
 	xRichEdit_CancelSelect.Call(uintptr(hEle))
 }
 
@@ -682,7 +682,7 @@ func XRichEditCancelSelect(hEle HELE) {
 	color 颜色值.
 	alpha 透明度.
 */
-func XRichEditSetSelectBkColor(hEle HELE, color COLORREF, alpha byte) {
+func XRichEdit_SetSelectBkColor(hEle HELE, color COLORREF, alpha byte) {
 	xRichEdit_SetSelectBkColor.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -697,7 +697,7 @@ func XRichEditSetSelectBkColor(hEle HELE, color COLORREF, alpha byte) {
 返回:
 	如果为空返回TRUE否则返回FALSE.
 */
-func XRichEditIsEmpty(hEle HELE) bool {
+func XRichEdit_IsEmpty(hEle HELE) bool {
 	ret, _, _ := xRichEdit_IsEmpty.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -711,7 +711,7 @@ func XRichEditIsEmpty(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditSelectAll(hEle HELE) bool {
+func XRichEdit_SelectAll(hEle HELE) bool {
 	ret, _, _ := xRichEdit_SelectAll.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -725,7 +725,7 @@ func XRichEditSelectAll(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditDeleteSelect(hEle HELE) bool {
+func XRichEdit_DeleteSelect(hEle HELE) bool {
 	ret, _, _ := xRichEdit_DeleteSelect.Call(uintptr(hEle))
 
 	if ret != TRUE {
@@ -741,7 +741,7 @@ func XRichEditDeleteSelect(hEle HELE) bool {
 参数:
 	hEle 元素句柄.
 */
-func XRichEditDeleteAll(hEle HELE) {
+func XRichEdit_DeleteAll(hEle HELE) {
 	xRichEdit_DeleteAll.Call(uintptr(hEle))
 }
 
@@ -753,7 +753,7 @@ func XRichEditDeleteAll(hEle HELE) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditClipboardCut(hEle HELE) bool {
+func XRichEdit_ClipboardCut(hEle HELE) bool {
 	ret, _, _ := xRichEdit_ClipboardCut.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -767,7 +767,7 @@ func XRichEditClipboardCut(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditClipboardCopy(hEle HELE) bool {
+func XRichEdit_ClipboardCopy(hEle HELE) bool {
 	ret, _, _ := xRichEdit_ClipboardCopy.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -781,7 +781,7 @@ func XRichEditClipboardCopy(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XRichEditClipboardPaste(hEle HELE) bool {
+func XRichEdit_ClipboardPaste(hEle HELE) bool {
 	ret, _, _ := xRichEdit_ClipboardPaste.Call(uintptr(hEle))
 
 	return ret == TRUE

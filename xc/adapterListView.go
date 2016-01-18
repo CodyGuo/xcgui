@@ -71,7 +71,7 @@ func init() {
 返回:
 	返回数据适配器句柄.
 */
-func XAdapterListViewCreate() HXCGUI {
+func XAdapterListView_Create() HXCGUI {
 	ret, _, _ := xAdapterListView_Create.Call()
 
 	return HXCGUI(ret)
@@ -86,7 +86,7 @@ func XAdapterListViewCreate() HXCGUI {
 返回:
 	返回列索引.
 */
-func XAdapterListViewGroupAddColumn(hAdapter HXCGUI, pName string) int {
+func XAdapterListView_GroupAddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterListView_Group_AddColumn.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName))
@@ -104,7 +104,7 @@ func XAdapterListViewGroupAddColumn(hAdapter HXCGUI, pName string) int {
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemText(hAdapter HXCGUI, pValue string) int {
+func XAdapterListView_GroupAddItemText(hAdapter HXCGUI, pValue string) int {
 	ret, _, _ := xAdapterListView_Group_AddItemText.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pValue))
@@ -123,7 +123,7 @@ func XAdapterListViewGroupAddItemText(hAdapter HXCGUI, pValue string) int {
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
+func XAdapterListView_GroupAddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
 	ret, _, _ := xAdapterListView_Group_AddItemTextEx.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -143,7 +143,7 @@ func XAdapterListViewGroupAddItemTextEx(hAdapter HXCGUI, pName, pValue string) i
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
+func XAdapterListView_GroupAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
 	ret, _, _ := xAdapterListView_Group_AddItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(hImage))
@@ -161,7 +161,7 @@ func XAdapterListViewGroupAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
 返回:
 	返回组索引.
 */
-func XAdapterListViewGroupAddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) int {
+func XAdapterListView_GroupAddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) int {
 	ret, _, _ := xAdapterListView_Group_AddItemImageEx.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -182,7 +182,7 @@ func XAdapterListViewGroupAddItemImageEx(hAdapter HXCGUI, pName string, hImage H
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetText(hAdapter HXCGUI, iGroup, iColumn int, pValue string) bool {
+func XAdapterListView_GroupSetText(hAdapter HXCGUI, iGroup, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterListView_Group_SetText.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -204,7 +204,7 @@ func XAdapterListViewGroupSetText(hAdapter HXCGUI, iGroup, iColumn int, pValue s
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetTextEx(hAdapter HXCGUI, iGroup int, pName, pValue string) bool {
+func XAdapterListView_GroupSetTextEx(hAdapter HXCGUI, iGroup int, pName, pValue string) bool {
 	ret, _, _ := xAdapterListView_Group_SetTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -227,7 +227,7 @@ func XAdapterListViewGroupSetTextEx(hAdapter HXCGUI, iGroup int, pName, pValue s
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetImage(hAdapter HXCGUI, iGroup, iColumn int, hImage HIMAGE) bool {
+func XAdapterListView_GroupSetImage(hAdapter HXCGUI, iGroup, iColumn int, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterListView_Group_SetImage.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -248,7 +248,7 @@ func XAdapterListViewGroupSetImage(hAdapter HXCGUI, iGroup, iColumn int, hImage 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupSetImageEx(hAdapter HXCGUI, iGroup int, pName string, hImage HIMAGE) bool {
+func XAdapterListView_GroupSetImageEx(hAdapter HXCGUI, iGroup int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterListView_Group_SetImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -268,7 +268,7 @@ func XAdapterListViewGroupSetImageEx(hAdapter HXCGUI, iGroup int, pName string, 
 返回:
 	返回列索引.
 */
-func XAdapterListViewItemAddColumn(hAdapter HXCGUI, pName string) int {
+func XAdapterListView_ItemAddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterListView_Item_AddColumn.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName))
@@ -285,7 +285,7 @@ func XAdapterListViewItemAddColumn(hAdapter HXCGUI, pName string) int {
 返回:
 	返回组数量.
 */
-func XAdapterListViewGroupGetCount(hAdapter HXCGUI) int {
+func XAdapterListView_GroupGetCount(hAdapter HXCGUI) int {
 	ret, _, _ := xAdapterListView_Group_GetCount.Call(uintptr(hAdapter))
 
 	return int(ret)
@@ -300,7 +300,7 @@ func XAdapterListViewGroupGetCount(hAdapter HXCGUI) int {
 返回:
 	成功返回项数量,否则返回 XC_ID_ERROR.
 */
-func XAdapterListViewItemGetCount(hAdapter HXCGUI, iGroup int) int {
+func XAdapterListView_ItemGetCount(hAdapter HXCGUI, iGroup int) int {
 	ret, _, _ := xAdapterListView_Item_GetCount.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup))
@@ -318,7 +318,7 @@ func XAdapterListViewItemGetCount(hAdapter HXCGUI, iGroup int) int {
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemText(hAdapter HXCGUI, iGroup int, pValue string) int {
+func XAdapterListView_ItemAddItemText(hAdapter HXCGUI, iGroup int, pValue string) int {
 	ret, _, _ := xAdapterListView_Item_AddItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -339,7 +339,7 @@ func XAdapterListViewItemAddItemText(hAdapter HXCGUI, iGroup int, pValue string)
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemTextEx(hAdapter HXCGUI, iGroup int, pName, pValue string) int {
+func XAdapterListView_ItemAddItemTextEx(hAdapter HXCGUI, iGroup int, pName, pValue string) int {
 	ret, _, _ := xAdapterListView_Item_AddItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -361,7 +361,7 @@ func XAdapterListViewItemAddItemTextEx(hAdapter HXCGUI, iGroup int, pName, pValu
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemImage(hAdapter HXCGUI, iGroup int, hImage HIMAGE) int {
+func XAdapterListView_ItemAddItemImage(hAdapter HXCGUI, iGroup int, hImage HIMAGE) int {
 	ret, _, _ := xAdapterListView_Item_AddItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -381,7 +381,7 @@ func XAdapterListViewItemAddItemImage(hAdapter HXCGUI, iGroup int, hImage HIMAGE
 返回:
 	返回项索引.
 */
-func XAdapterListViewItemAddItemImageEx(hAdapter HXCGUI, iGroup int, pName string, hImage HIMAGE) int {
+func XAdapterListView_ItemAddItemImageEx(hAdapter HXCGUI, iGroup int, pName string, hImage HIMAGE) int {
 	ret, _, _ := xAdapterListView_Item_AddItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -401,7 +401,7 @@ func XAdapterListViewItemAddItemImageEx(hAdapter HXCGUI, iGroup int, pName strin
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewGroupDeleteItem(hAdapter HXCGUI, iGroup int) bool {
+func XAdapterListView_GroupDeleteItem(hAdapter HXCGUI, iGroup int) bool {
 	ret, _, _ := xAdapterListView_Group_DeleteItem.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup))
@@ -419,7 +419,7 @@ func XAdapterListViewGroupDeleteItem(hAdapter HXCGUI, iGroup int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemDeleteItem(hAdapter HXCGUI, iGroup, iItem int) bool {
+func XAdapterListView_ItemDeleteItem(hAdapter HXCGUI, iGroup, iItem int) bool {
 	ret, _, _ := xAdapterListView_Item_DeleteItem.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -434,7 +434,7 @@ func XAdapterListViewItemDeleteItem(hAdapter HXCGUI, iGroup, iItem int) bool {
 参数:
 	hAdapter 数据适配器句柄.
 */
-func XAdapterListViewDeleteAll(hAdapter HXCGUI) {
+func XAdapterListView_DeleteAll(hAdapter HXCGUI) {
 	xAdapterListView_DeleteAll.Call(uintptr(hAdapter))
 }
 
@@ -451,7 +451,7 @@ func XAdapterListViewDeleteAll(hAdapter HXCGUI) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemGetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pOut *uint16, nOutLen int) bool {
+func XAdapterListView_ItemGetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pOut *uint16, nOutLen int) bool {
 	ret, _, _ := xAdapterListView_Item_GetTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -474,7 +474,7 @@ func XAdapterListViewItemGetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pO
 返回:
 	返回图片句柄.
 */
-func XAdapterListViewItemGetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName *uint16) HIMAGE {
+func XAdapterListView_ItemGetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName *uint16) HIMAGE {
 	ret, _, _ := xAdapterListView_Item_GetImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -496,7 +496,7 @@ func XAdapterListViewItemGetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName *u
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetText(hAdapter HXCGUI, iGroup, iItem, iColumn int, pValue string) bool {
+func XAdapterListView_ItemSetText(hAdapter HXCGUI, iGroup, iItem, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterListView_Item_SetText.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -520,7 +520,7 @@ func XAdapterListViewItemSetText(hAdapter HXCGUI, iGroup, iItem, iColumn int, pV
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pValue string) bool {
+func XAdapterListView_ItemSetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pValue string) bool {
 	ret, _, _ := xAdapterListView_Item_SetTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -545,7 +545,7 @@ func XAdapterListViewItemSetTextEx(hAdapter HXCGUI, iGroup, iItem int, pName, pV
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetImage(hAdapter HXCGUI, iGroup, iItem, iColumn int, hImage HIMAGE) bool {
+func XAdapterListView_ItemSetImage(hAdapter HXCGUI, iGroup, iItem, iColumn int, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterListView_Item_SetImage.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),
@@ -568,7 +568,7 @@ func XAdapterListViewItemSetImage(hAdapter HXCGUI, iGroup, iItem, iColumn int, h
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterListViewItemSetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName string, hImage HIMAGE) bool {
+func XAdapterListView_ItemSetImageEx(hAdapter HXCGUI, iGroup, iItem int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterListView_Item_SetImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iGroup),

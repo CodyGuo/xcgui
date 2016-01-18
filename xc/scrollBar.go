@@ -54,7 +54,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XSBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XSBar_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xSBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -72,7 +72,7 @@ func XSBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	hEle 元素句柄.
 	range 范围.
 */
-func XSBarSetRange(hEle HELE, irange int) {
+func XSBar_SetRange(hEle HELE, irange int) {
 	xSBar_SetRange.Call(
 		uintptr(hEle),
 		uintptr(irange))
@@ -85,7 +85,7 @@ func XSBarSetRange(hEle HELE, irange int) {
 	hEle 元素句柄.
 	返回:滚动范围.
 */
-func XSBarGetRange(hEle HELE) int {
+func XSBar_GetRange(hEle HELE) int {
 	ret, _, _ := xSBar_GetRange.Call(
 		uintptr(hEle))
 
@@ -99,7 +99,7 @@ func XSBarGetRange(hEle HELE) int {
 	hEle 元素句柄.
 	bShow 是否显示.
 */
-func XSBarShowButton(hEle HELE, bShow bool) {
+func XSBar_ShowButton(hEle HELE, bShow bool) {
 	xSBar_ShowButton.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bShow)))
@@ -112,7 +112,7 @@ func XSBarShowButton(hEle HELE, bShow bool) {
 	hEle 元素句柄.
 	length 长度.
 */
-func XSBarSetSliderLength(hEle HELE, length int) {
+func XSBar_SetSliderLength(hEle HELE, length int) {
 	xSBar_SetSliderLength.Call(
 		uintptr(hEle),
 		uintptr(length))
@@ -125,7 +125,7 @@ func XSBarSetSliderLength(hEle HELE, length int) {
 	hEle 元素句柄.
 	minLength 长度.
 */
-func XSBarSetSliderMinLength(hEle HELE, minLength int) {
+func XSBar_SetSliderMinLength(hEle HELE, minLength int) {
 	xSBar_SetSliderMinLength.Call(
 		uintptr(hEle),
 		uintptr(minLength))
@@ -140,7 +140,7 @@ func XSBarSetSliderMinLength(hEle HELE, minLength int) {
 返回:
 	如果改变返回TRUE否则返回FALSE.
 */
-func XSBarSetHorizon(hEle HELE, bHorizon bool) bool {
+func XSBar_SetHorizon(hEle HELE, bHorizon bool) bool {
 	ret, _, _ := xSBar_SetHorizon.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bHorizon)))
@@ -156,7 +156,7 @@ func XSBarSetHorizon(hEle HELE, bHorizon bool) bool {
 返回:
 	长度.
 */
-func XSBarGetSliderMaxLength(hEle HELE) int {
+func XSBar_GetSliderMaxLength(hEle HELE) int {
 	ret, _, _ := xSBar_GetSliderMaxLength.Call(
 		uintptr(hEle))
 
@@ -171,7 +171,7 @@ func XSBarGetSliderMaxLength(hEle HELE) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSBarScrollUp(hEle HELE) bool {
+func XSBar_ScrollUp(hEle HELE) bool {
 	ret, _, _ := xSBar_ScrollUp.Call(
 		uintptr(hEle))
 
@@ -186,7 +186,7 @@ func XSBarScrollUp(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSBarScrollDown(hEle HELE) bool {
+func XSBar_ScrollDown(hEle HELE) bool {
 	ret, _, _ := xSBar_ScrollDown.Call(
 		uintptr(hEle))
 
@@ -201,7 +201,7 @@ func XSBarScrollDown(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSBarScrollTop(hEle HELE) bool {
+func XSBar_ScrollTop(hEle HELE) bool {
 	ret, _, _ := xSBar_ScrollTop.Call(
 		uintptr(hEle))
 
@@ -216,7 +216,7 @@ func XSBarScrollTop(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSBarScrollBottom(hEle HELE) bool {
+func XSBar_ScrollBottom(hEle HELE) bool {
 	ret, _, _ := xSBar_ScrollBottom.Call(
 		uintptr(hEle))
 
@@ -232,7 +232,7 @@ func XSBarScrollBottom(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSBarScrollPos(hEle HELE) bool {
+func XSBar_ScrollPos(hEle HELE) bool {
 	ret, _, _ := xSBar_ScrollPos.Call(
 		uintptr(hEle))
 
@@ -247,7 +247,7 @@ func XSBarScrollPos(hEle HELE) bool {
 返回:
 	返回按钮句柄.
 */
-func XSBarGetButtonUp(hEle HELE) HELE {
+func XSBar_GetButtonUp(hEle HELE) HELE {
 	ret, _, _ := xSBar_GetButtonUp.Call(
 		uintptr(hEle))
 
@@ -262,7 +262,7 @@ func XSBarGetButtonUp(hEle HELE) HELE {
 返回:
 	返回按钮句柄.
 */
-func XSBarGetButtonDown(hEle HELE) HELE {
+func XSBar_GetButtonDown(hEle HELE) HELE {
 	ret, _, _ := xSBar_GetButtonDown.Call(
 		uintptr(hEle))
 
@@ -277,7 +277,7 @@ func XSBarGetButtonDown(hEle HELE) HELE {
 返回:
 	返回按钮句柄.
 */
-func XSBarGetButtonSlider(hEle HELE) HELE {
+func XSBar_GetButtonSlider(hEle HELE) HELE {
 	ret, _, _ := xSBar_GetButtonSlider.Call(
 		uintptr(hEle))
 

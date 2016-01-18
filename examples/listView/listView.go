@@ -23,40 +23,40 @@ type listView_item_i struct {
 }
 
 func main() {
-	hWindow := xcgui.XWndCreate(0, 0, 500, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hWindow := xcgui.XWnd_Create(0, 0, 500, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(hWindow)
 
-	hListView := xcgui.XListViewCreate(20, 40, 450, 300, xcgui.HXCGUI(hWindow))
-	xcgui.XListViewSetItemTemplateXML(hListView, "../xml-template/ListView_Item.xml")
+	hListView := xcgui.XListView_Create(20, 40, 450, 300, xcgui.HXCGUI(hWindow))
+	xcgui.XListView_SetItemTemplateXML(hListView, "../xml-template/ListView_Item.xml")
 
-	hAdapter := xcgui.XAdapterListViewCreate()
-	xcgui.XAdapterListViewGroupAddColumn(hAdapter, "name3")
-	xcgui.XAdapterListViewItemAddColumn(hAdapter, "name")
-	xcgui.XAdapterListViewItemAddColumn(hAdapter, "name2")
+	hAdapter := xcgui.XAdapterListView_Create()
+	xcgui.XAdapterListView_GroupAddColumn(hAdapter, "name3")
+	xcgui.XAdapterListView_ItemAddColumn(hAdapter, "name")
+	xcgui.XAdapterListView_ItemAddColumn(hAdapter, "name2")
 
-	xcgui.XListViewBindAdapter(hListView, hAdapter)
+	xcgui.XListView_BindAdapter(hListView, hAdapter)
 
-	group1 := xcgui.XAdapterListViewGroupAddItemText(hAdapter, "group1")
-	group2 := xcgui.XAdapterListViewGroupAddItemText(hAdapter, "group2")
+	group1 := xcgui.XAdapterListView_GroupAddItemText(hAdapter, "group1")
+	group2 := xcgui.XAdapterListView_GroupAddItemText(hAdapter, "group2")
 
-	hImage := xcgui.XImageLoadFile("../img/comma_face_01.png", false)
+	hImage := xcgui.XImage_LoadFile("../img/comma_face_01.png", false)
 
 	for i := 0; i < 20; i++ {
-		index1 := xcgui.XAdapterListViewItemAddItemImage(hAdapter, group1, hImage)
-		xcgui.XAdapterListViewItemSetText(hAdapter, group1, index1, 1, "group1-item-"+fmt.Sprint(i))
+		index1 := xcgui.XAdapterListView_ItemAddItemImage(hAdapter, group1, hImage)
+		xcgui.XAdapterListView_ItemSetText(hAdapter, group1, index1, 1, "group1-item-"+fmt.Sprint(i))
 
-		index2 := xcgui.XAdapterListViewItemAddItemImage(hAdapter, group2, hImage)
-		xcgui.XAdapterListViewItemSetText(hAdapter, group2, index2, 1, "group2-item-"+fmt.Sprint(i))
+		index2 := xcgui.XAdapterListView_ItemAddItemImage(hAdapter, group2, hImage)
+		xcgui.XAdapterListView_ItemSetText(hAdapter, group2, index2, 1, "group2-item-"+fmt.Sprint(i))
 	}
 
-	xcgui.XEleRegEventC(hListView, xcgui.XE_LISTVIEW_SELECT, xcgui.CallBack(OnListViewSelect))
-	xcgui.XEleRegEventC(hListView, xcgui.XE_LISTVIEW_EXPAND, xcgui.CallBack(OnListViewExpand))
+	xcgui.XEle_RegEventC(hListView, xcgui.XE_LISTVIEW_SELECT, xcgui.CallBack(OnListViewSelect))
+	xcgui.XEle_RegEventC(hListView, xcgui.XE_LISTVIEW_EXPAND, xcgui.CallBack(OnListViewExpand))
 
-	xcgui.XEleRegEventC(hListView, xcgui.XE_LISTVIEW_TEMP_CREATE, xcgui.CallBack(OnTemplateCreate))
-	xcgui.XEleRegEventC(hListView, xcgui.XE_LISTVIEW_TEMP_DESTROY, xcgui.CallBack(OnTemplateDestroy))
-	xcgui.XEleRegEventC(hListView, xcgui.XE_LISTVIEW_TEMP_ADJUST_COORDINATE, xcgui.CallBack(OnTemplateAdjustCoordinate))
+	xcgui.XEle_RegEventC(hListView, xcgui.XE_LISTVIEW_TEMP_CREATE, xcgui.CallBack(OnTemplateCreate))
+	xcgui.XEle_RegEventC(hListView, xcgui.XE_LISTVIEW_TEMP_DESTROY, xcgui.CallBack(OnTemplateDestroy))
+	xcgui.XEle_RegEventC(hListView, xcgui.XE_LISTVIEW_TEMP_ADJUST_COORDINATE, xcgui.CallBack(OnTemplateAdjustCoordinate))
 
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 }

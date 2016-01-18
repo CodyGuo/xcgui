@@ -109,7 +109,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XListCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XList_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xList_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -129,7 +129,7 @@ func XListCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	返回位置索引.
 */
-func XListAddColumn(hEle HELE, width int) int {
+func XList_AddColumn(hEle HELE, width int) int {
 	ret, _, _ := xList_AddColumn.Call(
 		uintptr(hEle),
 		uintptr(width))
@@ -147,7 +147,7 @@ func XListAddColumn(hEle HELE, width int) int {
 返回:
 	返回插入位置索引.
 */
-func XListInsertColumn(hEle HELE, width, iItem int) int {
+func XList_InsertColumn(hEle HELE, width, iItem int) int {
 	ret, _, _ := xList_InsertColumn.Call(
 		uintptr(hEle),
 		uintptr(width),
@@ -163,7 +163,7 @@ func XListInsertColumn(hEle HELE, width, iItem int) int {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XListEnableMultiSel(hEle HELE, bEnable bool) {
+func XList_EnableMultiSel(hEle HELE, bEnable bool) {
 	xList_EnableMultiSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -176,7 +176,7 @@ func XListEnableMultiSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XListEnableDragChangeColumnWidth(hEle HELE, bEnable bool) {
+func XList_EnableDragChangeColumnWidth(hEle HELE, bEnable bool) {
 	xList_EnableDragChangeColumnWidth.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -189,7 +189,7 @@ func XListEnableDragChangeColumnWidth(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	nFlags 标志位 list_drawItemBk_flags_.
 */
-func XListSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
+func XList_SetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	xList_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
@@ -203,7 +203,7 @@ func XListSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	iItem 列索引.
 	width 宽度.
 */
-func XListSetColumnWidth(hEle HELE, iItem, width int) {
+func XList_SetColumnWidth(hEle HELE, iItem, width int) {
 	xList_SetColumnWidth.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -218,7 +218,7 @@ func XListSetColumnWidth(hEle HELE, iItem, width int) {
 	iItem 列索引.
 	width 宽度.
 */
-func XListSetColumnMinWidth(hEle HELE, iItem, width int) {
+func XList_SetColumnMinWidth(hEle HELE, iItem, width int) {
 	xList_SetColumnMinWidth.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -233,7 +233,7 @@ func XListSetColumnMinWidth(hEle HELE, iItem, width int) {
 	iColumn 列索引.
 	bFixed 是否固定宽度.
 */
-func XListSetColumnWidthFixed(hEle HELE, iColumn int, bFixed bool) {
+func XList_SetColumnWidthFixed(hEle HELE, iColumn int, bFixed bool) {
 	xList_SetColumnWidthFixed.Call(
 		uintptr(hEle),
 		uintptr(iColumn),
@@ -249,7 +249,7 @@ func XListSetColumnWidthFixed(hEle HELE, iColumn int, bFixed bool) {
 返回:
 	返回指定列宽度.
 */
-func XListGetColumnWidth(hEle HELE, iColumn int) int {
+func XList_GetColumnWidth(hEle HELE, iColumn int) int {
 	ret, _, _ := xList_GetColumnWidth.Call(
 		uintptr(hEle),
 		uintptr(iColumn))
@@ -265,7 +265,7 @@ func XListGetColumnWidth(hEle HELE, iColumn int) int {
 返回:
 	返回列数量.
 */
-func XListGetColumnCount(hEle HELE) int {
+func XList_GetColumnCount(hEle HELE) int {
 	ret, _, _ := xList_GetColumnCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -282,7 +282,7 @@ func XListGetColumnCount(hEle HELE) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListSetItemData(hEle HELE, iItem, iSubItem, data int) bool {
+func XList_SetItemData(hEle HELE, iItem, iSubItem, data int) bool {
 	ret, _, _ := xList_SetItemData.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -302,7 +302,7 @@ func XListSetItemData(hEle HELE, iItem, iSubItem, data int) bool {
 返回:
 	返回用户数据.
 */
-func XListGetItemData(hEle HELE, iItem, iSubItem int) int {
+func XList_GetItemData(hEle HELE, iItem, iSubItem int) int {
 	ret, _, _ := xList_GetItemData.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -321,7 +321,7 @@ func XListGetItemData(hEle HELE, iItem, iSubItem int) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListSetSelectItem(hEle HELE, iItem int, bSelect bool) bool {
+func XList_SetSelectItem(hEle HELE, iItem int, bSelect bool) bool {
 	ret, _, _ := xList_SetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -338,7 +338,7 @@ func XListSetSelectItem(hEle HELE, iItem int, bSelect bool) bool {
 返回:
 	项索引.
 */
-func XListGetSelectItem(hEle HELE) int {
+func XList_GetSelectItem(hEle HELE) int {
 	ret, _, _ := xList_GetSelectItem.Call(uintptr(hEle))
 
 	return int(ret)
@@ -352,7 +352,7 @@ func XListGetSelectItem(hEle HELE) int {
 返回:
 	返回选择项数量.
 */
-func XListGetSelectItemCount(hEle HELE) int {
+func XList_GetSelectItemCount(hEle HELE) int {
 	ret, _, _ := xList_GetSelectItemCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -364,7 +364,7 @@ func XListGetSelectItemCount(hEle HELE) int {
 // 参数:
 // 	hEle 元素句柄.
 // */
-// func XListSelectAll(hEle HELE) {
+// func XList_SelectAll(hEle HELE) {
 // 	xList_SelectAll.Call(uintptr(hEle))
 // }
 
@@ -376,7 +376,7 @@ func XListGetSelectItemCount(hEle HELE) int {
 返回:
 	返回列表头元素句柄.
 */
-func XListGetHeaderHELE(hEle HELE) HELE {
+func XList_GetHeaderHELE(hEle HELE) HELE {
 	ret, _, _ := xList_GetHeaderHELE.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -391,7 +391,7 @@ func XListGetHeaderHELE(hEle HELE) HELE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListDeleteColumn(hEle HELE, iItem int) bool {
+func XList_DeleteColumn(hEle HELE, iItem int) bool {
 	ret, _, _ := xList_DeleteColumn.Call(
 		uintptr(hEle),
 		uintptr(iItem))
@@ -405,7 +405,7 @@ func XListDeleteColumn(hEle HELE, iItem int) bool {
 参数:
 	hEle 元素句柄.
 */
-func XListDeleteColumnAll(hEle HELE) {
+func XList_DeleteColumnAll(hEle HELE) {
 	xList_DeleteColumnAll.Call(uintptr(hEle))
 }
 
@@ -416,7 +416,7 @@ func XListDeleteColumnAll(hEle HELE) {
 	hEle 元素句柄.
 	hAdapter 数据适配器句柄 XAdapterTable.
 */
-func XListBindAdapter(hEle HELE, hAdapter HXCGUI) {
+func XList_BindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xList_BindAdapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -429,7 +429,7 @@ func XListBindAdapter(hEle HELE, hAdapter HXCGUI) {
 	hEle 元素句柄.
 	hAdapter 数据适配器句柄 XAdapterMap.
 */
-func XListBindAdapterHeader(hEle HELE, hAdapter HXCGUI) {
+func XList_BindAdapterHeader(hEle HELE, hAdapter HXCGUI) {
 	xList_BindAdapterHeader.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -443,7 +443,7 @@ func XListBindAdapterHeader(hEle HELE, hAdapter HXCGUI) {
 返回:
 	数据适配器句柄.
 */
-func XListGetAdapter(hEle HELE) HELE {
+func XList_GetAdapter(hEle HELE) HELE {
 	ret, _, _ := xList_GetAdapter.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -458,7 +458,7 @@ func XListGetAdapter(hEle HELE) HELE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
+func XList_SetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xList_SetItemTemplateXML.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -474,7 +474,7 @@ hEle 元素句柄.
 pStringXML 字符串指针.*uint16
 返回:成功返回TRUE否则返回FALSE.
 */
-func XListSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
+func XList_SetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 	ret, _, _ := xList_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pStringXML))
@@ -493,7 +493,7 @@ func XListSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 返回:
 	成功返回对象句柄,否则返回NULL.
 */
-func XListGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
+func XList_GetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	ret, _, _ := xList_GetTemplateObject.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -511,7 +511,7 @@ func XListGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 返回:
 	成功返回项索引, 否则返回XC_ID_ERROR.
 */
-func XListGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
+func XList_GetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xList_GetItemIndexFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI))
@@ -529,7 +529,7 @@ func XListGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 返回:
 	成功返回对象句柄,否则返回NULL.
 */
-func XListGetHeaderTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
+func XList_GetHeaderTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	ret, _, _ := xList_GetHeaderTemplateObject.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -547,7 +547,7 @@ func XListGetHeaderTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 返回:
 	成功返回项索引, 否则返回XC_ID_ERROR.
 */
-func XListGetHeaderItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
+func XList_GetHeaderItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xList_GetHeaderItemIndexFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI))
@@ -562,7 +562,7 @@ func XListGetHeaderItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	hEle 元素句柄.
 	height 高度.
 */
-func XListSetHeaderHeight(hEle HELE, height int) {
+func XList_SetHeaderHeight(hEle HELE, height int) {
 	xList_SetHeaderHeight.Call(
 		uintptr(hEle),
 		uintptr(height))
@@ -576,7 +576,7 @@ func XListSetHeaderHeight(hEle HELE, height int) {
 返回:
 	返回列表头高度.
 */
-func XListGetHeaderHeight(hEle HELE) int {
+func XList_GetHeaderHeight(hEle HELE) int {
 	ret, _, _ := xList_GetHeaderHeight.Call(uintptr(hEle))
 
 	return int(ret)
@@ -592,7 +592,7 @@ func XListGetHeaderHeight(hEle HELE) int {
 	alpha 透明度.
 	width 线宽.
 */
-func XListAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
+func XList_AddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
 	xList_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -610,7 +610,7 @@ func XListAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, al
 	color RGB颜色.
 	alpha 透明度.
 */
-func XListAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
+func XList_AddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
 	xList_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -626,7 +626,7 @@ func XListAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alph
 	nState 项状态.
 	hImage 图片句柄.
 */
-func XListAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
+func XList_AddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 	xList_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -642,7 +642,7 @@ func XListAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 返回:
 	成功返回背景内容数量,否则返回XC_ID_ERROR.
 */
-func XListGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
+func XList_GetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	ret, _, _ := xList_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -658,7 +658,7 @@ func XListGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	hEle 元素句柄.
 	nState 项状态.
 */
-func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
+func XList_ClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xList_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -674,7 +674,7 @@ func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	项背景内容管理器.
 */
-// func XListGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
+// func XList_GetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 // 	ret, _, _ := xList_GetItemBkInfoManager.Call(
 // 		uintptr(hEle),
 // 		uintptr(nState))
@@ -690,7 +690,7 @@ func XListClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	nHeight 高度.
 	nSelHeight 选中时高度.
 */
-func XListSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
+func XList_SetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	xList_SetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(nHeight),
@@ -705,7 +705,7 @@ func XListSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	pHeight 高度.
 	pSelHeight 选中时高度.
 */
-func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
+func XList_GetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
 	xList_GetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pHeight)),
@@ -723,7 +723,7 @@ func XListGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
+func XList_HitTest(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
 	ret, _, _ := xList_HitTest.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -744,7 +744,7 @@ func XListHitTest(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListHitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
+func XList_HitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
 	ret, _, _ := xList_HitTestOffset.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -760,6 +760,6 @@ func XListHitTestOffset(hEle HELE, pPt *POINT, piItem, piSubItem *int32) bool {
 参数:
 	hEle 元素句柄.
 */
-func XListRefreshData(hEle HELE) {
+func XList_RefreshData(hEle HELE) {
 	xList_RefreshData.Call(uintptr(hEle))
 }

@@ -69,7 +69,7 @@ func init() {
 返回:
 	返回数据适配器句柄.
 */
-func XAdapterTableCreate() HXCGUI {
+func XAdapterTable_Create() HXCGUI {
 	ret, _, _ := xAdapterTable_Create.Call()
 
 	return HXCGUI(ret)
@@ -84,7 +84,7 @@ func XAdapterTableCreate() HXCGUI {
 返回:
 	返回列索引.
 */
-func XAdapterTableAddColumn(hAdapter HXCGUI, pName string) int {
+func XAdapterTable_AddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterTable_AddColumn.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName))
@@ -102,7 +102,7 @@ func XAdapterTableAddColumn(hAdapter HXCGUI, pName string) int {
 返回:
 	返回列数量. 注解:例如: XAdapterTable_SetColumn(hAdapter, L"name1,name2,mame3");
 */
-func XAdapterTableSetColumn(hAdapter HXCGUI, pColName string) int {
+func XAdapterTable_SetColumn(hAdapter HXCGUI, pColName string) int {
 	ret, _, _ := xAdapterTable_SetColumn.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pColName))
@@ -120,7 +120,7 @@ func XAdapterTableSetColumn(hAdapter HXCGUI, pColName string) int {
 返回:
 	返回项索引值.
 */
-func XAdapterTableAddItemText(hAdapter HXCGUI, pValue string) int {
+func XAdapterTable_AddItemText(hAdapter HXCGUI, pValue string) int {
 	ret, _, _ := xAdapterTable_AddItemText.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pValue))
@@ -139,7 +139,7 @@ func XAdapterTableAddItemText(hAdapter HXCGUI, pValue string) int {
 返回:
 	返回项索引.
 */
-func XAdapterTableAddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
+func XAdapterTable_AddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
 	ret, _, _ := xAdapterTable_AddItemTextEx.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -159,7 +159,7 @@ func XAdapterTableAddItemTextEx(hAdapter HXCGUI, pName, pValue string) int {
 返回:
 	返回项索引值.
 */
-func XAdapterTableAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
+func XAdapterTable_AddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
 	ret, _, _ := xAdapterTable_AddItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(hImage))
@@ -177,7 +177,7 @@ func XAdapterTableAddItemImage(hAdapter HXCGUI, hImage HIMAGE) int {
 返回:
 
 */
-func XAdapterTableAddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) int {
+func XAdapterTable_AddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) int {
 	ret, _, _ := xAdapterTable_AddItemImageEx.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -197,7 +197,7 @@ func XAdapterTableAddItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE) i
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemText(hAdapter HXCGUI, iItem int, pValue string) bool {
+func XAdapterTable_InsertItemText(hAdapter HXCGUI, iItem int, pValue string) bool {
 	ret, _, _ := xAdapterTable_InsertItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -218,7 +218,7 @@ func XAdapterTableInsertItemText(hAdapter HXCGUI, iItem int, pValue string) bool
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string) bool {
+func XAdapterTable_InsertItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string) bool {
 	ret, _, _ := xAdapterTable_InsertItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -240,7 +240,7 @@ func XAdapterTableInsertItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue str
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemImage(hAdapter HXCGUI, iItem int, hImage HIMAGE) bool {
+func XAdapterTable_InsertItemImage(hAdapter HXCGUI, iItem int, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTable_InsertItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -260,7 +260,7 @@ func XAdapterTableInsertItemImage(hAdapter HXCGUI, iItem int, hImage HIMAGE) boo
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableInsertItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImage HIMAGE) bool {
+func XAdapterTable_InsertItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTable_InsertItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -282,7 +282,7 @@ func XAdapterTableInsertItemImageEx(hAdapter HXCGUI, iItem int, pName string, hI
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemText(hAdapter HXCGUI, iItem, iColumn int, pValue string) bool {
+func XAdapterTable_SetItemText(hAdapter HXCGUI, iItem, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterTable_SetItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -304,7 +304,7 @@ func XAdapterTableSetItemText(hAdapter HXCGUI, iItem, iColumn int, pValue string
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string) bool {
+func XAdapterTable_SetItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string) bool {
 	ret, _, _ := xAdapterTable_SetItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -327,7 +327,7 @@ func XAdapterTableSetItemTextEx(hAdapter HXCGUI, iItem int, pName, pValue string
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemImage(hAdapter HXCGUI, iItem, iColumn int, hImage HIMAGE) bool {
+func XAdapterTable_SetItemImage(hAdapter HXCGUI, iItem, iColumn int, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTable_SetItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -348,7 +348,7 @@ func XAdapterTableSetItemImage(hAdapter HXCGUI, iItem, iColumn int, hImage HIMAG
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableSetItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImage HIMAGE) bool {
+func XAdapterTable_SetItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTable_SetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -368,7 +368,7 @@ func XAdapterTableSetItemImageEx(hAdapter HXCGUI, iItem int, pName string, hImag
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableDeleteItem(hAdapter HXCGUI, iItem int) bool {
+func XAdapterTable_DeleteItem(hAdapter HXCGUI, iItem int) bool {
 	ret, _, _ := xAdapterTable_DeleteItem.Call(
 		uintptr(hAdapter),
 		uintptr(iItem))
@@ -386,7 +386,7 @@ func XAdapterTableDeleteItem(hAdapter HXCGUI, iItem int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableDeleteItemEx(hAdapter HXCGUI, iItem, nCount int) bool {
+func XAdapterTable_DeleteItemEx(hAdapter HXCGUI, iItem, nCount int) bool {
 	ret, _, _ := xAdapterTable_DeleteItemEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -401,7 +401,7 @@ func XAdapterTableDeleteItemEx(hAdapter HXCGUI, iItem, nCount int) bool {
 参数:
 	hAdapter 数据适配器句柄.
 */
-func XAdapterTableDeleteItemAll(hAdapter HXCGUI) {
+func XAdapterTable_DeleteItemAll(hAdapter HXCGUI) {
 	xAdapterTable_DeleteItemAll.Call(uintptr(hAdapter))
 }
 
@@ -411,7 +411,7 @@ func XAdapterTableDeleteItemAll(hAdapter HXCGUI) {
 参数:
 	hAdapter 数据适配器句柄.
 */
-func XAdapterTableDeleteColumnAll(hAdapter HXCGUI) {
+func XAdapterTable_DeleteColumnAll(hAdapter HXCGUI) {
 	xAdapterTable_DeleteColumnAll.Call(uintptr(hAdapter))
 }
 
@@ -423,7 +423,7 @@ func XAdapterTableDeleteColumnAll(hAdapter HXCGUI) {
 返回:
 	返回数量.
 */
-func XAdapterTableGetCount(hAdapter HXCGUI) int {
+func XAdapterTable_GetCount(hAdapter HXCGUI) int {
 	ret, _, _ := xAdapterTable_GetCount.Call(uintptr(hAdapter))
 
 	return int(ret)
@@ -437,7 +437,7 @@ func XAdapterTableGetCount(hAdapter HXCGUI) int {
 返回:
 	返回列数量.
 */
-func XAdapterTableGetCountColumn(hAdapter HXCGUI) int {
+func XAdapterTable_GetCountColumn(hAdapter HXCGUI) int {
 	ret, _, _ := xAdapterTable_GetCountColumn.Call(uintptr(hAdapter))
 
 	return int(ret)
@@ -455,7 +455,7 @@ func XAdapterTableGetCountColumn(hAdapter HXCGUI) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableGetItemText(hAdapter HXCGUI, iItem, iColumn int, pOut *uint16, nOutLen int) bool {
+func XAdapterTable_GetItemText(hAdapter HXCGUI, iItem, iColumn int, pOut *uint16, nOutLen int) bool {
 	ret, _, _ := xAdapterTable_GetItemText.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -476,7 +476,7 @@ func XAdapterTableGetItemText(hAdapter HXCGUI, iItem, iColumn int, pOut *uint16,
 返回:
 	返回图片句柄.
 */
-func XAdapterTableGetItemImage(hAdapter HXCGUI, iItem, iColumn int) HIMAGE {
+func XAdapterTable_GetItemImage(hAdapter HXCGUI, iItem, iColumn int) HIMAGE {
 	ret, _, _ := xAdapterTable_GetItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -497,7 +497,7 @@ func XAdapterTableGetItemImage(hAdapter HXCGUI, iItem, iColumn int) HIMAGE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTableGetItemTextEx(hAdapter HXCGUI, iItem int, pName, pOut *uint16, nOutLen int) bool {
+func XAdapterTable_GetItemTextEx(hAdapter HXCGUI, iItem int, pName, pOut *uint16, nOutLen int) bool {
 	ret, _, _ := xAdapterTable_GetItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),
@@ -518,7 +518,7 @@ func XAdapterTableGetItemTextEx(hAdapter HXCGUI, iItem int, pName, pOut *uint16,
 返回:
 	返回图片句柄.
 */
-func XAdapterTableGetItemImageEx(hAdapter HXCGUI, iItem int, pName string) HIMAGE {
+func XAdapterTable_GetItemImageEx(hAdapter HXCGUI, iItem int, pName string) HIMAGE {
 	ret, _, _ := xAdapterTable_GetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(iItem),

@@ -30,65 +30,65 @@ type listBox_item_i struct {
 }
 
 func main() {
-	hWindow := xcgui.XWndCreate(0, 0, 500, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hWindow := xcgui.XWnd_Create(0, 0, 500, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(hWindow)
 
-	hListBox = xcgui.XListBoxCreate(20, 40, 300, 310, xcgui.HXCGUI(hWindow))
-	xcgui.XListBoxSetItemTemplateXML(hListBox, "../xml-template/ListBox_Item.xml")
-	xcgui.XSViewSetLineSize(hListBox, 20, 20)
+	hListBox = xcgui.XListBox_Create(20, 40, 300, 310, xcgui.HXCGUI(hWindow))
+	xcgui.XListBox_SetItemTemplateXML(hListBox, "../xml-template/ListBox_Item.xml")
+	xcgui.XSView_SetLineSize(hListBox, 20, 20)
 
-	hAdapter := xcgui.XAdapterTableCreate()
-	xcgui.XListBoxBindAdapter(hListBox, hAdapter)
-	xcgui.XAdapterTableAddColumn(hAdapter, "name")
-	xcgui.XAdapterTableAddColumn(hAdapter, "name2")
-	xcgui.XAdapterTableAddColumn(hAdapter, "name3")
+	hAdapter := xcgui.XAdapterTable_Create()
+	xcgui.XListBox_BindAdapter(hListBox, hAdapter)
+	xcgui.XAdapterTable_AddColumn(hAdapter, "name")
+	xcgui.XAdapterTable_AddColumn(hAdapter, "name2")
+	xcgui.XAdapterTable_AddColumn(hAdapter, "name3")
 
 	for i := 0; i < 20; i++ {
-		index := xcgui.XAdapterTableAddItemTextEx(hAdapter, "name", "item-"+fmt.Sprint(i))
+		index := xcgui.XAdapterTable_AddItemTextEx(hAdapter, "name", "item-"+fmt.Sprint(i))
 		if index != xcgui.XC_ID_ERROR {
-			xcgui.XAdapterTableSetItemTextEx(hAdapter, index, "name2", "item-1-"+fmt.Sprint(i))
-			xcgui.XAdapterTableSetItemTextEx(hAdapter, index, "name3", "item-2-"+fmt.Sprint(i))
+			xcgui.XAdapterTable_SetItemTextEx(hAdapter, index, "name2", "item-1-"+fmt.Sprint(i))
+			xcgui.XAdapterTable_SetItemTextEx(hAdapter, index, "name3", "item-2-"+fmt.Sprint(i))
 		}
 	}
 
-	hButton1 := xcgui.XBtnCreate(330, 40, 150, 18, "插入", xcgui.HXCGUI(hWindow))
-	xcgui.XEleRegEventC(hButton1, xcgui.XE_BNCLICK, xcgui.CallBack(OnBtnClickAdd))
+	hButton1 := xcgui.XBtn_Create(330, 40, 150, 18, "插入", xcgui.HXCGUI(hWindow))
+	xcgui.XEle_RegEventC(hButton1, xcgui.XE_BNCLICK, xcgui.CallBack(OnBtnClickAdd))
 
-	hButton2 := xcgui.XBtnCreate(330, 60, 150, 18, "删除", xcgui.HXCGUI(hWindow))
-	xcgui.XEleRegEventC(hButton2, xcgui.XE_BNCLICK, xcgui.CallBack(OnBtnClickDel))
+	hButton2 := xcgui.XBtn_Create(330, 60, 150, 18, "删除", xcgui.HXCGUI(hWindow))
+	xcgui.XEle_RegEventC(hButton2, xcgui.XE_BNCLICK, xcgui.CallBack(OnBtnClickDel))
 
-	hButton3 := xcgui.XBtnCreate(330, 84, 150, 18, "删除 index=(1-3)", xcgui.HXCGUI(hWindow))
-	xcgui.XEleRegEventC(hButton3, xcgui.XE_BNCLICK, xcgui.CallBack(OnBtnClickDelEx))
+	hButton3 := xcgui.XBtn_Create(330, 84, 150, 18, "删除 index=(1-3)", xcgui.HXCGUI(hWindow))
+	xcgui.XEle_RegEventC(hButton3, xcgui.XE_BNCLICK, xcgui.CallBack(OnBtnClickDelEx))
 
-	hRichEidt = xcgui.XRichEditCreate(330, 106, 120, 200, xcgui.HXCGUI(hWindow))
-	xcgui.XSViewShowSBarV(hRichEidt, true)
-	xcgui.XRichEditEnableMultiLine(hRichEidt, true)
+	hRichEidt = xcgui.XRichEdit_Create(330, 106, 120, 200, xcgui.HXCGUI(hWindow))
+	xcgui.XSView_ShowSBarV(hRichEidt, true)
+	xcgui.XRichEdit_EnableMultiLine(hRichEidt, true)
 
-	xcgui.XEleRegEventC(hListBox, xcgui.XE_LISTBOX_TEMP_CREATE_END, xcgui.CallBack(OnTemplateCreate))
-	xcgui.XEleRegEventC(hListBox, xcgui.XE_LISTBOX_TEMP_DESTROY, xcgui.CallBack(OnTemplateDestroy))
-	xcgui.XEleRegEventC(hListBox, xcgui.XE_LISTBOX_TEMP_ADJUST_COORDINATE, xcgui.CallBack(OnTemplateAdjustCoordinate))
-	xcgui.XEleRegEventC(hListBox, xcgui.XE_LISTBOX_SELECT, xcgui.CallBack(OnListBoxSelect))
+	xcgui.XEle_RegEventC(hListBox, xcgui.XE_LISTBOX_TEMP_CREATE_END, xcgui.CallBack(OnTemplateCreate))
+	xcgui.XEle_RegEventC(hListBox, xcgui.XE_LISTBOX_TEMP_DESTROY, xcgui.CallBack(OnTemplateDestroy))
+	xcgui.XEle_RegEventC(hListBox, xcgui.XE_LISTBOX_TEMP_ADJUST_COORDINATE, xcgui.CallBack(OnTemplateAdjustCoordinate))
+	xcgui.XEle_RegEventC(hListBox, xcgui.XE_LISTBOX_SELECT, xcgui.CallBack(OnListBoxSelect))
 
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 }
 
 func OnBtnClickAdd(pbHandled *bool) int {
-	hAdapter := xcgui.XListBoxGetAdapter(hListBox)
-	xcgui.XAdapterTableInsertItemText(hAdapter, xcgui.XAdapterTableGetCount(hAdapter), "test - insert"+fmt.Sprint(xcgui.XAdapterTableGetCount(hAdapter)))
-	xcgui.XEleRedrawEle(hListBox)
+	hAdapter := xcgui.XListBox_GetAdapter(hListBox)
+	xcgui.XAdapterTable_InsertItemText(hAdapter, xcgui.XAdapterTable_GetCount(hAdapter), "test - insert"+fmt.Sprint(xcgui.XAdapterTable_GetCount(hAdapter)))
+	xcgui.XEle_RedrawEle(hListBox)
 
 	return 0
 }
 func OnBtnClickDel(pbHandled *bool) int {
-	hAdapter := xcgui.XListBoxGetAdapter(hListBox)
+	hAdapter := xcgui.XListBox_GetAdapter(hListBox)
 	array := make([]uint16, 256)
-	count := xcgui.XListBoxGetSelectAll(hListBox, &array[0], 256)
+	count := xcgui.XListBox_GetSelectAll(hListBox, &array[0], 256)
 	for i := 0; i < count*2; i += 2 {
-		ok := xcgui.XAdapterTableDeleteItem(hAdapter, int(array[i]))
+		ok := xcgui.XAdapterTable_DeleteItem(hAdapter, int(array[i]))
 		if ok {
-			xcgui.XEleRedrawEle(hListBox)
+			xcgui.XEle_RedrawEle(hListBox)
 		}
 	}
 
@@ -96,32 +96,32 @@ func OnBtnClickDel(pbHandled *bool) int {
 }
 
 func OnBtnClickDelEx(pbHandled *bool) int {
-	hAdapter := xcgui.XListBoxGetAdapter(hListBox)
-	ok := xcgui.XAdapterTableDeleteItemEx(hAdapter, 1, 3)
+	hAdapter := xcgui.XListBox_GetAdapter(hListBox)
+	ok := xcgui.XAdapterTable_DeleteItemEx(hAdapter, 1, 3)
 	if ok {
-		xcgui.XEleRedrawEle(hListBox)
+		xcgui.XEle_RedrawEle(hListBox)
 	}
 
 	return 0
 }
 
 func OnListBoxSelect(iItem int, pbHandled *bool) int {
-	xcgui.XRichEditDeleteAll(hRichEidt)
+	xcgui.XRichEdit_DeleteAll(hRichEidt)
 	array := make([]uint16, 256)
-	count := xcgui.XListBoxGetSelectAll(hListBox, &array[0], 256)
+	count := xcgui.XListBox_GetSelectAll(hListBox, &array[0], 256)
 
-	hAdapter := xcgui.XListBoxGetAdapter(hListBox)
+	hAdapter := xcgui.XListBox_GetAdapter(hListBox)
 	var szItemList string
 	name := make([]uint16, 256)
 	for i := 0; i < count*2; i += 2 {
-		ok := xcgui.XAdapterTableGetItemText(hAdapter, int(array[i]), 0, &name[0], 256)
+		ok := xcgui.XAdapterTable_GetItemText(hAdapter, int(array[i]), 0, &name[0], 256)
 		if ok {
 			szItemList += xcgui.UTF16PtrToString(&name[0])
 			szItemList += "\n"
 		}
 	}
 
-	xcgui.XRichEditSetText(hRichEidt, szItemList)
+	xcgui.XRichEdit_SetText(hRichEidt, szItemList)
 
 	return 0
 }

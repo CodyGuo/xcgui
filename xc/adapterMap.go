@@ -33,7 +33,7 @@ func init() {
 返回:
 	返回数据适配器句柄.
 */
-func XAdapterMapCreate() HXCGUI {
+func XAdapterMap_Create() HXCGUI {
 	ret, _, _ := xAdapterMap_Create.Call()
 
 	return HXCGUI(ret)
@@ -49,7 +49,7 @@ func XAdapterMapCreate() HXCGUI {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapAddItemText(hAdapter HXCGUI, pName, pValue string) bool {
+func XAdapterMap_AddItemText(hAdapter HXCGUI, pName, pValue string) bool {
 	ret, _, _ := xAdapterMap_AddItemText.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -70,7 +70,7 @@ func XAdapterMapAddItemText(hAdapter HXCGUI, pName, pValue string) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapAddItemImage(hAdapter HXCGUI, pName string, hImage HIMAGE) bool {
+func XAdapterMap_AddItemImage(hAdapter HXCGUI, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterMap_AddItemImage.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -89,7 +89,7 @@ func XAdapterMapAddItemImage(hAdapter HXCGUI, pName string, hImage HIMAGE) bool 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapDeleteItem(hAdapter HXCGUI, pName string) bool {
+func XAdapterMap_DeleteItem(hAdapter HXCGUI, pName string) bool {
 	ret, _, _ := xAdapterMap_DeleteItem.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName))
@@ -106,7 +106,7 @@ func XAdapterMapDeleteItem(hAdapter HXCGUI, pName string) bool {
 返回:
 	返回项数量.
 */
-func XAdapterMapGetCount(hAdapter HXCGUI) int {
+func XAdapterMap_GetCount(hAdapter HXCGUI) int {
 	ret, _, _ := xAdapterMap_GetCount.Call(uintptr(hAdapter))
 
 	return int(ret)
@@ -123,7 +123,7 @@ func XAdapterMapGetCount(hAdapter HXCGUI) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterMapGetItemText(hAdapter HXCGUI, pName, pOut *uint16, nOutLen int) bool {
+func XAdapterMap_GetItemText(hAdapter HXCGUI, pName, pOut *uint16, nOutLen int) bool {
 	ret, _, _ := xAdapterMap_GetItemText.Call(
 		uintptr(hAdapter),
 		uintptr(unsafe.Pointer(pName)),
@@ -142,7 +142,7 @@ func XAdapterMapGetItemText(hAdapter HXCGUI, pName, pOut *uint16, nOutLen int) b
 返回:
 	返回图片句柄.
 */
-func XAdapterMapGetItemImage(hAdapter HXCGUI, pName string) HIMAGE {
+func XAdapterMap_GetItemImage(hAdapter HXCGUI, pName string) HIMAGE {
 	ret, _, _ := xAdapterMap_GetItemImage.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName))

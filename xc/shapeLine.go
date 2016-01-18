@@ -28,7 +28,7 @@ func init() {
 返回:
 	返回句柄.
 */
-func XShapeLineCreate(x1, y1, x2, y2 int, hParent HXCGUI) HXCGUI {
+func XShapeLine_Create(x1, y1, x2, y2 int, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeLine_Create.Call(
 		uintptr(x1),
 		uintptr(y1),
@@ -49,7 +49,7 @@ func XShapeLineCreate(x1, y1, x2, y2 int, hParent HXCGUI) HXCGUI {
 	x2 坐标.
 	y2 坐标.
 */
-func XShapeLineSetPosition(hShape HXCGUI, x1, y1, x2, y2 int) {
+func XShapeLine_SetPosition(hShape HXCGUI, x1, y1, x2, y2 int) {
 	xShapeLine_SetPosition.Call(
 		uintptr(hShape),
 		uintptr(x1),
@@ -66,7 +66,7 @@ func XShapeLineSetPosition(hShape HXCGUI, x1, y1, x2, y2 int) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XShapeLineSetColor(hShape HXCGUI, color COLORREF, alpha byte) {
+func XShapeLine_SetColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeLine_SetColor.Call(
 		uintptr(hShape),
 		uintptr(color),

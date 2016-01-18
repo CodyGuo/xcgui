@@ -53,7 +53,7 @@ func init() {
 返回:
 	GUI库窗口资源句柄.
 */
-func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
+func XFrameWnd_Create(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle Xc_window_style_) HWINDOW {
 	ret, _, _ := xFrameWnd_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -84,7 +84,7 @@ func XFrameWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle i
 返回:
 	GUI库窗口资源句柄.
 */
-func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
+func XFrameWnd_CreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle uint32) HWINDOW {
 	ret, _, _ := xFrameWnd_CreateEx.Call(
 		uintptr(dwExStyle),
 		StringToUintPtr(lpClassName),
@@ -109,7 +109,7 @@ func XFrameWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwSty
 	hWindow 窗口句柄.
 	pRect 返回坐标.
 */
-func XFrameWndGetLayoutAreaRect(hWindow HWINDOW, pRect *RECT) {
+func XFrameWnd_GetLayoutAreaRect(hWindow HWINDOW, pRect *RECT) {
 	xFrameWnd_GetLayoutAreaRect.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pRect)))
@@ -122,7 +122,7 @@ func XFrameWndGetLayoutAreaRect(hWindow HWINDOW, pRect *RECT) {
 	hWindow 窗口句柄.
 	hEle 元素句柄.
 */
-func XFrameWndSetView(hWindow HWINDOW, hEle HELE) {
+func XFrameWnd_SetView(hWindow HWINDOW, hEle HELE) {
 	xFrameWnd_SetView.Call(
 		uintptr(hWindow),
 		uintptr(hEle))
@@ -136,7 +136,7 @@ func XFrameWndSetView(hWindow HWINDOW, hEle HELE) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color COLORREF, alpha byte) {
+func XFrameWnd_SetPaneSplitBarColor(hWindow HWINDOW, color COLORREF, alpha byte) {
 	xFrameWnd_SetPaneSplitBarColor.Call(
 		uintptr(hWindow),
 		uintptr(color),
@@ -154,7 +154,7 @@ func XFrameWndSetPaneSplitBarColor(hWindow HWINDOW, color COLORREF, alpha byte) 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align Align_type_) bool {
+func XFrameWnd_AddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align Align_type_) bool {
 	ret, _, _ := xFrameWnd_AddPane.Call(
 		uintptr(hWindow),
 		uintptr(hPaneDest),
@@ -174,7 +174,7 @@ func XFrameWndAddPane(hWindow HWINDOW, hPaneDest HELE, hPaneNew HELE, align Alig
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XFrameWndMergePane(hWindow HWINDOW, hPaneDest, hPaneNew HELE) bool {
+func XFrameWnd_MergePane(hWindow HWINDOW, hPaneDest, hPaneNew HELE) bool {
 	ret, _, _ := xFrameWnd_MergePane.Call(
 		uintptr(hWindow),
 		uintptr(hPaneDest),

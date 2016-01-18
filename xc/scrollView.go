@@ -83,7 +83,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XSViewCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XSView_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xSView_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -104,7 +104,7 @@ func XSViewCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	如果内容改变返回TRUE否则返回FALSE.
 */
-func XSViewSetTotalSize(hEle HELE, cx, cy int) bool {
+func XSView_SetTotalSize(hEle HELE, cx, cy int) bool {
 	ret, _, _ := xSView_SetTotalSize.Call(
 		uintptr(hEle),
 		uintptr(cx),
@@ -121,7 +121,7 @@ func XSViewSetTotalSize(hEle HELE, cx, cy int) bool {
 	hEle 元素句柄.
 	pSize 大小.
 */
-func XSViewGetTotalSize(hEle HELE, pSize *SIZE) {
+func XSView_GetTotalSize(hEle HELE, pSize *SIZE) {
 	xSView_GetTotalSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
@@ -137,7 +137,7 @@ func XSViewGetTotalSize(hEle HELE, pSize *SIZE) {
 返回:
 	如果内容改变返回TRUE否则返回FALSE.
 */
-func XSViewSetLineSize(hEle HELE, nWidth, nHeight int) bool {
+func XSView_SetLineSize(hEle HELE, nWidth, nHeight int) bool {
 	ret, _, _ := xSView_SetLineSize.Call(
 		uintptr(hEle),
 		uintptr(nWidth),
@@ -153,7 +153,7 @@ func XSViewSetLineSize(hEle HELE, nWidth, nHeight int) bool {
 	hEle 元素句柄.
 	pSize 返回大小.
 */
-func XSViewGetLineSize(hEle HELE, pSize *SIZE) {
+func XSView_GetLineSize(hEle HELE, pSize *SIZE) {
 	xSView_GetLineSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
@@ -167,7 +167,7 @@ func XSViewGetLineSize(hEle HELE, pSize *SIZE) {
 返回:
 	视口原点X坐标.
 */
-func XSViewGetViewPosH(hEle HELE) int {
+func XSView_GetViewPosH(hEle HELE) int {
 	ret, _, _ := xSView_GetViewPosH.Call(
 		uintptr(hEle))
 
@@ -182,7 +182,7 @@ func XSViewGetViewPosH(hEle HELE) int {
 返回:
 	视口原点Y坐标.
 */
-func XSViewGetViewPosV(hEle HELE) int {
+func XSView_GetViewPosV(hEle HELE) int {
 	ret, _, _ := xSView_GetViewPosV.Call(
 		uintptr(hEle))
 
@@ -197,7 +197,7 @@ func XSViewGetViewPosV(hEle HELE) int {
 返回:
 	返回视口宽度.
 */
-func XSViewGetViewWidth(hEle HELE) int {
+func XSView_GetViewWidth(hEle HELE) int {
 	ret, _, _ := xSView_GetViewWidth.Call(
 		uintptr(hEle))
 
@@ -212,7 +212,7 @@ func XSViewGetViewWidth(hEle HELE) int {
 返回:
 	返回视口高度.
 */
-func XSViewGetViewHeight(hEle HELE) int {
+func XSView_GetViewHeight(hEle HELE) int {
 	ret, _, _ := xSView_GetViewHeight.Call(
 		uintptr(hEle))
 
@@ -226,7 +226,7 @@ func XSViewGetViewHeight(hEle HELE) int {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XSViewGetViewRect(hEle HELE, pRect *RECT) {
+func XSView_GetViewRect(hEle HELE, pRect *RECT) {
 	xSView_GetLineSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -240,7 +240,7 @@ func XSViewGetViewRect(hEle HELE, pRect *RECT) {
 返回:
 	滚动条句柄.
 */
-func XSViewGetScrollBarH(hEle HELE) HELE {
+func XSView_GetScrollBarH(hEle HELE) HELE {
 	ret, _, _ := xSView_GetScrollBarH.Call(
 		uintptr(hEle))
 
@@ -255,7 +255,7 @@ func XSViewGetScrollBarH(hEle HELE) HELE {
 返回:
 	垂直滚动条句柄.
 */
-func XSViewGetScrollBarV(hEle HELE) HELE {
+func XSView_GetScrollBarV(hEle HELE) HELE {
 	ret, _, _ := xSView_GetScrollBarV.Call(
 		uintptr(hEle))
 
@@ -272,7 +272,7 @@ func XSViewGetScrollBarV(hEle HELE) HELE {
 	right 右边大小.
 	bottom 下边大小.
 */
-func XSViewSetPadding(hEle HELE, left, top, right, bottom int) {
+func XSView_SetPadding(hEle HELE, left, top, right, bottom int) {
 	xSView_SetPadding.Call(
 		uintptr(hEle),
 		uintptr(left),
@@ -288,7 +288,7 @@ func XSViewSetPadding(hEle HELE, left, top, right, bottom int) {
 	hEle 元素句柄.
 	pPadding 大小.
 */
-func XSViewGetPadding(hEle HELE, pPadding *PaddingSize_) {
+func XSView_GetPadding(hEle HELE, pPadding *PaddingSize_) {
 	xSView_GetPadding.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPadding)))
@@ -303,7 +303,7 @@ func XSViewGetPadding(hEle HELE, pPadding *PaddingSize_) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSViewScrollPosH(hEle HELE, pos int) bool {
+func XSView_ScrollPosH(hEle HELE, pos int) bool {
 	ret, _, _ := xSView_ScrollPosH.Call(
 		uintptr(hEle),
 		uintptr(pos))
@@ -320,7 +320,7 @@ func XSViewScrollPosH(hEle HELE, pos int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSViewScrollPosV(hEle HELE, pos int) bool {
+func XSView_ScrollPosV(hEle HELE, pos int) bool {
 	ret, _, _ := xSView_ScrollPosV.Call(
 		uintptr(hEle),
 		uintptr(pos))
@@ -337,7 +337,7 @@ func XSViewScrollPosV(hEle HELE, pos int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSViewScrollPosXH(hEle HELE, posX int) bool {
+func XSView_ScrollPosXH(hEle HELE, posX int) bool {
 	ret, _, _ := xSView_ScrollPosXH.Call(
 		uintptr(hEle),
 		uintptr(posX))
@@ -354,7 +354,7 @@ func XSViewScrollPosXH(hEle HELE, posX int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XSViewScrollPosYV(hEle HELE, posY int) bool {
+func XSView_ScrollPosYV(hEle HELE, posY int) bool {
 	ret, _, _ := xSView_ScrollPosYV.Call(
 		uintptr(hEle),
 		uintptr(posY))
@@ -369,7 +369,7 @@ func XSViewScrollPosYV(hEle HELE, posY int) bool {
 	hEle 元素句柄.
 	bShow 是否显示.
 */
-func XSViewShowSBarH(hEle HELE, bShow bool) {
+func XSView_ShowSBarH(hEle HELE, bShow bool) {
 	xSView_ShowSBarH.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bShow)))
@@ -382,7 +382,7 @@ func XSViewShowSBarH(hEle HELE, bShow bool) {
 	hEle 元素句柄.
 	bShow 是否显示.
 */
-func XSViewShowSBarV(hEle HELE, bShow bool) {
+func XSView_ShowSBarV(hEle HELE, bShow bool) {
 	xSView_ShowSBarV.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bShow)))
@@ -395,7 +395,7 @@ func XSViewShowSBarV(hEle HELE, bShow bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XSViewEnableAutoShowScrollBar(hEle HELE, bEnable bool) {
+func XSView_EnableAutoShowScrollBar(hEle HELE, bEnable bool) {
 	xSView_EnableAutoShowScrollBar.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -409,7 +409,7 @@ func XSViewEnableAutoShowScrollBar(hEle HELE, bEnable bool) {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollLeftLine(hEle HELE) bool {
+func XSView_ScrollLeftLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollLeftLine.Call(
 		uintptr(hEle))
 
@@ -424,7 +424,7 @@ func XSViewScrollLeftLine(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollRightLine(hEle HELE) bool {
+func XSView_ScrollRightLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollRightLine.Call(
 		uintptr(hEle))
 
@@ -439,7 +439,7 @@ func XSViewScrollRightLine(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollTopLine(hEle HELE) bool {
+func XSView_ScrollTopLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollTopLine.Call(
 		uintptr(hEle))
 
@@ -454,7 +454,7 @@ func XSViewScrollTopLine(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollBottomLine(hEle HELE) bool {
+func XSView_ScrollBottomLine(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollBottomLine.Call(
 		uintptr(hEle))
 
@@ -469,7 +469,7 @@ func XSViewScrollBottomLine(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollLeft(hEle HELE) bool {
+func XSView_ScrollLeft(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollLeft.Call(
 		uintptr(hEle))
 
@@ -484,7 +484,7 @@ func XSViewScrollLeft(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollRight(hEle HELE) bool {
+func XSView_ScrollRight(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollRight.Call(
 		uintptr(hEle))
 
@@ -499,7 +499,7 @@ func XSViewScrollRight(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollTop(hEle HELE) bool {
+func XSView_ScrollTop(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollTop.Call(
 		uintptr(hEle))
 
@@ -514,7 +514,7 @@ func XSViewScrollTop(hEle HELE) bool {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XSViewScrollBottom(hEle HELE) bool {
+func XSView_ScrollBottom(hEle HELE) bool {
 	ret, _, _ := xSView_ScrollBottom.Call(
 		uintptr(hEle))
 

@@ -87,7 +87,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XListBoxCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XListBox_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xListBox_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -105,7 +105,7 @@ func XListBoxCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	hEle 元素句柄.
 	nFlags 标志位 list_drawItemBk_flags_.
 */
-func XListBoxSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
+func XListBox_SetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	xListBox_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
@@ -121,7 +121,7 @@ func XListBoxSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetItemData(hEle HELE, iItem, nUserData int) bool {
+func XListBox_SetItemData(hEle HELE, iItem, nUserData int) bool {
 	ret, _, _ := xListBox_SetItemData.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -139,7 +139,7 @@ func XListBoxSetItemData(hEle HELE, iItem, nUserData int) bool {
 返回:
 	用户数据.
 */
-func XListBoxGetItemData(hEle HELE, iItem int) int {
+func XListBox_GetItemData(hEle HELE, iItem int) int {
 	ret, _, _ := xListBox_GetItemData.Call(
 		uintptr(hEle),
 		uintptr(iItem))
@@ -157,7 +157,7 @@ func XListBoxGetItemData(hEle HELE, iItem int) int {
 	alpha 透明度.
 	width 线宽.
 */
-func XListBoxAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
+func XListBox_AddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
 	xListBox_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -175,7 +175,7 @@ func XListBoxAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF,
 	color RGB颜色.
 	alpha 透明度.
 */
-func XListBoxAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
+func XListBox_AddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
 	xListBox_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -191,7 +191,7 @@ func XListBoxAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, a
 	nState 项状态.
 	hImage 图片句柄.
 */
-func XListBoxAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
+func XListBox_AddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 	xListBox_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -207,7 +207,7 @@ func XListBoxAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 返回:
 	成功返回背景内容数量,否则返回XC_ID_ERROR.
 */
-func XListBoxGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
+func XListBox_GetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	ret, _, _ := xListBox_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -222,7 +222,7 @@ func XListBoxGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	hEle 元素句柄.
 	nState 项状态.
 */
-func XListBoxClearItemBkInfo(hEle HELE, nState List_item_state_) {
+func XListBox_ClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xListBox_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -237,7 +237,7 @@ func XListBoxClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	项背景内容管理器.
 */
-// func XListBoxGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
+// func XListBox_GetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 // 	ret, _, _ := xListBox_GetItemBkInfoManager.Call(
 // 		uintptr(hEle),
 // 		uintptr(nState))
@@ -255,7 +255,7 @@ func XListBoxClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetItemInfo(hEle HELE, iItemint int, pItem *Listbox_item_info_i) bool {
+func XListBox_SetItemInfo(hEle HELE, iItemint int, pItem *Listbox_item_info_i) bool {
 	ret, _, _ := xListBox_SetItemInfo.Call(
 		uintptr(hEle),
 		uintptr(iItemint),
@@ -274,7 +274,7 @@ func XListBoxSetItemInfo(hEle HELE, iItemint int, pItem *Listbox_item_info_i) bo
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxGetItemInfo(hEle HELE, iItem int, pItem *Listbox_item_info_i) bool {
+func XListBox_GetItemInfo(hEle HELE, iItem int, pItem *Listbox_item_info_i) bool {
 	ret, _, _ := xListBox_GetItemInfo.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -292,7 +292,7 @@ func XListBoxGetItemInfo(hEle HELE, iItem int, pItem *Listbox_item_info_i) bool 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetSelectItem(hEle HELE, iItem int) bool {
+func XListBox_SetSelectItem(hEle HELE, iItem int) bool {
 	ret, _, _ := xListBox_SetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(iItem))
@@ -308,7 +308,7 @@ func XListBoxSetSelectItem(hEle HELE, iItem int) bool {
 返回:
 	项索引.
 */
-func XListBoxGetSelectItem(hEle HELE) int {
+func XListBox_GetSelectItem(hEle HELE) int {
 	ret, _, _ := xListBox_GetSelectItem.Call(uintptr(hEle))
 
 	return int(ret)
@@ -323,7 +323,7 @@ func XListBoxGetSelectItem(hEle HELE) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxCancelSelectItem(hEle HELE, iItem int) bool {
+func XListBox_CancelSelectItem(hEle HELE, iItem int) bool {
 	ret, _, _ := xListBox_CancelSelectItem.Call(
 		uintptr(hEle),
 		uintptr(iItem))
@@ -339,7 +339,7 @@ func XListBoxCancelSelectItem(hEle HELE, iItem int) bool {
 返回:
 	如果之前有选择状态的项返回TRUE,此时可以更新UI,否则返回FALSE.
 */
-func XListBoxCancelSelectAll(hEle HELE) bool {
+func XListBox_CancelSelectAll(hEle HELE) bool {
 	ret, _, _ := xListBox_CancelSelectAll.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -355,7 +355,7 @@ func XListBoxCancelSelectAll(hEle HELE) bool {
 返回:
 	返回接收数量.
 */
-func XListBoxGetSelectAll(hEle HELE, pArray *uint16, nArraySize int) int {
+func XListBox_GetSelectAll(hEle HELE, pArray *uint16, nArraySize int) int {
 	ret, _, _ := xListBox_GetSelectAll.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pArray)),
@@ -372,7 +372,7 @@ func XListBoxGetSelectAll(hEle HELE, pArray *uint16, nArraySize int) int {
 返回:
 	返回数量.
 */
-func XListBoxGetSelectCount(hEle HELE) int {
+func XListBox_GetSelectCount(hEle HELE) int {
 	ret, _, _ := xListBox_GetSelectCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -386,7 +386,7 @@ func XListBoxGetSelectCount(hEle HELE) int {
 返回:
 	返回鼠标所在项.
 */
-func XListBoxGetItemMouseStay(hEle HELE) int {
+func XListBox_GetItemMouseStay(hEle HELE) int {
 	ret, _, _ := xListBox_GetItemMouseStay.Call(uintptr(hEle))
 
 	return int(ret)
@@ -400,7 +400,7 @@ func XListBoxGetItemMouseStay(hEle HELE) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSelectAll(hEle HELE) bool {
+func XListBox_SelectAll(hEle HELE) bool {
 	ret, _, _ := xListBox_SelectAll.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -414,7 +414,7 @@ func XListBoxSelectAll(hEle HELE) bool {
 	nHeight 项高度.
 	nSelHeight 选中项高度.
 */
-func XListBoxSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
+func XListBox_SetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	xListBox_SetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(nHeight),
@@ -429,7 +429,7 @@ func XListBoxSetItemHeightDefault(hEle HELE, nHeight, nSelHeight int) {
 	pHeight 高度.
 	pSelHeight 选中时高度.
 */
-func XListBoxGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
+func XListBox_GetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
 	xListBox_GetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pHeight)),
@@ -445,7 +445,7 @@ func XListBoxGetItemHeightDefault(hEle HELE, pHeight, pSelHeight *int32) {
 返回:
 	成功返回项索引, 否则返回XC_ID_ERROR.
 */
-func XListBoxGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
+func XListBox_GetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xListBox_GetItemIndexFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI))
@@ -462,7 +462,7 @@ func XListBoxGetItemIndexFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 返回:
 	返回项索引.
 */
-func XListBoxHitTest(hEle HELE, pPt *POINT) int {
+func XListBox_HitTest(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xListBox_HitTest.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)))
@@ -479,7 +479,7 @@ func XListBoxHitTest(hEle HELE, pPt *POINT) int {
 返回:
 	项索引.
 */
-func XListBoxHitTestOffset(hEle HELE, pPt *POINT) int {
+func XListBox_HitTestOffset(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xListBox_HitTestOffset.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)))
@@ -496,7 +496,7 @@ func XListBoxHitTestOffset(hEle HELE, pPt *POINT) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
+func XListBox_SetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xListBox_SetItemTemplateXML.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -514,7 +514,7 @@ func XListBoxSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
+func XListBox_SetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 	ret, _, _ := xListBox_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pStringXML))
@@ -533,7 +533,7 @@ func XListBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 返回:
 	成功返回对象句柄,否则返回NULL.
 */
-func XListBoxGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
+func XListBox_GetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	ret, _, _ := xListBox_GetTemplateObject.Call(
 		uintptr(hEle),
 		uintptr(iItem),
@@ -549,7 +549,7 @@ func XListBoxGetTemplateObject(hEle HELE, iItem, nTempItemID int) HXCGUI {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XListBoxEnableMultiSel(hEle HELE, bEnable bool) {
+func XListBox_EnableMultiSel(hEle HELE, bEnable bool) {
 	xListBox_EnableMultiSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -562,7 +562,7 @@ func XListBoxEnableMultiSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	hAdapter 数据适配器句柄 XAdapterTable.
 */
-func XListBoxBindAdapter(hEle HELE, hAdapter HXCGUI) {
+func XListBox_BindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xListBox_BindAdapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -576,7 +576,7 @@ func XListBoxBindAdapter(hEle HELE, hAdapter HXCGUI) {
 返回:
 	返回数据适配器句柄.
 */
-func XListBoxGetAdapter(hEle HELE) HXCGUI {
+func XListBox_GetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xListBox_GetAdapter.Call(uintptr(hEle))
 
 	return HXCGUI(ret)

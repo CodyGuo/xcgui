@@ -91,7 +91,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XListViewCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XListView_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xListView_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -109,7 +109,7 @@ func XListViewCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	hEle 元素句柄.
 	hAdapter 数据适配器 XAdapterListView.
 */
-func XListViewBindAdapter(hEle HELE, hAdapter HXCGUI) {
+func XListView_BindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xListView_BindAdapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -123,7 +123,7 @@ func XListViewBindAdapter(hEle HELE, hAdapter HXCGUI) {
 返回:
 	返回数据适配器.
 */
-func XListViewGetAdapter(hEle HELE) HXCGUI {
+func XListView_GetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xListView_GetAdapter.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
@@ -138,7 +138,7 @@ func XListViewGetAdapter(hEle HELE) HXCGUI {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
+func XListView_SetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xListView_SetItemTemplateXML.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -156,7 +156,7 @@ func XListViewSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
+func XListView_SetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 	ret, _, _ := xListView_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pStringXML))
@@ -176,7 +176,7 @@ func XListViewSetItemTemplateXMLFromString(hEle HELE, pStringXML string) bool {
 返回:
 	成功返回对象句柄,否则返回NULL.
 */
-func XListViewGetTemplateObject(hEle HELE, iGroup, iItem, nTempItemID int) HXCGUI {
+func XListView_GetTemplateObject(hEle HELE, iGroup, iItem, nTempItemID int) HXCGUI {
 	ret, _, _ := xListView_GetTemplateObject.Call(
 		uintptr(hEle),
 		uintptr(iGroup),
@@ -196,7 +196,7 @@ func XListViewGetTemplateObject(hEle HELE, iGroup, iItem, nTempItemID int) HXCGU
 返回:
 	成功返回对象句柄,否则返回NULL.
 */
-func XListViewGetTemplateObjectGroup(hEle HELE, iGroup, nTempItemID int) HXCGUI {
+func XListView_GetTemplateObjectGroup(hEle HELE, iGroup, nTempItemID int) HXCGUI {
 	ret, _, _ := xListView_GetTemplateObjectGroup.Call(
 		uintptr(hEle),
 		uintptr(iGroup),
@@ -216,7 +216,7 @@ func XListViewGetTemplateObjectGroup(hEle HELE, iGroup, nTempItemID int) HXCGUI 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI, piGroup, piItem *int32) bool {
+func XListView_GetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI, piGroup, piItem *int32) bool {
 	ret, _, _ := xListView_GetItemIDFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI),
@@ -237,7 +237,7 @@ func XListViewGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI, piGroup, piItem *int
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewHitTest(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) bool {
+func XListView_HitTest(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) bool {
 	ret, _, _ := xListView_HitTest.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -258,7 +258,7 @@ func XListViewHitTest(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewHitTestOffset(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) int {
+func XListView_HitTestOffset(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) int {
 	ret, _, _ := xListView_HitTestOffset.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)),
@@ -275,7 +275,7 @@ func XListViewHitTestOffset(hEle HELE, pPt *POINT, pOutGroup, pOutItem *int32) i
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XListViewEnableMultiSel(hEle HELE, bEnable bool) {
+func XListView_EnableMultiSel(hEle HELE, bEnable bool) {
 	xListView_EnableMultiSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -288,7 +288,7 @@ func XListViewEnableMultiSel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	nFlags 标志位 list_drawItemBk_flags_.
 */
-func XListViewSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
+func XListView_SetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 	xListView_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
@@ -304,7 +304,7 @@ func XListViewSetDrawItemBkFlags(hEle HELE, nFlags List_drawItemBk_flags_) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewSetSelectItem(hEle HELE, iGroup, iItem int) bool {
+func XListView_SetSelectItem(hEle HELE, iGroup, iItem int) bool {
 	ret, _, _ := xListView_SetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(iGroup),
@@ -323,7 +323,7 @@ func XListViewSetSelectItem(hEle HELE, iGroup, iItem int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XListViewGetSelectItem(hEle HELE, piGroup, piItem *int32) bool {
+func XListView_GetSelectItem(hEle HELE, piGroup, piItem *int32) bool {
 	ret, _, _ := xListView_GetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(piGroup)),
@@ -341,7 +341,7 @@ func XListViewGetSelectItem(hEle HELE, piGroup, piItem *int32) bool {
 返回:
 	返回选择项数量.
 */
-func XListViewGetSelectItemCount(hEle HELE) int {
+func XListView_GetSelectItemCount(hEle HELE) int {
 	ret, _, _ := xListView_GetSelectItemCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -357,7 +357,7 @@ func XListViewGetSelectItemCount(hEle HELE) int {
 返回:
 	返回接收项数量.
 */
-func XListViewGetSelectItemAll(hEle HELE, pArray *Listview_item_id_i, nArraySize int) int {
+func XListView_GetSelectItemAll(hEle HELE, pArray *Listview_item_id_i, nArraySize int) int {
 	ret, _, _ := xListView_GetSelectItemAll.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pArray)),
@@ -372,7 +372,7 @@ func XListViewGetSelectItemAll(hEle HELE, pArray *Listview_item_id_i, nArraySize
 参数:
 	hEle 元素句柄.
 */
-func XListViewSetSelectItemAll(hEle HELE) {
+func XListView_SetSelectItemAll(hEle HELE) {
 	xListView_SetSelectItemAll.Call(uintptr(hEle))
 
 }
@@ -383,7 +383,7 @@ func XListViewSetSelectItemAll(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XListViewCancelSelectItemAll(hEle HELE) {
+func XListView_CancelSelectItemAll(hEle HELE) {
 	xListView_CancelSelectItemAll.Call(uintptr(hEle))
 }
 
@@ -394,7 +394,7 @@ func XListViewCancelSelectItemAll(hEle HELE) {
 	hEle 元素句柄.
 	space 间隔大小.
 */
-func XListViewSetColumnSpace(hEle HELE, space int) {
+func XListView_SetColumnSpace(hEle HELE, space int) {
 	xListView_SetColumnSpace.Call(
 		uintptr(hEle),
 		uintptr(space))
@@ -407,7 +407,7 @@ func XListViewSetColumnSpace(hEle HELE, space int) {
 	hEle 元素句柄.
 	space 间隔大小.
 */
-func XListViewSetRowSpace(hEle HELE, space int) {
+func XListView_SetRowSpace(hEle HELE, space int) {
 	xListView_SetRowSpace.Call(
 		uintptr(hEle),
 		uintptr(space))
@@ -420,7 +420,7 @@ func XListViewSetRowSpace(hEle HELE, space int) {
 	hEle 元素句柄.
 	size 大小.
 */
-func XListViewSetAlignSizeLeft(hEle HELE, size int) {
+func XListView_SetAlignSizeLeft(hEle HELE, size int) {
 	xListView_SetAlignSizeLeft.Call(
 		uintptr(hEle),
 		uintptr(size))
@@ -433,7 +433,7 @@ func XListViewSetAlignSizeLeft(hEle HELE, size int) {
 	hEle 元素句柄.
 	size 大小.
 */
-func XListViewSetAlignSizeTop(hEle HELE, size int) {
+func XListView_SetAlignSizeTop(hEle HELE, size int) {
 	xListView_SetAlignSizeTop.Call(
 		uintptr(hEle),
 		uintptr(size))
@@ -447,7 +447,7 @@ func XListViewSetAlignSizeTop(hEle HELE, size int) {
 	width 宽度.
 	height 高度.
 */
-func XListViewSetItemSize(hEle HELE, width, height int) {
+func XListView_SetItemSize(hEle HELE, width, height int) {
 	xListView_SetItemSize.Call(
 		uintptr(hEle),
 		uintptr(width),
@@ -461,7 +461,7 @@ func XListViewSetItemSize(hEle HELE, width, height int) {
 	hEle 元素句柄.
 	pSize 接收返回大小.
 */
-func XListViewGetItemSize(hEle HELE, pSize *SIZE) {
+func XListView_GetItemSize(hEle HELE, pSize *SIZE) {
 	xListView_GetItemSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
@@ -474,7 +474,7 @@ func XListViewGetItemSize(hEle HELE, pSize *SIZE) {
 	hEle 元素句柄.
 	height 高度.
 */
-func XListViewSetGroupHeight(hEle HELE, height int) {
+func XListView_SetGroupHeight(hEle HELE, height int) {
 	xListView_SetGroupHeight.Call(
 		uintptr(hEle),
 		uintptr(height))
@@ -488,7 +488,7 @@ func XListViewSetGroupHeight(hEle HELE, height int) {
 返回:
 	返回组高度.
 */
-func XListViewGetGroupHeight(hEle HELE) int {
+func XListView_GetGroupHeight(hEle HELE) int {
 	ret, _, _ := xListView_GetGroupHeight.Call(uintptr(hEle))
 
 	return int(ret)
@@ -504,7 +504,7 @@ func XListViewGetGroupHeight(hEle HELE) int {
 	alpha 透明度.
 	width 线宽.
 */
-func XListViewAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
+func XListView_AddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF, alpha byte, width int) {
 	xListView_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -522,7 +522,7 @@ func XListViewAddItemBkBorder(hEle HELE, nState List_item_state_, color COLORREF
 	color RGB颜色.
 	alpha 透明度.
 */
-func XListViewAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
+func XListView_AddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, alpha byte) {
 	xListView_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -538,7 +538,7 @@ func XListViewAddItemBkFill(hEle HELE, nState List_item_state_, color COLORREF, 
 	nState 项状态.
 	hImage 图片句柄.
 */
-func XListViewAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
+func XListView_AddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) {
 	xListView_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -554,7 +554,7 @@ func XListViewAddItemBkImage(hEle HELE, nState List_item_state_, hImage HIMAGE) 
 返回:
 	成功返回背景内容数量,否则返回XC_ID_ERROR.
 */
-func XListViewGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
+func XListView_GetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	ret, _, _ := xListView_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -569,7 +569,7 @@ func XListViewGetItemBkInfoCount(hEle HELE, nState List_item_state_) int {
 	hEle 元素句柄.
 	nState 项状态.
 */
-func XListViewClearItemBkInfo(hEle HELE, nState List_item_state_) {
+func XListView_ClearItemBkInfo(hEle HELE, nState List_item_state_) {
 	xListView_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -584,7 +584,7 @@ func XListViewClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	项背景内容管理器.
 */
-// func XListViewGetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
+// func XListView_GetItemBkInfoManager(hEle HELE, nState List_item_state_) HBKINFOM {
 // 	ret, _, _ := xListView_GetItemBkInfoManager.Call(
 // 		uintptr(hEle),
 // 		uintptr(nState))
@@ -602,7 +602,7 @@ func XListViewClearItemBkInfo(hEle HELE, nState List_item_state_) {
 返回:
 	成功返回TRUE否则返回FALSE,如果状态没有改变返回FALSE.
 */
-func XListViewExpandGroup(hEle HELE, iGroup int, bExpand bool) bool {
+func XListView_ExpandGroup(hEle HELE, iGroup int, bExpand bool) bool {
 	ret, _, _ := xListView_ExpandGroup.Call(
 		uintptr(hEle),
 		uintptr(iGroup),

@@ -175,7 +175,7 @@ func init() {
 返回:
 	图形绘制模块实例句柄.
 */
-func XDrawCreate(hdc HDC) HDRAW {
+func XDraw_Create(hdc HDC) HDRAW {
 	ret, _, _ := xDraw_Create.Call(uintptr(hdc))
 
 	return HDRAW(ret)
@@ -187,7 +187,7 @@ func XDrawCreate(hdc HDC) HDRAW {
 参数:
 	hDraw 图形绘制句柄.
 */
-func XDrawDestroy(hDraw HDRAW) {
+func XDraw_Destroy(hDraw HDRAW) {
 	xDraw_Destroy.Call(uintptr(hDraw))
 }
 
@@ -199,7 +199,7 @@ func XDrawDestroy(hDraw HDRAW) {
 	x X轴偏移量.
 	y Y轴偏移量.
 */
-func XDrawSetOffset(hDraw HDRAW, x, y int) {
+func XDraw_SetOffset(hDraw HDRAW, x, y int) {
 	xDraw_SetOffset.Call(
 		uintptr(hDraw),
 		uintptr(x),
@@ -214,7 +214,7 @@ func XDrawSetOffset(hDraw HDRAW, x, y int) {
 	pX 接收X轴偏移量.
 	pY 接收Y轴偏移量.
 */
-func XDrawGetOffset(hDraw HDRAW, pX, pY *int32) {
+func XDraw_GetOffset(hDraw HDRAW, pX, pY *int32) {
 	xDraw_GetOffset.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pX)),
@@ -227,7 +227,7 @@ func XDrawGetOffset(hDraw HDRAW, pX, pY *int32) {
 参数:
 	hDraw 图形绘制句柄.
 */
-func XDrawRestoreGDIOBJ(hDraw HDRAW) {
+func XDraw_RestoreGDIOBJ(hDraw HDRAW) {
 	xDraw_RestoreGDIOBJ.Call(uintptr(hDraw))
 }
 
@@ -239,7 +239,7 @@ func XDrawRestoreGDIOBJ(hDraw HDRAW) {
 返回:
 	返回HDC句柄.
 */
-func XDrawGetHDC(hDraw HDRAW) HDC {
+func XDraw_GetHDC(hDraw HDRAW) HDC {
 	ret, _, _ := xDraw_GetHDC.Call(uintptr(hDraw))
 
 	return HDC(ret)
@@ -253,7 +253,7 @@ func XDrawGetHDC(hDraw HDRAW) HDC {
 	color RGB颜色值
 	alpha 透明度,0-255,0完全透明,255不透明.
 */
-func XDrawSetBrushColor(hDraw HDRAW, color COLORREF, alpha byte) {
+func XDraw_SetBrushColor(hDraw HDRAW, color COLORREF, alpha byte) {
 	xDraw_SetBrushColor.Call(
 		uintptr(hDraw),
 		uintptr(color),
@@ -267,7 +267,7 @@ func XDrawSetBrushColor(hDraw HDRAW, color COLORREF, alpha byte) {
 	hDraw 图形绘制句柄.
 	bVertical 是否垂直显示文本.
 */
-func XDrawSetTextVertical(hDraw HDRAW, bVertical bool) {
+func XDraw_SetTextVertical(hDraw HDRAW, bVertical bool) {
 	xDraw_SetTextVertical.Call(
 		uintptr(hDraw),
 		uintptr(BoolToBOOL(bVertical)))
@@ -280,7 +280,7 @@ func XDrawSetTextVertical(hDraw HDRAW, bVertical bool) {
 	hDraw 图形绘制句柄.
 	nFlag 对齐标识.
 */
-func XDrawSetTextAlign(hDraw HDRAW, nFlag int) {
+func XDraw_SetTextAlign(hDraw HDRAW, nFlag int) {
 	xDraw_SetTextAlign.Call(
 		uintptr(hDraw),
 		uintptr(nFlag))
@@ -293,7 +293,7 @@ func XDrawSetTextAlign(hDraw HDRAW, nFlag int) {
 	hDraw 图形绘制句柄.
 	hFontx 炫彩字体.
 */
-func XDrawSetFontX(hDraw HDRAW, hFontx HFONTX) {
+func XDraw_SetFontX(hDraw HDRAW, hFontx HFONTX) {
 	xDraw_SetFontX.Call(
 		uintptr(hDraw),
 		uintptr(hFontx))
@@ -306,7 +306,7 @@ func XDrawSetFontX(hDraw HDRAW, hFontx HFONTX) {
 	hDraw 图形绘制句柄.
 	size 大小.
 */
-func XDrawSetFont(hDraw HDRAW, size int) {
+func XDraw_SetFont(hDraw HDRAW, size int) {
 	xDraw_SetFont.Call(
 		uintptr(hDraw),
 		uintptr(size))
@@ -320,7 +320,7 @@ func XDrawSetFont(hDraw HDRAW, size int) {
 	pName 字体名称.*uint16
 	size 大小.
 */
-func XDrawSetFont2(hDraw HDRAW, pName string, size int) {
+func XDraw_SetFont2(hDraw HDRAW, pName string, size int) {
 	xDraw_SetFont2.Call(
 		uintptr(hDraw),
 		StringToUintPtr(pName),
@@ -335,7 +335,7 @@ func XDrawSetFont2(hDraw HDRAW, pName string, size int) {
 	hDraw 图形绘制句柄.
 	pLogFont 字体信息.
 */
-func XDrawSetFont3(hDraw HDRAW, pLogFont *LOGFONT) {
+func XDraw_SetFont3(hDraw HDRAW, pLogFont *LOGFONT) {
 	xDraw_SetFont3.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pLogFont)))
@@ -348,7 +348,7 @@ func XDrawSetFont3(hDraw HDRAW, pLogFont *LOGFONT) {
 	hDraw 图形绘制句柄.
 	nWidth 宽度.
 */
-func XDrawSetLineWidth(hDraw HDRAW, nWidth int) {
+func XDraw_SetLineWidth(hDraw HDRAW, nWidth int) {
 	xDraw_SetLineWidth.Call(
 		uintptr(hDraw),
 		uintptr(nWidth))
@@ -363,7 +363,7 @@ SetBkMode() 参见MSDN.
 返回:
 	参见MSDN.
 */
-func XDrawSetBkMode(hDraw HDRAW, bTransparent bool) int {
+func XDraw_SetBkMode(hDraw HDRAW, bTransparent bool) int {
 	ret, _, _ := xDraw_SetBkMode.Call(
 		uintptr(hDraw),
 		uintptr(BoolToBOOL(bTransparent)))
@@ -380,7 +380,7 @@ func XDrawSetBkMode(hDraw HDRAW, bTransparent bool) int {
 返回:
 	如果函数成功,返回值标识一个逻辑刷,如果函数失败,返回值是NULL.
 */
-func XDrawCreateSolidBrush(hDraw HDRAW, crColor COLORREF) HBRUSH {
+func XDraw_CreateSolidBrush(hDraw HDRAW, crColor COLORREF) HBRUSH {
 	ret, _, _ := xDraw_CreateSolidBrush.Call(
 		uintptr(hDraw),
 		uintptr(crColor))
@@ -403,7 +403,7 @@ func XDrawCreateSolidBrush(hDraw HDRAW, crColor COLORREF) HBRUSH {
 返回:
 	如果函数成功,返回值是一个句柄,标识一个逻辑笔,如果函数失败,返回值是NULL.
 */
-func XDrawCreatePen(hDraw HDRAW, fnPenStyle, nWidth int, crColor COLORREF) HPEN {
+func XDraw_CreatePen(hDraw HDRAW, fnPenStyle, nWidth int, crColor COLORREF) HPEN {
 	ret, _, _ := xDraw_CreatePen.Call(
 		uintptr(hDraw),
 		uintptr(fnPenStyle),
@@ -428,7 +428,7 @@ func XDrawCreatePen(hDraw HDRAW, fnPenStyle, nWidth int, crColor COLORREF) HPEN 
 返回:
 	成功返回区域句柄,失败返回NULL.
 */
-func XDrawCreateRectRgn(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect int) HRGN {
+func XDraw_CreateRectRgn(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect int) HRGN {
 	ret, _, _ := xDraw_CreateRectRgn.Call(
 		uintptr(hDraw),
 		uintptr(nLeftRect),
@@ -457,7 +457,7 @@ func XDrawCreateRectRgn(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRec
 返回:
 	如果函数成功,返回值是该区域的句柄,如果函数失败,返回值是NULL.
 */
-func XDrawCreateRoundRectRgn(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect, nWidthEllipse, nHeightEllipse int) HRGN {
+func XDraw_CreateRoundRectRgn(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect, nWidthEllipse, nHeightEllipse int) HRGN {
 	ret, _, _ := xDraw_CreateRoundRectRgn.Call(
 		uintptr(hDraw),
 		uintptr(nLeftRect),
@@ -487,7 +487,7 @@ func XDrawCreateRoundRectRgn(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBott
 返回:
 	如果函数成功,返回值是该区域的句柄,如果函数失败,返回值是NULL.
 */
-func XDrawCreatePolygonRgn(hDraw HDRAW, pPt *POINT, cPoints, fnPolyFillMode int) HRGN {
+func XDraw_CreatePolygonRgn(hDraw HDRAW, pPt *POINT, cPoints, fnPolyFillMode int) HRGN {
 	ret, _, _ := xDraw_CreatePolygonRgn.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pPt)),
@@ -514,7 +514,7 @@ func XDrawCreatePolygonRgn(hDraw HDRAW, pPt *POINT, cPoints, fnPolyFillMode int)
 	 COMPLEXREGION Region is more than one rectangle.
 	 ERROR An error occurred. (The previous clipping region is unaffected).
 */
-func XDrawSelectClipRgn(hDraw HDRAW, hRgn HRGN) int {
+func XDraw_SelectClipRgn(hDraw HDRAW, hRgn HRGN) int {
 	ret, _, _ := xDraw_SelectClipRgn.Call(
 		uintptr(hDraw),
 		uintptr(hRgn))
@@ -529,7 +529,7 @@ func XDrawSelectClipRgn(hDraw HDRAW, hRgn HRGN) int {
 	hDraw 图形绘制句柄.
 	pRect 矩形区域.
 */
-func XDrawFillRect(hDraw HDRAW, pRect *RECT) {
+func XDraw_FillRect(hDraw HDRAW, pRect *RECT) {
 	xDraw_FillRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)))
@@ -544,7 +544,7 @@ func XDrawFillRect(hDraw HDRAW, pRect *RECT) {
 	color 矩形区域.
 	alpha 透明度.
 */
-func XDrawFillRectColor(hDraw HDRAW, pRect *RECT, color COLORREF, alpha byte) {
+func XDraw_FillRectColor(hDraw HDRAW, pRect *RECT, color COLORREF, alpha byte) {
 	xDraw_FillRectColor.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
@@ -562,7 +562,7 @@ func XDrawFillRectColor(hDraw HDRAW, pRect *RECT, color COLORREF, alpha byte) {
 返回:
 	如果函数成功,返回非零值,如果函数失败,返回值是零.
 */
-func XDrawFillRgn(hDraw HDRAW, hrgn HRGN, hbr HBRUSH) bool {
+func XDraw_FillRgn(hDraw HDRAW, hrgn HRGN, hbr HBRUSH) bool {
 	ret, _, _ := xDraw_FillRgn.Call(
 		uintptr(hDraw),
 		uintptr(hrgn),
@@ -578,7 +578,7 @@ func XDrawFillRgn(hDraw HDRAW, hrgn HRGN, hbr HBRUSH) bool {
 	hDraw 图形绘制句柄.
 	pRect 矩形区域
 */
-func XDrawFillEllipse(hDraw HDRAW, pRect *RECT) {
+func XDraw_FillEllipse(hDraw HDRAW, pRect *RECT) {
 	xDraw_FillEllipse.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)))
@@ -591,7 +591,7 @@ func XDrawFillEllipse(hDraw HDRAW, pRect *RECT) {
 	hDraw 图形绘制句柄.
 	pRect 矩形区域.
 */
-func XDrawDrawEllipse(hDraw HDRAW, pRect *RECT) {
+func XDraw_DrawEllipse(hDraw HDRAW, pRect *RECT) {
 	xDraw_DrawEllipse.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)))
@@ -606,7 +606,7 @@ func XDrawDrawEllipse(hDraw HDRAW, pRect *RECT) {
 	nWidth 圆角宽度.
 	nHeight 圆角高度.
 */
-func XDrawFillRoundRect(hDraw HDRAW, pRect *RECT, nWidth, nHeight int) {
+func XDraw_FillRoundRect(hDraw HDRAW, pRect *RECT, nWidth, nHeight int) {
 	xDraw_FillRoundRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
@@ -623,7 +623,7 @@ func XDrawFillRoundRect(hDraw HDRAW, pRect *RECT, nWidth, nHeight int) {
 	nWidth 圆角宽度.
 	nHeight 圆角高度.
 */
-func XDrawDrawRoundRect(hDraw HDRAW, pRect *RECT, nWidth, nHeight int) {
+func XDraw_DrawRoundRect(hDraw HDRAW, pRect *RECT, nWidth, nHeight int) {
 	xDraw_DrawRoundRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
@@ -643,7 +643,7 @@ func XDrawDrawRoundRect(hDraw HDRAW, pRect *RECT, nWidth, nHeight int) {
 返回:
 	如果函数成功,返回非零值,如果函数失败,返回值是零.
 */
-func XDrawRectangle(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect int) bool {
+func XDraw_Rectangle(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect int) bool {
 	ret, _, _ := xDraw_Rectangle.Call(
 		uintptr(hDraw),
 		uintptr(nLeftRect),
@@ -665,7 +665,7 @@ func XDrawRectangle(hDraw HDRAW, nLeftRect, nTopRect, nRightRect, nBottomRect in
 	textAlpha 文本透明度.
 	pOffset 文本偏移
 */
-func XDrawDrawGroupBoxRect(hDraw HDRAW, pRect *RECT, pName string, textColor COLORREF, textAlpha byte, pOffset *POINT) {
+func XDraw_DrawGroupBoxRect(hDraw HDRAW, pRect *RECT, pName string, textColor COLORREF, textAlpha byte, pOffset *POINT) {
 	xDraw_DrawGroupBox_Rect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
@@ -689,7 +689,7 @@ func XDrawDrawGroupBoxRect(hDraw HDRAW, pRect *RECT, pName string, textColor COL
 	nWidth 圆角宽度.
 	nHeight 圆角高度.
 */
-func XDrawDrawGroupBoxRoundRect(hDraw HDRAW, pRect *RECT, pName string, textColor COLORREF, textAlpha byte, pOffset *POINT, nWidth, nHeight int) {
+func XDraw_DrawGroupBoxRoundRect(hDraw HDRAW, pRect *RECT, pName string, textColor COLORREF, textAlpha byte, pOffset *POINT, nWidth, nHeight int) {
 	xDraw_DrawGroupBox_RoundRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)),
@@ -714,7 +714,7 @@ func XDrawDrawGroupBoxRoundRect(hDraw HDRAW, pRect *RECT, pName string, textColo
 	pRect 矩形坐标.
 	mode 模式. GRADIENT_FILL_RECT_H 水平填充 . GRADIENT_FILL_RECT_V 垂直填充. GRADIENT_FILL_TRIANGLE 三角形.
 */
-func XDrawGradientFill2(hDraw HDRAW, color1 COLORREF, alpha1 byte, color2 COLORREF, alpha2 byte, pRect *RECT, mode int) {
+func XDraw_GradientFill2(hDraw HDRAW, color1 COLORREF, alpha1 byte, color2 COLORREF, alpha2 byte, pRect *RECT, mode int) {
 	xDraw_GradientFill2.Call(
 		uintptr(hDraw),
 		uintptr(color1),
@@ -739,7 +739,7 @@ func XDrawGradientFill2(hDraw HDRAW, color1 COLORREF, alpha1 byte, color2 COLORR
 返回:
 	如果函数成功，返回值为TRUE,如果函数失败,返回值是FALSE.
 */
-func XDrawGradientFill4(hDraw HDRAW, color1, color2, color3, color4 COLORREF, pRect *RECT, mode int) bool {
+func XDraw_GradientFill4(hDraw HDRAW, color1, color2, color3, color4 COLORREF, pRect *RECT, mode int) bool {
 	ret, _, _ := xDraw_GradientFill4.Call(
 		uintptr(hDraw),
 		uintptr(color1),
@@ -764,7 +764,7 @@ func XDrawGradientFill4(hDraw HDRAW, color1, color2, color3, color4 COLORREF, pR
 返回:
 	如果函数成功,返回非零值,如果函数失败,返回值是零.
 */
-func XDrawFrameRgn(hDraw HDRAW, hrgn HRGN, hbr HBRUSH, nWidth, nHeight int) bool {
+func XDraw_FrameRgn(hDraw HDRAW, hrgn HRGN, hbr HBRUSH, nWidth, nHeight int) bool {
 	ret, _, _ := xDraw_FrameRgn.Call(
 		uintptr(hDraw),
 		uintptr(hrgn),
@@ -782,7 +782,7 @@ func XDrawFrameRgn(hDraw HDRAW, hrgn HRGN, hbr HBRUSH, nWidth, nHeight int) bool
 	hDraw 图形绘制句柄.
 	pRect 矩形坐标
 */
-func XDrawFrameRect(hDraw HDRAW, pRect *RECT) {
+func XDraw_FrameRect(hDraw HDRAW, pRect *RECT) {
 	xDraw_FrameRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)))
@@ -798,7 +798,7 @@ func XDrawFrameRect(hDraw HDRAW, pRect *RECT) {
 	x2 坐标.
 	y2 坐标.
 */
-func XDrawDrawLine(hDraw HDRAW, x1, y1, x2, y2 int) {
+func XDraw_DrawLine(hDraw HDRAW, x1, y1, x2, y2 int) {
 	xDraw_DrawLine.Call(
 		uintptr(hDraw),
 		uintptr(x1),
@@ -814,7 +814,7 @@ func XDrawDrawLine(hDraw HDRAW, x1, y1, x2, y2 int) {
 	hDraw 图形绘制句柄.
 	pRect 矩形坐标.
 */
-func XDrawFocusRect(hDraw HDRAW, pRect *RECT) {
+func XDraw_FocusRect(hDraw HDRAW, pRect *RECT) {
 	xDraw_FocusRect.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pRect)))
@@ -831,7 +831,7 @@ func XDrawFocusRect(hDraw HDRAW, pRect *RECT) {
 返回:
 	如果函数成功,返回非零值,如果函数失败,返回值是零.
 */
-func XDrawMoveToEx(hDraw HDRAW, X, Y int, lpPoint *POINT) bool {
+func XDraw_MoveToEx(hDraw HDRAW, X, Y int, lpPoint *POINT) bool {
 	ret, _, _ := xDraw_MoveToEx.Call(
 		uintptr(hDraw),
 		uintptr(X),
@@ -851,7 +851,7 @@ func XDrawMoveToEx(hDraw HDRAW, X, Y int, lpPoint *POINT) bool {
 返回:
 	如果函数成功,返回非零值,如果函数失败,返回值是零.
 */
-func XDrawLineTo(hDraw HDRAW, nXEnd, nYEnd int) bool {
+func XDraw_LineTo(hDraw HDRAW, nXEnd, nYEnd int) bool {
 	ret, _, _ := xDraw_LineTo.Call(
 		uintptr(hDraw),
 		uintptr(nXEnd),
@@ -871,7 +871,7 @@ Polyline() 参见MSDN.用当前画笔描绘一系列线段。
 	参见MSDN.
 	bool，非零表示成功，零表示失败
 */
-func XDrawPolyline(hDraw HDRAW, pArrayPt *POINT, arrayPtSize int) bool {
+func XDraw_Polyline(hDraw HDRAW, pArrayPt *POINT, arrayPtSize int) bool {
 	ret, _, _ := xDraw_Polyline.Call(
 		uintptr(hDraw),
 		uintptr(unsafe.Pointer(pArrayPt)),
@@ -890,7 +890,7 @@ func XDrawPolyline(hDraw HDRAW, pArrayPt *POINT, arrayPtSize int) bool {
 	x2 结束点x坐标.
 	y2 结束点y坐标.
 */
-func XDrawDottedline(hDraw HDRAW, x1, y1, x2, y2 int) {
+func XDraw_Dottedline(hDraw HDRAW, x1, y1, x2, y2 int) {
 	xDraw_Dottedline.Call(
 		uintptr(hDraw),
 		uintptr(x1),
@@ -910,7 +910,7 @@ func XDrawDottedline(hDraw HDRAW, x1, y1, x2, y2 int) {
 返回:
 	如果函数成功返回RGB值,如果失败返回-1.
 */
-func XDrawSetPixel(hDraw HDRAW, X, Y int, crColor COLORREF) COLORREF {
+func XDraw_SetPixel(hDraw HDRAW, X, Y int, crColor COLORREF) COLORREF {
 	ret, _, _ := xDraw_SetPixel.Call(
 		uintptr(hDraw),
 		uintptr(X),
@@ -930,7 +930,7 @@ func XDrawSetPixel(hDraw HDRAW, X, Y int, crColor COLORREF) COLORREF {
 	color 边框颜色.
 	bCheck 是否选中状态.
 */
-func XDrawCheck(hDraw HDRAW, x, y int, color COLORREF, bCheck bool) {
+func XDraw_Check(hDraw HDRAW, x, y int, color COLORREF, bCheck bool) {
 	xDraw_Check.Call(
 		uintptr(hDraw),
 		uintptr(x),
@@ -955,7 +955,7 @@ func XDrawCheck(hDraw HDRAW, x, y int, color COLORREF, bCheck bool) {
 	diFlags .
 返回:
 */
-func XDrawDrawIconEx(hDraw HDRAW, xLeft, yTop int, hIcon HICON, cxWidth, cyWidth int, istepIfAniCur uint32, hbrFlickerFreeDraw HBRUSH, diFlags uint32) bool {
+func XDraw_DrawIconEx(hDraw HDRAW, xLeft, yTop int, hIcon HICON, cxWidth, cyWidth int, istepIfAniCur uint32, hbrFlickerFreeDraw HBRUSH, diFlags uint32) bool {
 	ret, _, _ := xDraw_DrawIconEx.Call(
 		uintptr(hDraw),
 		uintptr(xLeft),
@@ -985,7 +985,7 @@ BitBlt() 参见MSDN.
 	dwRop XX. DWORD 现在表示 32bit 无符号整数
 返回:
 */
-func XDrawBitBlt(hDrawDest HDRAW, nXDest, nYDest, nWidth, nHeight int, hdcSrc HDC, nXSrc, nYSrc int, dwRop uint32) bool {
+func XDraw_BitBlt(hDrawDest HDRAW, nXDest, nYDest, nWidth, nHeight int, hdcSrc HDC, nXSrc, nYSrc int, dwRop uint32) bool {
 	ret, _, _ := xDraw_BitBlt.Call(
 		uintptr(hDrawDest),
 		uintptr(nXDest),
@@ -1016,7 +1016,7 @@ BitBlt() 参见MSDN.
 	dwRop XX.
 返回:
 */
-func XDrawBitBlt2(hDrawDest HDRAW, nXDest, nYDest, nWidth, nHeight int, hDrawSrc HDRAW, nXSrc, nYSrc int, dwRop uint32) bool {
+func XDraw_BitBlt2(hDrawDest HDRAW, nXDest, nYDest, nWidth, nHeight int, hDrawSrc HDRAW, nXSrc, nYSrc int, dwRop uint32) bool {
 	ret, _, _ := xDraw_BitBlt2.Call(
 		uintptr(hDrawDest),
 		uintptr(nXDest),
@@ -1050,7 +1050,7 @@ AlphaBlend() 参见MSDN.
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XDrawAlphaBlend(hDraw HDRAW, nXOriginDest, nYOriginDest, nWidthDest, nHeightDest int, hdcSrc HDC, nXOriginSrc, nYOriginSrc, nWidthSrc, nHeightSrc, alpha int) bool {
+func XDraw_AlphaBlend(hDraw HDRAW, nXOriginDest, nYOriginDest, nWidthDest, nHeightDest int, hdcSrc HDC, nXOriginSrc, nYOriginSrc, nWidthSrc, nHeightSrc, alpha int) bool {
 	ret, _, _ := xDraw_AlphaBlend.Call(
 		uintptr(hDraw),
 		uintptr(nXOriginDest),
@@ -1078,7 +1078,7 @@ func XDrawAlphaBlend(hDraw HDRAW, nXOriginDest, nYOriginDest, nWidthDest, nHeigh
 	width 三角形宽度.
 	height 三角形高度.
 */
-func XDrawTriangularArrow(hDraw HDRAW, align, x, y, width, height int) {
+func XDraw_TriangularArrow(hDraw HDRAW, align, x, y, width, height int) {
 	xDraw_TriangularArrow.Call(
 		uintptr(hDraw),
 		uintptr(align),
@@ -1097,7 +1097,7 @@ func XDrawTriangularArrow(hDraw HDRAW, align, x, y, width, height int) {
 	x x坐标.
 	y y坐标.
 */
-func XDrawImage(hDraw HDRAW, hImage HIMAGE, x, y int) {
+func XDraw_Image(hDraw HDRAW, hImage HIMAGE, x, y int) {
 	xDraw_Image.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1116,7 +1116,7 @@ func XDrawImage(hDraw HDRAW, hImage HIMAGE, x, y int) {
 	width 宽度.
 	height 高度.
 */
-func XDrawImage2(hDraw HDRAW, hImage HIMAGE, x, y, width, height int) {
+func XDraw_Image2(hDraw HDRAW, hImage HIMAGE, x, y, width, height int) {
 	xDraw_Image2.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1137,7 +1137,7 @@ func XDrawImage2(hDraw HDRAW, hImage HIMAGE, x, y, width, height int) {
 	width 宽度.
 	height 高度.
 */
-func XDrawImageStretch(hDraw HDRAW, hImage HIMAGE, x, y, width, height int) {
+func XDraw_ImageStretch(hDraw HDRAW, hImage HIMAGE, x, y, width, height int) {
 	xDraw_ImageStretch.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1156,7 +1156,7 @@ func XDrawImageStretch(hDraw HDRAW, hImage HIMAGE, x, y, width, height int) {
 	pRect 坐标.
 	bOnlyBorder 是否只绘制边缘区域.
 */
-func XDrawImageAdaptive(hDraw HDRAW, hImage HIMAGE, pRect *RECT, bOnlyBorder bool) {
+func XDraw_ImageAdaptive(hDraw HDRAW, hImage HIMAGE, pRect *RECT, bOnlyBorder bool) {
 	xDraw_ImageAdaptive.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1173,7 +1173,7 @@ func XDrawImageAdaptive(hDraw HDRAW, hImage HIMAGE, pRect *RECT, bOnlyBorder boo
 	pRect 坐标.
 	flag 标识.
 */
-func XDrawImageExTile(hDraw HDRAW, hImage HIMAGE, pRect *RECT, flag int) {
+func XDraw_ImageExTile(hDraw HDRAW, hImage HIMAGE, pRect *RECT, flag int) {
 	xDraw_ImageExTile.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1190,7 +1190,7 @@ func XDrawImageExTile(hDraw HDRAW, hImage HIMAGE, pRect *RECT, flag int) {
 	pRect 坐标.
 	bClip 是否裁剪区域.
 */
-func XDrawImageSuper(hDraw HDRAW, hImage HIMAGE, pRect *RECT, bClip bool) {
+func XDraw_ImageSuper(hDraw HDRAW, hImage HIMAGE, pRect *RECT, bClip bool) {
 	xDraw_ImageSuper.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1207,7 +1207,7 @@ func XDrawImageSuper(hDraw HDRAW, hImage HIMAGE, pRect *RECT, bClip bool) {
 	pRcDest 目标坐标.
 	pSrcRect 源坐标.
 */
-func XDrawImageSuper2(hDraw HDRAW, hImage HIMAGE, pRcDest, pSrcRect *RECT) {
+func XDraw_ImageSuper2(hDraw HDRAW, hImage HIMAGE, pRcDest, pSrcRect *RECT) {
 	xDraw_ImageSuper2.Call(
 		uintptr(hDraw),
 		uintptr(hImage),
@@ -1225,7 +1225,7 @@ DrawText() 参见MSDN.
 	nCount 字符串长度.
 	lpRect 坐标.
 */
-func XDrawDrawText(hDraw HDRAW, lpString string, nCount int, lpRect *RECT) {
+func XDraw_DrawText(hDraw HDRAW, lpString string, nCount int, lpRect *RECT) {
 	xDraw_DrawText.Call(
 		uintptr(hDraw),
 		StringToUintPtr(lpString),
@@ -1245,7 +1245,7 @@ func XDrawDrawText(hDraw HDRAW, lpString string, nCount int, lpRect *RECT) {
 	colorLine 下划线颜色.
 	alphaLine 下划线透明度.
 */
-func XDrawDrawTextUnderline(hDraw HDRAW, lpString string, nCount int, lpRect *RECT, colorLine COLORREF, alphaLine byte) {
+func XDraw_DrawTextUnderline(hDraw HDRAW, lpString string, nCount int, lpRect *RECT, colorLine COLORREF, alphaLine byte) {
 	xDraw_DrawTextUnderline.Call(
 		uintptr(hDraw),
 		StringToUintPtr(lpString),
@@ -1267,7 +1267,7 @@ TextOut() 参见MSDN.
 	lpString XX. *uint16
 	cbString XX.
 */
-func XDrawTextOut(hDraw HDRAW, nXStart, nYStart int, lpString string, cbString int) {
+func XDraw_TextOut(hDraw HDRAW, nXStart, nYStart int, lpString string, cbString int) {
 	xDraw_TextOut.Call(
 		uintptr(hDraw),
 		uintptr(nXStart),
@@ -1288,7 +1288,7 @@ TextOut() 参见MSDN.
 	lpString XX. *uint16
 返回:
 */
-func XDrawTextOutA(hDraw HDRAW, nXStart, nYStart int, lpString string) {
+func XDraw_TextOutA(hDraw HDRAW, nXStart, nYStart int, lpString string) {
 	xDraw_TextOutA.Call(
 		uintptr(hDraw),
 		uintptr(nXStart),

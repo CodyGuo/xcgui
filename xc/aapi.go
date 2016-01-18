@@ -158,7 +158,7 @@ Unicode转换Ansi编码,.
 返回:
 	如果成功,返回写入接收缓冲区字节数量.
 */
-func XCUnicodeToAnsi(pIn *uint16, inLen int, pOut *byte, outLen int) int {
+func XC_UnicodeToAnsi(pIn *uint16, inLen int, pOut *byte, outLen int) int {
 	ret, _, _ := xC_UnicodeToAnsi.Call(
 		uintptr(unsafe.Pointer(pIn)),
 		uintptr(inLen),
@@ -179,7 +179,7 @@ Ansi转换Unicode编码,.
 返回:
 	如果成功,返回写入接收缓冲区字符wchar_t数量.
 */
-func XCAnsiToUnicode(pIn *uint16, inLen int, pOut *byte, outLen int) int {
+func XC_AnsiToUnicode(pIn *uint16, inLen int, pOut *byte, outLen int) int {
 	ret, _, _ := xC_AnsiToUnicode.Call(
 		uintptr(unsafe.Pointer(pIn)),
 		uintptr(inLen),
@@ -190,7 +190,7 @@ func XCAnsiToUnicode(pIn *uint16, inLen int, pOut *byte, outLen int) int {
 }
 
 // 打印调试信息到文件xcgui_debug.txt.
-func XCDebugToFileInfo(pInfo *byte) {
+func XC_DebugToFileInfo(pInfo *byte) {
 	// fmt.Println("正在打印debug", pInfo)
 	// p := (*struct {
 	// 	pInfo uintptr
@@ -211,7 +211,7 @@ func XCDebugToFileInfo(pInfo *byte) {
 返回:
 	成功返回TRUE,否则相反.
 */
-func XCIsHELE(hEle HXCGUI) bool {
+func XC_IsHELE(hEle HXCGUI) bool {
 	ret, _, _ := xC_IsHELE.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -225,7 +225,7 @@ func XCIsHELE(hEle HXCGUI) bool {
 返回:
 	成功返回TRUE,否则相反.
 */
-func XCIsHWINDOW(hWindow HXCGUI) bool {
+func XC_IsHWINDOW(hWindow HXCGUI) bool {
 	ret, _, _ := xC_IsHWINDOW.Call(uintptr(hWindow))
 
 	return ret == TRUE
@@ -239,7 +239,7 @@ func XCIsHWINDOW(hWindow HXCGUI) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XCIsShape(hShape HXCGUI) bool {
+func XC_IsShape(hShape HXCGUI) bool {
 	ret, _, _ := xC_IsShape.Call(uintptr(hShape))
 
 	return ret == TRUE
@@ -254,7 +254,7 @@ func XCIsShape(hShape HXCGUI) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XCIsHXCGUI(hXCGUI HXCGUI, nType XC_OBJECT_TYPE) bool {
+func XC_IsHXCGUI(hXCGUI HXCGUI, nType XC_OBJECT_TYPE) bool {
 	ret, _, _ := xC_IsHXCGUI.Call(
 		uintptr(hXCGUI),
 		uintptr(nType))
@@ -270,7 +270,7 @@ func XCIsHXCGUI(hXCGUI HXCGUI, nType XC_OBJECT_TYPE) bool {
 返回:
 	返回HWINDOW句柄.
 */
-func XChWindowFromHWnd(hWnd HWND) HWINDOW {
+func XC_hWindowFromHWnd(hWnd HWND) HWINDOW {
 	ret, _, _ := xC_hWindowFromHWnd.Call(uintptr(hWnd))
 
 	return HWINDOW(ret)
@@ -284,7 +284,7 @@ func XChWindowFromHWnd(hWnd HWND) HWINDOW {
 返回:
 	如果是返回TRUE,否则相反.
 */
-func XCIsSViewExtend(hEle HELE) bool {
+func XC_IsSViewExtend(hEle HELE) bool {
 	ret, _, _ := xC_IsSViewExtend.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -298,7 +298,7 @@ func XCIsSViewExtend(hEle HELE) bool {
 返回:
 	返回句柄类型.
 */
-func XCGetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
+func XC_GetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
 	ret, _, _ := xC_GetObjectType.Call(uintptr(hXCGUI))
 
 	return XC_OBJECT_TYPE(ret)
@@ -312,7 +312,7 @@ func XCGetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
 返回:
 	成功返回句柄,否则返回NULL.
 */
-func XCGetObjectByID(nID int) HXCGUI {
+func XC_GetObjectByID(nID int) HXCGUI {
 	ret, _, _ := xC_GetObjectByID.Call(uintptr(nID))
 
 	if ret == NULL {
@@ -330,7 +330,7 @@ func XCGetObjectByID(nID int) HXCGUI {
 返回:
 	返回整型值. 注解:int nID=XC_GetResIDValue(L"ID_BUTTON_1");
 */
-func XCGetResIDValue(pName *uint16) int {
+func XC_GetResIDValue(pName *uint16) int {
 	ret, _, _ := xC_GetResIDValue.Call(uintptr(unsafe.Pointer(pName)))
 
 	return int(ret)
@@ -342,7 +342,7 @@ func XCGetResIDValue(pName *uint16) int {
 参数:
 	nMilliseconds 重绘最小时间间隔,单位毫秒.
 */
-func XCSetPaintFrequency(nMilliseconds int) {
+func XC_SetPaintFrequency(nMilliseconds int) {
 	xC_SetPaintFrequency.Call(uintptr(nMilliseconds))
 }
 
@@ -355,7 +355,7 @@ func XCSetPaintFrequency(nMilliseconds int) {
 返回:
 	如果两个矩形相交返回TRUE,否则相反.
 */
-func XCRectInRect(pRect1, pRect2 *RECT) bool {
+func XC_RectInRect(pRect1, pRect2 *RECT) bool {
 	ret, _, _ := xC_RectInRect.Call(
 		uintptr(unsafe.Pointer(pRect1)),
 		uintptr(unsafe.Pointer(pRect2)))
@@ -371,7 +371,7 @@ func XCRectInRect(pRect1, pRect2 *RECT) bool {
 	pSrc1 源矩形1.
 	pSrc2 源矩形2.
 */
-func XCCombineRect(pDest, pSrc1, pSrc2 *RECT) {
+func XC_CombineRect(pDest, pSrc1, pSrc2 *RECT) {
 	xC_CombineRect.Call(
 		uintptr(unsafe.Pointer(pDest)),
 		uintptr(unsafe.Pointer(pSrc1)),
@@ -384,7 +384,7 @@ func XCCombineRect(pDest, pSrc1, pSrc2 *RECT) {
 参数:
 	bShow 是否显示.
 */
-func XCShowLayoutFrame(bShow bool) {
+func XC_ShowLayoutFrame(bShow bool) {
 	xC_ShowLayoutFrame.Call(uintptr(BoolToBOOL(bShow)))
 }
 
@@ -394,7 +394,7 @@ func XCShowLayoutFrame(bShow bool) {
 参数:
 	color RGB颜色值.
 */
-func XCSetLayoutFrameColor(color COLORREF) {
+func XC_SetLayoutFrameColor(color COLORREF) {
 	xC_SetLayoutFrameColor.Call(uintptr(color))
 }
 
@@ -404,7 +404,7 @@ func XCSetLayoutFrameColor(color COLORREF) {
 参数:
 	bEnabel 是否启用.
 */
-func XCEnableErrorMessageBox(bEnabel bool) {
+func XC_EnableErrorMessageBox(bEnabel bool) {
 	xC_EnableErrorMessageBox.Call(uintptr(BoolToBOOL(bEnabel)))
 }
 

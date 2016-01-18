@@ -90,7 +90,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XTreeCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XTree_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xTree_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -110,7 +110,7 @@ func XTreeCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
+func XTree_SetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXML.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -128,7 +128,7 @@ func XTreeSetItemTemplateXML(hEle HELE, pXmlFile string) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXMLSel(hEle HELE, pXmlFile string) bool {
+func XTree_SetItemTemplateXMLSel(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLSel.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -146,7 +146,7 @@ func XTreeSetItemTemplateXMLSel(hEle HELE, pXmlFile string) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXMLFromString(hEle HELE, pXmlFile string) bool {
+func XTree_SetItemTemplateXMLFromString(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -164,7 +164,7 @@ func XTreeSetItemTemplateXMLFromString(hEle HELE, pXmlFile string) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemTemplateXMLSelFromString(hEle HELE, pXmlFile string) bool {
+func XTree_SetItemTemplateXMLSelFromString(hEle HELE, pXmlFile string) bool {
 	ret, _, _ := xTree_SetItemTemplateXMLSelFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -180,7 +180,7 @@ func XTreeSetItemTemplateXMLSelFromString(hEle HELE, pXmlFile string) bool {
 	hEle 元素句柄.
 	nFlags 标志位 List_drawItemBk_flags_.
 */
-func XTreeSetDrawItemBkFlags(hEle HELE, nFlags int) {
+func XTree_SetDrawItemBkFlags(hEle HELE, nFlags int) {
 	xTree_SetDrawItemBkFlags.Call(
 		uintptr(hEle),
 		uintptr(nFlags))
@@ -196,7 +196,7 @@ func XTreeSetDrawItemBkFlags(hEle HELE, nFlags int) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetItemData(hEle HELE, nID int, nUserData int) bool {
+func XTree_SetItemData(hEle HELE, nID int, nUserData int) bool {
 	ret, _, _ := xTree_SetItemData.Call(
 		uintptr(hEle),
 		uintptr(nID),
@@ -215,7 +215,7 @@ func XTreeSetItemData(hEle HELE, nID int, nUserData int) bool {
 返回:
 	项用户数据.
 */
-func XTreeGetItemData(hEle HELE, nID int) int {
+func XTree_GetItemData(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetItemData.Call(
 		uintptr(hEle),
 		uintptr(nID))
@@ -232,7 +232,7 @@ func XTreeGetItemData(hEle HELE, nID int) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTreeSetSelectItem(hEle HELE, nID int) bool {
+func XTree_SetSelectItem(hEle HELE, nID int) bool {
 	ret, _, _ := xTree_SetSelectItem.Call(
 		uintptr(hEle),
 		uintptr(nID))
@@ -248,7 +248,7 @@ func XTreeSetSelectItem(hEle HELE, nID int) bool {
 返回:
 	项ID.
 */
-func XTreeGetSelectItem(hEle HELE) int {
+func XTree_GetSelectItem(hEle HELE) int {
 	ret, _, _ := xTree_GetSelectItem.Call(uintptr(hEle))
 
 	return int(ret)
@@ -263,7 +263,7 @@ func XTreeGetSelectItem(hEle HELE) int {
 返回:
 	如果展开返回TRUE否则返回FALSE.
 */
-func XTreeIsExpand(hEle HELE, nID int) bool {
+func XTree_IsExpand(hEle HELE, nID int) bool {
 	ret, _, _ := xTree_IsExpand.Call(
 		uintptr(hEle),
 		uintptr(nID))
@@ -281,7 +281,7 @@ func XTreeIsExpand(hEle HELE, nID int) bool {
 返回:
 	成功返回TRUE,如果项已经展开或失败返回FALSE.
 */
-func XTreeExpandItem(hEle HELE, nID int, bExpand bool) bool {
+func XTree_ExpandItem(hEle HELE, nID int, bExpand bool) bool {
 	ret, _, _ := xTree_ExpandItem.Call(
 		uintptr(hEle),
 		uintptr(nID),
@@ -299,7 +299,7 @@ func XTreeExpandItem(hEle HELE, nID int, bExpand bool) bool {
 返回:
 	项ID.
 */
-func XTreeHitTest(hEle HELE, pPt *POINT) int {
+func XTree_HitTest(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xTree_HitTest.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)))
@@ -316,7 +316,7 @@ func XTreeHitTest(hEle HELE, pPt *POINT) int {
 返回:
 	项ID.
 */
-func XTreeHitTestOffet(hEle HELE, pPt *POINT) int {
+func XTree_HitTestOffet(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xTree_HitTestOffet.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)))
@@ -333,7 +333,7 @@ func XTreeHitTestOffet(hEle HELE, pPt *POINT) int {
 返回:
 	返回项ID,失败返回XC_ID_ERROR.
 */
-func XTreeGetFirstChildItem(hEle HELE, nID int) int {
+func XTree_GetFirstChildItem(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetFirstChildItem.Call(
 		uintptr(hEle),
 		uintptr(nID))
@@ -350,7 +350,7 @@ func XTreeGetFirstChildItem(hEle HELE, nID int) int {
 返回:
 	返回下一个兄弟项ID.
 */
-func XTreeGetNextSiblingItem(hEle HELE, nID int) int {
+func XTree_GetNextSiblingItem(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetNextSiblingItem.Call(
 		uintptr(hEle),
 		uintptr(nID))
@@ -367,7 +367,7 @@ func XTreeGetNextSiblingItem(hEle HELE, nID int) int {
 返回:
 	返回父项ID,错误返回-1.
 */
-func XTreeGetParentItem(hEle HELE, nID int) int {
+func XTree_GetParentItem(hEle HELE, nID int) int {
 	ret, _, _ := xTree_GetParentItem.Call(
 		uintptr(hEle),
 		uintptr(nID))
@@ -382,7 +382,7 @@ func XTreeGetParentItem(hEle HELE, nID int) int {
 	hEle 元素句柄.
 	hAdapter 数据适配器句柄, XAdapterTree.
 */
-func XTreeBindAdapter(hEle HELE, hAdapter HXCGUI) {
+func XTree_BindAdapter(hEle HELE, hAdapter HXCGUI) {
 	xTree_BindAdapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -396,7 +396,7 @@ func XTreeBindAdapter(hEle HELE, hAdapter HXCGUI) {
 返回:
 	返回数据适配器句柄.
 */
-func XTreeGetAdapter(hEle HELE) HXCGUI {
+func XTree_GetAdapter(hEle HELE) HXCGUI {
 	ret, _, _ := xTree_GetAdapter.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
@@ -409,7 +409,7 @@ func XTreeGetAdapter(hEle HELE) HXCGUI {
 	hEle 元素句柄.
 	nWidth 缩进宽度.
 */
-func XTreeSetIndentation(hEle HELE, nWidth int) {
+func XTree_SetIndentation(hEle HELE, nWidth int) {
 	xTree_SetIndentation.Call(
 		uintptr(hEle),
 		uintptr(nWidth))
@@ -423,7 +423,7 @@ func XTreeSetIndentation(hEle HELE, nWidth int) {
 返回:
 	返回缩进值大小.
 */
-func XTreeGetIndentation(hEle HELE) int {
+func XTree_GetIndentation(hEle HELE) int {
 	ret, _, _ := xTree_GetIndentation.Call(uintptr(hEle))
 
 	return int(ret)
@@ -437,7 +437,7 @@ func XTreeGetIndentation(hEle HELE) int {
 	nHeight 高度.
 	nSelHeight 选中时高度.
 */
-func XTreeSetItemHeightDefault(hEle HELE, nHeight int, nSelHeight int) {
+func XTree_SetItemHeightDefault(hEle HELE, nHeight int, nSelHeight int) {
 	xTree_SetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(nHeight),
@@ -452,7 +452,7 @@ func XTreeSetItemHeightDefault(hEle HELE, nHeight int, nSelHeight int) {
 	pHeight 接收返回高度.
 	pSelHeight 接收返回值,当项选中时的高度.
 */
-func XTreeGetItemHeightDefault(hEle HELE, pHeight *int, pSelHeight *int) {
+func XTree_GetItemHeightDefault(hEle HELE, pHeight *int, pSelHeight *int) {
 	xTree_GetItemHeightDefault.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pHeight)),
@@ -468,7 +468,7 @@ func XTreeGetItemHeightDefault(hEle HELE, pHeight *int, pSelHeight *int) {
 	nHeight 高度.
 	nSelHeight 选中时高度.
 */
-func XTreeSetItemHeight(hEle HELE, nID int, nHeight int, nSelHeight int) {
+func XTree_SetItemHeight(hEle HELE, nID int, nHeight int, nSelHeight int) {
 	xTree_SetItemHeight.Call(
 		uintptr(hEle),
 		uintptr(nHeight),
@@ -484,7 +484,7 @@ func XTreeSetItemHeight(hEle HELE, nID int, nHeight int, nSelHeight int) {
 	pHeight 接收返回高度.
 	pSelHeight 接收返回值,当项选中时的高度.
 */
-func XTreeGetItemHeight(hEle HELE, nID int, pHeight *int, pSelHeight *int) {
+func XTree_GetItemHeight(hEle HELE, nID int, pHeight *int, pSelHeight *int) {
 	xTree_GetItemHeight.Call(
 		uintptr(hEle),
 		uintptr(nID),
@@ -503,7 +503,7 @@ func XTreeGetItemHeight(hEle HELE, nID int, pHeight *int, pSelHeight *int) {
 	alpha 透明度.
 	width 线宽.
 */
-func XTreeAddItemBkBorder(hEle HELE, nState Tree_item_state_, color COLORREF, alpha byte, width int) {
+func XTree_AddItemBkBorder(hEle HELE, nState Tree_item_state_, color COLORREF, alpha byte, width int) {
 	xTree_AddItemBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -521,7 +521,7 @@ func XTreeAddItemBkBorder(hEle HELE, nState Tree_item_state_, color COLORREF, al
 	color RGB颜色.
 	alpha 透明度.
 */
-func XTreeAddItemBkFill(hEle HELE, nState Tree_item_state_, color COLORREF, alpha byte) {
+func XTree_AddItemBkFill(hEle HELE, nState Tree_item_state_, color COLORREF, alpha byte) {
 	xTree_AddItemBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -537,7 +537,7 @@ func XTreeAddItemBkFill(hEle HELE, nState Tree_item_state_, color COLORREF, alph
 	nState 项状态.
 	hImage 图片句柄.
 */
-func XTreeAddItemBkImage(hEle HELE, nState Tree_item_state_, hImage HIMAGE) {
+func XTree_AddItemBkImage(hEle HELE, nState Tree_item_state_, hImage HIMAGE) {
 	xTree_AddItemBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -554,7 +554,7 @@ func XTreeAddItemBkImage(hEle HELE, nState Tree_item_state_, hImage HIMAGE) {
 返回:
 	项背景内容数量.
 */
-func XTreeGetItemBkInfoCount(hEle HELE, nState Tree_item_state_) int {
+func XTree_GetItemBkInfoCount(hEle HELE, nState Tree_item_state_) int {
 	ret, _, _ := xTree_GetItemBkInfoCount.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -569,7 +569,7 @@ func XTreeGetItemBkInfoCount(hEle HELE, nState Tree_item_state_) int {
 	hEle 元素句柄.
 	nState 项状态.
 */
-func XTreeClearItemBkInfo(hEle HELE, nState Tree_item_state_) {
+func XTree_ClearItemBkInfo(hEle HELE, nState Tree_item_state_) {
 	xTree_ClearItemBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -584,7 +584,7 @@ func XTreeClearItemBkInfo(hEle HELE, nState Tree_item_state_) {
 返回:
 	项背景内容管理器.
 */
-// func XTreeGetItemBkInfoManager(hEle HELE, nState Tree_item_state_) HBKINFOM {
+// func XTree_GetItemBkInfoManager(hEle HELE, nState Tree_item_state_) HBKINFOM {
 // 	ret, _, _ := xTree_GetItemBkInfoManager.Call(
 // 		uintptr(hEle),
 // 		uintptr(nState))
@@ -602,7 +602,7 @@ func XTreeClearItemBkInfo(hEle HELE, nState Tree_item_state_) {
 返回:
 	成功返回对象句柄,否则返回NULL.
 */
-func XTreeGetTemplateObject(hEle HELE, nID int, nTempItemID int) HXCGUI {
+func XTree_GetTemplateObject(hEle HELE, nID int, nTempItemID int) HXCGUI {
 	ret, _, _ := xTree_GetTemplateObject.Call(
 		uintptr(hEle),
 		uintptr(nID),
@@ -620,7 +620,7 @@ func XTreeGetTemplateObject(hEle HELE, nID int, nTempItemID int) HXCGUI {
 返回:
 	成功返回项ID, 否则返回XC_ID_ERROR.
 */
-func XTreeGetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
+func XTree_GetItemIDFromHXCGUI(hEle HELE, hXCGUI HXCGUI) int {
 	ret, _, _ := xTree_GetItemIDFromHXCGUI.Call(
 		uintptr(hEle),
 		uintptr(hXCGUI))

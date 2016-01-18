@@ -44,7 +44,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XToolBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XToolBar_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xToolBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -65,7 +65,7 @@ func XToolBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	返回插入位置索引.
 */
-func XToolBarInsertEle(hEle, hNewEle HELE, index int) int {
+func XToolBar_InsertEle(hEle, hNewEle HELE, index int) int {
 	ret, _, _ := xToolBar_InsertEle.Call(
 		uintptr(hEle),
 		uintptr(hNewEle),
@@ -83,7 +83,7 @@ func XToolBarInsertEle(hEle, hNewEle HELE, index int) int {
 返回:
 	返回插入位置索引.
 */
-func XToolBarInsertSeparator(hEle HELE, index int) int {
+func XToolBar_InsertSeparator(hEle HELE, index int) int {
 	ret, _, _ := xToolBar_InsertSeparator.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -98,7 +98,7 @@ func XToolBarInsertSeparator(hEle HELE, index int) int {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XToolBarEnableButtonMenu(hEle HELE, bEnable bool) {
+func XToolBar_EnableButtonMenu(hEle HELE, bEnable bool) {
 	xToolBar_EnableButtonMenu.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -114,7 +114,7 @@ func XToolBarEnableButtonMenu(hEle HELE, bEnable bool) {
 返回:
 	返回元素句柄.
 */
-func XToolBarGetHEle(hEle HELE, index int) HELE {
+func XToolBar_GetHEle(hEle HELE, index int) HELE {
 	ret, _, _ := xToolBar_GetHEle.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -130,7 +130,7 @@ func XToolBarGetHEle(hEle HELE, index int) HELE {
 返回:
 	返回按钮句柄.
 */
-func XToolBarGetButtonLeft(hEle HELE) HELE {
+func XToolBar_GetButtonLeft(hEle HELE) HELE {
 	ret, _, _ := xToolBar_GetButtonLeft.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -144,7 +144,7 @@ func XToolBarGetButtonLeft(hEle HELE) HELE {
 返回:
 	返回按钮句柄.
 */
-func XToolBarGetButtonRight(hEle HELE) HELE {
+func XToolBar_GetButtonRight(hEle HELE) HELE {
 	ret, _, _ := xToolBar_GetButtonRight.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -158,7 +158,7 @@ func XToolBarGetButtonRight(hEle HELE) HELE {
 返回:
 	返回菜单按钮句柄.
 */
-func XToolBarGetButtonMenu(hEle HELE) HELE {
+func XToolBar_GetButtonMenu(hEle HELE) HELE {
 	ret, _, _ := xToolBar_GetButtonMenu.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -171,7 +171,7 @@ func XToolBarGetButtonMenu(hEle HELE) HELE {
 	hEle 元素句柄.
 	nSize 间距大小.
 */
-func XToolBarSetSpace(hEle HELE, nSize int) {
+func XToolBar_SetSpace(hEle HELE, nSize int) {
 	xToolBar_SetSpace.Call(
 		uintptr(hEle),
 		uintptr(nSize))
@@ -184,7 +184,7 @@ func XToolBarSetSpace(hEle HELE, nSize int) {
 	hEle 元素句柄.
 	index 索引值.
 */
-func XToolBarDeleteEle(hEle HELE, index int) {
+func XToolBar_DeleteEle(hEle HELE, index int) {
 	xToolBar_DeleteEle.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -196,6 +196,6 @@ func XToolBarDeleteEle(hEle HELE, index int) {
 参数:
 	hEle 元素句柄.
 */
-func XToolBarDeleteAllEle(hEle HELE) {
+func XToolBar_DeleteAllEle(hEle HELE) {
 	xToolBar_DeleteAllEle.Call(uintptr(hEle))
 }

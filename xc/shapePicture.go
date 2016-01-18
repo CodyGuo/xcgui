@@ -35,7 +35,7 @@ func init() {
 返回:
 	成功返回图片对象句柄,否则返回NULL.
 */
-func XShapePicCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
+func XShapePic_Create(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapePic_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -53,7 +53,7 @@ func XShapePicCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	hShape 形状对象句柄.
 	hImage 图片句柄.
 */
-func XShapePicSetImage(hShape HXCGUI, hImage HIMAGE) {
+func XShapePic_SetImage(hShape HXCGUI, hImage HIMAGE) {
 	xShapePic_SetImage.Call(
 		uintptr(hShape),
 		uintptr(hImage))
@@ -67,7 +67,7 @@ func XShapePicSetImage(hShape HXCGUI, hImage HIMAGE) {
 	nType 标识.
 	width 宽度.
 */
-func XShapePicSetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, width int) {
+func XShapePic_SetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, width int) {
 	xShapePic_SetLayoutWidth.Call(
 		uintptr(hShape),
 		uintptr(nType),
@@ -82,7 +82,7 @@ func XShapePicSetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, width int) 
 	nType 标识.
 	height 高度.
 */
-func XShapePicSetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, height int) {
+func XShapePic_SetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, height int) {
 	xShapePic_SetLayoutHeight.Call(
 		uintptr(hShape),
 		uintptr(nType),
@@ -97,7 +97,7 @@ func XShapePicSetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, height int
 	pType 属性标识.
 	pWidth 宽度.
 */
-func XShapePicGetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, pWidth *int) {
+func XShapePic_GetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, pWidth *int) {
 	xShapePic_GetLayoutWidth.Call(
 		uintptr(hShape),
 		uintptr(nType),
@@ -112,7 +112,7 @@ func XShapePicGetLayoutWidth(hShape HXCGUI, nType Layout_size_type_, pWidth *int
 	pType 属性标识.
 	pHeight 高度.
 */
-func XShapePicGetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, pHeight *int) {
+func XShapePic_GetLayoutHeight(hShape HXCGUI, nType Layout_size_type_, pHeight *int) {
 	xShapePic_GetLayoutHeight.Call(
 		uintptr(hShape),
 		uintptr(nType),

@@ -33,41 +33,41 @@ type menu_drawItem_i struct {
 }
 
 func main() {
-	hWindow = xcgui.XWndCreate(0, 0, 300, 200, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hWindow = xcgui.XWnd_Create(0, 0, 300, 200, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(hWindow)
 
-	hButton := xcgui.XBtnCreate(20, 50, 80, 20, "弹出菜单", xcgui.HXCGUI(hWindow))
-	xcgui.XEleRegEventC1(hButton, xcgui.XE_BNCLICK, xcgui.CallBack(OnbtnClick))
+	hButton := xcgui.XBtn_Create(20, 50, 80, 20, "弹出菜单", xcgui.HXCGUI(hWindow))
+	xcgui.XEle_RegEventC1(hButton, xcgui.XE_BNCLICK, xcgui.CallBack(OnbtnClick))
 
-	xcgui.XWndRegEventC(hWindow, xcgui.XWM_MENU_POPUP, xcgui.CallBack(OnWndMenuPopup))
-	xcgui.XWndRegEventC(hWindow, xcgui.XWM_MENU_POPUP_WND, xcgui.CallBack(OnWndMenuPopupWnd))
-	xcgui.XWndRegEventC(hWindow, xcgui.XWM_MENU_SELECT, xcgui.CallBack(OnWndMenuSelect))
-	xcgui.XWndRegEventC(hWindow, xcgui.XWM_MENU_EXIT, xcgui.CallBack(OnWndMenuExit))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.XWM_MENU_POPUP, xcgui.CallBack(OnWndMenuPopup))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.XWM_MENU_POPUP_WND, xcgui.CallBack(OnWndMenuPopupWnd))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.XWM_MENU_SELECT, xcgui.CallBack(OnWndMenuSelect))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.XWM_MENU_EXIT, xcgui.CallBack(OnWndMenuExit))
 
-	xcgui.XWndRegEventC(hWindow, xcgui.XWM_MENU_DRAW_BACKGROUND, xcgui.CallBack(OnWndMenuDrawBackground))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.XWM_MENU_DRAW_BACKGROUND, xcgui.CallBack(OnWndMenuDrawBackground))
 
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 
 }
 
 func OnbtnClick(hEventEle xcgui.HELE, pbHandled *bool) int {
-	hMenu := xcgui.XMenuCreate()
-	xcgui.XMenuSetBkImage(hMenu, xcgui.XImageLoadFile("../img/comma_face_12.png", true))
+	hMenu := xcgui.XMenu_Create()
+	xcgui.XMenu_SetBkImage(hMenu, xcgui.XImage_LoadFile("../img/comma_face_12.png", true))
 
-	xcgui.XMenuAddItemIcon(hMenu, 201, "111", xcgui.XC_ID_ROOT, xcgui.XImageLoadFile("../img/plus.png", false), xcgui.MENU_STATE_FLAGS_CHECK)
-	xcgui.XMenuAddItem(hMenu, 202, "222", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 203, "333", 0, 0)
+	xcgui.XMenu_AddItemIcon(hMenu, 201, "111", xcgui.XC_ID_ROOT, xcgui.XImage_LoadFile("../img/plus.png", false), xcgui.MENU_STATE_FLAGS_CHECK)
+	xcgui.XMenu_AddItem(hMenu, 202, "222", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 203, "333", 0, 0)
 
-	xcgui.XMenuAddItem(hMenu, 204, "444", 203, 0)
-	xcgui.XMenuAddItem(hMenu, 205, "555", 203, 0)
+	xcgui.XMenu_AddItem(hMenu, 204, "444", 203, 0)
+	xcgui.XMenu_AddItem(hMenu, 205, "555", 203, 0)
 
 	rcButton := new(xcgui.RECT)
-	xcgui.XEleGetRect(hEventEle, rcButton)
+	xcgui.XEle_GetRect(hEventEle, rcButton)
 	pt := xcgui.POINT{int(rcButton.Left), int(rcButton.Bottom)}
-	xcgui.ClientToScreen(xcgui.XWndGetHWND(hWindow), &pt)
-	xcgui.XMenuPopup(hMenu, xcgui.XWndGetHWND(hWindow), pt.X, pt.Y, 0, 0)
+	xcgui.ClientToScreen(xcgui.XWnd_GetHWND(hWindow), &pt)
+	xcgui.XMenu_Popup(hMenu, xcgui.XWnd_GetHWND(hWindow), pt.X, pt.Y, 0, 0)
 
 	return 0
 }

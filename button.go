@@ -55,7 +55,7 @@ type Button struct {
 func NewButton(parent Window, rect Rectangle) (*Button, error) {
 	btn := new(Button)
 
-	btn.hEle = xc.XBtnCreate(
+	btn.hEle = xc.XBtn_Create(
 		rect.X,
 		rect.Y,
 		rect.Width,
@@ -79,7 +79,7 @@ func NewButton(parent Window, rect Rectangle) (*Button, error) {
 }
 
 func (b *Button) Checked() bool {
-	return xc.XBtnIsCheck(b.hEle)
+	return xc.XBtn_IsCheck(b.hEle)
 }
 
 func (b *Button) SetChecked(checked bool) {
@@ -87,79 +87,79 @@ func (b *Button) SetChecked(checked bool) {
 		return
 	}
 
-	xc.XBtnSetCheck(b.hEle, checked)
+	xc.XBtn_SetCheck(b.hEle, checked)
 }
 
 func (b *Button) SetStyle(nStyle xc.Button_style_) {
-	xc.XBtnSetStyle(b.hEle, nStyle)
+	xc.XBtn_SetStyle(b.hEle, nStyle)
 }
 
 func (b *Button) GetStyle() xc.Button_style_ {
-	return xc.XBtnGetStyle(b.hEle)
+	return xc.XBtn_GetStyle(b.hEle)
 }
 
 func (b *Button) SetState(nState xc.Common_state3_) {
-	xc.XBtnSetState(b.hEle, nState)
+	xc.XBtn_SetState(b.hEle, nState)
 }
 
 func (b *Button) GetState() xc.Common_state3_ {
-	return xc.XBtnGetState(b.hEle)
+	return xc.XBtn_GetState(b.hEle)
 }
 
 func (b *Button) GetstateEx() xc.Button_state_ {
-	return xc.XBtnGetStateEx(b.hEle)
+	return xc.XBtn_GetStateEx(b.hEle)
 }
 
 func (b *Button) SetType(nType xc.Button_type_) {
-	xc.XBtnSetType(b.hEle, nType)
+	xc.XBtn_SetType(b.hEle, nType)
 }
 
 func (b *Button) GetType() xc.Button_type_ {
-	return xc.XBtnGetType(b.hEle)
+	return xc.XBtn_GetType(b.hEle)
 }
 
 func (b *Button) SetGroupID(nID int) {
-	xc.XBtnSetGroupID(b.hEle, nID)
+	xc.XBtn_SetGroupID(b.hEle, nID)
 }
 
 func (b *Button) GetGroupID() int {
-	return xc.XBtnGetGroupID(b.hEle)
+	return xc.XBtn_GetGroupID(b.hEle)
 }
 
 func (b *Button) SetBindEle(hBindEle xc.HELE) {
-	xc.XBtnSetBindEle(b.hEle, hBindEle)
+	xc.XBtn_SetBindEle(b.hEle, hBindEle)
 }
 
 func (b *Button) GetBindEle() xc.HELE {
-	return xc.XBtnGetBindEle(b.hEle)
+	return xc.XBtn_GetBindEle(b.hEle)
 }
 
 func (b *Button) SetTextAlign(nFlags int) {
-	xc.XBtnSetTextAlign(b.hEle, nFlags)
+	xc.XBtn_SetTextAlign(b.hEle, nFlags)
 }
 
 func (b *Button) GetTextAlign() int {
-	return xc.XBtnGetTextAlign(b.hEle)
+	return xc.XBtn_GetTextAlign(b.hEle)
 }
 
 func (b *Button) SetIconAlign(align xc.Button_icon_align_) {
-	xc.XBtnSetIconAlign(b.hEle, align)
+	xc.XBtn_SetIconAlign(b.hEle, align)
 }
 
 func (b *Button) SetOffset(point Point) {
-	xc.XBtnSetOffset(b.hEle, point.X, point.Y)
+	xc.XBtn_SetOffset(b.hEle, point.X, point.Y)
 }
 
 func (b *Button) SetOffsetIcon(point Point) {
-	xc.XBtnSetOffsetIcon(b.hEle, point.X, point.Y)
+	xc.XBtn_SetOffsetIcon(b.hEle, point.X, point.Y)
 }
 
 func (b *Button) SetIconSpace(sizeNum int) {
-	xc.XBtnSetIconSpace(b.hEle, sizeNum)
+	xc.XBtn_SetIconSpace(b.hEle, sizeNum)
 }
 
 func (b *Button) SetText(value string) {
-	xc.XBtnSetText(b.hEle, value)
+	xc.XBtn_SetText(b.hEle, value)
 }
 
 func (b *Button) GetText() string {
@@ -170,53 +170,53 @@ func (b *Button) GetText() string {
 	// fmt.Println("textLength:", textLength)
 
 	pSize := new(xc.SIZE)
-	xc.XEleGetContentSize(b.hEle, pSize)
+	xc.XEle_GetContentSize(b.hEle, pSize)
 	textLength := pSize.CX
 
 	buf := make([]uint16, textLength+1)
-	xc.XBtnGetText(b.hEle, &buf[0], int(textLength)+1)
+	xc.XBtn_GetText(b.hEle, &buf[0], int(textLength)+1)
 
 	return syscall.UTF16ToString(buf)
 }
 
 func (b *Button) SetIcon(hImage xc.HIMAGE) {
-	xc.XBtnSetIcon(b.hEle, hImage)
+	xc.XBtn_SetIcon(b.hEle, hImage)
 }
 
 func (b *Button) SetIconDisable(hImage xc.HIMAGE) {
-	xc.XBtnSetIconDisable(b.hEle, hImage)
+	xc.XBtn_SetIconDisable(b.hEle, hImage)
 }
 
 func (b *Button) AddAnimationFrame(hImage xc.HIMAGE, uElapse uint32) {
-	xc.XBtnAddAnimationFrame(b.hEle, hImage, uElapse)
+	xc.XBtn_AddAnimationFrame(b.hEle, hImage, uElapse)
 }
 
 func (b *Button) EnableAnimation(bEnable, bLoopPlay bool) {
-	xc.XBtnEnableAnimation(b.hEle, bEnable, bLoopPlay)
+	xc.XBtn_EnableAnimation(b.hEle, bEnable, bLoopPlay)
 }
 
 func (b *Button) AddBkBorder(nState xc.Button_state_, color Color, alpha byte, width int) {
-	xc.XBtnAddBkBorder(b.hEle, nState, xc.COLORREF(color), alpha, width)
+	xc.XBtn_AddBkBorder(b.hEle, nState, xc.COLORREF(color), alpha, width)
 }
 
 func (b *Button) AddBkFill(nState xc.Button_state_, color Color, alpha byte) {
-	xc.XBtnAddBkFill(b.hEle, nState, xc.COLORREF(color), alpha)
+	xc.XBtn_AddBkFill(b.hEle, nState, xc.COLORREF(color), alpha)
 }
 
 func (b *Button) AddBkImage(nState xc.Button_state_, hImage xc.HIMAGE) {
-	xc.XBtnAddBkImage(b.hEle, nState, hImage)
+	xc.XBtn_AddBkImage(b.hEle, nState, hImage)
 }
 
 func (b *Button) GetBkInfoCount(nState xc.Button_state_) int {
-	return xc.XBtnGetBkInfoCount(b.hEle, nState)
+	return xc.XBtn_GetBkInfoCount(b.hEle, nState)
 }
 
 func (b *Button) ClearBkInfo(nState xc.Button_state_) {
-	xc.XBtnClearBkInfo(b.hEle, nState)
+	xc.XBtn_ClearBkInfo(b.hEle, nState)
 }
 
 // func (b *Button) GetBkInfoManager(nState xc.Button_state_) int {
-// 	return int(xc.XBtnGetBkInfoManager(b.hEle, nState))
+// 	return int(xc.XBtn_GetBkInfoManager(b.hEle, nState))
 // }
 
 func (b *Button) OnBtnClick(pFunc func()) {
@@ -228,7 +228,7 @@ func (b *Button) OnBtnClick(pFunc func()) {
 		return 0
 	}
 
-	xc.XEleRegEventC(
+	xc.XEle_RegEventC(
 		b.hEle,
 		xc.XE_BNCLICK,
 		syscall.NewCallback(OnBtnClick))

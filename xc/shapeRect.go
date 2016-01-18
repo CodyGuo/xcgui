@@ -40,7 +40,7 @@ func init() {
 返回:
 	返回句柄.
 */
-func XShapeRectCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
+func XShapeRect_Create(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeRect_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -59,7 +59,7 @@ func XShapeRectCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XShapeRectSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
+func XShapeRect_SetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeRect_SetBorderColor.Call(
 		uintptr(hShape),
 		uintptr(color),
@@ -74,7 +74,7 @@ func XShapeRectSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XShapeRectSetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
+func XShapeRect_SetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeRect_SetFillColor.Call(
 		uintptr(hShape),
 		uintptr(color),
@@ -91,7 +91,7 @@ func XShapeRectSetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XShapeRectSetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
+func XShapeRect_SetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
 	xShapeRect_SetRoundAngle.Call(
 		uintptr(hShape),
 		uintptr(nWidth),
@@ -106,7 +106,7 @@ func XShapeRectSetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
 	pWidth 圆角宽度.
 	pHeight 圆角高度.
 */
-func XShapeRectGetRoundAngle(hShape HXCGUI, pWidth, pHeight *int) {
+func XShapeRect_GetRoundAngle(hShape HXCGUI, pWidth, pHeight *int) {
 	xShapeRect_GetRoundAngle.Call(
 		uintptr(hShape),
 		uintptr(unsafe.Pointer(pWidth)),
@@ -120,7 +120,7 @@ func XShapeRectGetRoundAngle(hShape HXCGUI, pWidth, pHeight *int) {
 	hShape 形状对象句柄.
 	bEnable 是否启用.
 */
-func XShapeRectEnableBorder(hShape HXCGUI, bEnable bool) {
+func XShapeRect_EnableBorder(hShape HXCGUI, bEnable bool) {
 	xShapeRect_EnableBorder.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))
@@ -133,7 +133,7 @@ func XShapeRectEnableBorder(hShape HXCGUI, bEnable bool) {
 	hShape 形状对象句柄.
 	bEnable 是否启用.
 */
-func XShapeRectEnableFill(hShape HXCGUI, bEnable bool) {
+func XShapeRect_EnableFill(hShape HXCGUI, bEnable bool) {
 	xShapeRect_EnableFill.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))
@@ -146,7 +146,7 @@ func XShapeRectEnableFill(hShape HXCGUI, bEnable bool) {
 	hShape 形状对象句柄.
 	bEnable 是否启用.
 */
-func XShapeRectEnableRoundAngle(hShape HXCGUI, bEnable bool) {
+func XShapeRect_EnableRoundAngle(hShape HXCGUI, bEnable bool) {
 	xShapeRect_EnableRoundAngle.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))

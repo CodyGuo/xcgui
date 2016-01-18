@@ -16,7 +16,7 @@ var (
 )
 
 func main() {
-	hWindow = xcgui.XWndCreate(0, 0, 0, 0, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_NOTHING)
+	hWindow = xcgui.XWnd_Create(0, 0, 0, 0, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_NOTHING)
 
 	// We load our icon from a file.
 	icon, err := walk.NewIconFromFile("../../img/x.ico")
@@ -64,7 +64,7 @@ func main() {
 	}
 
 	// 注册菜单选择事件
-	xcgui.XWndRegEventC(hWindow, xcgui.XWM_MENU_SELECT, xcgui.CallBack(OnWndMenuSelect))
+	xcgui.XWnd_RegEventC(hWindow, xcgui.XWM_MENU_SELECT, xcgui.CallBack(OnWndMenuSelect))
 
 	// Run the message loop.
 	xcgui.XRunXCGUI()
@@ -73,32 +73,32 @@ func main() {
 func RunXCMenu() {
 	var p xcgui.POINT
 	xcgui.GetCursorPos(&p)
-	hMenu := xcgui.XMenuCreate()
-	xcgui.XMenuAddItem(hMenu, 101, "炫彩菜单101", 0, xcgui.MENU_STATE_FLAGS_POPUP)
-	xcgui.XMenuAddItem(hMenu, 102, "炫彩菜单102", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 103, "炫彩菜单103", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 104, "炫彩菜单104", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 105, "炫彩菜单105", 0, 0)
-	xcgui.XMenuAddItem(hMenu, 106, "退出程序", 0, 0)
+	hMenu := xcgui.XMenu_Create()
+	xcgui.XMenu_AddItem(hMenu, 101, "炫彩菜单101", 0, xcgui.MENU_STATE_FLAGS_POPUP)
+	xcgui.XMenu_AddItem(hMenu, 102, "炫彩菜单102", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 103, "炫彩菜单103", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 104, "炫彩菜单104", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 105, "炫彩菜单105", 0, 0)
+	xcgui.XMenu_AddItem(hMenu, 106, "退出程序", 0, 0)
 
-	xcgui.XMenuAddItem(hMenu, 1011, "炫彩菜单101-1", 101, 0)
-	xcgui.XMenuAddItem(hMenu, 1012, "炫彩菜单101-2", 101, 0)
+	xcgui.XMenu_AddItem(hMenu, 1011, "炫彩菜单101-1", 101, 0)
+	xcgui.XMenu_AddItem(hMenu, 1012, "炫彩菜单101-2", 101, 0)
 
-	xcgui.SetForegroundWindow(xcgui.XWndGetHWND(hWindow))
-	xcgui.XMenuPopup(hMenu, xcgui.XWndGetHWND(hWindow), p.X, p.Y, 0, 0)
+	xcgui.SetForegroundWindow(xcgui.XWnd_GetHWND(hWindow))
+	xcgui.XMenu_Popup(hMenu, xcgui.XWnd_GetHWND(hWindow), p.X, p.Y, 0, 0)
 }
 
 func OnWndMenuSelect(nID int, pBool bool) int {
 	switch nID {
 	case 1011:
 		ni.ShowInfo("提示信息", "炫彩菜单101-1")
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "提示信息", "炫彩菜单101-1", xcgui.MB_ICONINFORMATION)
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow), "提示信息", "炫彩菜单101-1", xcgui.MB_ICONINFORMATION)
 	case 1012:
 		ni.ShowWarning("警告信息", "炫彩菜单101-2")
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "警告信息", "炫彩菜单101-2", xcgui.MB_ICONWARNING)
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow), "警告信息", "炫彩菜单101-2", xcgui.MB_ICONWARNING)
 	case 102:
 		ni.ShowError("错误信息", "炫彩菜单102")
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "错误信息", "炫彩菜单102", xcgui.MB_ICONERROR)
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow), "错误信息", "炫彩菜单102", xcgui.MB_ICONERROR)
 	case 106:
 		ni.ShowMessage("退出程序", "正在退出程序...")
 		ni.Dispose()
@@ -106,7 +106,7 @@ func OnWndMenuSelect(nID int, pBool bool) int {
 		xcgui.XExitXCGUI()
 	default:
 		ni.ShowMessage("其他信息", "您选择的菜单："+fmt.Sprint(nID))
-		xcgui.MessageBox(xcgui.XWndGetHWND(hWindow), "其他信息", "您选择了其他菜单.", xcgui.MB_USERICON)
+		xcgui.MessageBox(xcgui.XWnd_GetHWND(hWindow), "其他信息", "您选择了其他菜单.", xcgui.MB_USERICON)
 	}
 
 	return 0

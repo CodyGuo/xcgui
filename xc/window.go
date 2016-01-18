@@ -156,7 +156,7 @@ func init() {
 返回:
 	GUI库窗口资源句柄.
 */
-func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle Xc_window_style_) HWINDOW {
+func XWnd_Create(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle Xc_window_style_) HWINDOW {
 	ret, _, _ := xWnd_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -187,7 +187,7 @@ func XWndCreate(x, y, cx, cy int, pTitle string, hWndParent HWND, XCStyle Xc_win
 返回:
 	GUI库窗口资源句柄.
 */
-func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
+func XWnd_CreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xWnd_CreateEx.Call(
 		uintptr(dwExStyle),
 		StringToUintPtr(lpClassName),
@@ -213,7 +213,7 @@ func XWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle ui
 	nEvent 事件类型.
 	pFun 事件函数.
 */
-func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun uintptr) {
+func XWnd_RegEventC(hWindow HWINDOW, nEvent int, pFun uintptr) {
 	xWnd_RegEventC.Call(
 		uintptr(hWindow),
 		uintptr(nEvent),
@@ -228,7 +228,7 @@ func XWndRegEventC(hWindow HWINDOW, nEvent int, pFun uintptr) {
 	nEvent 事件类型.
 	pFun 事件函数.
 */
-func XWndRegEventC1(hWindow HWINDOW, nEvent int, pFun uintptr) {
+func XWnd_RegEventC1(hWindow HWINDOW, nEvent int, pFun uintptr) {
 	xWnd_RegEventC1.Call(
 		uintptr(hWindow),
 		uintptr(nEvent),
@@ -245,7 +245,7 @@ func XWndRegEventC1(hWindow HWINDOW, nEvent int, pFun uintptr) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XWndRemovegEvent(hWindow HWINDOW, nEvent int, pFun uintptr) bool {
+func XWnd_RemovegEvent(hWindow HWINDOW, nEvent int, pFun uintptr) bool {
 	ret, _, _ := xWnd_RemovegEvent.Call(
 		uintptr(hWindow),
 		uintptr(nEvent),
@@ -263,7 +263,7 @@ func XWndRemovegEvent(hWindow HWINDOW, nEvent int, pFun uintptr) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XWndAddEle(hWindow HWINDOW, hEle HELE) bool {
+func XWnd_AddEle(hWindow HWINDOW, hEle HELE) bool {
 	ret, _, _ := xWnd_AddEle.Call(
 		uintptr(hWindow),
 		uintptr(hEle))
@@ -281,7 +281,7 @@ func XWndAddEle(hWindow HWINDOW, hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XWndInsertEle(hWindow HWINDOW, hChildEle, hDestEle HELE) bool {
+func XWnd_InsertEle(hWindow HWINDOW, hChildEle, hDestEle HELE) bool {
 	ret, _, _ := xWnd_InsertEle.Call(
 		uintptr(hWindow),
 		uintptr(hChildEle),
@@ -299,7 +299,7 @@ func XWndInsertEle(hWindow HWINDOW, hChildEle, hDestEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XWndAddShape(hWindow HWINDOW, hShape HXCGUI) bool {
+func XWnd_AddShape(hWindow HWINDOW, hShape HXCGUI) bool {
 	ret, _, _ := xWnd_AddShape.Call(
 		uintptr(hWindow),
 		uintptr(hShape))
@@ -313,7 +313,7 @@ func XWndAddShape(hWindow HWINDOW, hShape HXCGUI) bool {
 参数:
 	hWindow 窗口资源句柄.
 */
-func XWndRedrawWnd(hWindow HWINDOW) {
+func XWnd_RedrawWnd(hWindow HWINDOW) {
 	xWnd_RedrawWnd.Call(uintptr(hWindow))
 }
 
@@ -325,7 +325,7 @@ func XWndRedrawWnd(hWindow HWINDOW) {
 	pRect 需要重绘的区域坐标.
 	bImmediately TRUE立即重绘,FALSE放入消息队列延迟重绘.
 */
-func XWndRedrawWndRect(hWindow HWINDOW, pRect *RECT, bImmediately bool) {
+func XWnd_RedrawWndRect(hWindow HWINDOW, pRect *RECT, bImmediately bool) {
 	xWnd_RedrawWndRect.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pRect)),
@@ -339,7 +339,7 @@ func XWndRedrawWndRect(hWindow HWINDOW, pRect *RECT, bImmediately bool) {
 	hWindow 窗口资源句柄.
 	hFocusEle 将获得焦点的元素.
 */
-func XWndSetFocusEle(hWindow HWINDOW, hFocusEle HELE) {
+func XWnd_SetFocusEle(hWindow HWINDOW, hFocusEle HELE) {
 	xWnd_SetFocusEle.Call(
 		uintptr(hWindow),
 		uintptr(hFocusEle))
@@ -353,7 +353,7 @@ func XWndSetFocusEle(hWindow HWINDOW, hFocusEle HELE) {
 返回:
 	元素句柄.
 */
-func XWndGetFocusEle(hWindow HWINDOW) HELE {
+func XWnd_GetFocusEle(hWindow HWINDOW) HELE {
 	ret, _, _ := xWnd_GetFocusEle.Call(uintptr(hWindow))
 
 	return HELE(ret)
@@ -366,7 +366,7 @@ func XWndGetFocusEle(hWindow HWINDOW) HELE {
 	hWindow 窗口句柄.
 	hCursor 鼠标光标句柄.
 */
-func XWndSetCursor(hWindow HWINDOW, hCursor HCURSOR) {
+func XWnd_SetCursor(hWindow HWINDOW, hCursor HCURSOR) {
 	xWnd_SetCursor.Call(
 		uintptr(hWindow),
 		uintptr(hCursor))
@@ -380,7 +380,7 @@ func XWndSetCursor(hWindow HWINDOW, hCursor HCURSOR) {
 返回:
 	鼠标光标句柄.
 */
-func XWndGetCursor(hWindow HWINDOW) HSTRING {
+func XWnd_GetCursor(hWindow HWINDOW) HSTRING {
 	ret, _, _ := xWnd_GetCursor.Call(uintptr(hWindow))
 
 	return HSTRING(ret)
@@ -394,7 +394,7 @@ func XWndGetCursor(hWindow HWINDOW) HSTRING {
 返回:
 	HWND句柄.
 */
-func XWndGetHWND(hWindow HWINDOW) HWND {
+func XWnd_GetHWND(hWindow HWINDOW) HWND {
 	ret, _, _ := xWnd_GetHWND.Call(uintptr(hWindow))
 
 	return HWND(ret)
@@ -407,7 +407,7 @@ func XWndGetHWND(hWindow HWINDOW) HWND {
 	hWindow 窗口句柄.
 	bEnable 是否启用.
 */
-func XWndEnableDragBorder(hWindow HWINDOW, bEnable bool) {
+func XWnd_EnableDragBorder(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableDragBorder.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -420,7 +420,7 @@ func XWndEnableDragBorder(hWindow HWINDOW, bEnable bool) {
 	hWindow 窗口句柄.
 	bEnable 是否启用.
 */
-func XWndEnableDragWindow(hWindow HWINDOW, bEnable bool) {
+func XWnd_EnableDragWindow(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableDragWindow.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -433,7 +433,7 @@ func XWndEnableDragWindow(hWindow HWINDOW, bEnable bool) {
 	hWindow 窗口句柄.
 	bEnable 是否启用.
 */
-func XWndEnableDragCaption(hWindow HWINDOW, bEnable bool) {
+func XWnd_EnableDragCaption(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableDragCaption.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -446,7 +446,7 @@ func XWndEnableDragCaption(hWindow HWINDOW, bEnable bool) {
 	hWindow 窗口句柄.
 	bEnable 是否启用.
 */
-func XWndEnableDrawBk(hWindow HWINDOW, bEnable bool) {
+func XWnd_EnableDrawBk(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableDrawBk.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -459,7 +459,7 @@ func XWndEnableDrawBk(hWindow HWINDOW, bEnable bool) {
 	hWindow 窗口句柄.
 	bEnable 是否启用.
 */
-func XWndEnableAutoFocus(hWindow HWINDOW, bEnable bool) {
+func XWnd_EnableAutoFocus(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableAutoFocus.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -472,7 +472,7 @@ func XWndEnableAutoFocus(hWindow HWINDOW, bEnable bool) {
 	hWindow 窗口句柄.
 	bEnable 是否启用.
 */
-func XWndEnableMaxWindow(hWindow HWINDOW, bEnable bool) {
+func XWnd_EnableMaxWindow(hWindow HWINDOW, bEnable bool) {
 	xWnd_EnableMaxWindow.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -485,7 +485,7 @@ func XWndEnableMaxWindow(hWindow HWINDOW, bEnable bool) {
 	hWindow 窗口句柄.
 	hEle 元素句柄.
 */
-func XWndSetCaptureEle(hWindow HWINDOW, hEle HELE) {
+func XWnd_SetCaptureEle(hWindow HWINDOW, hEle HELE) {
 	xWnd_SetCaptureEle.Call(
 		uintptr(hWindow),
 		uintptr(hEle))
@@ -499,7 +499,7 @@ func XWndSetCaptureEle(hWindow HWINDOW, hEle HELE) {
 返回:
 	元素句柄.
 */
-func XWndGetCaptureEle(hWindow HWINDOW) HELE {
+func XWnd_GetCaptureEle(hWindow HWINDOW) HELE {
 	ret, _, _ := xWnd_GetCaptureEle.Call(uintptr(hWindow))
 
 	return HELE(ret)
@@ -512,7 +512,7 @@ func XWndGetCaptureEle(hWindow HWINDOW) HELE {
 	hWindow 窗口句柄.
 	pRcPaint 重绘区域坐标.
 */
-func XWndGetDrawRect(hWindow HWINDOW, pRcPaint *RECT) {
+func XWnd_GetDrawRect(hWindow HWINDOW, pRcPaint *RECT) {
 	xWnd_GetDrawRect.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pRcPaint)))
@@ -527,7 +527,7 @@ func XWndGetDrawRect(hWindow HWINDOW, pRcPaint *RECT) {
 返回:
 	参见MSDN.
 */
-func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
+func XWnd_ShowWindow(hWindow HWINDOW, nCmdShow int) bool {
 	ret, _, _ := xWnd_ShowWindow.Call(
 		uintptr(hWindow),
 		uintptr(nCmdShow))
@@ -545,7 +545,7 @@ func XWndShowWindow(hWindow HWINDOW, nCmdShow int) bool {
 返回:
 	成功返回TRUE否则返回FALSE
 */
-func XWndBindLayoutEle(hWindow HWINDOW, nPosition Window_position_, hEle HELE) bool {
+func XWnd_BindLayoutEle(hWindow HWINDOW, nPosition Window_position_, hEle HELE) bool {
 	ret, _, _ := xWnd_BindLayoutEle.Call(
 		uintptr(hWindow),
 		uintptr(nPosition),
@@ -563,7 +563,7 @@ func XWndBindLayoutEle(hWindow HWINDOW, nPosition Window_position_, hEle HELE) b
 返回:
 	元素句柄.
 */
-func XWndGetLayoutEle(hWindow HWINDOW, nPosition Window_position_) HELE {
+func XWnd_GetLayoutEle(hWindow HWINDOW, nPosition Window_position_) HELE {
 	ret, _, _ := xWnd_GetLayoutEle.Call(
 		uintptr(hWindow),
 		uintptr(nPosition))
@@ -580,7 +580,7 @@ func XWndGetLayoutEle(hWindow HWINDOW, nPosition Window_position_) HELE {
 返回:
 	返回先前的光标句柄.
 */
-func XWndSetCursorSys(hWindow HWINDOW, hCursor HCURSOR) HCURSOR {
+func XWnd_SetCursorSys(hWindow HWINDOW, hCursor HCURSOR) HCURSOR {
 	ret, _, _ := xWnd_SetCursorSys.Call(
 		uintptr(hWindow),
 		uintptr(hCursor))
@@ -595,7 +595,7 @@ func XWndSetCursorSys(hWindow HWINDOW, hCursor HCURSOR) HCURSOR {
 	hWindow 窗口句柄.
 	hFontx 炫彩字体句柄.
 */
-func XWndSetFont(hWindow HWINDOW, hFontx HFONTX) {
+func XWnd_SetFont(hWindow HWINDOW, hFontx HFONTX) {
 	xWnd_SetFont.Call(
 		uintptr(hWindow),
 		uintptr(hFontx))
@@ -608,7 +608,7 @@ func XWndSetFont(hWindow HWINDOW, hFontx HFONTX) {
 	hWindow 窗口句柄.
 	nID ID值.
 */
-func XWndSetID(hWindow HWINDOW, nID int) {
+func XWnd_SetID(hWindow HWINDOW, nID int) {
 	xWnd_SetID.Call(
 		uintptr(hWindow),
 		uintptr(nID))
@@ -622,7 +622,7 @@ func XWndSetID(hWindow HWINDOW, nID int) {
 返回:
 	返回窗口ID值.
 */
-func XWndGetID(hWindow HWINDOW) int {
+func XWnd_GetID(hWindow HWINDOW) int {
 	ret, _, _ := xWnd_GetID.Call(uintptr(hWindow))
 
 	return int(ret)
@@ -638,7 +638,7 @@ func XWndGetID(hWindow HWINDOW) int {
 	right 窗口右边大小.
 	bottom 窗口底部大小.
 */
-func XWndSetLayoutSize(hWindow HWINDOW, left, top, right, bottom int) {
+func XWnd_SetLayoutSize(hWindow HWINDOW, left, top, right, bottom int) {
 	xWnd_SetLayoutSize.Call(
 		uintptr(hWindow),
 		uintptr(left),
@@ -654,7 +654,7 @@ func XWndSetLayoutSize(hWindow HWINDOW, left, top, right, bottom int) {
 	hWindow 窗口句柄.
 	pBorderSize 布局大小.
 */
-func XWndGetLayoutSize(hWindow HWINDOW, pBorderSize *BorderSize_) {
+func XWnd_GetLayoutSize(hWindow HWINDOW, pBorderSize *BorderSize_) {
 	xWnd_GetLayoutSize.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pBorderSize)))
@@ -670,7 +670,7 @@ func XWndGetLayoutSize(hWindow HWINDOW, pBorderSize *BorderSize_) {
 	right 窗口右边大小.
 	bottom 窗口底边大小.
 */
-func XWndSetDragBorderSize(hWindow HWINDOW, left, top, right, bottom int) {
+func XWnd_SetDragBorderSize(hWindow HWINDOW, left, top, right, bottom int) {
 	xWnd_SetDragBorderSize.Call(
 		uintptr(hWindow),
 		uintptr(left),
@@ -686,7 +686,7 @@ func XWndSetDragBorderSize(hWindow HWINDOW, left, top, right, bottom int) {
 	hWindow 窗口句柄.
 	pSize 拖动边框大小.
 */
-func XWndGetDragBorderSize(hWindow HWINDOW, pSize *BorderSize_) {
+func XWnd_GetDragBorderSize(hWindow HWINDOW, pSize *BorderSize_) {
 	xWnd_GetDragBorderSize.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pSize)))
@@ -700,7 +700,7 @@ func XWndGetDragBorderSize(hWindow HWINDOW, pSize *BorderSize_) {
 	width 最小宽度.
 	height 最小高度.
 */
-func XWndSetMinimumSize(hWindow HWINDOW, width, height int) {
+func XWnd_SetMinimumSize(hWindow HWINDOW, width, height int) {
 	xWnd_SetMinimumSize.Call(
 		uintptr(hWindow),
 		uintptr(width),
@@ -716,7 +716,7 @@ func XWndSetMinimumSize(hWindow HWINDOW, width, height int) {
 返回:
 	元素句柄.
 */
-func XWndHitChildEle(hWindow HWINDOW, pPt *POINT) HELE {
+func XWnd_HitChildEle(hWindow HWINDOW, pPt *POINT) HELE {
 	ret, _, _ := xWnd_HitChildEle.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pPt)))
@@ -732,7 +732,7 @@ func XWndHitChildEle(hWindow HWINDOW, pPt *POINT) HELE {
 返回:
 	子元素数量.
 */
-func XWndGetChildCount(hWindow HWINDOW) int {
+func XWnd_GetChildCount(hWindow HWINDOW) int {
 	ret, _, _ := xWnd_GetChildCount.Call(uintptr(hWindow))
 
 	return int(ret)
@@ -747,7 +747,7 @@ func XWndGetChildCount(hWindow HWINDOW) int {
 返回:
 	元素句柄.
 */
-func XWndGetChildByIndex(hWindow HWINDOW, index int) HELE {
+func XWnd_GetChildByIndex(hWindow HWINDOW, index int) HELE {
 	ret, _, _ := xWnd_GetChildByIndex.Call(
 		uintptr(hWindow),
 		uintptr(index))
@@ -764,7 +764,7 @@ func XWndGetChildByIndex(hWindow HWINDOW, index int) HELE {
 返回:
 	元素句柄.
 */
-func XWndGetChildByID(hWindow HWINDOW, nID int) HELE {
+func XWnd_GetChildByID(hWindow HWINDOW, nID int) HELE {
 	ret, _, _ := xWnd_GetChildByID.Call(
 		uintptr(hWindow),
 		uintptr(nID))
@@ -781,7 +781,7 @@ func XWndGetChildByID(hWindow HWINDOW, nID int) HELE {
 返回:
 	元素句柄.
 */
-func XWndGetEle(hWindow HWINDOW, nID int) HELE {
+func XWnd_GetEle(hWindow HWINDOW, nID int) HELE {
 	ret, _, _ := xWnd_GetEle.Call(
 		uintptr(hWindow),
 		uintptr(nID))
@@ -796,7 +796,7 @@ func XWndGetEle(hWindow HWINDOW, nID int) HELE {
 	hWindow 窗口句柄.
 	返回:返回形状对象数量.
 */
-func XWndGetChildShapeCount(hWindow HWINDOW) int {
+func XWnd_GetChildShapeCount(hWindow HWINDOW) int {
 	ret, _, _ := xWnd_GetChildShapeCount.Call(uintptr(hWindow))
 
 	return int(ret)
@@ -811,7 +811,7 @@ func XWndGetChildShapeCount(hWindow HWINDOW) int {
 返回:
 	返回形状对象句柄.
 */
-func XWndGetChildShapeByIndex(hWindow HWINDOW, index int) HXCGUI {
+func XWnd_GetChildShapeByIndex(hWindow HWINDOW, index int) HXCGUI {
 	ret, _, _ := xWnd_GetChildShapeByIndex.Call(
 		uintptr(hWindow),
 		uintptr(index))
@@ -825,7 +825,7 @@ func XWndGetChildShapeByIndex(hWindow HWINDOW, index int) HXCGUI {
 参数:
 	hWindow 窗口句柄.
 */
-func XWndCloseWindow(hWindow HWINDOW) {
+func XWnd_CloseWindow(hWindow HWINDOW) {
 	xWnd_CloseWindow.Call(uintptr(hWindow))
 }
 
@@ -837,7 +837,7 @@ func XWndCloseWindow(hWindow HWINDOW) {
 	nPosition 参见宏定义.
 	hLayout 布局对象.
 */
-func XWndBindLayoutObject(hWindow HWINDOW, nPosition Window_position_, hLayout HXCGUI) {
+func XWnd_BindLayoutObject(hWindow HWINDOW, nPosition Window_position_, hLayout HXCGUI) {
 	xWnd_BindLayoutObject.Call(
 		uintptr(hWindow),
 		uintptr(nPosition),
@@ -853,7 +853,7 @@ func XWndBindLayoutObject(hWindow HWINDOW, nPosition Window_position_, hLayout H
 返回:
 	布局对象句柄.
 */
-func XWndGetLayoutObject(hWindow HWINDOW, nPosition Window_position_) HXCGUI {
+func XWnd_GetLayoutObject(hWindow HWINDOW, nPosition Window_position_) HXCGUI {
 	ret, _, _ := xWnd_GetLayoutObject.Call(
 		uintptr(hWindow),
 		uintptr(nPosition))
@@ -867,7 +867,7 @@ func XWndGetLayoutObject(hWindow HWINDOW, nPosition Window_position_) HXCGUI {
 参数:
 	hWindow 窗口句柄.
 */
-func XWndAdjustLayout(hWindow HWINDOW) {
+func XWnd_AdjustLayout(hWindow HWINDOW) {
 	xWnd_AdjustLayout.Call(uintptr(hWindow))
 }
 
@@ -876,9 +876,9 @@ func XWndAdjustLayout(hWindow HWINDOW) {
 
 参数:
 	hWindow 窗口句柄.
-	注解:XWnd_AdjustLayoutObject() 与 XWnd_AdjustLayout() 不分先后顺序 .
+	注解:XWndAdjustLayoutObject() 与 XWnd_AdjustLayout() 不分先后顺序 .
 */
-func XWndAdjustLayoutObject(hWindow HWINDOW) {
+func XWnd_AdjustLayoutObject(hWindow HWINDOW) {
 	xWnd_AdjustLayoutObject.Call(uintptr(hWindow))
 }
 
@@ -891,7 +891,7 @@ func XWndAdjustLayoutObject(hWindow HWINDOW) {
 	width 宽度.
 	height 高度.
 */
-func XWndCreateCaret(hWindow HWINDOW, hEle HELE, width, height int) {
+func XWnd_CreateCaret(hWindow HWINDOW, hEle HELE, width, height int) {
 	xWnd_CreateCaret.Call(
 		uintptr(hWindow),
 		uintptr(hEle),
@@ -907,7 +907,7 @@ func XWndCreateCaret(hWindow HWINDOW, hEle HELE, width, height int) {
 	width 宽度.
 	height 高度.
 */
-func XWndSetCaretSize(hWindow HWINDOW, width, height int) {
+func XWnd_SetCaretSize(hWindow HWINDOW, width, height int) {
 	xWnd_SetCaretSize.Call(
 		uintptr(hWindow),
 		uintptr(width),
@@ -922,7 +922,7 @@ func XWndSetCaretSize(hWindow HWINDOW, width, height int) {
 	x x坐标.
 	y y坐标.
 */
-func XWndSetCaretPos(hWindow HWINDOW, x, y int) {
+func XWnd_SetCaretPos(hWindow HWINDOW, x, y int) {
 	xWnd_SetCaretPos.Call(
 		uintptr(hWindow),
 		uintptr(x),
@@ -939,7 +939,7 @@ func XWndSetCaretPos(hWindow HWINDOW, x, y int) {
 	width 宽度.
 	height 高度.
 */
-func XWndSetCaretPosEx(hWindow HWINDOW, x, y, width, height int) {
+func XWnd_SetCaretPosEx(hWindow HWINDOW, x, y, width, height int) {
 	xWnd_SetCaretPosEx.Call(
 		uintptr(hWindow),
 		uintptr(x),
@@ -955,7 +955,7 @@ func XWndSetCaretPosEx(hWindow HWINDOW, x, y, width, height int) {
 	hWindow 窗口句柄.
 	color 颜色值.
 */
-func XWndSetCaretColor(hWindow HWINDOW, color COLORREF) {
+func XWnd_SetCaretColor(hWindow HWINDOW, color COLORREF) {
 	xWnd_SetCaretColor.Call(
 		uintptr(hWindow),
 		uintptr(color))
@@ -968,7 +968,7 @@ func XWndSetCaretColor(hWindow HWINDOW, color COLORREF) {
 	hWindow 窗口句柄.
 	bShow 是否显示.
 */
-func XWndShowCaret(hWindow HWINDOW, bShow BOOL) {
+func XWnd_ShowCaret(hWindow HWINDOW, bShow BOOL) {
 	xWnd_ShowCaret.Call(
 		uintptr(hWindow),
 		uintptr(bShow))
@@ -980,7 +980,7 @@ func XWndShowCaret(hWindow HWINDOW, bShow BOOL) {
 参数:
 	hWindow 窗口句柄.
 */
-func XWndDestroyCaret(hWindow HWINDOW) {
+func XWnd_DestroyCaret(hWindow HWINDOW) {
 	xWnd_DestroyCaret.Call(uintptr(hWindow))
 }
 
@@ -992,7 +992,7 @@ func XWndDestroyCaret(hWindow HWINDOW) {
 返回:
 	元素句柄.
 */
-func XWndGetCaretHELE(hWindow HWINDOW) HELE {
+func XWnd_GetCaretHELE(hWindow HWINDOW) HELE {
 	ret, _, _ := xWnd_GetCaretHELE.Call(uintptr(hWindow))
 
 	return HELE(ret)
@@ -1007,7 +1007,7 @@ func XWndGetCaretHELE(hWindow HWINDOW) HELE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XWndGetClientRect(hWindow HWINDOW, pRect *RECT) bool {
+func XWnd_GetClientRect(hWindow HWINDOW, pRect *RECT) bool {
 	ret, _, _ := xWnd_GetClientRect.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pRect)))
@@ -1022,7 +1022,7 @@ func XWndGetClientRect(hWindow HWINDOW, pRect *RECT) bool {
 	hWindow 窗口句柄.
 	pRect 坐标.
 */
-func XWndGetBodyRect(hWindow HWINDOW, pRect *RECT) {
+func XWnd_GetBodyRect(hWindow HWINDOW, pRect *RECT) {
 	xWnd_GetBodyRect.Call(
 		uintptr(hWindow),
 		uintptr(unsafe.Pointer(pRect)))
@@ -1038,7 +1038,7 @@ func XWndGetBodyRect(hWindow HWINDOW, pRect *RECT) {
 返回:
 	参见MSDN.
 */
-func XWndSetTimer(hWindow HWINDOW, nIDEvent, uElapse uint32) uint32 {
+func XWnd_SetTimer(hWindow HWINDOW, nIDEvent, uElapse uint32) uint32 {
 	ret, _, _ := xWnd_SetTimer.Call(
 		uintptr(hWindow),
 		uintptr(nIDEvent),
@@ -1056,7 +1056,7 @@ func XWndSetTimer(hWindow HWINDOW, nIDEvent, uElapse uint32) uint32 {
 返回:
 	参见MSDN.
 */
-func XWndKillTimer(hWindow HWINDOW, nIDEvent uint32) bool {
+func XWnd_KillTimer(hWindow HWINDOW, nIDEvent uint32) bool {
 	ret, _, _ := xWnd_KillTimer.Call(
 		uintptr(hWindow),
 		uintptr(nIDEvent))
@@ -1073,7 +1073,7 @@ func XWndKillTimer(hWindow HWINDOW, nIDEvent uint32) bool {
 返回:
 	背景内容管理器.
 */
-func XWndGetBkInfoManager(hWindow HWINDOW, nPosition Window_position_) HBKINFOM {
+func XWnd_GetBkInfoManager(hWindow HWINDOW, nPosition Window_position_) HBKINFOM {
 	ret, _, _ := xWnd_GetBkInfoManager.Call(
 		uintptr(hWindow),
 		uintptr(nPosition))
@@ -1088,7 +1088,7 @@ func XWndGetBkInfoManager(hWindow HWINDOW, nPosition Window_position_) HBKINFOM 
 	hWindow 窗口句柄.
 	nType 窗口透明类型.
 */
-func XWndSetTransparentType(hWindow HWINDOW, nType Window_transparent_) {
+func XWnd_SetTransparentType(hWindow HWINDOW, nType Window_transparent_) {
 	xWnd_SetTransparentType.Call(
 		uintptr(hWindow),
 		uintptr(nType))
@@ -1101,7 +1101,7 @@ func XWndSetTransparentType(hWindow HWINDOW, nType Window_transparent_) {
 	hWindow 窗口句柄.
 	alpha 窗口透明度,范围0-255之间,0透明,255不透明.
 */
-func XWndSetTransparentAlpha(hWindow HWINDOW, alpha byte) {
+func XWnd_SetTransparentAlpha(hWindow HWINDOW, alpha byte) {
 	xWnd_SetTransparentAlpha.Call(
 		uintptr(hWindow),
 		uintptr(alpha))
@@ -1114,7 +1114,7 @@ func XWndSetTransparentAlpha(hWindow HWINDOW, alpha byte) {
 	hWindow 窗口句柄.
 	color 窗口透明色.
 */
-func XWndSetTransparentColor(hWindow HWINDOW, color COLORREF) {
+func XWnd_SetTransparentColor(hWindow HWINDOW, color COLORREF) {
 	xWnd_SetTransparentColor.Call(
 		uintptr(hWindow),
 		uintptr(color))

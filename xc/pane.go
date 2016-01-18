@@ -41,7 +41,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XPaneCreate(pName string, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE {
+func XPane_Create(pName string, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE {
 	ret, _, _ := xPane_Create.Call(
 		StringToUintPtr(pName),
 		// uintptr(unsafe.Pointer(pName)),
@@ -59,7 +59,7 @@ func XPaneCreate(pName string, nWidth int, nHeight int, hFrameWnd HWINDOW) HELE 
 	hEle 元素句柄.
 	hView 视图颜色.
 */
-func XPaneSetView(hEle HELE, hView HELE) {
+func XPane_SetView(hEle HELE, hView HELE) {
 	xPane_SetView.Call(
 		uintptr(hEle),
 		uintptr(hView))
@@ -73,7 +73,7 @@ func XPaneSetView(hEle HELE, hView HELE) {
 	pOut 接收内容缓冲区.
 	nOutLen 缓冲区长度,字符为单位.
 */
-func XPaneGetTitle(hEle HELE, pOut *uint16, nOutLen int) {
+func XPane_GetTitle(hEle HELE, pOut *uint16, nOutLen int) {
 	xPane_GetTitle.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
@@ -88,7 +88,7 @@ func XPaneGetTitle(hEle HELE, pOut *uint16, nOutLen int) {
 返回:
 	如果显示返回TRUE否则返回FALSE.
 */
-func XPaneIsShowPane(hEle HELE) bool {
+func XPane_IsShowPane(hEle HELE) bool {
 	ret, _, _ := xPane_IsShowPane.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -100,7 +100,7 @@ func XPaneIsShowPane(hEle HELE) bool {
 参数:
 	hEle 元素句柄.
 */
-func XPaneHidePane(hEle HELE) {
+func XPane_HidePane(hEle HELE) {
 	xPane_HidePane.Call(uintptr(hEle))
 }
 
@@ -110,7 +110,7 @@ func XPaneHidePane(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XPaneShowPane(hEle HELE) {
+func XPane_ShowPane(hEle HELE) {
 	xPane_ShowPane.Call(uintptr(hEle))
 }
 
@@ -120,7 +120,7 @@ func XPaneShowPane(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XPaneDockPane(hEle HELE) {
+func XPane_DockPane(hEle HELE) {
 	xPane_DockPane.Call(uintptr(hEle))
 }
 
@@ -130,7 +130,7 @@ func XPaneDockPane(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XPaneLockPane(hEle HELE) {
+func XPane_LockPane(hEle HELE) {
 	xPane_LockPane.Call(uintptr(hEle))
 }
 
@@ -140,14 +140,14 @@ func XPaneLockPane(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XPaneFloatPane(hEle HELE) {
+func XPane_FloatPane(hEle HELE) {
 	xPane_FloatPane.Call(uintptr(hEle))
 }
 
-func XPaneGetTitleGo(hEle HELE) string {
+func XPane_GetTitleGo(hEle HELE) string {
 	buf_szize := 256
 	buf := make([]uint16, buf_szize)
-	XPaneGetTitle(hEle, &buf[0], buf_szize)
+	XPane_GetTitle(hEle, &buf[0], buf_szize)
 
 	return syscall.UTF16ToString(buf)
 }

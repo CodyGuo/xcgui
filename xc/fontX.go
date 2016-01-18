@@ -35,7 +35,7 @@ func init() {
 返回:
 	字体句柄.
 */
-func XFontCreate(size int) HFONTX {
+func XFont_Create(size int) HFONTX {
 	ret, _, _ := xFont_Create.Call(uintptr(size))
 
 	return HFONTX(ret)
@@ -54,7 +54,7 @@ func XFontCreate(size int) HFONTX {
 返回:
 	字体句柄.
 */
-func XFontCreate2(pName string, size int, bBold, bItalic, bUnderline, bStrikeOut bool) HFONTX {
+func XFont_Create2(pName string, size int, bBold, bItalic, bUnderline, bStrikeOut bool) HFONTX {
 	ret, _, _ := xFont_Create2.Call(
 		StringToUintPtr(pName),
 		// uintptr(unsafe.Pointer(pName)),
@@ -75,7 +75,7 @@ func XFontCreate2(pName string, size int, bBold, bItalic, bUnderline, bStrikeOut
 返回:
 	字体句柄.
 */
-func XFontCreateEx(pFontInfo *LOGFONTW) HFONTX {
+func XFont_CreateEx(pFontInfo *LOGFONTW) HFONTX {
 	ret, _, _ := xFont_CreateEx.Call(uintptr(unsafe.Pointer(pFontInfo)))
 
 	return HFONTX(ret)
@@ -89,7 +89,7 @@ func XFontCreateEx(pFontInfo *LOGFONTW) HFONTX {
 返回:
 	返回炫彩字体.
 */
-func XFontCreateFromHFONT(hFont HFONT) HFONTX {
+func XFont_CreateFromHFONT(hFont HFONT) HFONTX {
 	ret, _, _ := xFont_CreateFromHFONT.Call(uintptr(hFont))
 
 	return HFONTX(ret)
@@ -102,7 +102,7 @@ func XFontCreateFromHFONT(hFont HFONT) HFONTX {
 	hFontX 字体句柄.
 	bEnable 是否启用.
 */
-func XFontEnableAutoDestroy(hFontX HFONTX, bEnable bool) {
+func XFont_EnableAutoDestroy(hFontX HFONTX, bEnable bool) {
 	xFont_EnableAutoDestroy.Call(
 		uintptr(hFontX),
 		uintptr(BoolToBOOL(bEnable)))
@@ -114,7 +114,7 @@ func XFontEnableAutoDestroy(hFontX HFONTX, bEnable bool) {
 参数:
 	hFontX 字体句柄.
 */
-func XFontDestroy(hFontX HFONTX) {
+func XFont_Destroy(hFontX HFONTX) {
 	xFont_Destroy.Call(uintptr(hFontX))
 }
 
@@ -126,7 +126,7 @@ func XFontDestroy(hFontX HFONTX) {
 返回:
 	返回HFONT句柄.
 */
-func XFontGetHFONT(hFontX HFONTX) HFONT {
+func XFont_GetHFONT(hFontX HFONTX) HFONT {
 	ret, _, _ := xFont_GetHFONT.Call(uintptr(hFontX))
 
 	return HFONT(ret)

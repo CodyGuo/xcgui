@@ -215,7 +215,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XEleCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XEle_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xEle_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -234,7 +234,7 @@ func XEleCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	nEvent 事件类型.
 	pFun 事件函数指针.
 */
-func XEleRegEventC(hEle HELE, nEvent int, pFun uintptr) {
+func XEle_RegEventC(hEle HELE, nEvent int, pFun uintptr) {
 	xEle_RegEventC.Call(
 		uintptr(hEle),
 		uintptr(nEvent),
@@ -249,7 +249,7 @@ func XEleRegEventC(hEle HELE, nEvent int, pFun uintptr) {
 	nEvent 事件类型.
 	pFun 事件函数指针.
 */
-func XEleRegEventC1(hEle HELE, nEvent int, pFun uintptr) {
+func XEle_RegEventC1(hEle HELE, nEvent int, pFun uintptr) {
 	xEle_RegEventC1.Call(
 		uintptr(hEle),
 		uintptr(nEvent),
@@ -264,7 +264,7 @@ func XEleRegEventC1(hEle HELE, nEvent int, pFun uintptr) {
 	nEvent 事件类型.
 	pFun 事件函数指针.
 */
-func XEleRegEventC2(hEle HELE, nEvent int, pFun uintptr) {
+func XEle_RegEventC2(hEle HELE, nEvent int, pFun uintptr) {
 	xEle_RegEventC2.Call(
 		uintptr(hEle),
 		uintptr(nEvent),
@@ -281,7 +281,7 @@ func XEleRegEventC2(hEle HELE, nEvent int, pFun uintptr) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleRemoveEventC(hEle HELE, nEvent int, pFun uintptr) bool {
+func XEle_RemoveEventC(hEle HELE, nEvent int, pFun uintptr) bool {
 	ret, _, _ := xEle_RemoveEventC.Call(
 		uintptr(hEle),
 		uintptr(nEvent),
@@ -302,7 +302,7 @@ func XEleRemoveEventC(hEle HELE, nEvent int, pFun uintptr) bool {
 返回:
 	事件返回值.
 */
-func XEleSendEvent(hEle, hEventEle HELE, nEvent int, wParam, lParam uintptr) int {
+func XEle_SendEvent(hEle, hEventEle HELE, nEvent int, wParam, lParam uintptr) int {
 	ret, _, _ := xEle_SendEvent.Call(
 		uintptr(hEle),
 		uintptr(hEventEle),
@@ -325,7 +325,7 @@ POST事件.
 返回:
 	事件返回值.
 */
-func XElePostEvent(hEle, hEventEle HELE, nEvent int, wParam, lParam uintptr) int {
+func XEle_PostEvent(hEle, hEventEle HELE, nEvent int, wParam, lParam uintptr) int {
 	ret, _, _ := xEle_PostEvent.Call(
 		uintptr(hEle),
 		uintptr(hEventEle),
@@ -343,7 +343,7 @@ func XElePostEvent(hEle, hEventEle HELE, nEvent int, wParam, lParam uintptr) int
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XEleGetRect(hEle HELE, pRect *RECT) {
+func XEle_GetRect(hEle HELE, pRect *RECT) {
 	xEle_GetRect.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -356,7 +356,7 @@ func XEleGetRect(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XEleGetRectLogic(hEle HELE, pRect *RECT) {
+func XEle_GetRectLogic(hEle HELE, pRect *RECT) {
 	xEle_GetRectLogic.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -369,7 +369,7 @@ func XEleGetRectLogic(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XEleGetClientRect(hEle HELE, pRect *RECT) {
+func XEle_GetClientRect(hEle HELE, pRect *RECT) {
 	xEle_GetClientRect.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -383,7 +383,7 @@ func XEleGetClientRect(hEle HELE, pRect *RECT) {
 返回:
 	宽度.
 */
-func XEleGetWidth(hEle HELE) int {
+func XEle_GetWidth(hEle HELE) int {
 	ret, _, _ := xEle_GetWidth.Call(uintptr(hEle))
 
 	return int(ret)
@@ -397,7 +397,7 @@ func XEleGetWidth(hEle HELE) int {
 返回:
 	高度.
 */
-func XEleGetHeight(hEle HELE) int {
+func XEle_GetHeight(hEle HELE) int {
 	ret, _, _ := xEle_GetHeight.Call(uintptr(hEle))
 
 	return int(ret)
@@ -410,7 +410,7 @@ func XEleGetHeight(hEle HELE) int {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XEleRectWndClientToEleClient(hEle HELE, pRect *RECT) {
+func XEle_RectWndClientToEleClient(hEle HELE, pRect *RECT) {
 	xEle_RectWndClientToEleClient.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -423,7 +423,7 @@ func XEleRectWndClientToEleClient(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	pPt 坐标.
 */
-func XElePointWndClientToEleClient(hEle HELE, pRect *RECT) {
+func XEle_PointWndClientToEleClient(hEle HELE, pRect *RECT) {
 	xEle_PointWndClientToEleClient.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -436,7 +436,7 @@ func XElePointWndClientToEleClient(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XEleRectClientToWndClient(hEle HELE, pRect *RECT) {
+func XEle_RectClientToWndClient(hEle HELE, pRect *RECT) {
 	xEle_RectClientToWndClient.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -449,7 +449,7 @@ func XEleRectClientToWndClient(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	pPt 坐标.
 */
-func XElePointClientToWndClient(hEle HELE, pRect *RECT) {
+func XEle_PointClientToWndClient(hEle HELE, pRect *RECT) {
 	xEle_PointClientToWndClient.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -462,7 +462,7 @@ func XElePointClientToWndClient(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XEleGetWndClientRect(hEle HELE, pRect *RECT) {
+func XEle_GetWndClientRect(hEle HELE, pRect *RECT) {
 	xEle_GetWndClientRect.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -476,7 +476,7 @@ func XEleGetWndClientRect(hEle HELE, pRect *RECT) {
 返回:
 	元素类型,参见宏定义.
 */
-func XEleGetType(hEle HELE) XC_OBJECT_TYPE {
+func XEle_GetType(hEle HELE) XC_OBJECT_TYPE {
 	ret, _, _ := xEle_GetType.Call(uintptr(hEle))
 
 	return XC_OBJECT_TYPE(ret)
@@ -490,7 +490,7 @@ func XEleGetType(hEle HELE) XC_OBJECT_TYPE {
 返回:
 	HWND句柄.
 */
-func XEleGetHWND(hEle HELE) HWND {
+func XEle_GetHWND(hEle HELE) HWND {
 	ret, _, _ := xEle_GetHWND.Call(uintptr(hEle))
 
 	return HWND(ret)
@@ -504,7 +504,7 @@ func XEleGetHWND(hEle HELE) HWND {
 返回:
 	HWINDOW句柄.
 */
-func XEleGetHWINDOW(hEle HELE) HWINDOW {
+func XEle_GetHWINDOW(hEle HELE) HWINDOW {
 	ret, _, _ := xEle_GetHWINDOW.Call(uintptr(hEle))
 
 	return HWINDOW(ret)
@@ -518,7 +518,7 @@ func XEleGetHWINDOW(hEle HELE) HWINDOW {
 返回:
 	返回光标句柄.
 */
-func XEleGetCursor(hEle HELE) HCURSOR {
+func XEle_GetCursor(hEle HELE) HCURSOR {
 	ret, _, _ := xEle_GetCursor.Call(uintptr(hEle))
 
 	return HCURSOR(ret)
@@ -531,7 +531,7 @@ func XEleGetCursor(hEle HELE) HCURSOR {
 	hEle 元素句柄.
 	hCursor 光标句柄.
 */
-func XEleSetCursor(hEle HELE, hCursor HCURSOR) {
+func XEle_SetCursor(hEle HELE, hCursor HCURSOR) {
 	xEle_SetCursor.Call(
 		uintptr(hEle),
 		uintptr(hCursor))
@@ -546,7 +546,7 @@ func XEleSetCursor(hEle HELE, hCursor HCURSOR) {
 返回:
 	如果成功返回TRUE,否则相反.
 */
-func XEleAddEle(hEle, hChildEle HELE) bool {
+func XEle_AddEle(hEle, hChildEle HELE) bool {
 	ret, _, _ := xEle_AddEle.Call(
 		uintptr(hEle),
 		uintptr(hChildEle))
@@ -564,7 +564,7 @@ func XEleAddEle(hEle, hChildEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleInsertEle(hEle, hChildEle, hDestEle HELE) bool {
+func XEle_InsertEle(hEle, hChildEle, hDestEle HELE) bool {
 	ret, _, _ := xEle_InsertEle.Call(
 		uintptr(hEle),
 		uintptr(hChildEle),
@@ -580,7 +580,7 @@ func XEleInsertEle(hEle, hChildEle, hDestEle HELE) bool {
 	hEle 元素句柄.
 	bShow TRUE显示元素,否则相反.
 */
-func XEleShowEle(hEle HELE, bShow bool) {
+func XEle_ShowEle(hEle HELE, bShow bool) {
 	xEle_ShowEle.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bShow)))
@@ -596,7 +596,7 @@ func XEleShowEle(hEle HELE, bShow bool) {
 返回:
 	如果坐标未改变返回FALSE,否则相反.
 */
-func XEleSetRect(hEle HELE, pRect *RECT, bRedraw bool) bool {
+func XEle_SetRect(hEle HELE, pRect *RECT, bRedraw bool) bool {
 	ret, _, _ := xEle_SetRect.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)),
@@ -615,7 +615,7 @@ func XEleSetRect(hEle HELE, pRect *RECT, bRedraw bool) bool {
 返回:
 	如果坐标未改变返回FALSE,否则相反.
 */
-func XEleSetRectLogic(hEle HELE, pRect *RECT, bRedraw bool) bool {
+func XEle_SetRectLogic(hEle HELE, pRect *RECT, bRedraw bool) bool {
 	ret, _, _ := xEle_SetRectLogic.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)),
@@ -631,7 +631,7 @@ func XEleSetRectLogic(hEle HELE, pRect *RECT, bRedraw bool) bool {
 	hEle 元素句柄.
 	id ID值.
 */
-func XEleSetID(hEle HELE, id int) {
+func XEle_SetID(hEle HELE, id int) {
 	xEle_SetID.Call(
 		uintptr(hEle),
 		uintptr(id))
@@ -644,7 +644,7 @@ func XEleSetID(hEle HELE, id int) {
 	hEle 元素句柄.
 	返回:返回元素ID.
 */
-func XEleGetID(hEle HELE) int {
+func XEle_GetID(hEle HELE) int {
 	ret, _, _ := xEle_GetID.Call(uintptr(hEle))
 
 	return int(ret)
@@ -658,7 +658,7 @@ func XEleGetID(hEle HELE) int {
 返回:
 	如果显示返回TRUE否则返回FALSE.
 */
-func XEleIsShow(hEle HELE) bool {
+func XEle_IsShow(hEle HELE) bool {
 	ret, _, _ := xEle_IsShow.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -672,7 +672,7 @@ func XEleIsShow(hEle HELE) bool {
 返回:
 	如果绘制焦点返回TRUE否则返回FALSE.
 */
-func XEleIsDrawFocus(hEle HELE) bool {
+func XEle_IsDrawFocus(hEle HELE) bool {
 	ret, _, _ := xEle_IsDrawFocus.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -686,7 +686,7 @@ func XEleIsDrawFocus(hEle HELE) bool {
 返回:
 	如果启用状态返回TRUE否则返回FALSE.
 */
-func XEleIsEnable(hEle HELE) bool {
+func XEle_IsEnable(hEle HELE) bool {
 	ret, _, _ := xEle_IsEnable.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -700,7 +700,7 @@ func XEleIsEnable(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleIsEnableFocus(hEle HELE) bool {
+func XEle_IsEnableFocus(hEle HELE) bool {
 	ret, _, _ := xEle_IsEnableFocus.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -713,7 +713,7 @@ func XEleIsEnableFocus(hEle HELE) bool {
 	hEle 元素句柄.
 	返回:成功返回TRUE否则返回FALSE.
 */
-func XEleIsMouseThrough(hEle HELE) bool {
+func XEle_IsMouseThrough(hEle HELE) bool {
 	ret, _, _ := xEle_IsMouseThrough.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -728,7 +728,7 @@ func XEleIsMouseThrough(hEle HELE) bool {
 返回:
 	成功返回元素句柄,否则返回NULL.
 */
-func XEleHitChildEle(hEle HELE, pPt *POINT) HELE {
+func XEle_HitChildEle(hEle HELE, pPt *POINT) HELE {
 	ret, _, _ := xEle_HitChildEle.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)))
@@ -744,7 +744,7 @@ func XEleHitChildEle(hEle HELE, pPt *POINT) HELE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleIsBkTransparent(hEle HELE) bool {
+func XEle_IsBkTransparent(hEle HELE) bool {
 	ret, _, _ := xEle_IsBkTransparent.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -758,7 +758,7 @@ func XEleIsBkTransparent(hEle HELE) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleIsEnableEvent_XE_PAINT_END(hEle HELE) bool {
+func XEle_IsEnableEvent_XE_PAINT_END(hEle HELE) bool {
 	ret, _, _ := xEle_IsEnableEvent_XE_PAINT_END.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -772,7 +772,7 @@ func XEleIsEnableEvent_XE_PAINT_END(hEle HELE) bool {
 返回:
 	是返回TRUE否则返回FALSE.
 */
-func XEleIsKeyTab(hEle HELE) bool {
+func XEle_IsKeyTab(hEle HELE) bool {
 	ret, _, _ := xEle_IsKeyTab.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -786,7 +786,7 @@ func XEleIsKeyTab(hEle HELE) bool {
 返回:
 	是返回TRUE否则返回FALSE.
 */
-func XEleIsSwitchFocus(hEle HELE) bool {
+func XEle_IsSwitchFocus(hEle HELE) bool {
 	ret, _, _ := xEle_IsSwitchFocus.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -800,7 +800,7 @@ func XEleIsSwitchFocus(hEle HELE) bool {
 返回:
 	是返回TRUE否则返回FALSE.
 */
-func XEleIsEnable_XE_MOUSEWHEEL(hEle HELE) bool {
+func XEle_IsEnable_XE_MOUSEWHEEL(hEle HELE) bool {
 	ret, _, _ := xEle_IsEnable_XE_MOUSEWHEEL.Call(uintptr(hEle))
 
 	return ret == TRUE
@@ -813,7 +813,7 @@ func XEleIsEnable_XE_MOUSEWHEEL(hEle HELE) bool {
 	hEle 元素句柄.
 	bEnable 启用或禁用.
 */
-func XEleEnable(hEle HELE, bEnable bool) {
+func XEle_Enable(hEle HELE, bEnable bool) {
 	xEle_Enable.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -826,7 +826,7 @@ func XEleEnable(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableFocus(hEle HELE, bEnable bool) {
+func XEle_EnableFocus(hEle HELE, bEnable bool) {
 	xEle_EnableFocus.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -839,7 +839,7 @@ func XEleEnableFocus(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableDrawFocus(hEle HELE, bEnable bool) {
+func XEle_EnableDrawFocus(hEle HELE, bEnable bool) {
 	xEle_EnableDrawFocus.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -852,7 +852,7 @@ func XEleEnableDrawFocus(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableEvent_XE_PAINT_END(hEle HELE, bEnable bool) {
+func XEle_EnableEvent_XE_PAINT_END(hEle HELE, bEnable bool) {
 	xEle_EnableEvent_XE_PAINT_END.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -865,7 +865,7 @@ func XEleEnableEvent_XE_PAINT_END(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableBkTransparent(hEle HELE, bEnable bool) {
+func XEle_EnableBkTransparent(hEle HELE, bEnable bool) {
 	xEle_EnableBkTransparent.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -878,7 +878,7 @@ func XEleEnableBkTransparent(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableMouseThrough(hEle HELE, bEnable bool) {
+func XEle_EnableMouseThrough(hEle HELE, bEnable bool) {
 	xEle_EnableMouseThrough.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -893,7 +893,7 @@ func XEleEnableMouseThrough(hEle HELE, bEnable bool) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleEnableKeyTab(hEle HELE, bEnable bool) {
+func XEle_EnableKeyTab(hEle HELE, bEnable bool) {
 	xEle_EnableKeyTab.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -906,7 +906,7 @@ func XEleEnableKeyTab(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableSwitchFocus(hEle HELE, bEnable bool) {
+func XEle_EnableSwitchFocus(hEle HELE, bEnable bool) {
 	xEle_EnableSwitchFocus.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -919,7 +919,7 @@ func XEleEnableSwitchFocus(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableEvent_XE_MOUSEWHEEL(hEle HELE, bEnable bool) {
+func XEle_EnableEvent_XE_MOUSEWHEEL(hEle HELE, bEnable bool) {
 	xEle_EnableEvent_XE_MOUSEWHEEL.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -933,7 +933,7 @@ func XEleEnableEvent_XE_MOUSEWHEEL(hEle HELE, bEnable bool) {
 返回:
 	元素句柄.
 */
-func XEleGetParentEle(hEle HELE) HELE {
+func XEle_GetParentEle(hEle HELE) HELE {
 	ret, _, _ := xEle_GetParentEle.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -947,7 +947,7 @@ func XEleGetParentEle(hEle HELE) HELE {
 返回:
 	对象句柄.
 */
-func XEleGetParent(hEle HELE) HXCGUI {
+func XEle_GetParent(hEle HELE) HXCGUI {
 	ret, _, _ := xEle_GetParent.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
@@ -959,7 +959,7 @@ func XEleGetParent(hEle HELE) HXCGUI {
 参数:
 	hEle 元素句柄.
 */
-func XEleRemoveEle(hEle HELE) {
+func XEle_RemoveEle(hEle HELE) {
 	xEle_RemoveEle.Call(uintptr(hEle))
 }
 
@@ -972,7 +972,7 @@ func XEleRemoveEle(hEle HELE) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleAddShape(hEle HELE, hShape HXCGUI) bool {
+func XEle_AddShape(hEle HELE, hShape HXCGUI) bool {
 	ret, _, _ := xEle_AddShape.Call(
 		uintptr(hEle),
 		uintptr(hShape))
@@ -989,7 +989,7 @@ func XEleAddShape(hEle HELE, hShape HXCGUI) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleSetZOrder(hEle HELE, index int) bool {
+func XEle_SetZOrder(hEle HELE, index int) bool {
 	ret, _, _ := xEle_SetZOrder.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -1007,7 +1007,7 @@ func XEleSetZOrder(hEle HELE, index int) bool {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XEleSetZOrderEx(hEle, hDestEle HELE, nType int) bool {
+func XEle_SetZOrderEx(hEle, hDestEle HELE, nType int) bool {
 	ret, _, _ := xEle_SetZOrderEx.Call(
 		uintptr(hEle),
 		uintptr(hDestEle),
@@ -1022,7 +1022,7 @@ func XEleSetZOrderEx(hEle, hDestEle HELE, nType int) bool {
 参数:
 	hEle 元素句柄.
 */
-func XEleRedrawEle(hEle HELE) {
+func XEle_RedrawEle(hEle HELE) {
 	xEle_RedrawEle.Call(uintptr(hEle))
 }
 
@@ -1033,7 +1033,7 @@ func XEleRedrawEle(hEle HELE) {
 	hEle 元素句柄.
 	pRect 相对于元素客户区坐标.
 */
-func XEleRedrawRect(hEle HELE, pRect *RECT) {
+func XEle_RedrawRect(hEle HELE, pRect *RECT) {
 	xEle_RedrawRect.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -1047,7 +1047,7 @@ func XEleRedrawRect(hEle HELE, pRect *RECT) {
 返回:
 	子元素数量.
 */
-func XEleGetChildCount(hEle HELE) int {
+func XEle_GetChildCount(hEle HELE) int {
 	ret, _, _ := xEle_GetChildCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -1062,7 +1062,7 @@ func XEleGetChildCount(hEle HELE) int {
 返回:
 	元素句柄.
 */
-func XEleGetChildByIndex(hEle HELE, index int) HELE {
+func XEle_GetChildByIndex(hEle HELE, index int) HELE {
 	ret, _, _ := xEle_GetChildByIndex.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -1079,7 +1079,7 @@ func XEleGetChildByIndex(hEle HELE, index int) HELE {
 返回:
 	元素句柄.
 */
-func XEleGetChildByID(hEle HELE, id int) HELE {
+func XEle_GetChildByID(hEle HELE, id int) HELE {
 	ret, _, _ := xEle_GetChildByID.Call(
 		uintptr(hEle),
 		uintptr(id))
@@ -1095,7 +1095,7 @@ func XEleGetChildByID(hEle HELE, id int) HELE {
 返回:
 	形状对象数量.
 */
-func XEleGetChildShapeCount(hEle HELE) int {
+func XEle_GetChildShapeCount(hEle HELE) int {
 	ret, _, _ := xEle_GetChildShapeCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -1110,7 +1110,7 @@ func XEleGetChildShapeCount(hEle HELE) int {
 返回:
 	返回形状对象句柄.
 */
-func XEleGetChildShapeByIndex(hEle HELE, index int) HXCGUI {
+func XEle_GetChildShapeByIndex(hEle HELE, index int) HXCGUI {
 	ret, _, _ := xEle_GetChildShapeByIndex.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -1126,7 +1126,7 @@ func XEleGetChildShapeByIndex(hEle HELE, index int) HXCGUI {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XEleSetTextColor(hEle HELE, color COLORREF, alpha byte) {
+func XEle_SetTextColor(hEle HELE, color COLORREF, alpha byte) {
 	xEle_SetTextColor.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -1141,7 +1141,7 @@ func XEleSetTextColor(hEle HELE, color COLORREF, alpha byte) {
 返回:
 	文本颜色值.
 */
-func XEleGetTextColor(hEle HELE) COLORREF {
+func XEle_GetTextColor(hEle HELE) COLORREF {
 	ret, _, _ := xEle_GetTextColor.Call(uintptr(hEle))
 
 	return COLORREF(ret)
@@ -1155,7 +1155,7 @@ func XEleGetTextColor(hEle HELE) COLORREF {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XEleSetFocusBorderColor(hEle HELE, color COLORREF, alpha byte) {
+func XEle_SetFocusBorderColor(hEle HELE, color COLORREF, alpha byte) {
 	xEle_SetFocusBorderColor.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -1170,7 +1170,7 @@ func XEleSetFocusBorderColor(hEle HELE, color COLORREF, alpha byte) {
 返回:
 	返回颜色值,最高位字节是透明度.
 */
-func XEleGetFocusBorderColor(hEle HELE) COLORREF {
+func XEle_GetFocusBorderColor(hEle HELE) COLORREF {
 	ret, _, _ := xEle_GetFocusBorderColor.Call(uintptr(hEle))
 
 	return COLORREF(ret)
@@ -1183,7 +1183,7 @@ func XEleGetFocusBorderColor(hEle HELE) COLORREF {
 	hEle 元素句柄.
 	hFontx 炫彩字体.
 */
-func XEleSetFont(hEle HELE, hFontx HFONTX) {
+func XEle_SetFont(hEle HELE, hFontx HFONTX) {
 	xEle_SetFont.Call(
 		uintptr(hEle),
 		uintptr(hFontx))
@@ -1197,7 +1197,7 @@ func XEleSetFont(hEle HELE, hFontx HFONTX) {
 返回:
 	返回炫彩字体句柄.
 */
-func XEleGetFont(hEle HELE) HFONTX {
+func XEle_GetFont(hEle HELE) HFONTX {
 	ret, _, _ := xEle_GetFont.Call(uintptr(hEle))
 
 	return HFONTX(ret)
@@ -1210,7 +1210,7 @@ func XEleGetFont(hEle HELE) HFONTX {
 	hEle 元素句柄.
 	alpha 透明度.
 */
-func XEleSetAlpha(hEle HELE, alpha byte) {
+func XEle_SetAlpha(hEle HELE, alpha byte) {
 	xEle_SetAlpha.Call(
 		uintptr(hEle),
 		uintptr(alpha))
@@ -1222,7 +1222,7 @@ func XEleSetAlpha(hEle HELE, alpha byte) {
 参数:
 	hEle 元素句柄.
 */
-func XEleDestroy(hEle HELE) {
+func XEle_Destroy(hEle HELE) {
 	xEle_Destroy.Call(uintptr(hEle))
 }
 
@@ -1235,7 +1235,7 @@ func XEleDestroy(hEle HELE) {
 	alpha 透明度.
 	width 线宽.
 */
-func XEleAddBkBorder(hEle HELE, color COLORREF, alpha byte, width int) {
+func XEle_AddBkBorder(hEle HELE, color COLORREF, alpha byte, width int) {
 	xEle_AddBkBorder.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -1251,7 +1251,7 @@ func XEleAddBkBorder(hEle HELE, color COLORREF, alpha byte, width int) {
 	color RGB颜色.
 	alpha 透明度.
 */
-func XEleAddBkFill(hEle HELE, color COLORREF, alpha byte) {
+func XEle_AddBkFill(hEle HELE, color COLORREF, alpha byte) {
 	xEle_AddBkFill.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -1265,7 +1265,7 @@ func XEleAddBkFill(hEle HELE, color COLORREF, alpha byte) {
 	hEle 元素句柄.
 	hImage 图片句柄.
 */
-func XEleAddBkImage(hEle HELE, hImage HIMAGE) {
+func XEle_AddBkImage(hEle HELE, hImage HIMAGE) {
 	xEle_AddBkImage.Call(
 		uintptr(hEle),
 		uintptr(hImage))
@@ -1279,7 +1279,7 @@ func XEleAddBkImage(hEle HELE, hImage HIMAGE) {
 返回:
 	返回背景内容数量.
 */
-func XEleGetBkInfoCount(hEle HELE) int {
+func XEle_GetBkInfoCount(hEle HELE) int {
 	ret, _, _ := xEle_GetBkInfoCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -1291,7 +1291,7 @@ func XEleGetBkInfoCount(hEle HELE) int {
 参数:
 	hEle 元素句柄.
 */
-func XEleClearBkInfo(hEle HELE) {
+func XEle_ClearBkInfo(hEle HELE) {
 	xEle_ClearBkInfo.Call(uintptr(hEle))
 }
 
@@ -1303,7 +1303,7 @@ func XEleClearBkInfo(hEle HELE) {
 返回:
 	背景内容管理器.
 */
-func XEleGetBkInfoManager(hEle HELE) HBKINFOM {
+func XEle_GetBkInfoManager(hEle HELE) HBKINFOM {
 	ret, _, _ := xEle_GetBkInfoManager.Call(uintptr(hEle))
 
 	return HBKINFOM(ret)
@@ -1317,7 +1317,7 @@ func XEleGetBkInfoManager(hEle HELE) HBKINFOM {
 返回:
 	返回组合状态.
 */
-func XEleGetStateFlags(hEle HELE) int {
+func XEle_GetStateFlags(hEle HELE) int {
 	ret, _, _ := xEle_GetStateFlags.Call(uintptr(hEle))
 
 	return int(ret)
@@ -1333,7 +1333,7 @@ func XEleGetStateFlags(hEle HELE) int {
 返回:
 	绘制成功返回TRUE,如果不需要绘制焦点返回FALSE.
 */
-func XEleDrawFocus(hEle HELE, hDraw HDRAW, pRect *RECT) bool {
+func XEle_DrawFocus(hEle HELE, hDraw HDRAW, pRect *RECT) bool {
 	ret, _, _ := xEle_DrawFocus.Call(
 		uintptr(hEle),
 		uintptr(hDraw),
@@ -1349,7 +1349,7 @@ func XEleDrawFocus(hEle HELE, hDraw HDRAW, pRect *RECT) bool {
 	hEle 元素句柄.
 	hLayout 布局对象句柄.
 */
-func XEleBindLayoutObject(hEle HELE, hLayout HXCGUI) {
+func XEle_BindLayoutObject(hEle HELE, hLayout HXCGUI) {
 	xEle_BindLayoutObject.Call(
 		uintptr(hEle),
 		uintptr(hLayout))
@@ -1363,7 +1363,7 @@ func XEleBindLayoutObject(hEle HELE, hLayout HXCGUI) {
 返回:
 	布局对象句柄.
 */
-func XEleGetLayoutObject(hEle HELE) HXCGUI {
+func XEle_GetLayoutObject(hEle HELE) HXCGUI {
 	ret, _, _ := xEle_GetLayoutObject.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
@@ -1377,7 +1377,7 @@ func XEleGetLayoutObject(hEle HELE) HXCGUI {
 返回:
 	布局对象句柄.
 */
-func XEleGetParentLayoutObject(hEle HELE) HXCGUI {
+func XEle_GetParentLayoutObject(hEle HELE) HXCGUI {
 	ret, _, _ := xEle_GetParentLayoutObject.Call(uintptr(hEle))
 
 	return HXCGUI(ret)
@@ -1390,7 +1390,7 @@ func XEleGetParentLayoutObject(hEle HELE) HXCGUI {
 	hEle 元素句柄.
 	nData 用户数据.
 */
-func XEleSetUserData(hEle HELE, nData int) {
+func XEle_SetUserData(hEle HELE, nData int) {
 	xEle_SetUserData.Call(
 		uintptr(hEle),
 		uintptr(nData))
@@ -1404,7 +1404,7 @@ func XEleSetUserData(hEle HELE, nData int) {
 返回:
 	用户数据.
 */
-func XEleGetUserData(hEle HELE) int {
+func XEle_GetUserData(hEle HELE) int {
 	ret, _, _ := xEle_GetUserData.Call(uintptr(hEle))
 
 	return int(ret)
@@ -1417,7 +1417,7 @@ func XEleGetUserData(hEle HELE) int {
 	hEle 元素句柄.
 	pSize 大小.
 */
-func XEleGetContentSize(hEle HELE, pSize *SIZE) {
+func XEle_GetContentSize(hEle HELE, pSize *SIZE) {
 	xEle_GetContentSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
@@ -1430,7 +1430,7 @@ func XEleGetContentSize(hEle HELE, pSize *SIZE) {
 	hEle 元素句柄.
 	b TRUE设置,FALSE取消.
 */
-func XEleSetCapture(hEle HELE, b bool) {
+func XEle_SetCapture(hEle HELE, b bool) {
 	xEle_SetCapture.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(b)))
@@ -1444,7 +1444,7 @@ func XEleSetCapture(hEle HELE, b bool) {
 	nType 属性标识.
 	nWidth 宽度.
 */
-func XEleSetLayoutWidth(hEle HELE, nType Layout_size_type_, nWidth int) {
+func XEle_SetLayoutWidth(hEle HELE, nType Layout_size_type_, nWidth int) {
 	xEle_SetLayoutWidth.Call(
 		uintptr(hEle),
 		uintptr(nType),
@@ -1459,7 +1459,7 @@ func XEleSetLayoutWidth(hEle HELE, nType Layout_size_type_, nWidth int) {
 	nType 属性标识.
 	nHeight 高度.
 */
-func XEleSetLayoutHeight(hEle HELE, nType Layout_size_type_, nHeight int) {
+func XEle_SetLayoutHeight(hEle HELE, nType Layout_size_type_, nHeight int) {
 	xEle_SetLayoutHeight.Call(
 		uintptr(hEle),
 		uintptr(nType),
@@ -1474,7 +1474,7 @@ func XEleSetLayoutHeight(hEle HELE, nType Layout_size_type_, nHeight int) {
 	pType 属性标识.
 	pWidth 宽度.
 */
-func XEleGetLayoutWidth(hEle HELE, nType *Layout_size_type_, nWidth *int) {
+func XEle_GetLayoutWidth(hEle HELE, nType *Layout_size_type_, nWidth *int) {
 	xEle_GetLayoutWidth.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(nType)),
@@ -1489,7 +1489,7 @@ func XEleGetLayoutWidth(hEle HELE, nType *Layout_size_type_, nWidth *int) {
 	pType 属性标识.
 	pHeight 高度.
 */
-func XEleGetLayoutHeight(hEle HELE, nType *Layout_size_type_, nHeight *int) {
+func XEle_GetLayoutHeight(hEle HELE, nType *Layout_size_type_, nHeight *int) {
 	xEle_GetLayoutHeight.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(nType)),
@@ -1503,7 +1503,7 @@ func XEleGetLayoutHeight(hEle HELE, nType *Layout_size_type_, nHeight *int) {
 	hEle 元素句柄.
 	bEnable 启用或关闭.
 */
-func XEleEnableTransparentChannel(hEle HELE, bEnable bool) {
+func XEle_EnableTransparentChannel(hEle HELE, bEnable bool) {
 	xEle_EnableTransparentChannel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -1516,7 +1516,7 @@ func XEleEnableTransparentChannel(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	pText 工具提示内容.
 */
-func XEleSetToolTip(hEle HELE, pText string) {
+func XEle_SetToolTip(hEle HELE, pText string) {
 	xEle_SetToolTip.Call(
 		uintptr(hEle),
 		StringToUintPtr(pText))
@@ -1530,7 +1530,7 @@ func XEleSetToolTip(hEle HELE, pText string) {
 	pOut 接收内容缓冲区.
 	nOutLen 缓冲区大小,字符为单位.
 */
-func XEleGetToolTip(hEle HELE, pOut *uint16, nOutLen int) {
+func XEle_GetToolTip(hEle HELE, pOut *uint16, nOutLen int) {
 	xEle_GetToolTip.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pOut)),
@@ -1544,7 +1544,7 @@ func XEleGetToolTip(hEle HELE, pOut *uint16, nOutLen int) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XEleEnableToolTip(hEle HELE, bEnable bool) {
+func XEle_EnableToolTip(hEle HELE, bEnable bool) {
 	xEle_EnableToolTip.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -1556,7 +1556,7 @@ func XEleEnableToolTip(hEle HELE, bEnable bool) {
 参数:
 	hEle 元素句柄.
 */
-func XEleAdjustLayoutObject(hEle HELE) {
+func XEle_AdjustLayoutObject(hEle HELE) {
 	xEle_AdjustLayoutObject.Call(uintptr(hEle))
 }
 
@@ -1566,6 +1566,6 @@ func XEleAdjustLayoutObject(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XEleAdjustLayout(hEle HELE) {
+func XEle_AdjustLayout(hEle HELE) {
 	xEle_AdjustLayout.Call(uintptr(hEle))
 }

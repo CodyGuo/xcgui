@@ -61,7 +61,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XComboBoxCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XComboBox_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xComboBox_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -81,7 +81,7 @@ func XComboBoxCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	成功返回否则返回FALSE.
 */
-func XComboBoxSetSelItem(hEle HELE, iIndex int) bool {
+func XComboBox_SetSelItem(hEle HELE, iIndex int) bool {
 	ret, _, _ := xComboBox_SetSelItem.Call(
 		uintptr(hEle),
 		uintptr(iIndex))
@@ -97,7 +97,7 @@ func XComboBoxSetSelItem(hEle HELE, iIndex int) bool {
 	hEle 元素句柄.
 	hAdapter 适配器句柄.
 */
-func XComboBoxBindApapter(hEle HELE, hAdapter HXCGUI) {
+func XComboBox_BindApapter(hEle HELE, hAdapter HXCGUI) {
 	xComboBox_BindApapter.Call(
 		uintptr(hEle),
 		uintptr(hAdapter))
@@ -110,7 +110,7 @@ func XComboBoxBindApapter(hEle HELE, hAdapter HXCGUI) {
 	hEle 元素句柄.
 	pRect 坐标.
 */
-func XComboBoxGetButtonRect(hEle HELE, pRect *RECT) {
+func XComboBox_GetButtonRect(hEle HELE, pRect *RECT) {
 	xComboBox_GetButtonRect.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pRect)))
@@ -123,7 +123,7 @@ func XComboBoxGetButtonRect(hEle HELE, pRect *RECT) {
 	hEle 元素句柄.
 	size 大小.
 */
-func XComboBoxSetButtonSize(hEle HELE, size int) {
+func XComboBox_SetButtonSize(hEle HELE, size int) {
 	xComboBox_SetButtonSize.Call(
 		uintptr(hEle),
 		uintptr(size))
@@ -136,7 +136,7 @@ func XComboBoxSetButtonSize(hEle HELE, size int) {
 	hEle 元素句柄.
 	height 高度.
 */
-func XComboBoxSetDropHeight(hEle HELE, height int) {
+func XComboBox_SetDropHeight(hEle HELE, height int) {
 	xComboBox_SetDropHeight.Call(
 		uintptr(hEle),
 		uintptr(height))
@@ -150,7 +150,7 @@ func XComboBoxSetDropHeight(hEle HELE, height int) {
 返回:
 	下拉列表高度.
 */
-func XComboBoxGetDropHeight(hEle HELE) int {
+func XComboBox_GetDropHeight(hEle HELE) int {
 	ret, _, _ := xComboBox_GetDropHeight.Call(uintptr(hEle))
 
 	return int(ret)
@@ -163,7 +163,7 @@ func XComboBoxGetDropHeight(hEle HELE) int {
 	hEle 元素句柄.
 	pXmlFile 项模板文件.*uint16
 */
-func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile string) {
+func XComboBox_SetItemTemplateXML(hEle HELE, pXmlFile string) {
 	xComboBox_SetItemTemplateXML.Call(
 		uintptr(hEle),
 		StringToUintPtr(pXmlFile))
@@ -177,7 +177,7 @@ func XComboBoxSetItemTemplateXML(hEle HELE, pXmlFile string) {
 	hEle 元素句柄.
 	pStringXML 字符串指针. *uint16
 */
-func XComboBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) {
+func XComboBox_SetItemTemplateXMLFromString(hEle HELE, pStringXML string) {
 	xComboBox_SetItemTemplateXMLFromString.Call(
 		uintptr(hEle),
 		StringToUintPtr(pStringXML))
@@ -191,7 +191,7 @@ func XComboBoxSetItemTemplateXMLFromString(hEle HELE, pStringXML string) {
 	hEle 元素句柄.
 	bEnable 是否绘制.
 */
-func XComboBoxEnableDrawButton(hEle HELE, bEnable bool) {
+func XComboBox_EnableDrawButton(hEle HELE, bEnable bool) {
 	xComboBox_EnableDrawButton.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -204,7 +204,7 @@ func XComboBoxEnableDrawButton(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEdit TRUE可编辑,否则相反.
 */
-func XComboBoxEnableEdit(hEle HELE, bEdit bool) {
+func XComboBox_EnableEdit(hEle HELE, bEdit bool) {
 	xComboBox_EnableEdit.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEdit)))
@@ -220,7 +220,7 @@ func XComboBoxEnableEdit(hEle HELE, bEdit bool) {
 	alpha 透明度.
 	width 线宽.
 */
-func XComboBoxAddBkBorder(hEle HELE, nState ComboBox_state_, color COLORREF, alpha byte, width int) {
+func XComboBox_AddBkBorder(hEle HELE, nState ComboBox_state_, color COLORREF, alpha byte, width int) {
 	xComboBox_AddBkBorder.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -237,7 +237,7 @@ func XComboBoxAddBkBorder(hEle HELE, nState ComboBox_state_, color COLORREF, alp
 	color RGB颜色.
 	alpha 透明度.
 */
-func XComboBoxAddBkFill(hEle HELE, nState ComboBox_state_, color COLORREF, alpha byte) {
+func XComboBox_AddBkFill(hEle HELE, nState ComboBox_state_, color COLORREF, alpha byte) {
 	xComboBox_AddBkFill.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -253,7 +253,7 @@ func XComboBoxAddBkFill(hEle HELE, nState ComboBox_state_, color COLORREF, alpha
 	nState 按钮状态.
 	hImage 图片句柄.
 */
-func XComboBoxAddBkImage(hEle HELE, nState ComboBox_state_, hImage HIMAGE) {
+func XComboBox_AddBkImage(hEle HELE, nState ComboBox_state_, hImage HIMAGE) {
 	xComboBox_AddBkImage.Call(
 		uintptr(hEle),
 		uintptr(nState),
@@ -284,7 +284,7 @@ func XComboboxGetBkInfoCount(hEle HELE, nState ComboBox_state_) int {
 	hEle 元素句柄.
 	nState 按钮状态.
 */
-func XComboBoxClearBkInfo(hEle HELE, nState ComboBox_state_) {
+func XComboBox_ClearBkInfo(hEle HELE, nState ComboBox_state_) {
 	xComboBox_ClearBkInfo.Call(
 		uintptr(hEle),
 		uintptr(nState))
@@ -299,7 +299,7 @@ func XComboBoxClearBkInfo(hEle HELE, nState ComboBox_state_) {
 返回:
 	背景内容管理器.
 */
-// func XComboBoxGetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
+// func XComboBox_GetBkInfoManager(hEle HELE, nState ComboBox_state_) HBKINFOM {
 // 	ret, _, _ := xComboBox_GetBkInfoManager.Call(
 // 		uintptr(hEle),
 // 		uintptr(nState))
@@ -315,7 +315,7 @@ func XComboBoxClearBkInfo(hEle HELE, nState ComboBox_state_) {
 返回:
 	返回项索引.
 */
-func XComboBoxGetSelItem(hEle HELE) int {
+func XComboBox_GetSelItem(hEle HELE) int {
 	ret, _, _ := xComboBox_GetSelItem.Call(
 		uintptr(hEle))
 
@@ -330,7 +330,7 @@ func XComboBoxGetSelItem(hEle HELE) int {
 返回:
 	状态.
 */
-func XComboBoxGetState(hEle HELE) ComboBox_state_ {
+func XComboBox_GetState(hEle HELE) ComboBox_state_ {
 	ret, _, _ := xComboBox_GetState.Call(
 		uintptr(hEle))
 

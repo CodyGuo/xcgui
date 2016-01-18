@@ -67,7 +67,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XTabBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XTabBar_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xTabBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -87,7 +87,7 @@ func XTabBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	标签索引.
 */
-func XTabBarAddLabel(hEle HELE, pName string) int {
+func XTabBar_AddLabel(hEle HELE, pName string) int {
 	ret, _, _ := xTabBar_AddLabel.Call(
 		uintptr(hEle),
 		StringToUintPtr(pName))
@@ -106,7 +106,7 @@ func XTabBarAddLabel(hEle HELE, pName string) int {
 返回:
 	标签索引.
 */
-func XTabBarInsertLabel(hEle HELE, index int, pName string) int {
+func XTabBar_InsertLabel(hEle HELE, index int, pName string) int {
 	ret, _, _ := xTabBar_InsertLabel.Call(
 		uintptr(hEle),
 		uintptr(index),
@@ -125,7 +125,7 @@ func XTabBarInsertLabel(hEle HELE, index int, pName string) int {
 返回:
 	成功返回TRUE否则FALSE.
 */
-func XTabBarDeleteLabel(hEle HELE, index int) bool {
+func XTabBar_DeleteLabel(hEle HELE, index int) bool {
 	ret, _, _ := xTabBar_DeleteLabel.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -139,7 +139,7 @@ func XTabBarDeleteLabel(hEle HELE, index int) bool {
 参数:
 	hEle 元素句柄.
 */
-func XTabBarDeleteLabelAll(hEle HELE) {
+func XTabBar_DeleteLabelAll(hEle HELE) {
 	xTabBar_DeleteLabelAll.Call(uintptr(hEle))
 }
 
@@ -152,7 +152,7 @@ func XTabBarDeleteLabelAll(hEle HELE) {
 返回:
 	按钮句柄.
 */
-func XTabBarGetLabel(hEle HELE, index int) HELE {
+func XTabBar_GetLabel(hEle HELE, index int) HELE {
 	ret, _, _ := xTabBar_GetLabel.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -169,7 +169,7 @@ func XTabBarGetLabel(hEle HELE, index int) HELE {
 返回:
 	按钮句柄.
 */
-func XTabBarGetLabelClose(hEle HELE, index int) HELE {
+func XTabBar_GetLabelClose(hEle HELE, index int) HELE {
 	ret, _, _ := xTabBar_GetLabelClose.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -185,7 +185,7 @@ func XTabBarGetLabelClose(hEle HELE, index int) HELE {
 返回:
 	返回按钮句柄.
 */
-func XTabBarGetButtonLeft(hEle HELE) HELE {
+func XTabBar_GetButtonLeft(hEle HELE) HELE {
 	ret, _, _ := xTabBar_GetButtonLeft.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -199,7 +199,7 @@ func XTabBarGetButtonLeft(hEle HELE) HELE {
 返回:
 	返回按钮句柄.
 */
-func XTabBarGetButtonRight(hEle HELE) HELE {
+func XTabBar_GetButtonRight(hEle HELE) HELE {
 	ret, _, _ := xTabBar_GetButtonRight.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -213,7 +213,7 @@ func XTabBarGetButtonRight(hEle HELE) HELE {
 返回:
 	标签位置索引.
 */
-func XTabBarGetSelect(hEle HELE) int {
+func XTabBar_GetSelect(hEle HELE) int {
 	ret, _, _ := xTabBar_GetSelect.Call(uintptr(hEle))
 
 	return int(ret)
@@ -227,7 +227,7 @@ func XTabBarGetSelect(hEle HELE) int {
 返回:
 	标签间隔大小
 */
-func XTabBarGetLabelSpacing(hEle HELE) int {
+func XTabBar_GetLabelSpacing(hEle HELE) int {
 	ret, _, _ := xTabBar_GetLabelSpacing.Call(uintptr(hEle))
 
 	return int(ret)
@@ -241,7 +241,7 @@ func XTabBarGetLabelSpacing(hEle HELE) int {
 返回:
 	标签项数量.
 */
-func XTabBarGetLabelCount(hEle HELE) int {
+func XTabBar_GetLabelCount(hEle HELE) int {
 	ret, _, _ := xTabBar_GetLabelCount.Call(uintptr(hEle))
 
 	return int(ret)
@@ -254,7 +254,7 @@ func XTabBarGetLabelCount(hEle HELE) int {
 	hEle 元素句柄.
 	spacing 标签间隔大小.
 */
-func XTabBarSetLabelSpacing(hEle HELE, spacing int) {
+func XTabBar_SetLabelSpacing(hEle HELE, spacing int) {
 	xTabBar_SetLabelSpacing.Call(
 		uintptr(hEle),
 		uintptr(spacing))
@@ -267,7 +267,7 @@ func XTabBarSetLabelSpacing(hEle HELE, spacing int) {
 	hEle 元素句柄.
 	index 标签位置索引.
 */
-func XTabBarSetSelect(hEle HELE, index int) {
+func XTabBar_SetSelect(hEle HELE, index int) {
 	xTabBar_SetSelect.Call(
 		uintptr(hEle),
 		uintptr(index))
@@ -279,7 +279,7 @@ func XTabBarSetSelect(hEle HELE, index int) {
 参数:
 	hEle 元素句柄.
 */
-func XTabBarSetUp(hEle HELE) {
+func XTabBar_SetUp(hEle HELE) {
 	xTabBar_SetUp.Call(uintptr(hEle))
 }
 
@@ -289,7 +289,7 @@ func XTabBarSetUp(hEle HELE) {
 参数:
 	hEle 元素句柄.
 */
-func XTabBarSetDown(hEle HELE) {
+func XTabBar_SetDown(hEle HELE) {
 	xTabBar_SetDown.Call(uintptr(hEle))
 }
 
@@ -300,7 +300,7 @@ func XTabBarSetDown(hEle HELE) {
 	hEle 元素句柄.
 	bTile 是否启用.
 */
-func XTabBarEnableTile(hEle HELE, bTile bool) {
+func XTabBar_EnableTile(hEle HELE, bTile bool) {
 	xTabBar_EnableTile.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bTile)))
@@ -313,7 +313,7 @@ func XTabBarEnableTile(hEle HELE, bTile bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XTabBarEnableClose(hEle HELE, bEnable bool) {
+func XTabBar_EnableClose(hEle HELE, bEnable bool) {
 	xTabBar_EnableClose.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -326,7 +326,7 @@ func XTabBarEnableClose(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	pSize 大小值, 宽度和高度可以为-1,-1代表默认值.
 */
-func XTabBarSetCloseSize(hEle HELE, pSize *SIZE) {
+func XTabBar_SetCloseSize(hEle HELE, pSize *SIZE) {
 	xTabBar_SetCloseSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
@@ -339,7 +339,7 @@ func XTabBarSetCloseSize(hEle HELE, pSize *SIZE) {
 	hEle 元素句柄.
 	pSize 大小值, 宽度和高度可以为-1,-1代表默认值.
 */
-func XTabBarSetTurnButtonSize(hEle HELE, pSize *SIZE) {
+func XTabBar_SetTurnButtonSize(hEle HELE, pSize *SIZE) {
 	xTabBar_SetTurnButtonSize.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pSize)))
@@ -355,7 +355,7 @@ func XTabBarSetTurnButtonSize(hEle HELE, pSize *SIZE) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XTabBarShowLabel(hEle HELE, index int, bShow bool) bool {
+func XTabBar_ShowLabel(hEle HELE, index int, bShow bool) bool {
 	ret, _, _ := xTabBar_ShowLabel.Call(
 		uintptr(hEle),
 		uintptr(index),

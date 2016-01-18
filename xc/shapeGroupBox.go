@@ -47,7 +47,7 @@ func init() {
 返回:
 	返回句柄.
 */
-func XShapeGroupBoxCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
+func XShapeGroupBox_Create(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeGroupBox_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -68,7 +68,7 @@ func XShapeGroupBoxCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XShapeGroupBoxSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
+func XShapeGroupBox_SetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeGroupBox_SetBorderColor.Call(
 		uintptr(hShape),
 		uintptr(color),
@@ -82,7 +82,7 @@ func XShapeGroupBoxSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	hShape 形状对象句柄.
 	pText 文本内容.*uint16
 */
-func XShapeGroupBoxSetTextColor(hShape HXCGUI, pText string) {
+func XShapeGroupBox_SetTextColor(hShape HXCGUI, pText string) {
 	xShapeGroupBox_SetTextColor.Call(
 		uintptr(hShape),
 		StringToUintPtr(pText))
@@ -96,7 +96,7 @@ func XShapeGroupBoxSetTextColor(hShape HXCGUI, pText string) {
 	hShape 形状对象句柄.
 	hFontX 炫彩字体.
 */
-func XShapeGroupBoxSetFontX(hShape HXCGUI, hFontX HFONTX) {
+func XShapeGroupBox_SetFontX(hShape HXCGUI, hFontX HFONTX) {
 	xShapeGroupBox_SetFontX.Call(
 		uintptr(hShape),
 		uintptr(hFontX))
@@ -110,7 +110,7 @@ func XShapeGroupBoxSetFontX(hShape HXCGUI, hFontX HFONTX) {
 	offsetX 水平偏移.
 	offsetY 垂直偏移.
 */
-func XShapeGroupBoxSetTextOffset(hShape HXCGUI, offsetX, offsetY int) {
+func XShapeGroupBox_SetTextOffset(hShape HXCGUI, offsetX, offsetY int) {
 	xShapeGroupBox_SetTextOffset.Call(
 		uintptr(hShape),
 		uintptr(offsetX),
@@ -125,7 +125,7 @@ func XShapeGroupBoxSetTextOffset(hShape HXCGUI, offsetX, offsetY int) {
 	nWidth 圆角宽度.
 	nHeight 圆角高度.
 */
-func XShapeGroupBoxSetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
+func XShapeGroupBox_SetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
 	xShapeGroupBox_SetRoundAngle.Call(
 		uintptr(hShape),
 		uintptr(nWidth),
@@ -139,7 +139,7 @@ func XShapeGroupBoxSetRoundAngle(hShape HXCGUI, nWidth, nHeight int) {
 	hShape 形状对象句柄.
 	pText 文本内容.*uint16
 */
-func XShapeGroupBoxSetText(hShape HXCGUI, pText string) {
+func XShapeGroupBox_SetText(hShape HXCGUI, pText string) {
 	xShapeGroupBox_SetText.Call(
 		uintptr(hShape),
 		StringToUintPtr(pText))
@@ -154,7 +154,7 @@ func XShapeGroupBoxSetText(hShape HXCGUI, pText string) {
 	pOffsetX X坐标偏移量.
 	pOffsetY Y坐标偏移量.
 */
-func XShapeGroupBoxGetTextOffset(hShape HXCGUI, pOffsetX, pOffsetY *int) {
+func XShapeGroupBox_GetTextOffset(hShape HXCGUI, pOffsetX, pOffsetY *int) {
 	xShapeGroupBox_GetTextOffset.Call(
 		uintptr(hShape),
 		uintptr(unsafe.Pointer(pOffsetX)),
@@ -169,7 +169,7 @@ func XShapeGroupBoxGetTextOffset(hShape HXCGUI, pOffsetX, pOffsetY *int) {
 	pWidth 返回圆角宽度.
 	pHeight 返回圆角高度.
 */
-func XShapeGroupBoxGetRoundAngle(hShape HXCGUI, pWidth, pHeight *int) {
+func XShapeGroupBox_GetRoundAngle(hShape HXCGUI, pWidth, pHeight *int) {
 	xShapeGroupBox_GetRoundAngle.Call(
 		uintptr(hShape),
 		uintptr(unsafe.Pointer(pWidth)),
@@ -183,7 +183,7 @@ func XShapeGroupBoxGetRoundAngle(hShape HXCGUI, pWidth, pHeight *int) {
 	hShape 形状对象句柄.
 	bEnable 是否启用.
 */
-func XShapeGroupBoxEnableRoundAngle(hShape HXCGUI, bEnable bool) {
+func XShapeGroupBox_EnableRoundAngle(hShape HXCGUI, bEnable bool) {
 	xShapeGroupBox_EnableRoundAngle.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))

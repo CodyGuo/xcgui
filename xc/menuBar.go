@@ -33,7 +33,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XMenuBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XMenuBar_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xMenuBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -53,7 +53,7 @@ func XMenuBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	返回菜单按钮索引.
 */
-func XMenuBarAddButton(hEle HELE, pText string) int {
+func XMenuBar_AddButton(hEle HELE, pText string) int {
 	ret, _, _ := xMenuBar_AddButton.Call(
 		uintptr(hEle),
 		StringToUintPtr(pText))
@@ -69,7 +69,7 @@ func XMenuBarAddButton(hEle HELE, pText string) int {
 	hEle 元素句柄.
 	height 高度.
 */
-func XMenuBarSetButtonHeight(hEle HELE, height int) {
+func XMenuBar_SetButtonHeight(hEle HELE, height int) {
 	xMenuBar_SetButtonHeight.Call(
 		uintptr(hEle),
 		uintptr(height))
@@ -84,7 +84,7 @@ func XMenuBarSetButtonHeight(hEle HELE, height int) {
 返回:
 	返回菜单句柄.
 */
-func XMenuBarGetMenu(hEle HELE, nIndex int) HMENUX {
+func XMenuBar_GetMenu(hEle HELE, nIndex int) HMENUX {
 	ret, _, _ := xMenuBar_GetMenu.Call(
 		uintptr(hEle),
 		uintptr(nIndex))
@@ -100,7 +100,7 @@ func XMenuBarGetMenu(hEle HELE, nIndex int) HMENUX {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XMenuBarDeleteButton(hEle HELE, nIndex int) bool {
+func XMenuBar_DeleteButton(hEle HELE, nIndex int) bool {
 	ret, _, _ := xMenuBar_GetMenu.Call(
 		uintptr(hEle),
 		uintptr(nIndex))

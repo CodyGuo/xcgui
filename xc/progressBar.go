@@ -38,7 +38,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XProgBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
+func XProgBar_Create(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xProgBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -56,7 +56,7 @@ func XProgBarCreate(x int, y int, cx int, cy int, hParent HXCGUI) HELE {
 	hEle 元句柄.
 	range 范围.
 */
-func XProgBarSetRange(hEle HELE, barRange int) {
+func XProgBar_SetRange(hEle HELE, barRange int) {
 	xProgBar_SetRange.Call(
 		uintptr(hEle),
 		uintptr(barRange))
@@ -70,7 +70,7 @@ func XProgBarSetRange(hEle HELE, barRange int) {
 返回:
 	返回范围.
 */
-func XProgBarGetRange(hEle HELE) int {
+func XProgBar_GetRange(hEle HELE) int {
 	ret, _, _ := xProgBar_GetRange.Call(uintptr(hEle))
 
 	return int(ret)
@@ -83,7 +83,7 @@ func XProgBarGetRange(hEle HELE) int {
 	hEle 元句柄.
 	hImage 图片句柄.
 */
-func XProgBarSetImageLoad(hEle HELE, hImage HIMAGE) {
+func XProgBar_SetImageLoad(hEle HELE, hImage HIMAGE) {
 	xProgBar_SetImageLoad.Call(
 		uintptr(hEle),
 		uintptr(hImage))
@@ -97,7 +97,7 @@ func XProgBarSetImageLoad(hEle HELE, hImage HIMAGE) {
 	leftSize 左边间隔大小.
 	rightSize 右边间隔大小.
 */
-func XProgBarSetSpaceTwo(hEle HELE, leftSize int, rightSize int) {
+func XProgBar_SetSpaceTwo(hEle HELE, leftSize int, rightSize int) {
 	xProgBar_SetSpaceTwo.Call(
 		uintptr(hEle),
 		uintptr(leftSize),
@@ -111,7 +111,7 @@ func XProgBarSetSpaceTwo(hEle HELE, leftSize int, rightSize int) {
 	hEle 元句柄.
 	pos 位置点.
 */
-func XProgBarSetPos(hEle HELE, pos int) {
+func XProgBar_SetPos(hEle HELE, pos int) {
 	xProgBar_SetPos.Call(
 		uintptr(hEle),
 		uintptr(pos))
@@ -125,7 +125,7 @@ func XProgBarSetPos(hEle HELE, pos int) {
 返回:
 	返回当前位置点.
 */
-func XProgBarGetPos(hEle HELE) int {
+func XProgBar_GetPos(hEle HELE) int {
 	ret, _, _ := xProgBar_GetPos.Call(uintptr(hEle))
 
 	return int(ret)
@@ -138,7 +138,7 @@ func XProgBarGetPos(hEle HELE) int {
 	hEle 元句柄.
 	bHorizon 水平或垂直.
 */
-func XProgBarSetHorizon(hEle HELE, bHorizon bool) {
+func XProgBar_SetHorizon(hEle HELE, bHorizon bool) {
 	xProgBar_SetPos.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bHorizon)))

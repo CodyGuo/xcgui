@@ -27,32 +27,32 @@ type tree_item_i struct {
 }
 
 func main() {
-	hWindow := xcgui.XWndCreate(0, 0, 350, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hWindow := xcgui.XWnd_Create(0, 0, 350, 400, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(hWindow)
 
-	hTree := xcgui.XTreeCreate(20, 40, 300, 300, xcgui.HXCGUI(hWindow))
-	xcgui.XTreeSetItemTemplateXML(hTree, "../xml-template/Tree_Item.xml")
+	hTree := xcgui.XTree_Create(20, 40, 300, 300, xcgui.HXCGUI(hWindow))
+	xcgui.XTree_SetItemTemplateXML(hTree, "../xml-template/Tree_Item.xml")
 
-	hAdapter := xcgui.XAdapterTreeCreate()
-	xcgui.XTreeBindAdapter(hTree, hAdapter)
-	xcgui.XAdapterTreeAddColumn(hAdapter, "name")
+	hAdapter := xcgui.XAdapterTree_Create()
+	xcgui.XTree_BindAdapter(hTree, hAdapter)
+	xcgui.XAdapterTree_AddColumn(hAdapter, "name")
 
 	for i := 0; i < 20; i++ {
-		xcgui.XAdapterTreeInsertItemText(hAdapter, "name-"+fmt.Sprint(i)+"-0", xcgui.XC_ID_ROOT, xcgui.XC_ID_LAST)
+		xcgui.XAdapterTree_InsertItemText(hAdapter, "name-"+fmt.Sprint(i)+"-0", xcgui.XC_ID_ROOT, xcgui.XC_ID_LAST)
 	}
 
-	xcgui.XAdapterTreeInsertItemText(hAdapter, "Item1-----1", 1, xcgui.XC_ID_LAST)         // idc1
-	idc2 := xcgui.XAdapterTreeInsertItemText(hAdapter, "Item1-----2", 1, xcgui.XC_ID_LAST) // idc2
-	xcgui.XAdapterTreeInsertItemText(hAdapter, "Item1-----2--1", idc2, xcgui.XC_ID_LAST)   // idc2-1
+	xcgui.XAdapterTree_InsertItemText(hAdapter, "Item1-----1", 1, xcgui.XC_ID_LAST)         // idc1
+	idc2 := xcgui.XAdapterTree_InsertItemText(hAdapter, "Item1-----2", 1, xcgui.XC_ID_LAST) // idc2
+	xcgui.XAdapterTree_InsertItemText(hAdapter, "Item1-----2--1", idc2, xcgui.XC_ID_LAST)   // idc2-1
 
-	xcgui.XEleRegEventC(hTree, xcgui.XE_TREE_SELECT, xcgui.CallBack(OnTreeSelect))
-	xcgui.XEleRegEventC(hTree, xcgui.XE_TREE_EXPAND, xcgui.CallBack(OnTreeExpand))
+	xcgui.XEle_RegEventC(hTree, xcgui.XE_TREE_SELECT, xcgui.CallBack(OnTreeSelect))
+	xcgui.XEle_RegEventC(hTree, xcgui.XE_TREE_EXPAND, xcgui.CallBack(OnTreeExpand))
 
-	xcgui.XEleRegEventC(hTree, xcgui.XE_TREE_TEMP_CREATE, xcgui.CallBack(OnTemplateCreate))
-	xcgui.XEleRegEventC(hTree, xcgui.XE_TREE_TEMP_DESTROY, xcgui.CallBack(OnTemplateDestroy))
-	xcgui.XEleRegEventC(hTree, xcgui.XE_TREE_TEMP_ADJUST_COORDINATE, xcgui.CallBack(OnTemplateAdjustCoordinate))
+	xcgui.XEle_RegEventC(hTree, xcgui.XE_TREE_TEMP_CREATE, xcgui.CallBack(OnTemplateCreate))
+	xcgui.XEle_RegEventC(hTree, xcgui.XE_TREE_TEMP_DESTROY, xcgui.CallBack(OnTemplateDestroy))
+	xcgui.XEle_RegEventC(hTree, xcgui.XE_TREE_TEMP_ADJUST_COORDINATE, xcgui.CallBack(OnTemplateAdjustCoordinate))
 
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 }

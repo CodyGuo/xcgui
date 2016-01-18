@@ -36,7 +36,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XTextLinkCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
+func XTextLink_Create(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
 	ret, _, _ := xTextLink_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -56,7 +56,7 @@ func XTextLinkCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HELE {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XTextLinkEnableUnderlineLeave(hEle HELE, bEnable bool) {
+func XTextLink_EnableUnderlineLeave(hEle HELE, bEnable bool) {
 	xTextLink_EnableUnderlineLeave.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -69,7 +69,7 @@ func XTextLinkEnableUnderlineLeave(hEle HELE, bEnable bool) {
 	hEle 元素句柄.
 	bEnable 是否启用.
 */
-func XTextLinkEnableUnderlineStay(hEle HELE, bEnable bool) {
+func XTextLink_EnableUnderlineStay(hEle HELE, bEnable bool) {
 	xTextLink_EnableUnderlineStay.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
@@ -83,7 +83,7 @@ func XTextLinkEnableUnderlineStay(hEle HELE, bEnable bool) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XTextLinkSetTextColorStay(hEle HELE, color COLORREF, alpha byte) {
+func XTextLink_SetTextColorStay(hEle HELE, color COLORREF, alpha byte) {
 	xTextLink_SetTextColorStay.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -99,7 +99,7 @@ func XTextLinkSetTextColorStay(hEle HELE, color COLORREF, alpha byte) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XTextLinkSetUnderlineColorLeave(hEle HELE, color COLORREF, alpha byte) {
+func XTextLink_SetUnderlineColorLeave(hEle HELE, color COLORREF, alpha byte) {
 	xTextLink_SetUnderlineColorLeave.Call(
 		uintptr(hEle),
 		uintptr(color),
@@ -114,7 +114,7 @@ func XTextLinkSetUnderlineColorLeave(hEle HELE, color COLORREF, alpha byte) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XTextLinkSetUnderlineColorStay(hEle HELE, color COLORREF, alpha byte) {
+func XTextLink_SetUnderlineColorStay(hEle HELE, color COLORREF, alpha byte) {
 	xTextLink_SetUnderlineColorStay.Call(
 		uintptr(hEle),
 		uintptr(color),

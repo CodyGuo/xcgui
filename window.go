@@ -48,7 +48,7 @@ func InitWindow(window, parent Window, width, height int, title string, style xc
 		return lastError("XWndCreate")
 	}
 
-	wb.hWindow = xc.XWndCreate(
+	wb.hWindow = xc.XWnd_Create(
 		xc.CW_USEDEFAULT,
 		xc.CW_USEDEFAULT,
 		width,
@@ -77,7 +77,7 @@ func InitWindow(window, parent Window, width, height int, title string, style xc
 }
 
 func (wb *WindowBase) Handle() xc.HWND {
-	wb.hWnd = xc.XWndGetHWND(wb.hWindow)
+	wb.hWnd = xc.XWnd_GetHWND(wb.hWindow)
 	return wb.hWnd
 }
 
@@ -86,18 +86,18 @@ func (wb *WindowBase) SetMinimumSize(min Size) error {
 		return newError("min must be positive")
 	}
 
-	xc.XWndSetMinimumSize(wb.hWindow, min.Width, min.Height)
+	xc.XWnd_SetMinimumSize(wb.hWindow, min.Width, min.Height)
 
 	return nil
 }
 
 // func NewMainWindow(width, height int, title string) *WindowBase {
 //     wb := new(WindowBase)
-//     wb.hWindow = xc.XWndCreate(0, 0, width, height, title, 0, int(xc.XC_WINDOW_STYLE_DEFAULT))
+//     wb.hWindow = xc.XWnd_Create(0, 0, width, height, title, 0, int(xc.XC_WINDOW_STYLE_DEFAULT))
 //     xc.CloseBtn(wb.hWindow)
 //     // 透明
-//     xc.XWndSetTransparentType(wb.hWindow, xc.WINDOW_TRANSPARENT_SIMPLE)
-//     // xc.XWndEnableDragBorder(wb.hWindow, xc.BoolToBOOL(false))
+//     xc.XWnd_SetTransparentType(wb.hWindow, xc.WINDOW_TRANSPARENT_SIMPLE)
+//     // xc.XWnd_EnableDragBorder(wb.hWindow, xc.BoolToBOOL(false))
 
 //     // xc.XCDebugToFileInfo("2015")
 
@@ -105,7 +105,7 @@ func (wb *WindowBase) SetMinimumSize(min Size) error {
 // }
 
 func (wb *WindowBase) Show() (err error) {
-	ret := xc.XWndShowWindow(wb.hWindow, xc.SW_RESTORE)
+	ret := xc.XWnd_ShowWindow(wb.hWindow, xc.SW_RESTORE)
 	if !ret {
 		return errors.New("XWndShowWindow call filed.")
 	}
@@ -177,7 +177,7 @@ func (wb *WindowBase) WndProc(hwnd xc.HWND, msg uint32, wparam, lparam uintptr) 
 func DebugToFileInfo(str string) {
 	// 中文转换为Ansi
 	buffer := make([]byte, len(str)+1)
-	xc.XCUnicodeToAnsi(xc.StringToUTF16Ptr(str), len(str), &buffer[0], len(str)*2)
+	xc.XC_UnicodeToAnsi(xc.StringToUTF16Ptr(str), len(str), &buffer[0], len(str)*2)
 
-	xc.XCDebugToFileInfo(&buffer[0])
+	xc.XC_DebugToFileInfo(&buffer[0])
 }

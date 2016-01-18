@@ -51,7 +51,7 @@ func init() {
 返回:
 	返回元素句柄.
 */
-func XShapeGetParentEle(hShape HXCGUI) HELE {
+func XShape_GetParentEle(hShape HXCGUI) HELE {
 	ret, _, _ := xShape_GetParentEle.Call(uintptr(hShape))
 
 	return HELE(ret)
@@ -65,7 +65,7 @@ func XShapeGetParentEle(hShape HXCGUI) HELE {
 返回:
 	布局对象句柄.
 */
-func XShapeGetParentLayout(hShape HXCGUI) HXCGUI {
+func XShape_GetParentLayout(hShape HXCGUI) HXCGUI {
 	ret, _, _ := xShape_GetParentLayout.Call(uintptr(hShape))
 
 	return HXCGUI(ret)
@@ -79,7 +79,7 @@ func XShapeGetParentLayout(hShape HXCGUI) HXCGUI {
 返回:
 	窗口句柄.
 */
-func XShapeGetHWINDOW(hShape HXCGUI) HWINDOW {
+func XShape_GetHWINDOW(hShape HXCGUI) HWINDOW {
 	ret, _, _ := xShape_GetHWINDOW.Call(uintptr(hShape))
 
 	return HWINDOW(ret)
@@ -93,7 +93,7 @@ func XShapeGetHWINDOW(hShape HXCGUI) HWINDOW {
 返回:
 	返回父对象.
 */
-func XShapeGetParent(hShape HXCGUI) HXCGUI {
+func XShape_GetParent(hShape HXCGUI) HXCGUI {
 	ret, _, _ := xShape_GetParent.Call(uintptr(hShape))
 
 	return HXCGUI(ret)
@@ -106,7 +106,7 @@ func XShapeGetParent(hShape HXCGUI) HXCGUI {
 	hShape 形状对象句柄.
 	nID ID值.
 */
-func XShapeSetID(hShape HXCGUI, nID int) {
+func XShape_SetID(hShape HXCGUI, nID int) {
 	xShape_SetID.Call(
 		uintptr(hShape),
 		uintptr(nID))
@@ -120,7 +120,7 @@ func XShapeSetID(hShape HXCGUI, nID int) {
 返回:
 	返回ID.
 */
-func XShapeGetID(hShape HXCGUI) int {
+func XShape_GetID(hShape HXCGUI) int {
 	ret, _, _ := xShape_GetID.Call(uintptr(hShape))
 
 	return int(ret)
@@ -132,7 +132,7 @@ func XShapeGetID(hShape HXCGUI) int {
 参数:
 	hShape 形状对象句柄.
 */
-func XShapeRedraw(hShape HXCGUI) {
+func XShape_Redraw(hShape HXCGUI) {
 	xShape_Redraw.Call(uintptr(hShape))
 }
 
@@ -144,7 +144,7 @@ func XShapeRedraw(hShape HXCGUI) {
 返回:
 	返回内容宽度.
 */
-func XShapeGetWidth(hShape HXCGUI) int {
+func XShape_GetWidth(hShape HXCGUI) int {
 	ret, _, _ := xShape_GetWidth.Call(uintptr(hShape))
 
 	return int(ret)
@@ -158,7 +158,7 @@ func XShapeGetWidth(hShape HXCGUI) int {
 返回:
 	返回内容高度.
 */
-func XShapeGetHeight(hShape HXCGUI) int {
+func XShape_GetHeight(hShape HXCGUI) int {
 	ret, _, _ := xShape_GetHeight.Call(uintptr(hShape))
 
 	return int(ret)
@@ -171,7 +171,7 @@ func XShapeGetHeight(hShape HXCGUI) int {
 	hShape 形状对象句柄.
 	pRect 接收返回坐标.
 */
-func XShapeGetRect(hShape HXCGUI, pRect *RECT) {
+func XShape_GetRect(hShape HXCGUI, pRect *RECT) {
 	xShape_GetRect.Call(
 		uintptr(hShape),
 		uintptr(unsafe.Pointer(pRect)))
@@ -184,7 +184,7 @@ func XShapeGetRect(hShape HXCGUI, pRect *RECT) {
 	hShape 形状对象句柄.
 	pRect 坐标.
 */
-func XShapeSetRect(hShape HXCGUI, pRect *RECT) {
+func XShape_SetRect(hShape HXCGUI, pRect *RECT) {
 	xShape_SetRect.Call(
 		uintptr(hShape),
 		uintptr(unsafe.Pointer(pRect)))
@@ -197,7 +197,7 @@ func XShapeSetRect(hShape HXCGUI, pRect *RECT) {
 	hShape 形状对象句柄.
 	pSize 接收返回内容大小值.
 */
-func XShapeGetContentSize(hShape HXCGUI, pSize *SIZE) {
+func XShape_GetContentSize(hShape HXCGUI, pSize *SIZE) {
 	xShape_GetContentSize.Call(
 		uintptr(hShape),
 		uintptr(unsafe.Pointer(pSize)))
@@ -210,7 +210,7 @@ func XShapeGetContentSize(hShape HXCGUI, pSize *SIZE) {
 	hShape 形状对象句柄.
 	bShow 是否显示.
 */
-func XShapeShowLayout(hShape HXCGUI, bShow bool) {
+func XShape_ShowLayout(hShape HXCGUI, bShow bool) {
 	xShape_ShowLayout.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bShow)))
@@ -222,7 +222,7 @@ func XShapeShowLayout(hShape HXCGUI, bShow bool) {
 参数:
 	hShape 形状对象句柄.
 */
-func XShapeAdjustLayout(hShape HXCGUI) {
+func XShape_AdjustLayout(hShape HXCGUI) {
 	xShape_AdjustLayout.Call(uintptr(hShape))
 }
 
@@ -232,6 +232,6 @@ func XShapeAdjustLayout(hShape HXCGUI) {
 参数:
 	hShape 形状对象句柄.
 */
-func XShapeDestroy(hShape HXCGUI) {
+func XShape_Destroy(hShape HXCGUI) {
 	xShape_Destroy.Call(uintptr(hShape))
 }

@@ -35,7 +35,7 @@ func init() {
 返回:
 	模态窗口句柄.
 */
-func XModalWndCreate(bWidth, nHeight int, pTitle string, hWndParent HWND, XCStyle int) HWINDOW {
+func XModalWnd_Create(bWidth, nHeight int, pTitle string, hWndParent HWND, XCStyle Xc_window_style_) HWINDOW {
 	ret, _, _ := xModalWnd_Create.Call(
 		uintptr(bWidth),
 		uintptr(nHeight),
@@ -64,7 +64,7 @@ func XModalWndCreate(bWidth, nHeight int, pTitle string, hWndParent HWND, XCStyl
 返回:
 	GUI库窗口资源句柄.
 */
-func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
+func XModalWnd_CreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwStyle uint32, x, y, cx, cy int, hWndParent HWND, XCStyle int) HWINDOW {
 	ret, _, _ := xModalWnd_CreateEx.Call(
 		uintptr(dwExStyle),
 		StringToUintPtr(lpClassName),
@@ -89,7 +89,7 @@ func XModalWndCreateEx(dwExStyle uint32, lpClassName, lpWindowName string, dwSty
 	hWindow 模态窗口句柄.
 	bEnable 开启开关.
 */
-func XModalWndEnableAutoClose(hWindow HWINDOW, bEnable bool) {
+func XModalWnd_EnableAutoClose(hWindow HWINDOW, bEnable bool) {
 	xModalWnd_EnableAutoClose.Call(
 		uintptr(hWindow),
 		uintptr(BoolToBOOL(bEnable)))
@@ -103,7 +103,7 @@ func XModalWndEnableAutoClose(hWindow HWINDOW, bEnable bool) {
 返回:
 	XMB_OK:点击确定按钮退出.XMB_CANCEL:点击取消按钮退出.如果返回0,其他方式退出.
 */
-func XModalWndDoModal(hWindow HWINDOW) int {
+func XModalWnd_DoModal(hWindow HWINDOW) int {
 	ret, _, _ := xModalWnd_DoModal.Call(uintptr(hWindow))
 
 	return int(ret)
@@ -116,7 +116,7 @@ func XModalWndDoModal(hWindow HWINDOW) int {
 	hWindow 窗口句柄.
 	nResult XModalWnd_DoModal() 返回值.
 */
-func XModalWndEndModal(hWindow HWINDOW, nResult int) {
+func XModalWnd_EndModal(hWindow HWINDOW, nResult int) {
 	xModalWnd_EndModal.Call(
 		uintptr(hWindow),
 		uintptr(nResult))

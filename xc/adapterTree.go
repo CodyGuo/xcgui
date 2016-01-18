@@ -55,7 +55,7 @@ func init() {
 返回:
 	返回数据适配器句柄.
 */
-func XAdapterTreeCreate() HXCGUI {
+func XAdapterTree_Create() HXCGUI {
 	ret, _, _ := xAdapterTree_Create.Call()
 
 	return HXCGUI(ret)
@@ -70,7 +70,7 @@ func XAdapterTreeCreate() HXCGUI {
 返回:
 	返回索引值.
 */
-func XAdapterTreeAddColumn(hAdapter HXCGUI, pName string) int {
+func XAdapterTree_AddColumn(hAdapter HXCGUI, pName string) int {
 	ret, _, _ := xAdapterTree_AddColumn.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName))
@@ -88,7 +88,7 @@ func XAdapterTreeAddColumn(hAdapter HXCGUI, pName string) int {
 返回:
 	返回列数量. 注解:例如: XAdapterTree_SetColumn(hAdapter, L"name1,name2,mame3");
 */
-func XAdapterTreeSetColumn(hAdapter HXCGUI, pColName string) int {
+func XAdapterTree_SetColumn(hAdapter HXCGUI, pColName string) int {
 	ret, _, _ := xAdapterTree_SetColumn.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pColName))
@@ -108,7 +108,7 @@ func XAdapterTreeSetColumn(hAdapter HXCGUI, pColName string) int {
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemText(hAdapter HXCGUI, pValue string, nParentID, insertID int) int {
+func XAdapterTree_InsertItemText(hAdapter HXCGUI, pValue string, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemText.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pValue),
@@ -131,7 +131,7 @@ func XAdapterTreeInsertItemText(hAdapter HXCGUI, pValue string, nParentID, inser
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemTextEx(hAdapter HXCGUI, pName, pValue string, nParentID, insertID int) int {
+func XAdapterTree_InsertItemTextEx(hAdapter HXCGUI, pName, pValue string, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemTextEx.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -155,7 +155,7 @@ func XAdapterTreeInsertItemTextEx(hAdapter HXCGUI, pName, pValue string, nParent
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemImage(hAdapter HXCGUI, hImage HIMAGE, nParentID, insertID int) int {
+func XAdapterTree_InsertItemImage(hAdapter HXCGUI, hImage HIMAGE, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(hImage),
@@ -177,7 +177,7 @@ func XAdapterTreeInsertItemImage(hAdapter HXCGUI, hImage HIMAGE, nParentID, inse
 返回:
 	返回项ID值.
 */
-func XAdapterTreeInsertItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE, nParentID, insertID int) int {
+func XAdapterTree_InsertItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE, nParentID, insertID int) int {
 	ret, _, _ := xAdapterTree_InsertItemImageEx.Call(
 		uintptr(hAdapter),
 		StringToUintPtr(pName),
@@ -197,7 +197,7 @@ func XAdapterTreeInsertItemImageEx(hAdapter HXCGUI, pName string, hImage HIMAGE,
 返回:
 	返回数量.
 */
-func XAdapterTreeGetCount(hAdapter HXCGUI) int {
+func XAdapterTree_GetCount(hAdapter HXCGUI) int {
 	ret, _, _ := xAdapterTree_GetCount.Call(uintptr(hAdapter))
 
 	return int(ret)
@@ -211,7 +211,7 @@ func XAdapterTreeGetCount(hAdapter HXCGUI) int {
 返回:
 	返回列数量.
 */
-func XAdapterTreeGetCountColumn(hAdapter HXCGUI) int {
+func XAdapterTree_GetCountColumn(hAdapter HXCGUI) int {
 	ret, _, _ := xAdapterTree_GetCountColumn.Call(uintptr(hAdapter))
 
 	return int(ret)
@@ -228,7 +228,7 @@ func XAdapterTreeGetCountColumn(hAdapter HXCGUI) int {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemText(hAdapter HXCGUI, nID, iColumn int, pValue string) bool {
+func XAdapterTree_SetItemText(hAdapter HXCGUI, nID, iColumn int, pValue string) bool {
 	ret, _, _ := xAdapterTree_SetItemText.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
@@ -250,7 +250,7 @@ func XAdapterTreeSetItemText(hAdapter HXCGUI, nID, iColumn int, pValue string) b
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemTextEx(hAdapter HXCGUI, nID int, pName, pValue string) bool {
+func XAdapterTree_SetItemTextEx(hAdapter HXCGUI, nID int, pName, pValue string) bool {
 	ret, _, _ := xAdapterTree_SetItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
@@ -273,7 +273,7 @@ func XAdapterTreeSetItemTextEx(hAdapter HXCGUI, nID int, pName, pValue string) b
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemImage(hAdapter HXCGUI, nID, iColumn int, hImage HIMAGE) bool {
+func XAdapterTree_SetItemImage(hAdapter HXCGUI, nID, iColumn int, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTree_SetItemImage.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
@@ -294,7 +294,7 @@ func XAdapterTreeSetItemImage(hAdapter HXCGUI, nID, iColumn int, hImage HIMAGE) 
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeSetItemImageEx(hAdapter HXCGUI, nID int, pName string, hImage HIMAGE) bool {
+func XAdapterTree_SetItemImageEx(hAdapter HXCGUI, nID int, pName string, hImage HIMAGE) bool {
 	ret, _, _ := xAdapterTree_SetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
@@ -317,7 +317,7 @@ func XAdapterTreeSetItemImageEx(hAdapter HXCGUI, nID int, pName string, hImage H
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeGetItemTextEx(hAdapter HXCGUI, nID int, pName, pOut *uint16, nOutLen int) bool {
+func XAdapterTree_GetItemTextEx(hAdapter HXCGUI, nID int, pName, pOut *uint16, nOutLen int) bool {
 	ret, _, _ := xAdapterTree_GetItemTextEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
@@ -338,7 +338,7 @@ func XAdapterTreeGetItemTextEx(hAdapter HXCGUI, nID int, pName, pOut *uint16, nO
 返回:
 	返回图片句柄.
 */
-func XAdapterTreeGetItemImageEx(hAdapter HXCGUI, nID int, pName string) HIMAGE {
+func XAdapterTree_GetItemImageEx(hAdapter HXCGUI, nID int, pName string) HIMAGE {
 	ret, _, _ := xAdapterTree_GetItemImageEx.Call(
 		uintptr(hAdapter),
 		uintptr(nID),
@@ -357,7 +357,7 @@ func XAdapterTreeGetItemImageEx(hAdapter HXCGUI, nID int, pName string) HIMAGE {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XAdapterTreeDeleteItem(hAdapter HXCGUI, nID int) bool {
+func XAdapterTree_DeleteItem(hAdapter HXCGUI, nID int) bool {
 	ret, _, _ := xAdapterTree_DeleteItem.Call(
 		uintptr(hAdapter),
 		uintptr(nID))
@@ -371,7 +371,7 @@ func XAdapterTreeDeleteItem(hAdapter HXCGUI, nID int) bool {
 参数:
 	hAdapter 数据适配器句柄.
 */
-func XAdapterTreeDeleteItemAll(hAdapter HXCGUI) {
+func XAdapterTree_DeleteItemAll(hAdapter HXCGUI) {
 	xAdapterTree_DeleteItemAll.Call(uintptr(hAdapter))
 }
 
@@ -381,6 +381,6 @@ func XAdapterTreeDeleteItemAll(hAdapter HXCGUI) {
 参数:
 	hAdapter 数据适配器句柄.
 */
-func XAdapterTreeDeleteColumnAll(hAdapter HXCGUI) {
+func XAdapterTree_DeleteColumnAll(hAdapter HXCGUI) {
 	xAdapterTree_DeleteColumnAll.Call(uintptr(hAdapter))
 }

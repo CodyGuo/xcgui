@@ -37,7 +37,7 @@ func init() {
 返回:
 	背景内容管理器句柄.
 */
-func XBkInfoMCreate() HBKINFOM {
+func XBkInfoM_Create() HBKINFOM {
 	ret, _, _ := xBkInfoM_Create.Call()
 
 	return HBKINFOM(ret)
@@ -49,7 +49,7 @@ func XBkInfoMCreate() HBKINFOM {
 参数:
 	hBkInfoM 背景内容管理器句柄.
 */
-func XBkInfoMDestroy(hBkInfoM HBKINFOM) {
+func XBkInfoM_Destroy(hBkInfoM HBKINFOM) {
 	xBkInfoM_Destroy.Call(uintptr(hBkInfoM))
 }
 
@@ -62,7 +62,7 @@ func XBkInfoMDestroy(hBkInfoM HBKINFOM) {
 返回:
 	返回添加的背景内容数量.
 */
-func XBkInfoMSetBkInfo(hBkInfoM HBKINFOM, pText string) int {
+func XBkInfoM_SetBkInfo(hBkInfoM HBKINFOM, pText string) int {
 	ret, _, _ := xBkInfoM_SetBkInfo.Call(
 		uintptr(hBkInfoM),
 		StringToUintPtr(pText))
@@ -80,7 +80,7 @@ func XBkInfoMSetBkInfo(hBkInfoM HBKINFOM, pText string) int {
 	alpha 透明度.
 	width 线宽.
 */
-func XBkInfoMAddBorder(hBkInfoM HBKINFOM, color COLORREF, alpha byte, width int) {
+func XBkInfoM_AddBorder(hBkInfoM HBKINFOM, color COLORREF, alpha byte, width int) {
 	xBkInfoM_AddBorder.Call(
 		uintptr(hBkInfoM),
 		uintptr(color),
@@ -96,7 +96,7 @@ func XBkInfoMAddBorder(hBkInfoM HBKINFOM, color COLORREF, alpha byte, width int)
 	color RGB颜色.
 	alpha 透明度.
 */
-func XBkInfoMAddFill(hBkInfoM HBKINFOM, color COLORREF, alpha byte) {
+func XBkInfoM_AddFill(hBkInfoM HBKINFOM, color COLORREF, alpha byte) {
 	xBkInfoM_AddFill.Call(
 		uintptr(hBkInfoM),
 		uintptr(color),
@@ -110,7 +110,7 @@ func XBkInfoMAddFill(hBkInfoM HBKINFOM, color COLORREF, alpha byte) {
 	hBkInfoM 背景内容管理器句柄.
 	hImage 图片句柄.
 */
-func XBkInfoMAddImage(hBkInfoM HBKINFOM, hImage HIMAGE) {
+func XBkInfoM_AddImage(hBkInfoM HBKINFOM, hImage HIMAGE) {
 	xBkInfoM_AddImage.Call(
 		uintptr(hBkInfoM),
 		uintptr(hImage))
@@ -124,7 +124,7 @@ func XBkInfoMAddImage(hBkInfoM HBKINFOM, hImage HIMAGE) {
 返回:
 	背景内容数量.
 */
-func XBkInfoMGetCount(hBkInfoM HBKINFOM) int {
+func XBkInfoM_GetCount(hBkInfoM HBKINFOM) int {
 	ret, _, _ := xBkInfoM_GetCount.Call(uintptr(hBkInfoM))
 
 	return int(ret)
@@ -136,7 +136,7 @@ func XBkInfoMGetCount(hBkInfoM HBKINFOM) int {
 参数:
 	hBkInfoM 背景内容管理器句柄.
 */
-func XBkInfoMClear(hBkInfoM HBKINFOM) {
+func XBkInfoM_Clear(hBkInfoM HBKINFOM) {
 	xBkInfoM_Clear.Call(uintptr(hBkInfoM))
 }
 
@@ -150,7 +150,7 @@ func XBkInfoMClear(hBkInfoM HBKINFOM) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XBkInfoMDraw(hBkInfoM HBKINFOM, hDraw HDRAW, pRect *RECT) bool {
+func XBkInfoM_Draw(hBkInfoM HBKINFOM, hDraw HDRAW, pRect *RECT) bool {
 	ret, _, _ := xBkInfoM_Draw.Call(
 		uintptr(hBkInfoM),
 		uintptr(hDraw),

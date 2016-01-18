@@ -75,42 +75,42 @@ func init() {
 	xc_Free = xcDLL.MustFindProc("XC_Free")
 }
 
-func XCLoadLayout(pFileName string, hParent HXCGUI) HXCGUI {
+func XC_LoadLayout(pFileName string, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xc_LoadLayout.Call(
 		StringToUintPtr(pFileName),
 		uintptr(hParent))
 	return HXCGUI(ret)
 }
 
-func XCLoadLayoutFromString(pStringXML string, hParent HXCGUI) HXCGUI {
+func XC_LoadLayoutFromString(pStringXML string, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xc_LoadLayoutFromString.Call(
 		StringToUintPtr(pStringXML),
 		uintptr(hParent))
 	return HXCGUI(ret)
 }
 
-func XCLoadResource(pFileName string, pDir string) bool {
+func XC_LoadResource(pFileName string, pDir string) bool {
 	ret, _, _ := xc_LoadResource.Call(
 		StringToUintPtr(pFileName),
 		StringToUintPtr(pDir))
 	return ret == TRUE
 }
 
-func XCLoadResourceFromString(pStringXML string, pDir string) bool {
+func XC_LoadResourceFromString(pStringXML string, pDir string) bool {
 	ret, _, _ := xc_LoadResourceFromString.Call(
 		StringToUintPtr(pStringXML),
 		StringToUintPtr(pDir))
 	return ret == TRUE
 }
 
-func XCLoadTemplate(nType XC_OBJECT_TYPE, pFileName string) *template_info_i {
+func XC_LoadTemplate(nType XC_OBJECT_TYPE, pFileName string) *template_info_i {
 	ret, _, _ := xc_LoadTemplate.Call(
 		uintptr(nType),
 		StringToUintPtr(pFileName))
 	return (*template_info_i)(unsafe.Pointer(ret))
 }
 
-func XCLoadTemplateFromString(nType XC_OBJECT_TYPE, pStringXML string) *template_info_i {
+func XC_LoadTemplateFromString(nType XC_OBJECT_TYPE, pStringXML string) *template_info_i {
 	ret, _, _ := xc_LoadTemplate.Call(
 		uintptr(nType),
 		StringToUintPtr(pStringXML))
@@ -118,16 +118,16 @@ func XCLoadTemplateFromString(nType XC_OBJECT_TYPE, pStringXML string) *template
 	return (*template_info_i)(unsafe.Pointer(ret))
 }
 
-func XCTemplateDestroy(pInfo *template_info_i) {
+func XC_TemplateDestroy(pInfo *template_info_i) {
 	xc_TemplateDestroy.Call(uintptr(unsafe.Pointer(pInfo)))
 }
 
-func XCGetDefaultFont() HFONTX {
+func XC_GetDefaultFont() HFONTX {
 	ret, _, _ := xc_GetDefaultFont.Call()
 	return HFONTX(ret)
 }
 
-func XCInitFont(pFont *LOGFONTW, pName string, size int, bBold bool, bItalic bool, bUnderline bool, bStrikeOut bool) {
+func XC_InitFont(pFont *LOGFONTW, pName string, size int, bBold bool, bItalic bool, bUnderline bool, bStrikeOut bool) {
 	xc_InitFont.Call(
 		uintptr(unsafe.Pointer(pFont)),
 		StringToUintPtr(pName),
@@ -138,10 +138,10 @@ func XCInitFont(pFont *LOGFONTW, pName string, size int, bBold bool, bItalic boo
 		uintptr(BoolToBOOL(bStrikeOut)))
 }
 
-func XCMalloc(size int) {
+func XC_Malloc(size int) {
 	xc_Malloc.Call(uintptr(size))
 }
 
-func XCFree(p *interface{}) {
+func XC_Free(p *interface{}) {
 	xc_Free.Call(uintptr(unsafe.Pointer(p)))
 }

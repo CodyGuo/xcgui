@@ -32,7 +32,7 @@ func init() {
 返回:
 	返回句柄.
 */
-func XShapeEllipseCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
+func XShapeEllipse_Create(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeEllipse_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -51,7 +51,7 @@ func XShapeEllipseCreate(x, y, cx, cy int, hParent HXCGUI) HXCGUI {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XShapeEllipseSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
+func XShapeEllipse_SetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeEllipse_SetBorderColor.Call(
 		uintptr(hShape),
 		uintptr(color),
@@ -66,7 +66,7 @@ func XShapeEllipseSetBorderColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	color RGB颜色值.
 	alpha 透明度.
 */
-func XShapeEllipseSetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
+func XShapeEllipse_SetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	xShapeEllipse_SetFillColor.Call(
 		uintptr(hShape),
 		uintptr(color),
@@ -80,7 +80,7 @@ func XShapeEllipseSetFillColor(hShape HXCGUI, color COLORREF, alpha byte) {
 	hShape 形状对象句柄.
 	bEnable 是否启用.
 */
-func XShapeEllipseEnableBorder(hShape HXCGUI, bEnable bool) {
+func XShapeEllipse_EnableBorder(hShape HXCGUI, bEnable bool) {
 	xShapeEllipse_EnableBorder.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))
@@ -93,7 +93,7 @@ func XShapeEllipseEnableBorder(hShape HXCGUI, bEnable bool) {
 	hShape 形状对象句柄.
 	bEnable 是否启用.
 */
-func XShapeEllipseEnableFill(hShape HXCGUI, bEnable bool) {
+func XShapeEllipse_EnableFill(hShape HXCGUI, bEnable bool) {
 	xShapeEllipse_EnableFill.Call(
 		uintptr(hShape),
 		uintptr(BoolToBOOL(bEnable)))

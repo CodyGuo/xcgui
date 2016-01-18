@@ -51,7 +51,7 @@ func init() {
 返回:
 	返回文本块句柄.
 */
-func XShapeTextCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
+func XShapeText_Create(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
 	ret, _, _ := xShapeText_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -71,7 +71,7 @@ func XShapeTextCreate(x, y, cx, cy int, pName string, hParent HXCGUI) HXCGUI {
 	hTextBlock 形状对象文本句柄.
 	pName 文本内容.*uint16
 */
-func XShapeTextSetText(hTextBlock HXCGUI, pName string) {
+func XShapeText_SetText(hTextBlock HXCGUI, pName string) {
 	xShapeText_SetText.Call(
 		uintptr(hTextBlock),
 		StringToUintPtr(pName))
@@ -86,7 +86,7 @@ func XShapeTextSetText(hTextBlock HXCGUI, pName string) {
 	pOut 接收内容缓冲区.
 	nOutLen 缓冲区大小,字符数量为单位.
 */
-func XShapeTextGetText(hTextBlock HXCGUI, pOut *uint16, nOutLen int) {
+func XShapeText_GetText(hTextBlock HXCGUI, pOut *uint16, nOutLen int) {
 	xShapeText_GetText.Call(
 		uintptr(hTextBlock),
 		uintptr(unsafe.Pointer(pOut)),
@@ -94,10 +94,10 @@ func XShapeTextGetText(hTextBlock HXCGUI, pOut *uint16, nOutLen int) {
 }
 
 //非官方api,功能同上, 更方便golang
-func XShapeTextGetTextGo(hTextBlock HXCGUI) string {
+func XShapeText_GetTextGo(hTextBlock HXCGUI) string {
 	buf_szize := 256
 	buf := make([]uint16, buf_szize)
-	XShapeTextGetText(hTextBlock, &buf[0], buf_szize)
+	XShapeText_GetText(hTextBlock, &buf[0], buf_szize)
 
 	return syscall.UTF16ToString(buf)
 }
@@ -110,7 +110,7 @@ func XShapeTextGetTextGo(hTextBlock HXCGUI) string {
 返回:
 	文本长度.
 */
-func XShapeTextGetTextLength(hTextBlock HXCGUI) int {
+func XShapeText_GetTextLength(hTextBlock HXCGUI) int {
 	ret, _, _ := xShapeText_GetTextLength.Call(
 		uintptr(hTextBlock))
 
@@ -124,7 +124,7 @@ func XShapeTextGetTextLength(hTextBlock HXCGUI) int {
 	hTextBlock 形状对象文本句柄.
 	hFontx 字体句柄.
 */
-func XShapeTextSetFont(hTextBlock HXCGUI, hFontx HFONTX) {
+func XShapeText_SetFont(hTextBlock HXCGUI, hFontx HFONTX) {
 	xShapeText_SetFont.Call(
 		uintptr(hTextBlock),
 		uintptr(hFontx))
@@ -138,7 +138,7 @@ func XShapeTextSetFont(hTextBlock HXCGUI, hFontx HFONTX) {
 	color RGB颜色值.
 	alpha 透明度
 */
-func XShapeTextSetTextColor(hTextBlock HXCGUI, color COLORREF, alpha byte) {
+func XShapeText_SetTextColor(hTextBlock HXCGUI, color COLORREF, alpha byte) {
 	xShapeText_SetTextColor.Call(
 		uintptr(hTextBlock),
 		uintptr(color),
@@ -153,7 +153,7 @@ func XShapeTextSetTextColor(hTextBlock HXCGUI, color COLORREF, alpha byte) {
 返回:
 	颜色值.
 */
-func XShapeTextGetTextColor(hTextBlock HXCGUI) COLORREF {
+func XShapeText_GetTextColor(hTextBlock HXCGUI) COLORREF {
 	ret, _, _ := xShapeText_GetTextColor.Call(
 		uintptr(hTextBlock))
 
@@ -167,7 +167,7 @@ func XShapeTextGetTextColor(hTextBlock HXCGUI) COLORREF {
 	hTextBlock 形状对象文本句柄.
 	align 文本对齐方式.
 */
-func XShapeTextSetTextAlign(hTextBlock HXCGUI, align int) {
+func XShapeText_SetTextAlign(hTextBlock HXCGUI, align int) {
 	xShapeText_SetTextAlign.Call(
 		uintptr(hTextBlock),
 		uintptr(align))
@@ -183,7 +183,7 @@ func XShapeTextSetTextAlign(hTextBlock HXCGUI, align int) {
 返回:
 	成功返回TRUE否则返回FALSE.
 */
-func XShapeTextSetOffset(hTextBlock HXCGUI, x, y int) {
+func XShapeText_SetOffset(hTextBlock HXCGUI, x, y int) {
 	xShapeText_SetOffset.Call(
 		uintptr(hTextBlock),
 		uintptr(x),
@@ -198,7 +198,7 @@ func XShapeTextSetOffset(hTextBlock HXCGUI, x, y int) {
 	nType 指定属性类型
 	width 布局宽度.
 */
-func XShapeTextSetLayoutWidth(hTextBlock HXCGUI, nType Layout_size_type_, width int) {
+func XShapeText_SetLayoutWidth(hTextBlock HXCGUI, nType Layout_size_type_, width int) {
 	xShapeText_SetLayoutWidth.Call(
 		uintptr(hTextBlock),
 		uintptr(nType),
@@ -213,7 +213,7 @@ func XShapeTextSetLayoutWidth(hTextBlock HXCGUI, nType Layout_size_type_, width 
 	nType 指定属性类型
 	height 布局高度.
 */
-func XShapeTextSetLayoutHeight(hTextBlock HXCGUI, nType Layout_size_type_, height int) {
+func XShapeText_SetLayoutHeight(hTextBlock HXCGUI, nType Layout_size_type_, height int) {
 	xShapeText_SetLayoutHeight.Call(
 		uintptr(hTextBlock),
 		uintptr(nType),
@@ -228,7 +228,7 @@ func XShapeTextSetLayoutHeight(hTextBlock HXCGUI, nType Layout_size_type_, heigh
 	pType 属性类型
 	pWidth 宽度
 */
-func XShapeTextGetLayoutWidth(hTextBlock HXCGUI, pType *Layout_size_type_, pWidth *int) {
+func XShapeText_GetLayoutWidth(hTextBlock HXCGUI, pType *Layout_size_type_, pWidth *int) {
 	xShapeText_GetLayoutWidth.Call(
 		uintptr(hTextBlock),
 		uintptr(unsafe.Pointer(pType)),
@@ -243,7 +243,7 @@ func XShapeTextGetLayoutWidth(hTextBlock HXCGUI, pType *Layout_size_type_, pWidt
 	pType 属性类型
 	pHeight 高度
 */
-func XShapeTextGetLayoutHeight(hTextBlock HXCGUI, pType *Layout_size_type_, pHeight *int) {
+func XShapeText_GetLayoutHeight(hTextBlock HXCGUI, pType *Layout_size_type_, pHeight *int) {
 	xShapeText_GetLayoutHeight.Call(
 		uintptr(hTextBlock),
 		uintptr(unsafe.Pointer(pType)),

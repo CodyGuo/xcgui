@@ -37,7 +37,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XMonthCalCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XMonthCal_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xMonthCal_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -57,7 +57,7 @@ func XMonthCalCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 返回:
 	元素样式.
 */
-func XMonthCalGetButton(hEle HELE, nType MonthCal_button_type_) HELE {
+func XMonthCal_GetButton(hEle HELE, nType MonthCal_button_type_) HELE {
 	ret, _, _ := xMonthCal_GetButton.Call(
 		uintptr(hEle),
 		uintptr(nType))
@@ -74,7 +74,7 @@ func XMonthCalGetButton(hEle HELE, nType MonthCal_button_type_) HELE {
 	nMonth 月.
 	nDay 日.
 */
-func XMonthCalSetToday(hEle HELE, nYear, nMonth, nDay int) {
+func XMonthCal_SetToday(hEle HELE, nYear, nMonth, nDay int) {
 	xMonthCal_SetToday.Call(
 		uintptr(hEle),
 		uintptr(nYear),
@@ -91,7 +91,7 @@ func XMonthCalSetToday(hEle HELE, nYear, nMonth, nDay int) {
 	pnMonth 月.[INT,OUT]
 	pnDay 日.[INT,OUT]
 */
-func XMonthCalGetToday(hEle HELE, pnYear, pnMonth, pnDay *int) {
+func XMonthCal_GetToday(hEle HELE, pnYear, pnMonth, pnDay *int) {
 	xMonthCal_GetToday.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pnYear)),
@@ -108,7 +108,7 @@ func XMonthCalGetToday(hEle HELE, pnYear, pnMonth, pnDay *int) {
 	nMonth 月.
 	nDay 日.
 */
-func XMonthCalSeSelDate(hEle HELE, nYear, nMonth, nDay int) {
+func XMonthCal_SeSelDate(hEle HELE, nYear, nMonth, nDay int) {
 	xMonthCal_SeSelDate.Call(
 		uintptr(hEle),
 		uintptr(nYear),
@@ -125,7 +125,7 @@ func XMonthCalSeSelDate(hEle HELE, nYear, nMonth, nDay int) {
 	pnMonth 月.[INT,OUT]
 	pnDay 日.[INT,OUT]
 */
-func XMonthCalGetSelDate(hEle HELE, pnYear, pnMonth, pnDay *int) {
+func XMonthCal_GetSelDate(hEle HELE, pnYear, pnMonth, pnDay *int) {
 	xMonthCal_GetSelDate.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pnYear)),

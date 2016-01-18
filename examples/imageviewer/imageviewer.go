@@ -13,16 +13,16 @@ import (
 func main() {
 	mw := new(MyMainWindow)
 
-	mw.hWindow = xcgui.XWndCreate(0, 0, 800, 600, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	mw.hWindow = xcgui.XWnd_Create(0, 0, 800, 600, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(mw.hWindow)
 
-	hButton := xcgui.XBtnCreate(50, 100, 100, 30, "浏览图片", xcgui.HXCGUI(mw.hWindow))
-	hButtonAbout := xcgui.XBtnCreate(200, 100, 100, 30, "关于", xcgui.HXCGUI(mw.hWindow))
+	hButton := xcgui.XBtn_Create(50, 100, 100, 30, "浏览图片", xcgui.HXCGUI(mw.hWindow))
+	hButtonAbout := xcgui.XBtn_Create(200, 100, 100, 30, "关于", xcgui.HXCGUI(mw.hWindow))
 
-	xcgui.XEleRegEventC1(hButton, xcgui.XE_BNCLICK, xcgui.CallBack(mw.openAction_Triggered))
-	xcgui.XEleRegEventC1(hButtonAbout, xcgui.XE_BNCLICK, xcgui.CallBack(mw.aboutAction_Triggered))
+	xcgui.XEle_RegEventC1(hButton, xcgui.XE_BNCLICK, xcgui.CallBack(mw.openAction_Triggered))
+	xcgui.XEle_RegEventC1(hButtonAbout, xcgui.XE_BNCLICK, xcgui.CallBack(mw.aboutAction_Triggered))
 
-	xcgui.XWndShowWindow(mw.hWindow, xcgui.SW_SHOW)
+	xcgui.XWnd_ShowWindow(mw.hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 
@@ -68,5 +68,5 @@ func (mw *MyMainWindow) aboutAction_Triggered() int {
 
 // 重载，返回炫彩窗口句柄
 func (mw *MyMainWindow) Handle() win.HWND {
-	return win.HWND(xcgui.XWndGetHWND(mw.hWindow))
+	return win.HWND(xcgui.XWnd_GetHWND(mw.hWindow))
 }

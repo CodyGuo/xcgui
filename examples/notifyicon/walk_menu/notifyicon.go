@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	xcgui.XWndCreate(0, 0, 0, 0, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_NOTHING)
+	xcgui.XWnd_Create(0, 0, 0, 0, "炫彩界面库窗口", 0, xcgui.XC_WINDOW_STYLE_NOTHING)
 
 	// We load our icon from a file.
 	icon, err := walk.NewIconFromFile("../../img/x.ico")

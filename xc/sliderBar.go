@@ -44,7 +44,7 @@ func init() {
 返回:
 	元素句柄.
 */
-func XSliderBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
+func XSliderBar_Create(x, y, cx, cy int, hParent HXCGUI) HELE {
 	ret, _, _ := xSliderBar_Create.Call(
 		uintptr(x),
 		uintptr(y),
@@ -62,7 +62,7 @@ func XSliderBarCreate(x, y, cx, cy int, hParent HXCGUI) HELE {
 	hEle 元素句柄.
 	range 范围.
 */
-func XSliderBarSetRange(hEle HELE, irange int) {
+func XSliderBar_SetRange(hEle HELE, irange int) {
 	xSliderBar_SetRange.Call(
 		uintptr(hEle),
 		uintptr(irange))
@@ -76,7 +76,7 @@ func XSliderBarSetRange(hEle HELE, irange int) {
 返回:
 	返回滚动范围.
 */
-func XSliderBarGetRange(hEle HELE) int {
+func XSliderBar_GetRange(hEle HELE) int {
 	ret, _, _ := xSliderBar_GetRange.Call(uintptr(hEle))
 
 	return int(ret)
@@ -89,7 +89,7 @@ func XSliderBarGetRange(hEle HELE) int {
 	hEle 元素句柄.
 	hImage 图片句柄.
 */
-func XSliderBarSetImageLoad(hEle HELE, hImage HIMAGE) {
+func XSliderBar_SetImageLoad(hEle HELE, hImage HIMAGE) {
 	xSliderBar_SetImageLoad.Call(
 		uintptr(hEle),
 		uintptr(hImage))
@@ -102,7 +102,7 @@ func XSliderBarSetImageLoad(hEle HELE, hImage HIMAGE) {
 	hEle 元素句柄.
 	width 宽度.
 */
-func XSliderBarSetButtonWidth(hEle HELE, width int) {
+func XSliderBar_SetButtonWidth(hEle HELE, width int) {
 	xSliderBar_SetButtonWidth.Call(
 		uintptr(hEle),
 		uintptr(width))
@@ -115,7 +115,7 @@ func XSliderBarSetButtonWidth(hEle HELE, width int) {
 	hEle 元素句柄.
 	height 高度.
 */
-func XSliderBarSetButtonHeight(hEle HELE, height int) {
+func XSliderBar_SetButtonHeight(hEle HELE, height int) {
 	xSliderBar_SetButtonHeight.Call(
 		uintptr(hEle),
 		uintptr(height))
@@ -129,7 +129,7 @@ func XSliderBarSetButtonHeight(hEle HELE, height int) {
 	leftSize 左边间隔大小.
 	rightSize 右边间隔大小.
 */
-func XSliderBarSetSpaceTwo(hEle HELE, leftSize, rightSize int) {
+func XSliderBar_SetSpaceTwo(hEle HELE, leftSize, rightSize int) {
 	xSliderBar_SetSpaceTwo.Call(
 		uintptr(hEle),
 		uintptr(leftSize),
@@ -144,7 +144,7 @@ func XSliderBarSetSpaceTwo(hEle HELE, leftSize, rightSize int) {
 	hEle 元素句柄.
 	pos 进度点.
 */
-func XSliderBarSetPos(hEle HELE, pos int) {
+func XSliderBar_SetPos(hEle HELE, pos int) {
 	xSliderBar_SetPos.Call(
 		uintptr(hEle),
 		uintptr(pos))
@@ -158,7 +158,7 @@ func XSliderBarSetPos(hEle HELE, pos int) {
 返回:
 	返回当前进度点.
 */
-func XSliderBarGetPos(hEle HELE) int {
+func XSliderBar_GetPos(hEle HELE) int {
 	ret, _, _ := xSliderBar_GetPos.Call(uintptr(hEle))
 
 	return int(ret)
@@ -172,7 +172,7 @@ func XSliderBarGetPos(hEle HELE) int {
 返回:
 	按钮句柄.
 */
-func XSliderBarGetButton(hEle HELE) HELE {
+func XSliderBar_GetButton(hEle HELE) HELE {
 	ret, _, _ := xSliderBar_GetButton.Call(uintptr(hEle))
 
 	return HELE(ret)
@@ -185,7 +185,7 @@ func XSliderBarGetButton(hEle HELE) HELE {
 hEle 元素句柄.
 bHorizon 水平或垂直.
 */
-func XSliderBarSetHorizon(hEle HELE, bHorizon bool) {
+func XSliderBar_SetHorizon(hEle HELE, bHorizon bool) {
 	xSliderBar_SetHorizon.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bHorizon)))

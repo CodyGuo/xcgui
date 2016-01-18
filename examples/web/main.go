@@ -13,38 +13,38 @@ var (
 )
 
 func main() {
-	hWindow := xcgui.XWndCreate(0, 0, 820, 700, "测试", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
+	hWindow := xcgui.XWnd_Create(0, 0, 820, 700, "测试", 0, xcgui.XC_WINDOW_STYLE_DEFAULT)
 	xcgui.CloseBtn(hWindow)
 
-	button := xcgui.XBtnCreate(300, 35, 50, 30, "执行js", xcgui.HXCGUI(hWindow))
+	button := xcgui.XBtn_Create(300, 35, 50, 30, "执行js", xcgui.HXCGUI(hWindow))
 
-	hWeb = web.XWebCreate(20, 100, 750, 550, xcgui.XWndGetHWND(hWindow))
-	web.XWebSetCookieEnabled(hWeb, true)
+	hWeb = web.XWeb_Create(20, 100, 750, 550, xcgui.XWnd_GetHWND(hWindow))
+	web.XWeb_SetCookieEnabled(hWeb, true)
 
-	version := web.XWebGetVersionString()
+	version := web.XWeb_GetVersionString()
 	fmt.Println(version)
 
-	web.XWebSetUserAgentA(hWeb, "Mozilla/5.0 (Windows NT 12.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Codyguo/45.0.2454.101 Safari/537.36")
+	web.XWeb_SetUserAgentA(hWeb, "Mozilla/5.0 (Windows NT 12.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Codyguo/45.0.2454.101 Safari/537.36")
 
-	version2 := web.XWebGetVersion()
+	version2 := web.XWeb_GetVersion()
 	fmt.Println(version2)
 
-	web.XWebLoadUrl(hWeb, "http://www.xcgui.com/bbs/forum.php")
+	web.XWeb_LoadUrl(hWeb, "http://www.xcgui.com/bbs/forum.php")
 
-	xcgui.XEleRegEventC1(button, xcgui.XE_BNCLICK, xcgui.CallBack(RunJS))
-	xcgui.XWndShowWindow(hWindow, xcgui.SW_SHOW)
+	xcgui.XEle_RegEventC1(button, xcgui.XE_BNCLICK, xcgui.CallBack(RunJS))
+	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
 	xcgui.XExitXCGUI()
 }
 
 func RunJS() int {
-	str := web.XWebGetCookie(hWeb)
-	ok := web.XWebIsCookieEnabled(hWeb)
+	str := web.XWeb_GetCookie(hWeb)
+	ok := web.XWeb_IsCookieEnabled(hWeb)
 	fmt.Println(str, ok)
 
-	web.XWebGoBack(hWeb)
+	web.XWeb_GoBack(hWeb)
 	js := `alert(navigator.userAgent +'\n golang wke Run JS. \n` + str + `');`
-	web.XWebRunJs(hWeb, "javascript: "+js)
+	web.XWeb_RunJs(hWeb, "javascript: "+js)
 
 	return 0
 }

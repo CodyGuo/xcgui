@@ -74,7 +74,7 @@ func RunXCMenu() {
 	var p xcgui.POINT
 	xcgui.GetCursorPos(&p)
 	hMenu := xcgui.XMenu_Create()
-	xcgui.XMenu_AddItem(hMenu, 101, "炫彩菜单101", 0, xcgui.MENU_STATE_FLAGS_POPUP)
+	xcgui.XMenu_AddItem(hMenu, 101, "炫彩菜单101", 0, xcgui.MENU_ITEM_FLAGS_POPUP)
 	xcgui.XMenu_AddItem(hMenu, 102, "炫彩菜单102", 0, 0)
 	xcgui.XMenu_AddItem(hMenu, 103, "炫彩菜单103", 0, 0)
 	xcgui.XMenu_AddItem(hMenu, 104, "炫彩菜单104", 0, 0)

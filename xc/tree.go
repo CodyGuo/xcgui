@@ -19,7 +19,6 @@ var (
 	xTree_IsExpand                        *syscall.Proc
 	xTree_ExpandItem                      *syscall.Proc
 	xTree_HitTest                         *syscall.Proc
-	xTree_HitTestOffet                    *syscall.Proc
 	xTree_GetFirstChildItem               *syscall.Proc
 	xTree_GetNextSiblingItem              *syscall.Proc
 	xTree_GetParentItem                   *syscall.Proc
@@ -56,7 +55,6 @@ func init() {
 	xTree_IsExpand = xcDLL.MustFindProc("XTree_IsExpand")
 	xTree_ExpandItem = xcDLL.MustFindProc("XTree_ExpandItem")
 	xTree_HitTest = xcDLL.MustFindProc("XTree_HitTest")
-	xTree_HitTestOffet = xcDLL.MustFindProc("XTree_HitTestOffet")
 	xTree_GetFirstChildItem = xcDLL.MustFindProc("XTree_GetFirstChildItem")
 	xTree_GetNextSiblingItem = xcDLL.MustFindProc("XTree_GetNextSiblingItem")
 	xTree_GetParentItem = xcDLL.MustFindProc("XTree_GetParentItem")
@@ -303,23 +301,6 @@ func XTree_ExpandItem(hEle HELE, nID int, bExpand bool) bool {
 */
 func XTree_HitTest(hEle HELE, pPt *POINT) int {
 	ret, _, _ := xTree_HitTest.Call(
-		uintptr(hEle),
-		uintptr(unsafe.Pointer(pPt)))
-
-	return int(ret)
-}
-
-/*
-检测坐标点所在项,自动添加滚动视图偏移坐标.
-
-参数:
-	hEle 元素句柄.
-	pPt 坐标点.
-返回:
-	项ID.
-*/
-func XTree_HitTestOffet(hEle HELE, pPt *POINT) int {
-	ret, _, _ := xTree_HitTestOffet.Call(
 		uintptr(hEle),
 		uintptr(unsafe.Pointer(pPt)))
 

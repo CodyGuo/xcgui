@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<!--炫彩界面库-样式文件-->
+<style>
+    <reference>
+        <resources path=".\resource.xml" />
+    </reference>
+</style>

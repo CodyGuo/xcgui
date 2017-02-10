@@ -56,7 +56,7 @@ func OnbtnClick(hEventEle xcgui.HELE, pbHandled *bool) int {
 	hMenu := xcgui.XMenu_Create()
 	xcgui.XMenu_SetBkImage(hMenu, xcgui.XImage_LoadFile("../img/comma_face_12.png", true))
 
-	xcgui.XMenu_AddItemIcon(hMenu, 201, "111", xcgui.XC_ID_ROOT, xcgui.XImage_LoadFile("../img/plus.png", false), xcgui.MENU_STATE_FLAGS_CHECK)
+	xcgui.XMenu_AddItemIcon(hMenu, 201, "111", xcgui.XC_ID_ROOT, xcgui.XImage_LoadFile("../img/plus.png", false), xcgui.MENU_ITEM_FLAGS_CHECK)
 	xcgui.XMenu_AddItem(hMenu, 202, "222", 0, 0)
 	xcgui.XMenu_AddItem(hMenu, 203, "333", 0, 0)
 

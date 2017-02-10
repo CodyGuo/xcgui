@@ -1,7 +1,7 @@
 
 ========================炫彩界面库======================================================
 
-   炫彩界面库不仅是界面库,是软件界面开发框架,让用户快速开发桌面软件变的简单高效;功能丰富, 
+   炫彩界面库--软件界面开发框架,让用户快速开发桌面软件变的简单高效;功能丰富, 
 小巧,高度DIY自定义满足不同软件UI需求,安全(所有界面元素无句柄),支持Windows平台所有编程语言,
 Unicode字符编码,提供千余个API接口,完善的帮助文档及技术支持服务;
 
@@ -30,6 +30,188 @@ Unicode字符编码,提供千余个API接口,完善的帮助文档及技术支持服务;
 官方网站:www.xcgui.com
 邮箱:154460336@qq.com
 
+
+v1.9.9  2016-11-27
+UI设计器 -> 优化界面布局与视觉效果
+UI设计器 -> 增加鼠标右键菜单
+UI设计器 -> C++代码生成
+新增接口:
+XEle_SetUID();
+XEle_GetUID();
+XShape_SetUID();
+XShape_GetUID();
+XLayout_SetUID();
+XLayout_GetUID();
+XC_GetObjectByUID();
+XC_GetObjectByUIDName();
+XComboBox_EnableDropHeightFixed();
+XTree_SetConnectLineLength();
+XSBar_SetSliderPadding();
+XBkInfoM_AddInfo();
+XTabBar_SetPadding();
+XTree_EnableExpand;
+修改 XToolBar_InsertSeparator();
+tree_state_flag_增加tree_state_flag_group,tree_state_flag_group_no
+
+
+v1.9.8  2016-09-25
+UI设计器 -> 自定义属性名
+UI设计器 -> 属性名中文/英文语言切换
+UI设计器 -> 背景编辑器 ->复制/粘贴
+UI设计器 -> 同步属性
+数据适配器 -> 简化 -> 可依据绑定的项模板中定义的字段名称，初始化适配器
+脚本语言Lua支持
+新增接口:
+XList_GetAdapterHeader();
+XList_CreateAdapter();
+XList_CreateAdapterHeader();
+XListBox_CreateAdapter();
+XTree_CreateAdapter();
+XListView_CreateAdapter();
+XC_lua_modifyBOOL();
+XC_lua_newuserdata();
+XC_lua_newuserdata_wchar_t ();
+XC_lua_userdata_wchar_t_ToString ();
+XC_InitLua();
+XC_RunLua();
+XC_ExitLua();
+
+v1.9.7  2016-08-14
+框架窗口功能增强
+UI设计器 -> 属性批量设置
+UI设计器 -> 工具箱自定义对象
+UI设计器 -> 系统字体选择
+UI设计器 -> 资源匹配搜索
+新增接口:
+XAdapterTable_Sort();
+XAdapterTable_SetItemInt();
+XAdapterTable_SetItemIntEx();
+XAdapterTable_SetItemFloat();
+XAdapterTable_SetItemFloatEx();
+XAdapterTable_GetItemInt();
+XAdapterTable_GetItemIntEx();
+XAdapterTable_GetItemFloat();
+XAdapterTable_GetItemFloatEx();
+XAdapterTable_GetItemDataType();
+XAdapterTable_GetItemDataTypeEx();
+XList_SetSort();//设置排序
+XListBox_Sort();
+XRichEdit_SetCaretColor()
+XFrameWnd_SaveLayoutToFile();
+XFrameWnd_LoadLayoutFile();
+XPane_GetState();
+
+v1.9.6.3  2016-07-12
+XWM_PAINT_END 增加窗口绘制完成事件
+UI设计器 -> ID生成宏定义
+UI设计器 -> 设计视图 -> 可同时移动多个对象
+UI设计器 -> 背景管理 -> 一键添加状态
+XSView_SetPadding()改名为XSView_SetBorderSize()
+新增接口:
+XWnd_SetXCTimer();
+XWnd_KillXCTimer();
+XEle_SetXCTimer();
+XEle_KillXCTimer();
+XAdapterMap_SetItemText();
+XAdapterMap_SetItemImage();
+XEle_EnableDrawBorder();
+XEle_EnableInScrollView();
+XEle_IsInScrollView();
+XEle_SetTopmost();
+XSView_SetBorder();
+XSView_GetBorder();
+XTabBar_GetindexByEle();
+XTabBar_SetLabelWidth();
+XAdapterTree_GetItemText();
+XAdapterTree_GetItemImage();
+XShapeText_GetFont();
+
+v1.9.6.2  2016-05-31
+文本对齐方式优化;
+增加元素事件 XE_KEYUP;
+UI设计器 ->　资源管理 -> 快捷键删除资源;
+UI设计器 ->　资源管理 -> 修改分类名称;
+新增接口:
+XList_EnableVScrollBarTop();
+XList_EnableItemBkFullRow();
+XBtn_SetTypeEx();
+XSView_SetScrollBarSize();
+XFont_CreateFromFile();
+XC_SetTextRenderingHint();
+XC_GetResImage();
+XC_GetObjectByIDName();
+修改接口:
+XC_GetObjectByID();
+xc_font_info_i;
+xc_fontStyle_i;
+
+
+v1.9.6.1  2016-03-25
+提高稳定性;
+移除函数 XRichEdit_EnableAutoCancelSel();
+
+v1.9.6  2016-03-15
+UI设计器 -> 鼠标右键菜单-> 打开所在的文件夹
+UI设计器 -> 鼠标右键菜单-> 除此之外全部关闭
+UI设计器 -> 拖动文件到当前项目
+UI设计器 -> 拖动项目文件, 加入项目列表.
+Tree -> 增加停留状态
+Tree -> 支持连接线
+新增接口:
+XImage_AddRef();
+XImage_GetRefCount();
+XFont_AddRef();
+XFont_Release();
+XFont_GetRefCount(); 
+XListBox_SetRowSpace();
+XListBox_GetRowSpace();
+XList_SetRowSpace();
+XList_GetRowSpace();
+XTree_SetRowSpace();
+XTree_GetRowSpace();
+XRichEdit_SetLimitNum();
+XRichEdit_SetDefaultText();
+XRichEdit_SetDefaultTextColor();
+XTree_EnableConnectLine();
+XTree_SetConnectLineColor();
+XTree_SetExpandButtonContentSpace();
+XTree_SetExpandButtonSize();
+
+v1.9.5.9  2016-03-06
+UI设计器-> 支持复制粘贴功能
+UI设计器-> 对象视图 -> 支持拖动对象调整顺序
+UI设计器-> 资源管理 -> 图片资源 -> 支持拖入多张图片;
+XTree_支持拖动项.
+XTree_增加事件项拖动事件 XE_TREE_DRAG_ITEM_ING,XE_TREE_DRAG_ITEM
+XFont_炫彩字体模块优化
+XRichedit_模块优化
+新增接口:
+XEle_GetZOrder(); 
+XLayout_Add();
+XLayout_Insert();
+XLayout_GetZOrder(); 
+XLayout_RemoveLayout();
+XTree_EnableDragItem();
+XTree_MoveItem();
+XTree_SetDragInsertPositionColor();
+XTree_GetEndChildItem();
+XTree_GetPrevSiblingItem();
+XFont_Create3();
+XFont_CreateFromFont();
+XFont_GetFont()
+
+v1.9.5.8  2016-02-20
+UI设计器->背景编辑器->增加三角形,圆, 支持渐变,旋转;
+UI设计器->背景编辑器->可通过键盘移动对象;
+UI设计器->支持打开临时布局文件;
+项模板增加支持对象:ComboBox,RichEdit,SliderBar,ProgressBar;
+新增接口:
+XImage_SetRotateAngle();
+XAdapterListView_Group_DeleteAllChildItem(); 
+XAdapterListView_DeleteAllGroup();
+XAdapterListView_DeleteAllItem();
+XAdapterListView_DeleteColumnGroup();
+XAdapterListView_DeleteColumnItem();
 
 v1.9.3  2016-01-16
 UI设计器 -> 新增功能模板库

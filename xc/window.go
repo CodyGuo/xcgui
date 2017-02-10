@@ -12,7 +12,6 @@ var (
 	xWnd_CreateEx             *syscall.Proc
 	xWnd_RegEventC            *syscall.Proc
 	xWnd_RegEventC1           *syscall.Proc
-	xWnd_RemovegEvent         *syscall.Proc
 	xWnd_AddEle               *syscall.Proc
 	xWnd_InsertEle            *syscall.Proc
 	xWnd_AddShape             *syscall.Proc
@@ -81,7 +80,6 @@ func init() {
 	xWnd_CreateEx = xcDLL.MustFindProc("XWnd_CreateEx")
 	xWnd_RegEventC = xcDLL.MustFindProc("XWnd_RegEventC")
 	xWnd_RegEventC1 = xcDLL.MustFindProc("XWnd_RegEventC1")
-	xWnd_RemovegEvent = xcDLL.MustFindProc("XWnd_RemovegEvent")
 	xWnd_AddEle = xcDLL.MustFindProc("XWnd_AddEle")
 	xWnd_InsertEle = xcDLL.MustFindProc("XWnd_InsertEle")
 	xWnd_AddShape = xcDLL.MustFindProc("XWnd_AddShape")
@@ -235,25 +233,6 @@ func XWnd_RegEventC1(hWindow HWINDOW, nEvent int, pFun uintptr) {
 		uintptr(hWindow),
 		uintptr(nEvent),
 		pFun)
-}
-
-/*
-移除事件函数.
-
-参数:
-	hWindow 窗口句柄.
-	nEvent 事件类型.
-	pFun 事件函数.
-返回:
-	成功返回TRUE否则返回FALSE.
-*/
-func XWnd_RemovegEvent(hWindow HWINDOW, nEvent int, pFun uintptr) bool {
-	ret, _, _ := xWnd_RemovegEvent.Call(
-		uintptr(hWindow),
-		uintptr(nEvent),
-		pFun)
-
-	return ret == TRUE
 }
 
 /*

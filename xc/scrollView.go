@@ -20,8 +20,6 @@ var (
 	xSView_GetViewRect             *syscall.Proc
 	xSView_GetScrollBarH           *syscall.Proc
 	xSView_GetScrollBarV           *syscall.Proc
-	xSView_SetPadding              *syscall.Proc
-	xSView_GetPadding              *syscall.Proc
 	xSView_ScrollPosH              *syscall.Proc
 	xSView_ScrollPosV              *syscall.Proc
 	xSView_ScrollPosXH             *syscall.Proc
@@ -52,8 +50,6 @@ func init() {
 	xSView_GetViewRect = xcDLL.MustFindProc("XSView_GetViewRect")
 	xSView_GetScrollBarH = xcDLL.MustFindProc("XSView_GetScrollBarH")
 	xSView_GetScrollBarV = xcDLL.MustFindProc("XSView_GetScrollBarV")
-	xSView_SetPadding = xcDLL.MustFindProc("XSView_SetPadding")
-	xSView_GetPadding = xcDLL.MustFindProc("XSView_GetPadding")
 	xSView_ScrollPosH = xcDLL.MustFindProc("XSView_ScrollPosH")
 	xSView_ScrollPosV = xcDLL.MustFindProc("XSView_ScrollPosV")
 	xSView_ScrollPosXH = xcDLL.MustFindProc("XSView_ScrollPosXH")
@@ -260,38 +256,6 @@ func XSView_GetScrollBarV(hEle HELE) HELE {
 		uintptr(hEle))
 
 	return HELE(ret)
-}
-
-/*
-设置边框内填充大小.
-
-参数:
-	hEle 元素句柄.
-	left 左边大小.
-	top 上边大小.
-	right 右边大小.
-	bottom 下边大小.
-*/
-func XSView_SetPadding(hEle HELE, left, top, right, bottom int) {
-	xSView_SetPadding.Call(
-		uintptr(hEle),
-		uintptr(left),
-		uintptr(top),
-		uintptr(right),
-		uintptr(bottom))
-}
-
-/*
-获取边框内填充大小.
-
-参数:
-	hEle 元素句柄.
-	pPadding 大小.
-*/
-func XSView_GetPadding(hEle HELE, pPadding *PaddingSize_) {
-	xSView_GetPadding.Call(
-		uintptr(hEle),
-		uintptr(unsafe.Pointer(pPadding)))
 }
 
 /*

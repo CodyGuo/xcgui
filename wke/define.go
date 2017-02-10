@@ -10,3 +10,11 @@ const (
 	WKE_PROXY_SOCKS5
 	WKE_PROXY_SOCKS5HOSTNAME
 )
+
+type WkeLoadingResult uint32
+
+const (
+	WKE_LOADING_SUCCEEDED WkeLoadingResult = iota
+	WKE_LOADING_FAILED
+	WKE_LOADING_CANCELED
+)

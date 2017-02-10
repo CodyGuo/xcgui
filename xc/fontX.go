@@ -13,7 +13,7 @@ var (
 	xFont_CreateFromHFONT   *syscall.Proc
 	xFont_EnableAutoDestroy *syscall.Proc
 	xFont_Destroy           *syscall.Proc
-	xFont_GetHFONT          *syscall.Proc
+	xFont_GetFont           *syscall.Proc
 )
 
 func init() {
@@ -24,7 +24,7 @@ func init() {
 	xFont_CreateFromHFONT = xcDLL.MustFindProc("XFont_CreateFromHFONT")
 	xFont_EnableAutoDestroy = xcDLL.MustFindProc("XFont_EnableAutoDestroy")
 	xFont_Destroy = xcDLL.MustFindProc("XFont_Destroy")
-	xFont_GetHFONT = xcDLL.MustFindProc("XFont_GetHFONT")
+	xFont_GetFont = xcDLL.MustFindProc("XFont_GetFont")
 }
 
 /*
@@ -126,8 +126,8 @@ func XFont_Destroy(hFontX HFONTX) {
 返回:
 	返回HFONT句柄.
 */
-func XFont_GetHFONT(hFontX HFONTX) HFONT {
-	ret, _, _ := xFont_GetHFONT.Call(uintptr(hFontX))
+func XFont_GetFont(hFontX HFONTX) uintptr {
+	ret, _, _ := xFont_GetFont.Call(uintptr(hFontX))
 
-	return HFONT(ret)
+	return uintptr(ret)
 }

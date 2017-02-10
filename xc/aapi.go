@@ -41,6 +41,7 @@ var (
 	xC_RectInRect            *syscall.Proc
 	xC_CombineRect           *syscall.Proc
 	xC_ShowLayoutFrame       *syscall.Proc
+	xC_EnableDebugFile       *syscall.Proc
 	xC_SetLayoutFrameColor   *syscall.Proc
 	xC_EnableErrorMessageBox *syscall.Proc
 	xInitXCGUI               *syscall.Proc
@@ -111,6 +112,7 @@ func init() {
 	xC_RectInRect = xcDLL.MustFindProc("XC_RectInRect")
 	xC_CombineRect = xcDLL.MustFindProc("XC_CombineRect")
 	xC_ShowLayoutFrame = xcDLL.MustFindProc("XC_ShowLayoutFrame")
+	xC_EnableDebugFile = xcDLL.MustFindProc("XC_EnableDebugFile")
 	xC_SetLayoutFrameColor = xcDLL.MustFindProc("XC_SetLayoutFrameColor")
 	xC_EnableErrorMessageBox = xcDLL.MustFindProc("XC_EnableErrorMessageBox")
 	xInitXCGUI = xcDLL.MustFindProc("XInitXCGUI")
@@ -122,6 +124,9 @@ func init() {
 	if ret != TRUE {
 		panic("XInitXCGUI call failed.")
 	}
+
+	// 默认不生成xcgui_debug.txt
+	XC_EnableDebugFile(false)
 }
 
 /* 由于在init已经调用过了，这里只留个函数名字
@@ -305,15 +310,18 @@ func XC_GetObjectType(hXCGUI HXCGUI) XC_OBJECT_TYPE {
 }
 
 /*
-通过ID获取对象句柄.
+通过ID获取对象句柄,不包括窗口对象.
 
 参数:
+	hWindow 所属窗口句柄,如果不属于任何窗口填NULL.
 	nID ID值.
 返回:
 	成功返回句柄,否则返回NULL.
 */
-func XC_GetObjectByID(nID int) HXCGUI {
-	ret, _, _ := xC_GetObjectByID.Call(uintptr(nID))
+func XC_GetObjectByID(hWindow HWINDOW, nID int) HXCGUI {
+	ret, _, _ := xC_GetObjectByID.Call(
+		uintptr(hWindow),
+		uintptr(nID))
 
 	if ret == NULL {
 		panic("XCGetObjectByID get HXCGUI failed.")
@@ -386,6 +394,16 @@ func XC_CombineRect(pDest, pSrc1, pSrc2 *RECT) {
 */
 func XC_ShowLayoutFrame(bShow bool) {
 	xC_ShowLayoutFrame.Call(uintptr(BoolToBOOL(bShow)))
+}
+
+/*
+是否生成xcgui_debug.txt.
+
+参数:
+	bEnable 是否生成.
+*/
+func XC_EnableDebugFile(bEnable bool) {
+	xC_EnableDebugFile.Call(uintptr(BoolToBOOL(bEnable)))
 }
 
 /*

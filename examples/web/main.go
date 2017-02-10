@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	hWeb xcgui.HWINDOW
+	hWeb uintptr
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 
 	button := xcgui.XBtn_Create(300, 35, 50, 30, "执行js", xcgui.HXCGUI(hWindow))
 
-	hWeb = web.XWeb_Create(20, 100, 750, 550, xcgui.XWnd_GetHWND(hWindow))
+	hWeb = web.XWeb_Create(20, 100, 750, 550, xcgui.HXCGUI(hWindow))
 	web.XWeb_SetCookieEnabled(hWeb, true)
 
 	version := web.XWeb_GetVersionString()
@@ -34,6 +34,7 @@ func main() {
 	xcgui.XEle_RegEventC1(button, xcgui.XE_BNCLICK, xcgui.CallBack(RunJS))
 	xcgui.XWnd_ShowWindow(hWindow, xcgui.SW_SHOW)
 	xcgui.XRunXCGUI()
+	web.XWeb_UnInit()
 	xcgui.XExitXCGUI()
 }
 

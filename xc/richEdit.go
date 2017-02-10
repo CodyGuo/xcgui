@@ -25,7 +25,6 @@ var (
 	xRichEdit_EnablePassword                 *syscall.Proc
 	xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE *syscall.Proc
 	xRichEdit_EnableAutoWrap                 *syscall.Proc
-	xRichEdit_EnableAutoCancelSel            *syscall.Proc
 	xRichEdit_EnableAutoSelAll               *syscall.Proc
 	xRichEdit_GetTextLength                  *syscall.Proc
 	xRichEdit_SetRowHeight                   *syscall.Proc
@@ -69,7 +68,6 @@ func init() {
 	xRichEdit_EnablePassword = xcDLL.MustFindProc("XRichEdit_EnablePassword")
 	xRichEdit_EnableEvent_XE_RICHEDIT_CHANGE = xcDLL.MustFindProc("XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE")
 	xRichEdit_EnableAutoWrap = xcDLL.MustFindProc("XRichEdit_EnableAutoWrap")
-	xRichEdit_EnableAutoCancelSel = xcDLL.MustFindProc("XRichEdit_EnableAutoCancelSel")
 	xRichEdit_EnableAutoSelAll = xcDLL.MustFindProc("XRichEdit_EnableAutoSelAll")
 	xRichEdit_GetTextLength = xcDLL.MustFindProc("XRichEdit_GetTextLength")
 	xRichEdit_SetRowHeight = xcDLL.MustFindProc("XRichEdit_SetRowHeight")
@@ -420,19 +418,6 @@ func XRichEdit_EnableEvent_XE_RICHEDIT_CHANGE(hEle HELE, bEnable bool) {
 */
 func XRichEdit_EnableAutoWrap(hEle HELE, bEnable bool) {
 	xRichEdit_EnableAutoWrap.Call(
-		uintptr(hEle),
-		uintptr(BoolToBOOL(bEnable)))
-}
-
-/*
-当失去焦点时,自动取消选择内容.
-
-参数:
-	hEle 元素句柄.
-	bEnable 是否启用.
-*/
-func XRichEdit_EnableAutoCancelSel(hEle HELE, bEnable bool) {
-	xRichEdit_EnableAutoCancelSel.Call(
 		uintptr(hEle),
 		uintptr(BoolToBOOL(bEnable)))
 }

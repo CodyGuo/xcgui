@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<!--炫彩界面库-资源文件-->
+<resources>
+    <type_image>
+		<image name="ID_IMAGE_skin" value=".\image\skin.png" loadType="file" style="default" />
+		
+        <image name="ID_IMAGE_sysbtn_min_down" value=".\image\sysbtn_min_down.png" loadType="file" style="default" />
+        <image name="ID_IMAGE_sysbtn_min_hover" value=".\image\sysbtn_min_hover.png" loadType="file" style="default" />
+        <image name="ID_IMAGE_sysbtn_min_normal" value=".\image\sysbtn_min_normal.png" loadType="file" style="default" />
+		
+        <image name="ID_IMAGE_sysbtn_max_normal" value=".\image\sysbtn_max_normal.png" loadType="file" style="default" />
+        <image name="ID_IMAGE_sysbtn_max_down" value=".\image\sysbtn_max_down.png" loadType="file" style="default" />
+        <image name="ID_IMAGE_sysbtn_max_hover" value=".\image\sysbtn_max_hover.png" loadType="file" style="default" />
+        
+		<image name="ID_IMAGE_sysbtn_close_down" value=".\image\sysbtn_close_down.png" loadType="file" style="default" />
+        <image name="ID_IMAGE_sysbtn_close_hover" value=".\image\sysbtn_close_hover.png" loadType="file" style="default" />
+        <image name="ID_IMAGE_sysbtn_close_normal" value=".\image\sysbtn_close_normal.png" loadType="file" style="default" />
+    </type_image>
+    <type_id />
+    <type_font />
+    <type_string />
+    <type_color />
+</resources>

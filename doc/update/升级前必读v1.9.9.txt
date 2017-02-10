@@ -1,0 +1,42 @@
+
+v1.9.6.3
+*************升级前必读内容****************************
+升级前必读内容,避免带来不必须的麻烦.
+
+升级前做好文件备份,避免遇到错误时不可恢复.
+
+*************v1.9.3 之前版本升级需要转换***************
+UI设计器支持将旧版布局文件转换为新版格式;转换前请做好备份,防止转换不成功或不彻底.
+转换方法: 打开布局文件,选择 [开始]按钮 -> [强制保存文件].
+
+************v1.9.9************************************
+UI设计器 -> 优化界面布局与视觉效果
+UI设计器 -> 增加鼠标右键菜单
+UI设计器 -> C++代码生成
+
+***************增加函数*********************************
+XC_API void WINAPI XEle_SetUID(HELE hEle, int nUID);
+XC_API int  WINAPI XEle_GetUID(HELE hEle);
+XC_API void WINAPI XShape_SetUID(HXCGUI hShape,int nUID);
+XC_API int  WINAPI XShape_GetUID(HXCGUI hShape);
+XC_API void WINAPI XLayout_SetUID(HXCGUI hLayout,int nUID);
+XC_API int  WINAPI XLayout_GetUID(HXCGUI hLayout);
+XC_API HXCGUI WINAPI XC_GetObjectByUID(int nUID);
+XC_API HXCGUI WINAPI XC_GetObjectByUIDName(const wchar_t*  pName);
+XC_API void WINAPI XComboBox_EnableDropHeightFixed(HELE hEle, BOOL bEnable);
+XC_API void WINAPI XTree_SetConnectLineLength(HELE hEle, int nLength);
+XC_API void WINAPI XSBar_SetSliderPadding(HELE hEle, int nPadding);
+XC_API int  WINAPI XBkInfoM_AddInfo(HBKINFOM hBkInfoM, const wchar_t *pText);
+XC_API void WINAPI XTabBar_SetPadding(HELE hEle, int left,int top,int right,int bottom);
+XC_API void WINAPI XTree_EnableExpand(HELE hEle,BOOL bEnable);
+
+****************修改函数**********************************
+XC_API int WINAPI XToolBar_InsertSeparator(HELE hEle,int index=-1,COLORREF color=RGB(128,128,128));
+
+tree_state_flag_ 增加 tree_state_flag_group,tree_state_flag_group_no
+
+****************移除函数**********************************
+
+
+**********************************************************
+

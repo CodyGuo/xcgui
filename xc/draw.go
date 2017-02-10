@@ -53,9 +53,6 @@ var (
 	xDraw_SetTextVertical        *syscall.Proc
 	xDraw_SetTextAlign           *syscall.Proc
 	xDraw_SetFontX               *syscall.Proc
-	xDraw_SetFont                *syscall.Proc
-	xDraw_SetFont2               *syscall.Proc
-	xDraw_SetFont3               *syscall.Proc
 	xDraw_SetLineWidth           *syscall.Proc
 	xDraw_SetBkMode              *syscall.Proc
 	xDraw_CreateSolidBrush       *syscall.Proc
@@ -118,9 +115,6 @@ func init() {
 	xDraw_SetTextVertical = xcDLL.MustFindProc("XDraw_SetTextVertical")
 	xDraw_SetTextAlign = xcDLL.MustFindProc("XDraw_SetTextAlign")
 	xDraw_SetFontX = xcDLL.MustFindProc("XDraw_SetFontX")
-	xDraw_SetFont = xcDLL.MustFindProc("XDraw_SetFont")
-	xDraw_SetFont2 = xcDLL.MustFindProc("XDraw_SetFont2")
-	xDraw_SetFont3 = xcDLL.MustFindProc("XDraw_SetFont3")
 	xDraw_SetLineWidth = xcDLL.MustFindProc("XDraw_SetLineWidth")
 	xDraw_SetBkMode = xcDLL.MustFindProc("XDraw_SetBkMode")
 	xDraw_CreateSolidBrush = xcDLL.MustFindProc("XDraw_CreateSolidBrush")
@@ -301,48 +295,6 @@ func XDraw_SetFontX(hDraw HDRAW, hFontx HFONTX) {
 	xDraw_SetFontX.Call(
 		uintptr(hDraw),
 		uintptr(hFontx))
-}
-
-/*
-设置字体.
-
-参数:
-	hDraw 图形绘制句柄.
-	size 大小.
-*/
-func XDraw_SetFont(hDraw HDRAW, size int) {
-	xDraw_SetFont.Call(
-		uintptr(hDraw),
-		uintptr(size))
-}
-
-/*
-设置字体.
-
-参数:
-	hDraw 图形绘制句柄.
-	pName 字体名称.*uint16
-	size 大小.
-*/
-func XDraw_SetFont2(hDraw HDRAW, pName string, size int) {
-	xDraw_SetFont2.Call(
-		uintptr(hDraw),
-		StringToUintPtr(pName),
-		// uintptr(unsafe.Pointer(pName)),
-		uintptr(size))
-}
-
-/*
-设置字体.
-
-参数:
-	hDraw 图形绘制句柄.
-	pLogFont 字体信息.
-*/
-func XDraw_SetFont3(hDraw HDRAW, pLogFont *LOGFONT) {
-	xDraw_SetFont3.Call(
-		uintptr(hDraw),
-		uintptr(unsafe.Pointer(pLogFont)))
 }
 
 /*
